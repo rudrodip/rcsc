@@ -1,9 +1,9 @@
 import React from 'react'
 
-function Journal() {
+function Journals() {
   return (
     <div>Journal</div>
   )
 }
 
-export default Journal
+export default Journals

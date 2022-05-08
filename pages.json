@@ -1,0 +1,9 @@
+{
+    "Home" : "/",
+    "About" : "/about",
+    "Journals" : "/journals",
+    "Executives": "/executives",
+    "Events": "/events",
+    "Gallery": "/gallery",
+    "Contact": "/contact"
+}
