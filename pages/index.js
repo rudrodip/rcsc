@@ -2,9 +2,7 @@ import React from 'react'
 import Head from 'next/head'
 import Header from '../components/header/header'
 import Card from '../components/card'
-import Social from '../components/social'
 import Stats from '../stats.json'
-import Social_media from '../social_media.json'
 import CountUp from 'react-countup';
 import { useInView } from 'react-intersection-observer';
 import { useState } from 'react';
@@ -98,8 +96,6 @@ export default function Home() {
 
         <Card title="Card 4" desc="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam" img="https://dummyimage.com/600x300" />
       </div>
-
-    <Social props = {Social_media}/>
     </div>
   )
 }
