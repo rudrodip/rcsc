@@ -1,8 +1,16 @@
 import React from 'react'
+import Header from '../components/header/header'
 
 function Gallery() {
   return (
-    <div>Gallery</div>
+    <>
+      <Header
+        subtitle='RC Science Club'
+        title='Gallery'
+        img='https://dummyimage.com/600x300'
+      />
+      
+    </>
   )
 }
 

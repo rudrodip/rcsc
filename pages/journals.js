@@ -1,8 +1,16 @@
 import React from 'react'
+import Header from '../components/header/header'
 
 function Journals() {
   return (
-    <div>Journal</div>
+    <>
+      <Header 
+          subtitle='RC Science Club' 
+          title='Journals' 
+          img='https://dummyimage.com/600x300'
+      />
+      <div>About</div>
+    </>
   )
 }
 
