@@ -7,11 +7,8 @@ const blog_schema = new mongoose.Schema({
         data: Buffer,
         contentType: String
     },
-    paragraphs: [
-        {
-            paragraph: {type: String, required: true}
-        }
-    ],
+    paragraphs: {type: Array, required: true},
+    category: {type: String, default: "uncategorized"},
     date: {type: Date, default: Date.now}
 }, {timestamps: true})
 

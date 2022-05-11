@@ -5,5 +5,6 @@
     "Executives": "/executives",
     "Events": "/events",
     "Gallery": "/gallery",
-    "Contact": "/contact"
+    "Contact": "/contact",
+    "Login": "/login"
 }

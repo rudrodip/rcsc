@@ -10,7 +10,7 @@ const Blog = (props) => {
                         {props.title}
                     </div>
                     <p className='text-2 text-gray-600 font-bold'>Posted by {props.poster}</p>
-                    <p className='text-2 text-gray-400'>Catagory: {props.catagory}</p>
+                    <p className='text-2 text-gray-400'>Category: {props.category}</p>
                     <p className='text-2 text-gray-400'>{props.date}</p>
                     <p className="text-white text-base">
                         {props.desc}
