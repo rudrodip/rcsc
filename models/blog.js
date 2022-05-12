@@ -12,5 +12,4 @@ const blog_schema = new mongoose.Schema({
     date: {type: Date, default: Date.now}
 }, {timestamps: true})
 
-mongoose.models = {}
-export default mongoose.model("blog", blog_schema)
+export default mongoose.models.blog || mongoose.model("blog", blog_schema)

@@ -3,7 +3,8 @@ import Image from 'next/image'
 import Logo from '../../public/logo/rcsc-logo.png'
 import { useState } from "react";
 
-const Navbar = ({ props }) => {
+const Navbar = ({ props, user }) => {
+
   return (
     <div className="sticky top-0 flex z-40">
     <div className="text-gray-400 bg-gray-900 body-font flex flex-row w-full back">
@@ -23,6 +24,7 @@ const Navbar = ({ props }) => {
           {Object.keys(props).map(i => (
             <Navbutton name={i} link={props[i]} key={i}/>
           ))}
+          {user.value ? <Navbutton name="Login" link="/login"/> : ''}
         </nav>
       </div>
     </div>
