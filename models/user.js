@@ -6,6 +6,12 @@ const user_schema = new mongoose.Schema({
     phone: {type: String, required: true, unique: true, minlength: 11, maxlength: 11},
     password: {type: String, required: true},
     memberCode: {type: String, required: true, unique: true},
+    section: {type: String, required: true},
+    roll: {type: Number, required: true, unique: true},
+    blogs: {type: Number, default: 0},
+    likes: {type: Number, default: 0},
+    views: {type: Number, default: 0},
+    role: {type: String, default: "Member"},
     date: {type: Date, default: Date.now}
 }, {timestamps: true})
 

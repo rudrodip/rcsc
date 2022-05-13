@@ -12,6 +12,8 @@ const Login = () => {
   const [phone, setPhone] = useState('')
   const [password, setPassword] = useState('')
   const [memberCode, setMemberCode] = useState('')
+  const [section, setSection] = useState('')
+  const [roll, setRoll] = useState('')
 
   const handleChange = (e) => {
     if (e.target.name == 'name') {
@@ -28,6 +30,12 @@ const Login = () => {
     }
     else if (e.target.name == 'memberCode') {
       setMemberCode(e.target.value)
+    }
+    else if (e.target.name == 'section'){
+      setSection(e.target.value)
+    }
+    else if (e.target.name == 'roll'){
+      setRoll(e.target.value)
     }
   }
 
@@ -55,7 +63,9 @@ const Login = () => {
         email: email,
         phone: phone,
         password: password,
-        memberCode: memberCode
+        memberCode: memberCode,
+        section: section,
+        roll: roll
       }
       let res = await fetch('http://localhost:3000/api/signup', {
         method: 'POST',
@@ -72,6 +82,8 @@ const Login = () => {
       setPhone('')
       setPassword('')
       setMemberCode('')
+      setSection('')
+      setRoll('')
 
       if (response.success){
         toast('Your account has been created!', {
@@ -129,7 +141,6 @@ const Login = () => {
               onChange={handleChange}
               value={phone} />
 
-
             <input
               type="text"
               className="block border border-grey-light w-full p-3 rounded mb-4 outline-none"
@@ -137,6 +148,22 @@ const Login = () => {
               placeholder="Email"
               onChange={handleChange}
               value={email} />
+              
+              <input
+              type="text"
+              className="block border border-grey-light w-full p-3 rounded mb-4 outline-none"
+              name="section"
+              placeholder="Section"
+              onChange={handleChange}
+              value={section} />
+              
+              <input
+              type="number"
+              className="block border border-grey-light w-full p-3 rounded mb-4 outline-none"
+              name="roll"
+              placeholder="Roll"
+              onChange={handleChange}
+              value={roll} />
 
             <input
               type="password"

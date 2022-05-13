@@ -12,7 +12,9 @@ const handler = async (req, res) => {
             email: req.body.email,
             phone: req.body.phone,
             password: password,
-            memberCode: req.body.memberCode
+            memberCode: req.body.memberCode,
+            section: req.body.section,
+            roll: req.body.roll
         })
         await user.save()
         res.status(200).json({ success: "success" })
