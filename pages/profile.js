@@ -2,10 +2,16 @@ import React from 'react'
 import { useEffect } from 'react'
 import { useRouter } from 'next/router'
 import { useState } from 'react'
+import ProfileEdit from '../components/profileEdit'
 
 const Profile = () => {
   const router = useRouter()
   const [userData, setUserData] = useState({})
+  const [token, setToken] = useState('')
+  const [toggle, setToggle] = useState("hidden")
+  const handleToggle = () => {
+    toggle == "" ? setToggle("hidden") : setToggle('')
+  }
 
   const logout = () => {
     localStorage.removeItem('token')
@@ -20,20 +26,22 @@ const Profile = () => {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ token: localStorage.getItem('token')})
+        body: JSON.stringify({ token: localStorage.getItem('token') })
       })
       let response = await res.json()
+      setToken(localStorage.getItem('token'))
       setUserData(response)
     }
-    if (!localStorage.getItem('token')){
+    if (!localStorage.getItem('token')) {
       router.push('/')
     } else {
       getProfile()
     }
   }, [router])
-  
+
   return (
     <main className="profile-page">
+      <ProfileEdit toggle={toggle} handleToggle={handleToggle} token={token}/>
       <section className="relative block" style={{ height: "500px" }}>
         <div
           className="absolute top-0 w-full h-full bg-center bg-cover"
@@ -61,15 +69,15 @@ const Profile = () => {
             y="0"
           >
             <polygon
-              className="text-gray-300 fill-current"
+              className="text-gray-500 fill-current"
               points="2560 0 2560 100 0 100"
             ></polygon>
           </svg>
         </div>
       </section>
-      <section className="relative py-16 bg-gray-300">
+      <section className="relative py-16 bg-gray-500">
         <div className="container mx-auto px-4">
-          <div className="relative flex flex-col min-w-0 break-words bg-gradient-to-r from-cyan-400 to-blue-400 w-full mb-6 shadow-xl rounded-lg -mt-64">
+          <div className="relative flex flex-col min-w-0 break-words bg-gradient-to-r from-cyan-500 to-blue-600 w-full mb-6 shadow-xl rounded-lg -mt-64 opacity-95">
             <div className="px-6">
               <div className="flex flex-wrap justify-center">
                 <div className="w-full lg:w-3/12 px-4 lg:order-2 flex justify-center">
@@ -88,6 +96,7 @@ const Profile = () => {
                       className="bg-green-500 hover:bg-pink-600 uppercase text-white font-bold hover:shadow-md shadow text-xs px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1"
                       type="button"
                       style={{ transition: "all .15s ease" }}
+                      onClick={handleToggle}
                     >
                       Edit
                     </button>
@@ -99,28 +108,28 @@ const Profile = () => {
                       <span className="text-xl font-bold block uppercase tracking-wide text-gray-700">
                         {userData.blogs}
                       </span>
-                      <span className="text-sm text-gray-500">Blogs</span>
+                      <span className="text-sm text-gray-800">Blogs</span>
                     </div>
                     <div className="mr-4 p-3 text-center">
                       <span className="text-xl font-bold block uppercase tracking-wide text-gray-700">
                         {userData.likes}
                       </span>
-                      <span className="text-sm text-gray-500">Likes</span>
+                      <span className="text-sm text-gray-800">Likes</span>
                     </div>
                     <div className="lg:mr-4 p-3 text-center">
                       <span className="text-xl font-bold block uppercase tracking-wide text-gray-700">
                         {userData.views}
                       </span>
-                      <span className="text-sm text-gray-500">Blog Views</span>
+                      <span className="text-sm text-gray-800">Blog Views</span>
                     </div>
                   </div>
                 </div>
               </div>
               <div className="text-center mt-12">
-                <h3 className="text-4xl font-semibold leading-normal text-gray-800 mb-2">
+                <h3 className="text-4xl font-semibold text-white">
                   {userData.userName}
                 </h3>
-                <div className="text-sm leading-normal mt-0 mb-2 text-gray-500 font-bold uppercase">
+                <div className="text-sm leading-normal mt-0 mb-2 text-white font-bold uppercase">
                   <i className="fas fa-map-marker-alt mr-2 text-lg text-gray-500"></i>{" "}
                   {userData.role}
                 </div>
@@ -145,9 +154,10 @@ const Profile = () => {
                       artist of considerable range.
                     </p>
                     <a
-                      href="#pablo"
-                      className="text-gray-700 font-bold hover:text-gray-400"
+                      href=""
+                      className="text-gray-700 font-bold hover:text-gray-800 bg-cyan-300 p-2 rounded-md transition ease-in-out duration-100 hover:bg-green-400"
                       onClick={logout}
+
                     >
                       Logout
                     </a>

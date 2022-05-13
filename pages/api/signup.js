@@ -16,8 +16,7 @@ const handler = async (req, res) => {
             section: req.body.section,
             roll: req.body.roll
         })
-        await user.save()
-        res.status(200).json({ success: "success" })
+        await user.save( e => e ? res.status(200).json({error: e}) : res.status(200).json({ success: true}))
     }
     else {
         res.status(400).json({ error: "This method is not allowed" })

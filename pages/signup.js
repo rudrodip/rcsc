@@ -1,12 +1,12 @@
 import React from 'react'
 import Link from 'next/link'
-import Router, { useRouter } from 'next/router';
+import { useRouter } from 'next/router';
 import { useState } from 'react'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const Login = () => {
-  const rounter = useRouter()
+  const router = useRouter()
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [phone, setPhone] = useState('')
@@ -95,8 +95,9 @@ const Login = () => {
           draggable: true,
           progress: undefined,
         })
-        setTimeout(()=> {rounter.push('http://localhost:3000/login')}, 3000)
-      } else {
+        setTimeout(()=> {router.push('http://localhost:3000/login')}, 3000)
+      } 
+      else{
         toast.warn('Invalid credentials', {
           position: "bottom-center",
           autoClose: 3000,
