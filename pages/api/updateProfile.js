@@ -1,24 +1,32 @@
 import User from "../../models/user"
 import connectDb from "../../middleware/mongoose"
 import jwt from "jsonwebtoken"
+import CryptoJs from "crypto-js"
 
 const handler = async (req, res) => {
     if (req.method == 'POST') {
         const token = req.body.token
-        let matched = false
-        const data = jwt.verify(token, 'sumit625', (e, id) => {
-            if (e) {
-                matched = false
+        const data = jwt.verify(token, 'sumit625')
+
+        // let user = await User.findOneAndUpdate({ email: data.email}, {phone: req.body.email, section: req.body.section, roll: req.body.roll})
+        try {
+            let user = await User.findOne({ email: req.body.email })
+            const bytes = CryptoJs.AES.decrypt(user.password, 'sumit625')
+            const user_password = bytes.toString(CryptoJs.enc.Utf8)
+
+            if (req.body.password == user_password) {
+                let update = await User.updateMany({phone: req.body.phone, section: req.body.section, roll: req.body.roll})
+                let token = jwt.sign({ email: req.body.email, userName: user.userName }, 'sumit625', { expiresIn: "2d" })
+                res.status(200).json({ success: "success" })
             } else {
-                matched = true
+                res.status(400).json({ error: "password not matched" })
             }
-        })
-        if (matched){
-            let user = await User.findOneAndUpdate(data, req.body)
-            res.status(200).json({ success: "success" })
-        } else {
-            res.status(400).json({ error: "not matched" })
+        } catch (error) {
+            res.status(400).json(error)
         }
+
+
+
     }
     else {
         res.status(400).json({ error: "this method is not allowed" })

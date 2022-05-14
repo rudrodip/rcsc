@@ -24,6 +24,7 @@ function Journals(props) {
               category="Physics"
               date="12/12/2021"
               key={i._id}
+              link={`/journals/${i._id}`}
             />
           )
           )

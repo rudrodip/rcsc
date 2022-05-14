@@ -10,9 +10,8 @@ const handler = async (req, res) => {
             // decrypting password
             const bytes = CryptoJs.AES.decrypt(user.password, 'sumit625')
             const user_password = bytes.toString(CryptoJs.enc.Utf8)
-            
+            let token = JWT.sign({email: user.email, userName: user.userName }, 'sumit625', {expiresIn: "2d"})
             if (req.body.email == user.email && req.body.password == user_password){
-                let token = JWT.sign({email: user.email, userName: user.userName }, 'sumit625', {expiresIn: "2d"})
                 res.status(200).json({success: "success", token})
             } else {
                 res.status(400).json({ error: "email or password not matched"})
