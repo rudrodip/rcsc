@@ -12,6 +12,7 @@ const handler = async (req, res) => {
             email: user.email, 
             phone: user.phone, 
             section: user.section, 
+            class: user.class, 
             roll: user.roll,
             views: user.views,
             likes: user.likes,

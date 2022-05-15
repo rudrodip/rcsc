@@ -7,6 +7,7 @@ const user_schema = new mongoose.Schema({
     password: {type: String, required: true},
     memberCode: {type: String, required: true, unique: true},
     section: {type: String, required: true},
+    class: {type: String, required: true},
     roll: {type: Number, required: true, unique: true},
     blogs: {type: Number, default: 0},
     likes: {type: Number, default: 0},

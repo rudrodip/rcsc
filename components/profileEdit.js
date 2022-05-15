@@ -9,6 +9,7 @@ const ProfileEdit = (props) => {
     const [email, setEmail] = useState('')
     const [phone, setPhone] = useState('')
     const [section, setSection] = useState('')
+    const [grade, setGrade] = useState('')
     const [roll, setRoll] = useState('')
     const [password, setPassword] = useState('')
 
@@ -27,6 +28,9 @@ const ProfileEdit = (props) => {
         }
         else if (e.target.name == 'roll') {
             setRoll(e.target.value)
+        }
+        else if (e.target.name == 'class') {
+            setGrade(e.target.value)
         }
     }
 
@@ -55,6 +59,7 @@ const ProfileEdit = (props) => {
                 phone: phone,
                 password: password,
                 section: section,
+                class: grade,
                 roll: roll
             }
             let res = await fetch('http://localhost:3000/api/updateProfile', {
@@ -71,6 +76,7 @@ const ProfileEdit = (props) => {
             setPassword('')
             setSection('')
             setRoll('')
+            setGrade('')
 
             {props.handleToggle()}
 
@@ -142,6 +148,18 @@ const ProfileEdit = (props) => {
                                         placeholder="phone number"
                                         onChange={handleChange}
                                         value={phone}
+                                        required />
+                                </div>
+                                <div>
+                                    <label htmlFor="class" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Your Class</label>
+                                    <input
+                                        type="text"
+                                        name="class"
+                                        id="class"
+                                        placeholder="class"
+                                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                                        onChange={handleChange}
+                                        value={grade}
                                         required />
                                 </div>
                                 <div>

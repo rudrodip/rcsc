@@ -14,7 +14,12 @@ const handler = async (req, res) => {
             const user_password = bytes.toString(CryptoJs.enc.Utf8)
 
             if (req.body.password == user_password) {
-                let update = await User.findByIdAndUpdate(user._id, {phone: req.body.phone, section: req.body.section, roll: req.body.roll})
+                let update = await User.findByIdAndUpdate(user._id, {
+                    phone: req.body.phone,
+                    section: req.body.section,
+                    class: req.body.class,
+                    roll: req.body.roll
+                })
                 let token = jwt.sign({ email: req.body.email, userName: user.userName }, 'sumit625', { expiresIn: "2d" })
                 res.status(200).json({ success: "success" })
             } else {

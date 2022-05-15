@@ -13,6 +13,7 @@ const Login = () => {
   const [password, setPassword] = useState('')
   const [memberCode, setMemberCode] = useState('')
   const [section, setSection] = useState('')
+  const [grade, setGrade] = useState('')
   const [roll, setRoll] = useState('')
 
   const handleChange = (e) => {
@@ -31,10 +32,13 @@ const Login = () => {
     else if (e.target.name == 'memberCode') {
       setMemberCode(e.target.value)
     }
-    else if (e.target.name == 'section'){
+    else if (e.target.name == 'section') {
       setSection(e.target.value)
     }
-    else if (e.target.name == 'roll'){
+    else if (e.target.name == 'class') {
+      setGrade(e.target.value)
+    }
+    else if (e.target.name == 'roll') {
       setRoll(e.target.value)
     }
   }
@@ -65,6 +69,7 @@ const Login = () => {
         password: password,
         memberCode: memberCode,
         section: section,
+        class: grade,
         roll: roll
       }
       let res = await fetch('http://localhost:3000/api/signup', {
@@ -84,8 +89,9 @@ const Login = () => {
       setMemberCode('')
       setSection('')
       setRoll('')
+      setGrade('')
 
-      if (response.success){
+      if (response.success) {
         toast('Your account has been created!', {
           position: "bottom-center",
           autoClose: 3000,
@@ -95,9 +101,9 @@ const Login = () => {
           draggable: true,
           progress: undefined,
         })
-        setTimeout(()=> {router.push('http://localhost:3000/login')}, 3000)
-      } 
-      else{
+        setTimeout(() => { router.push('http://localhost:3000/login') }, 3000)
+      }
+      else {
         toast.warn('Invalid credentials', {
           position: "bottom-center",
           autoClose: 3000,
@@ -149,16 +155,24 @@ const Login = () => {
               placeholder="Email"
               onChange={handleChange}
               value={email} />
-              
-              <input
+
+            <input
+              type="text"
+              className="block border border-grey-light w-full p-3 rounded mb-4 outline-none"
+              name="class"
+              placeholder="Class"
+              onChange={handleChange}
+              value={grade} />
+
+            <input
               type="text"
               className="block border border-grey-light w-full p-3 rounded mb-4 outline-none"
               name="section"
               placeholder="Section"
               onChange={handleChange}
               value={section} />
-              
-              <input
+
+            <input
               type="number"
               className="block border border-grey-light w-full p-3 rounded mb-4 outline-none"
               name="roll"

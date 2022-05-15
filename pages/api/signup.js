@@ -14,6 +14,7 @@ const handler = async (req, res) => {
             password: password,
             memberCode: req.body.memberCode,
             section: req.body.section,
+            class: req.body.class,
             roll: req.body.roll
         })
         await user.save( e => e ? res.status(200).json({error: e}) : res.status(200).json({ success: true}))

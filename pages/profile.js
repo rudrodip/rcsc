@@ -135,6 +135,7 @@ const Profile = () => {
                 </div>
                 <div className="mb-2 text-gray-700 mt-10">
                   <i className="fas fa-briefcase mr-2 text-lg text-gray-500"></i>
+                  Class: {userData.class} <br></br>
                   Section: {userData.section} <br></br>
                   Roll: {userData.roll}
                 </div>
