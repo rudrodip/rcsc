@@ -1,15 +1,37 @@
 import React from 'react'
 import Header from '../components/header/header'
+import EventGallery from '../components/eventGallery'
+import FullBlog from '../components/fullBlog'
+import { useEffect } from 'react'
+import { useState } from 'react'
 
 function Events() {
+  const [journal, setJournal] = useState({})
+
+  useEffect(() => {
+    async function getBlog() {
+      let res = await fetch('http://localhost:3000/api/getBlog', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ id: "6280be205f14bd75111fbbba" })
+      })
+      let response = await res.json()
+      setJournal(response.blogs)
+    }
+
+    getBlog()
+  }, [])
+
   return (
     <div>
-      <Header 
-        title = "Science Club"
-        subtitle = "Events"
-        imageSubtitle = "We dream"
-        imageTitle = "We make our dream true"
-        img = {
+      <Header
+        title="Science Club"
+        subtitle="Events"
+        imageSubtitle="_explore!"
+        imageTitle="Science Fest 2022"
+        img={
           [
             {
               url: 'https://images.pexels.com/photos/2775196/pexels-photo-2775196.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
@@ -26,6 +48,18 @@ function Events() {
           ]
         }
       />
+      <EventGallery
+        title="Science Fest 2022"
+        desc="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ex suscipit, repudiandae voluptatem, rerum placeat excepturi ipsa recusandae consequuntur nam dolor nobis asperiores error corrupti eum cumque blanditiis optio repellendus. Quis incidunt saepe beatae corporis non quasi omnis adipisci sed dolor expedita, ratione dignissimos unde, maxime error corrupti autem suscipit nostrum!"
+        img1="https://dummyimage.com/500x300"
+        img2="https://dummyimage.com/600x300"
+        img3="https://dummyimage.com/500x300"
+        img4="https://dummyimage.com/700x300"
+        img5="https://dummyimage.com/600x300"
+        img6="https://dummyimage.com/500x300"
+      />
+
+      <FullBlog journal={journal} />
     </div>
   )
 }

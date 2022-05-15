@@ -1,5 +1,5 @@
 import React from 'react'
-import Head from 'next/head'
+import EventGallery from '../components/eventGallery'
 import Header from '../components/header/header'
 import Card from '../components/card'
 import Stats from '../stats.json'
@@ -109,6 +109,16 @@ export default function Home() {
 
         <Card title="Card 4" desc="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam" img="https://dummyimage.com/600x300" />
       </div>
+      <EventGallery 
+        title = "Science Fest 2022"
+        desc = "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ex suscipit, repudiandae voluptatem, rerum placeat excepturi ipsa recusandae consequuntur nam dolor nobis asperiores error corrupti eum cumque blanditiis optio repellendus. Quis incidunt saepe beatae corporis non quasi omnis adipisci sed dolor expedita, ratione dignissimos unde, maxime error corrupti autem suscipit nostrum!"
+        img1 = "https://dummyimage.com/500x300"
+        img2 = "https://dummyimage.com/600x300"
+        img3 = "https://dummyimage.com/500x300"
+        img4 = "https://dummyimage.com/700x300"
+        img5 = "https://dummyimage.com/600x300"
+        img6 = "https://dummyimage.com/500x300"
+      />
     </div>
   )
 }

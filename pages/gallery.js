@@ -1,15 +1,16 @@
 import React from 'react'
 import Header from '../components/header/header'
+import EventGallery from '../components/eventGallery'
 
 function Gallery() {
   return (
     <div>
-      <Header 
-        title = "Science Club"
-        subtitle = "Gallery"
-        imageSubtitle = "We dream"
-        imageTitle = "We make our dream true"
-        img = {
+      <Header
+        title="Science Club"
+        subtitle="Gallery"
+        imageSubtitle="We dream"
+        imageTitle="We make our dream true"
+        img={
           [
             {
               url: 'https://images.pexels.com/photos/2775196/pexels-photo-2775196.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
@@ -25,6 +26,27 @@ function Gallery() {
             }
           ]
         }
+      />
+      <EventGallery 
+        title = "Science Fest 2022"
+        desc = "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ex suscipit, repudiandae voluptatem, rerum placeat excepturi ipsa recusandae consequuntur nam dolor nobis asperiores error corrupti eum cumque blanditiis optio repellendus. Quis incidunt saepe beatae corporis non quasi omnis adipisci sed dolor expedita, ratione dignissimos unde, maxime error corrupti autem suscipit nostrum!"
+        img1 = "https://dummyimage.com/500x300"
+        img2 = "https://dummyimage.com/600x300"
+        img3 = "https://dummyimage.com/500x300"
+        img4 = "https://dummyimage.com/700x300"
+        img5 = "https://dummyimage.com/600x300"
+        img6 = "https://dummyimage.com/500x300"
+      />
+      
+      <EventGallery 
+        title = "Science Fest 2021"
+        desc = "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ex suscipit, repudiandae voluptatem, rerum placeat excepturi ipsa recusandae consequuntur nam dolor nobis asperiores error corrupti eum cumque blanditiis optio repellendus. Quis incidunt saepe beatae corporis non quasi omnis adipisci sed dolor expedita, ratione dignissimos unde, maxime error corrupti autem suscipit nostrum!"
+        img1 = "https://dummyimage.com/500x300"
+        img2 = "https://dummyimage.com/600x300"
+        img3 = "https://dummyimage.com/500x300"
+        img4 = "https://dummyimage.com/700x300"
+        img5 = "https://dummyimage.com/600x300"
+        img6 = "https://dummyimage.com/500x300"
       />
       
     </div>
