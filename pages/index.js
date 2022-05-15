@@ -17,12 +17,30 @@ export default function Home() {
     setVisit(true)
   }
 
+  const slide_images = [
+    {
+      url: 'https://images.pexels.com/photos/2775196/pexels-photo-2775196.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+      caption: 'Slide 1'
+    },
+    {
+      url: 'https://images.pexels.com/photos/3408744/pexels-photo-3408744.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+      caption: 'Slide 2'
+    },
+    {
+      url: 'https://images.pexels.com/photos/3454270/pexels-photo-3454270.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+      caption: 'Slide 3'
+    }
+  ]
+
   return (
+    
     <div className=''>
-      <Header
-        subtitle='Rajshahi College'
-        title='Science Club'
-        img='https://dummyimage.com/600x300'
+      <Header 
+        title = "Science Club"
+        subtitle = "Rajshahi College"
+        imageSubtitle = "We explore"
+        imageTitle = "We let others explore! 🔍"
+        img = {slide_images}
       />
       <div className="stats-short" style={{ marginTop: '7rem' }}>
         <section className="text-gray-400 bg-gray-900 body-font">

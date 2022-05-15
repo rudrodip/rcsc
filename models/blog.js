@@ -7,6 +7,9 @@ const blog_schema = new mongoose.Schema({
         data: Buffer,
         contentType: String
     },
+    // each paragraph item will have object
+        // key -> subtitle
+        // key -> content
     paragraphs: {type: Array, required: true},
     category: {type: String, default: "uncategorized"},
     date: {type: Date, default: Date.now}

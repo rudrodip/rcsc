@@ -8,6 +8,7 @@ const handler = async (req, res) => {
             userId: req.body.userId,
             title: req.body.title,
             paragraphs: req.body.paragraphs,
+            category: req.body.category
         })
         await blog.save()
         res.status(200).json({ success: "success" })
