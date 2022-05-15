@@ -8,14 +8,13 @@ const handler = async (req, res) => {
         const token = req.body.token
         const data = jwt.verify(token, 'sumit625')
 
-        // let user = await User.findOneAndUpdate({ email: data.email}, {phone: req.body.email, section: req.body.section, roll: req.body.roll})
         try {
             let user = await User.findOne({ email: req.body.email })
             const bytes = CryptoJs.AES.decrypt(user.password, 'sumit625')
             const user_password = bytes.toString(CryptoJs.enc.Utf8)
 
             if (req.body.password == user_password) {
-                let update = await User.updateMany({phone: req.body.phone, section: req.body.section, roll: req.body.roll})
+                let update = await User.findByIdAndUpdate(user._id, {phone: req.body.phone, section: req.body.section, roll: req.body.roll})
                 let token = jwt.sign({ email: req.body.email, userName: user.userName }, 'sumit625', { expiresIn: "2d" })
                 res.status(200).json({ success: "success" })
             } else {
