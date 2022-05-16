@@ -3,6 +3,7 @@ import connectDb from "../../middleware/mongoose"
 import jwt from "jsonwebtoken"
 import CryptoJs from "crypto-js"
 
+
 const handler = async (req, res) => {
     if (req.method == 'POST') {
         const token = req.body.token
@@ -28,8 +29,6 @@ const handler = async (req, res) => {
         } catch (error) {
             res.status(400).json(error)
         }
-
-
 
     }
     else {

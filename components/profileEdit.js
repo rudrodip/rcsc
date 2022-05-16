@@ -1,8 +1,10 @@
 import React from 'react'
 import { useRouter } from 'next/router';
-import { useState } from 'react'
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { useState, useRef } from 'react'
+import { ToastContainer, toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
+import { FileInputButton } from './fileInput'
+import axios from 'axios';
 
 const ProfileEdit = (props) => {
     const router = useRouter()
@@ -12,6 +14,16 @@ const ProfileEdit = (props) => {
     const [grade, setGrade] = useState('')
     const [roll, setRoll] = useState('')
     const [password, setPassword] = useState('')
+
+    const onChange = async (formData) => {
+        const config = {
+            headers: { 'content-type': 'multipart/form-data' }
+        };
+
+        const response = await axios.post('/api/uploadImage', formData, config);
+        console.log('response', response.data);
+    }
+
 
     const handleChange = (e) => {
         if (e.target.name == 'email') {
@@ -60,12 +72,13 @@ const ProfileEdit = (props) => {
                 password: password,
                 section: section,
                 class: grade,
-                roll: roll
+                roll: roll,
+                image: formData
             }
             let res = await fetch('http://localhost:3000/api/updateProfile', {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json',
+                    'Content-Type': 'application/json'
                 },
                 body: JSON.stringify(data)
             })
@@ -78,7 +91,7 @@ const ProfileEdit = (props) => {
             setRoll('')
             setGrade('')
 
-            {props.handleToggle()}
+            { props.handleToggle() }
 
             if (response.success) {
                 toast('Changes saved!', {
@@ -92,7 +105,7 @@ const ProfileEdit = (props) => {
                 })
                 setTimeout(() => { router.push('http://localhost:3000/profile') }, 1000)
             }
-            else{
+            else {
                 toast.warn('Invalid credentials', {
                     position: "bottom-center",
                     autoClose: 3000,
@@ -125,6 +138,16 @@ const ProfileEdit = (props) => {
                         </button>
                         <div className="py-6 px-6 lg:px-8">
                             <h3 className="mb-4 text-xl font-medium text-gray-900 dark:text-white">Edit your info</h3>
+                            <div className='flex flex-wrap flex-row justify-around content-center'>
+                                <img alt="team" className="flex-shrink-0 rounded-lg w-48 h-48 object-contain object-center sm:mb-0" src="https://dummyimage.com/300x200" />
+                                <div className="py-6 px-3 mt-32 sm:mt-0">
+                                    <FileInputButton
+                                        label="Change profile pic"
+                                        uploadFileName="theFiles"
+                                        onChange={onChange}
+                                    />
+                                </div>
+                            </div>
                             <form className="space-y-6" action="#">
                                 <div>
                                     <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Your email</label>
@@ -132,11 +155,11 @@ const ProfileEdit = (props) => {
                                         type="email"
                                         name="email"
                                         id="email"
-                                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white "
                                         placeholder="name@gmail.com"
                                         onChange={handleChange}
                                         value={email}
-                                        />
+                                    />
                                 </div>
                                 <div>
                                     <label htmlFor="phone" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Your phone</label>
@@ -144,7 +167,7 @@ const ProfileEdit = (props) => {
                                         type="text"
                                         name="phone"
                                         id="phone"
-                                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white outline-none"
                                         placeholder="phone number"
                                         onChange={handleChange}
                                         value={phone}
@@ -157,7 +180,7 @@ const ProfileEdit = (props) => {
                                         name="class"
                                         id="class"
                                         placeholder="class"
-                                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white outline-none"
                                         onChange={handleChange}
                                         value={grade}
                                         required />
@@ -169,7 +192,7 @@ const ProfileEdit = (props) => {
                                         name="section"
                                         id="section"
                                         placeholder="section"
-                                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white outline-none"
                                         onChange={handleChange}
                                         value={section}
                                         required />
@@ -181,7 +204,7 @@ const ProfileEdit = (props) => {
                                         name="roll"
                                         id="roll"
                                         placeholder="roll"
-                                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white outline-none"
                                         onChange={handleChange}
                                         value={roll}
                                         required />
@@ -193,16 +216,17 @@ const ProfileEdit = (props) => {
                                         name="password"
                                         id="password"
                                         placeholder="password"
-                                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white outline-none"
                                         onChange={handleChange}
                                         value={password}
                                         required />
                                 </div>
 
-                                <button 
-                                type="submit" 
-                                className="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                                onClick={handleSubmit}
+
+                                <button
+                                    type="submit"
+                                    className="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                                    onClick={handleSubmit}
                                 >
                                     Save changes
                                 </button>

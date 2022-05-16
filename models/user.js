@@ -13,6 +13,10 @@ const user_schema = new mongoose.Schema({
     likes: {type: Number, default: 0},
     views: {type: Number, default: 0},
     role: {type: String, default: "Member"},
+    image: {
+        data: Buffer,
+        contentType: String
+    },
     date: {type: Date, default: Date.now}
 }, {timestamps: true})
 
