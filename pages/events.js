@@ -8,22 +8,6 @@ import { useState } from 'react'
 function Events() {
   const [journal, setJournal] = useState({})
 
-  useEffect(() => {
-    async function getBlog() {
-      let res = await fetch('http://localhost:3000/api/getBlog', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ id: "6280be205f14bd75111fbbba" })
-      })
-      let response = await res.json()
-      setJournal(response.blogs)
-    }
-
-    getBlog()
-  }, [])
-
   return (
     <div>
       <Header

@@ -1,47 +1,56 @@
 import React from 'react'
-import { useEffect } from 'react'
 import { useRouter } from 'next/router'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import ProfileEdit from '../components/profileEdit'
+import { logout, useAuth, getUsers } from '../src/config/firebase.config';
 
 const Profile = () => {
   const router = useRouter()
-  const [userData, setUserData] = useState({})
-  const [token, setToken] = useState('')
+  const [loading, setLoading] = useState(false)
   const [toggle, setToggle] = useState("hidden")
+  const [profile, setProfile] = useState("https://dummyimage.com/200x200")
+  const [user, setUser] = useState(null)
+  const currentUser = useAuth()
+  // const userRef = collection(db, "user")
+
+  // useEffect(()=>{
+  //   const getUser = async () => {
+  //     const data = await getDocs(userRef)
+  //     setUser(data.docs.map(doc => ({...doc.data(), id:doc.id})))
+  //   }
+  //   getUser()
+  //   console.log(user)
+  // }, [])
+
   const handleToggle = () => {
     toggle == "" ? setToggle("hidden") : setToggle('')
   }
 
-  const logout = () => {
-    localStorage.removeItem('token')
-    router.push('/')
-    window.location.reload(false)
-  }
+  getUsers()
 
-  useEffect(() => {
-    const getProfile = async () => {
-      let res = await fetch('http://localhost:3000/api/getProfile', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ token: localStorage.getItem('token') })
-      })
-      let response = await res.json()
-      setToken(localStorage.getItem('token'))
-      setUserData(response)
+  
+  useEffect(()=>{
+    if (currentUser){
+      setProfile(currentUser.photoURL)
     }
-    if (!localStorage.getItem('token')) {
+  }, [])
+
+
+
+  const handleLogout = async () => {
+    try {
+      setLoading(true)
+      await logout()
       router.push('/')
-    } else {
-      getProfile()
+    } catch (error) {
+      alert(error)
     }
-  }, [router])
+    setLoading(false)
+  }
 
   return (
     <main className="profile-page">
-      <ProfileEdit toggle={toggle} handleToggle={handleToggle} token={token}/>
+      <ProfileEdit toggle={toggle} handleToggle={handleToggle} user={currentUser}/>
       <section className="relative block" style={{ height: "500px" }}>
         <div
           className="absolute top-0 w-full h-full bg-center bg-cover"
@@ -81,11 +90,11 @@ const Profile = () => {
             <div className="px-6">
               <div className="flex flex-wrap justify-center">
                 <div className="w-full lg:w-3/12 px-4 lg:order-2 flex justify-center">
-                  <div className="relative cursor-pointer absolute -m-24">
+                  <div className="relative cursor-pointer -m-24">
                       <img
                         alt="..."
-                        src="https://dummyimage.com/400x400"
-                        className="shadow-xl rounded-full h-auto align-middle border-none"
+                        src={profile}
+                        className="shadow-xl h-auto align-middle border-none"
                         style={{ maxWidth: "200px" }}
                       />
                   </div>
@@ -106,19 +115,19 @@ const Profile = () => {
                   <div className="flex justify-center py-4 lg:pt-4 pt-8">
                     <div className="mr-4 p-3 text-center">
                       <span className="text-xl font-bold block uppercase tracking-wide text-gray-400">
-                        {userData.blogs}
+                        {12}
                       </span>
                       <span className="text-sm text-gray-400">Blogs</span>
                     </div>
                     <div className="mr-4 p-3 text-center">
                       <span className="text-xl font-bold block uppercase tracking-wide text-gray-400">
-                        {userData.likes}
+                        {12}
                       </span>
                       <span className="text-sm text-gray-400">Likes</span>
                     </div>
                     <div className="lg:mr-4 p-3 text-center">
                       <span className="text-xl font-bold block uppercase tracking-wide text-gray-400">
-                        {userData.views}
+                        {12}
                       </span>
                       <span className="text-sm text-gray-400">Blog Views</span>
                     </div>
@@ -127,17 +136,17 @@ const Profile = () => {
               </div>
               <div className="text-center mt-12">
                 <h3 className="text-4xl font-semibold text-white">
-                  {userData.userName}
+                  {'Sumit'}
                 </h3>
                 <div className="text-sm leading-normal mt-0 mb-2 text-white font-bold uppercase">
                   <i className="fas fa-map-marker-alt mr-2 text-lg text-gray-500"></i>{" "}
-                  {userData.role}
+                  {'Member'}
                 </div>
                 <div className="mb-2 text-gray-400 mt-10">
                   <i className="fas fa-briefcase mr-2 text-lg text-gray-400"></i>
-                  Class: {userData.class} <br></br>
-                  Section: {userData.section} <br></br>
-                  Roll: {userData.roll}
+                  Class: {11} <br></br>
+                  Section: {'Meghna'} <br></br>
+                  Roll: {132}
                 </div>
                 <div className="mb-2 text-gray-400">
                   Rajshahi College
@@ -153,14 +162,13 @@ const Profile = () => {
                       warm, intimate feel with a solid groove structure. An
                       artist of considerable range.
                     </p>
-                    <a
-                      href=""
+                    <button
                       className="text-gray-800 font-bold bg-cyan-300 p-2 rounded-md transition ease-in-out duration-100 hover:bg-green-400"
-                      onClick={logout}
-
+                      onClick={handleLogout}
+                      disabled={loading || !currentUser}
                     >
                       Logout
-                    </a>
+                    </button>
                   </div>
                 </div>
               </div>

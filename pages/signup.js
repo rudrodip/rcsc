@@ -4,9 +4,11 @@ import { useRouter } from 'next/router';
 import { useState } from 'react'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { signUp } from '../src/config/firebase.config';
 
 const Login = () => {
   const router = useRouter()
+  const [loading, setLoading] = useState(false)
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [phone, setPhone] = useState('')
@@ -62,25 +64,23 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault()
     if (validate()) {
-      const data = {
-        userName: name,
-        email: email,
-        phone: phone,
-        password: password,
-        memberCode: memberCode,
-        section: section,
-        class: grade,
-        roll: roll
+      try {
+        setLoading(true)
+        await signUp(email, password)
+        toast('Signed in successfully!', {
+          position: "top-center",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        })
+        setTimeout( () => {router.push("/")}, 2000)
+      } catch (error) {
+        console.log(error)
       }
-      let res = await fetch('http://localhost:3000/api/signup', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data)
-      })
-      let response = await res.json()
-      console.log(response)
+      setLoading(false)
 
       setName('')
       setEmail('')
@@ -90,30 +90,6 @@ const Login = () => {
       setSection('')
       setRoll('')
       setGrade('')
-
-      if (response.success) {
-        toast('Your account has been created!', {
-          position: "bottom-center",
-          autoClose: 3000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        })
-        setTimeout(() => { router.push('http://localhost:3000/login') }, 3000)
-      }
-      else {
-        toast.warn('Invalid credentials', {
-          position: "bottom-center",
-          autoClose: 3000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        })
-      }
     }
   }
 
@@ -200,6 +176,7 @@ const Login = () => {
               type="submit"
               className="w-full text-center py-3 rounded bg-green-400 text-white hover:scale-105 transition duration-200 focus:outline-none my-1"
               onClick={handleSubmit}
+              disabled={loading}
             >
               Create Account
             </button>

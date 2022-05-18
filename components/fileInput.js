@@ -12,21 +12,21 @@ export const FileInputButton = (props) => {
     if (!event.target.files?.length) {
       return;
     }
+    let image = event.target.files[0]
 
-    const formData = new FormData();
-
-    Array.from(event.target.files).forEach((file) => {
-      formData.append(event.target.name, file);
-    });
-
-    props.onChange(formData);
+    props.onChange(image);
 
     formRef.current?.reset();
   };
 
   return (
     <form ref={formRef}>
-      <button type="button" onClick={onClickHandler} className="bg-green-500 hover:bg-pink-600 uppercase text-white font-bold hover:shadow-md shadow text-xs px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1">
+      <button
+        type="button"
+        onClick={onClickHandler}
+        className="bg-green-500 hover:bg-pink-600 uppercase text-white font-bold hover:shadow-md shadow text-xs px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1"
+        disabled={props.loading}
+      >
         {props.label}
       </button>
       <input

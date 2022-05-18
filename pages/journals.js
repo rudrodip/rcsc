@@ -1,8 +1,6 @@
 import React from 'react'
 import Header from '../components/header/header'
 import Blog from '../components/blog'
-import blog from '../models/blog'
-import mongoose from 'mongoose'
 
 function Journals(props) {
   return (
@@ -49,17 +47,6 @@ function Journals(props) {
       </div>
     </div>
   )
-}
-
-
-export async function getServerSideProps() {
-  if (!mongoose.connections[0].readyState) {
-    await mongoose.connect(process.env.MONGO_URI)
-  }
-  let blogs = await blog.find()
-  return {
-    props: { blogs: JSON.parse(JSON.stringify(blogs)) }
-  }
 }
 
 export default Journals

@@ -2,11 +2,13 @@ import React from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/router';
 import { useState } from 'react'
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
+import { login } from '../src/config/firebase.config'
 
 const Login = () => {
   const router = useRouter()
+  const [loading, setLoading] = useState(false)
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
@@ -38,44 +40,25 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault()
     if (validate()) {
-      const data = {
-        email: email,
-        password: password,
-      }
-      let res = await fetch('http://localhost:3000/api/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data)
-      })
-      let response = await res.json()
-
-      setEmail('')
-      setPassword('')
-      if (response.success){
-        localStorage.setItem('token', response.token)
-        toast('You\'re logged in!', {
-          position: "bottom-center",
-          autoClose: 5000,
+      try {
+        setLoading(true)
+        await login(email, password)
+        toast('Logged In', {
+          position: "top-center",
+          autoClose: 3000,
           hideProgressBar: false,
           closeOnClick: true,
           pauseOnHover: true,
           draggable: true,
           progress: undefined,
         })
-        setTimeout( () => {router.push("http://localhost:3000")}, 2000)
-      } else {
-        toast.warn('Invalid Credentials', {
-          position: "bottom-center",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        }) 
+        setTimeout( () => {router.push("/")}, 2000)
+      } catch (error) {
+        alert(error)
       }
+      
+      setEmail('')
+      setPassword('')
     }
   }
 
@@ -114,6 +97,7 @@ const Login = () => {
               type="submit"
               className="w-full text-center py-3 rounded bg-green-400 text-white hover:scale-105 transition duration-200 focus:outline-none my-1"
               onClick={handleSubmit}
+              disabled={loading}
             >
               Login
             </button>

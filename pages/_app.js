@@ -1,4 +1,5 @@
 import '../styles/globals.css'
+import '../src/config/firebase.config'
 import Head from 'next/head'
 import Pages from '../pages.json'
 import Navbar from '../components/header/navbar'
@@ -9,26 +10,24 @@ import LoadingBar from 'react-top-loading-bar'
 import { useState } from 'react'
 import { useEffect } from 'react'
 import { useRouter } from 'next/router'
+import { useAuth } from '../src/config/firebase.config'
 
 function MyApp({ Component, pageProps }) {
   const router = useRouter()
-  const [user, setUser] = useState({ value: null })
   const [key, setKey] = useState(0)
   const [progress, setProgress] = useState(0)
 
+  const user = useAuth()
   useEffect(() => {
     router.events.on('routeChangeStart', () => setProgress(40))
     router.events.on('routeChangeComplete', () => setProgress(100))
     try {
-      const token = localStorage.getItem('token')
-      if (token){
-        setUser({ value: token })
-      }
       setKey(Math.random())
     } catch (error) {
       console.log(error)
     }
   }, [router.query, router.events])
+  
   return <>
     <div>
       <Head>

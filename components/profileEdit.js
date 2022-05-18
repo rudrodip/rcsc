@@ -4,7 +4,7 @@ import { useState, useRef } from 'react'
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import { FileInputButton } from './fileInput'
-import axios from 'axios';
+import { upload, useAuth } from '../src/config/firebase.config'
 
 const ProfileEdit = (props) => {
     const router = useRouter()
@@ -14,14 +14,12 @@ const ProfileEdit = (props) => {
     const [grade, setGrade] = useState('')
     const [roll, setRoll] = useState('')
     const [password, setPassword] = useState('')
+    const [image, setImage] = useState('')
+    const [laoding, setLoading] = useState(false)
+    const currentUser = useAuth()
 
-    const onChange = async (formData) => {
-        const config = {
-            headers: { 'content-type': 'multipart/form-data' }
-        };
-
-        const response = await axios.post('/api/uploadImage', formData, config);
-        console.log('response', response.data);
+    const onChange = async (image) => {
+        setImage(image)
     }
 
 
@@ -65,24 +63,11 @@ const ProfileEdit = (props) => {
     const handleSubmit = async (e) => {
         e.preventDefault()
         if (validate()) {
-            const data = {
-                token: props.token,
-                email: email,
-                phone: phone,
-                password: password,
-                section: section,
-                class: grade,
-                roll: roll,
-                image: formData
+            try {
+                upload(image, currentUser, setLoading)
+            } catch (error) {
+                console.log(error)
             }
-            let res = await fetch('http://localhost:3000/api/updateProfile', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(data)
-            })
-            let response = await res.json()
 
             setEmail('')
             setPhone('')
@@ -92,30 +77,6 @@ const ProfileEdit = (props) => {
             setGrade('')
 
             { props.handleToggle() }
-
-            if (response.success) {
-                toast('Changes saved!', {
-                    position: "bottom-center",
-                    autoClose: 3000,
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true,
-                    progress: undefined,
-                })
-                setTimeout(() => { router.push('http://localhost:3000/profile') }, 1000)
-            }
-            else {
-                toast.warn('Invalid credentials', {
-                    position: "bottom-center",
-                    autoClose: 3000,
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true,
-                    progress: undefined,
-                })
-            }
         }
     }
 
@@ -139,12 +100,17 @@ const ProfileEdit = (props) => {
                         <div className="py-6 px-6 lg:px-8">
                             <h3 className="mb-4 text-xl font-medium text-gray-900 dark:text-white">Edit your info</h3>
                             <div className='flex flex-wrap flex-row justify-around content-center'>
-                                <img alt="team" className="flex-shrink-0 rounded-lg w-48 h-48 object-contain object-center sm:mb-0" src="https://dummyimage.com/300x200" />
+                                <img
+                                    alt="team"
+                                    className="flex-shrink-0 rounded-lg w-48 h-48 object-contain object-center sm:mb-0"
+                                    src={image ? URL.createObjectURL(image) : "https://dummyimage.com/200x200"}
+                                />
                                 <div className="py-6 px-3 mt-32 sm:mt-0">
                                     <FileInputButton
                                         label="Change profile pic"
                                         uploadFileName="theFiles"
                                         onChange={onChange}
+                                        laoding={laoding}
                                     />
                                 </div>
                             </div>

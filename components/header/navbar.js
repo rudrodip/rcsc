@@ -24,7 +24,7 @@ const Navbar = ({ props, user, path }) => {
             {Object.keys(props).map(i => (
               path != props[i] ? <Navbutton name={i} link={props[i]} key={i} /> : <Navbutton name={i} link={props[i]} key={i} classname="bg-cyan-400"/>
             ))}
-            {user.value ? <ProfileButton /> : <Navbutton name="Login" link="/login" />}
+            {user ? <ProfileButton /> : <Navbutton name="Login" link="/login" />}
           </nav>
         </div>
       </div>
