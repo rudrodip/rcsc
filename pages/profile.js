@@ -2,7 +2,8 @@ import React from 'react'
 import { useRouter } from 'next/router'
 import { useState, useEffect } from 'react'
 import ProfileEdit from '../components/profileEdit'
-import { logout, useAuth, getUsers } from '../src/config/firebase.config';
+import { logout, useAuth, db } from '../src/config/firebase.config';
+import { getDoc, doc } from 'firebase/firestore'
 
 const Profile = () => {
   const router = useRouter()
@@ -11,30 +12,30 @@ const Profile = () => {
   const [profile, setProfile] = useState("https://dummyimage.com/200x200")
   const [user, setUser] = useState(null)
   const currentUser = useAuth()
-  // const userRef = collection(db, "user")
-
-  // useEffect(()=>{
-  //   const getUser = async () => {
-  //     const data = await getDocs(userRef)
-  //     setUser(data.docs.map(doc => ({...doc.data(), id:doc.id})))
-  //   }
-  //   getUser()
-  //   console.log(user)
-  // }, [])
 
   const handleToggle = () => {
     toggle == "" ? setToggle("hidden") : setToggle('')
   }
 
-  getUsers()
-
-  
   useEffect(()=>{
+    async function getUser(uid) {
+      if (!uid) return
+      const userRef = doc(db, `user/${uid}`)
+      const docSnap = await getDoc(userRef)
+      if (docSnap.exists()) {
+        setUser(docSnap.data())
+      } else {
+        console.log("No such document!");
+      }
+    }
     if (currentUser){
+      getUser(currentUser.uid)
+    }
+    if (currentUser?.photoURL){
       setProfile(currentUser.photoURL)
     }
-  }, [])
 
+  }, [currentUser])
 
 
   const handleLogout = async () => {
@@ -115,19 +116,19 @@ const Profile = () => {
                   <div className="flex justify-center py-4 lg:pt-4 pt-8">
                     <div className="mr-4 p-3 text-center">
                       <span className="text-xl font-bold block uppercase tracking-wide text-gray-400">
-                        {12}
+                        {user?.blogs}
                       </span>
                       <span className="text-sm text-gray-400">Blogs</span>
                     </div>
                     <div className="mr-4 p-3 text-center">
                       <span className="text-xl font-bold block uppercase tracking-wide text-gray-400">
-                        {12}
+                        {user?.likes}
                       </span>
                       <span className="text-sm text-gray-400">Likes</span>
                     </div>
                     <div className="lg:mr-4 p-3 text-center">
                       <span className="text-xl font-bold block uppercase tracking-wide text-gray-400">
-                        {12}
+                        {user?.likes}
                       </span>
                       <span className="text-sm text-gray-400">Blog Views</span>
                     </div>
@@ -136,17 +137,17 @@ const Profile = () => {
               </div>
               <div className="text-center mt-12">
                 <h3 className="text-4xl font-semibold text-white">
-                  {'Sumit'}
+                  {user?.name}
                 </h3>
                 <div className="text-sm leading-normal mt-0 mb-2 text-white font-bold uppercase">
                   <i className="fas fa-map-marker-alt mr-2 text-lg text-gray-500"></i>{" "}
-                  {'Member'}
+                  {user?.role}
                 </div>
                 <div className="mb-2 text-gray-400 mt-10">
                   <i className="fas fa-briefcase mr-2 text-lg text-gray-400"></i>
-                  Class: {11} <br></br>
-                  Section: {'Meghna'} <br></br>
-                  Roll: {132}
+                  Class: {user?.class} <br></br>
+                  Section: {user?.section} <br></br>
+                  Roll: {user?.roll}
                 </div>
                 <div className="mb-2 text-gray-400">
                   Rajshahi College
@@ -156,11 +157,7 @@ const Profile = () => {
                 <div className="flex flex-wrap justify-center">
                   <div className="w-full lg:w-9/12 px-4">
                     <p className="mb-4 text-lg leading-relaxed text-gray-300">
-                      An artist of considerable range, Jenna the name taken by
-                      Melbourne-raised, Brooklyn-based Nick Murphy writes,
-                      performs and records all of his own music, giving it a
-                      warm, intimate feel with a solid groove structure. An
-                      artist of considerable range.
+                      {user?.desc}
                     </p>
                     <button
                       className="text-gray-800 font-bold bg-cyan-300 p-2 rounded-md transition ease-in-out duration-100 hover:bg-green-400"

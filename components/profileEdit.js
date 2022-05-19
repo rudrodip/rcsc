@@ -4,16 +4,14 @@ import { useState, useRef } from 'react'
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import { FileInputButton } from './fileInput'
-import { upload, useAuth } from '../src/config/firebase.config'
+import { upload, useAuth, updateUserData } from '../src/config/firebase.config'
 
 const ProfileEdit = (props) => {
     const router = useRouter()
-    const [email, setEmail] = useState('')
     const [phone, setPhone] = useState('')
     const [section, setSection] = useState('')
     const [grade, setGrade] = useState('')
     const [roll, setRoll] = useState('')
-    const [password, setPassword] = useState('')
     const [image, setImage] = useState('')
     const [laoding, setLoading] = useState(false)
     const currentUser = useAuth()
@@ -24,14 +22,8 @@ const ProfileEdit = (props) => {
 
 
     const handleChange = (e) => {
-        if (e.target.name == 'email') {
-            setEmail(e.target.value)
-        }
-        else if (e.target.name == 'phone') {
+        if (e.target.name == 'phone') {
             setPhone(e.target.value)
-        }
-        else if (e.target.name == 'password') {
-            setPassword(e.target.value)
         }
         else if (e.target.name == 'section') {
             setSection(e.target.value)
@@ -45,7 +37,7 @@ const ProfileEdit = (props) => {
     }
 
     const validate = () => {
-        if (email.length > 2 && phone.length == 11) {
+        if (phone.length == 11) {
             return true
         } else {
             toast.warn('Form not valid! Please check again', {
@@ -63,15 +55,29 @@ const ProfileEdit = (props) => {
     const handleSubmit = async (e) => {
         e.preventDefault()
         if (validate()) {
+            const data = {
+                phone: phone,
+                class: grade,
+                section: section,
+                roll: roll,
+              }
             try {
                 upload(image, currentUser, setLoading)
+                updateUserData(currentUser, data)
+                toast('Updating data..', {
+                    position: "top-center",
+                    autoClose: 3000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                  })
+                setTimeout(()=> router.reload(), 1500)
             } catch (error) {
                 console.log(error)
             }
-
-            setEmail('')
             setPhone('')
-            setPassword('')
             setSection('')
             setRoll('')
             setGrade('')
@@ -115,18 +121,6 @@ const ProfileEdit = (props) => {
                                 </div>
                             </div>
                             <form className="space-y-6" action="#">
-                                <div>
-                                    <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Your email</label>
-                                    <input
-                                        type="email"
-                                        name="email"
-                                        id="email"
-                                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white "
-                                        placeholder="name@gmail.com"
-                                        onChange={handleChange}
-                                        value={email}
-                                    />
-                                </div>
                                 <div>
                                     <label htmlFor="phone" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Your phone</label>
                                     <input
@@ -175,20 +169,6 @@ const ProfileEdit = (props) => {
                                         value={roll}
                                         required />
                                 </div>
-                                <div>
-                                    <label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Give your password to save</label>
-                                    <input
-                                        type="password"
-                                        name="password"
-                                        id="password"
-                                        placeholder="password"
-                                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white outline-none"
-                                        onChange={handleChange}
-                                        value={password}
-                                        required />
-                                </div>
-
-
                                 <button
                                     type="submit"
                                     className="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"

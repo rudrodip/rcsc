@@ -1,9 +1,8 @@
 import { initializeApp, getApps } from 'firebase/app'
 import { getAuth, createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut, updateProfile } from 'firebase/auth'
 import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage'
-import { collection, getFirestore, getDocs, doc } from 'firebase/firestore'
+import { getFirestore, doc, setDoc, updateDoc } from 'firebase/firestore'
 import { useState, useEffect } from 'react'
-import { async } from '@firebase/util'
 
 const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
@@ -23,8 +22,8 @@ export const db = getFirestore()
 
 
 // sign up
-export function signUp(email, password) {
-  return createUserWithEmailAndPassword(auth, email, password)
+export async function signUp(email, password) {
+  return await createUserWithEmailAndPassword(auth, email, password)
 }
 
 // login
@@ -37,16 +36,6 @@ export function logout() {
   return signOut(auth)
 }
 
-export function getUsers(){
-  const userRef = collection(db, "user")
-  const users = async () => {
-    const data = await getDocs(userRef)
-    console.log(data)
-  }
-  users()
-}
-
-
 // upload image
 export async function upload(file, currentUser, setLoading) {
   setLoading(true)
@@ -54,7 +43,7 @@ export async function upload(file, currentUser, setLoading) {
     const fileRef = ref(storage, `profilePics/${currentUser.uid}.png`)
     const snapshot = await uploadBytes(fileRef, file)
     let photoURL = await getDownloadURL(fileRef)
-    updateProfile(currentUser, {photoURL})
+    updateProfile(currentUser, { photoURL })
     console.log("uploaded successfully..")
   } catch (error) {
     console.log(error)
@@ -71,4 +60,25 @@ export function useAuth() {
     return unsub
   }, [])
   return currentUser
+}
+
+// createUserData
+export async function createUserData(user, data) {
+  if (!user) return
+  const userRef = doc(db, `user/${user.uid}`)
+  try {
+    setDoc(userRef, data)
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+export async function updateUserData(user, data) {
+  if (!user) return
+  const userRef = doc(db, `user/${user.uid}`)
+  try {
+    updateDoc(userRef, data)
+  } catch (error) {
+    console.log(error)
+  }
 }

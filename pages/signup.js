@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 import { useState } from 'react'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { signUp } from '../src/config/firebase.config';
+import { signUp, createUserData } from '../src/config/firebase.config';
 
 const Login = () => {
   const router = useRouter()
@@ -64,9 +64,23 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault()
     if (validate()) {
+      const data = {
+        name: name,
+        email: email,
+        phone: phone,
+        class: grade,
+        section: section,
+        roll: roll,
+        memberCode: memberCode,
+        views: 0,
+        likes: 0,
+        blogs: 0,
+        role: "Member"
+      }
       try {
         setLoading(true)
-        await signUp(email, password)
+        let { user } = await signUp(email, password)
+        createUserData(user, data)
         toast('Signed in successfully!', {
           position: "top-center",
           autoClose: 3000,
@@ -80,8 +94,9 @@ const Login = () => {
       } catch (error) {
         console.log(error)
       }
-      setLoading(false)
 
+      // set all states to default
+      setLoading(false)
       setName('')
       setEmail('')
       setPhone('')
