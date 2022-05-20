@@ -42,7 +42,7 @@ export default function Home() {
         imageTitle = "We let others explore! 🔍"
         img = {slide_images}
       />
-      <div className="stats-short" style={{ marginTop: '7rem' }}>
+      <div className="stats-short">
         <section className="text-gray-400 bg-gray-900 body-font">
           <div className="container px-5 py-24 mx-auto">
             <div className="flex flex-wrap -m-4 text-center">
