@@ -2,7 +2,7 @@ import React from 'react'
 import Header from '../components/header/header'
 import Blog from '../components/blog'
 
-function Journals(props) {
+function Journals() {
   return (
     <div>
       <Header 
@@ -29,7 +29,7 @@ function Journals(props) {
       />
 
       <div className="flex content-center justify-around m-10 flex-wrap">
-        {
+        {/* {
           props.blogs.map(i => (
             <Blog
               title={i.title}
@@ -43,7 +43,7 @@ function Journals(props) {
             />
           )
           )
-        }
+        } */}
       </div>
     </div>
   )

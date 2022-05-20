@@ -1,6 +1,6 @@
 import React from 'react'
 import { useRouter } from 'next/router';
-import { useState, useRef } from 'react'
+import { useState } from 'react'
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import { FileInputButton } from './fileInput'
@@ -8,19 +8,24 @@ import { upload, useAuth, updateUserData } from '../src/config/firebase.config'
 
 const ProfileEdit = (props) => {
     const router = useRouter()
+
+    // initializing all states
     const [phone, setPhone] = useState('')
     const [section, setSection] = useState('')
     const [grade, setGrade] = useState('')
     const [roll, setRoll] = useState('')
     const [image, setImage] = useState('')
     const [laoding, setLoading] = useState(false)
+
+    // custom hook for auth
     const currentUser = useAuth()
 
+    // profile picture change
     const onChange = async (image) => {
         setImage(image)
     }
 
-
+    // handles change in form and save in states
     const handleChange = (e) => {
         if (e.target.name == 'phone') {
             setPhone(e.target.value)
@@ -36,6 +41,7 @@ const ProfileEdit = (props) => {
         }
     }
 
+    // form validation logics
     const validate = () => {
         if (phone.length == 11) {
             return true
@@ -52,6 +58,8 @@ const ProfileEdit = (props) => {
         }
     }
 
+
+    // handling submit
     const handleSubmit = async (e) => {
         e.preventDefault()
         if (validate()) {
@@ -60,7 +68,7 @@ const ProfileEdit = (props) => {
                 class: grade,
                 section: section,
                 roll: roll,
-              }
+            }
             try {
                 upload(image, currentUser, setLoading)
                 updateUserData(currentUser, data)
@@ -72,8 +80,8 @@ const ProfileEdit = (props) => {
                     pauseOnHover: true,
                     draggable: true,
                     progress: undefined,
-                  })
-                setTimeout(()=> router.reload(), 1500)
+                })
+                setTimeout(() => router.reload(), 1500)
             } catch (error) {
                 console.log(error)
             }
@@ -85,6 +93,8 @@ const ProfileEdit = (props) => {
             { props.handleToggle() }
         }
     }
+
+
 
     return (
         <div>
@@ -184,6 +194,7 @@ const ProfileEdit = (props) => {
             </div>
         </div>
     )
+
 }
 
 export default ProfileEdit

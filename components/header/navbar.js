@@ -22,7 +22,7 @@ const Navbar = ({ props, user, path }) => {
         <div className="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
           <nav className="md:ml-auto flex flex-wrap items-center text-base justify-center">
             {Object.keys(props).map(i => (
-              path != props[i] ? <Navbutton name={i} link={props[i]} key={i} /> : <Navbutton name={i} link={props[i]} key={i} classname="bg-cyan-400"/>
+              path != props[i] ? <Navbutton name={i} link={props[i]} key={i} /> : <Navbutton name={i} link={props[i]} key={i} classname="bg-gradient-to-r from-blue-600 to-cyan-500"/>
             ))}
             {user ? <ProfileButton /> : <Navbutton name="Login" link="/login" />}
           </nav>
@@ -36,7 +36,7 @@ const Navbutton = (props) => {
   return (
     <div>
       <Link href={props.link}>
-        <a className={`mr-5 hover:text-gray-500 hover:bg-green-300 ${props.classname} rounded-sm p-2 transition ease-in-out duration-150`} style={{backgroundColor: props.color}}>{props.name}</a>
+        <a className={`mr-5 hover:bg-gray-700 to-cyan-500 ${props.classname} rounded-sm p-2 transition ease-in-out duration-150`}>{props.name}</a>
       </Link>
     </div>
   )
@@ -46,7 +46,7 @@ const ProfileButton = () => {
   return (
     <div>
       <Link href="/profile">
-        <a className="flex justify-center content-center hover:scale-125 transition ease-in-out duration-200 hover:bg-cyan-400 rounded-full p-2">
+        <a className="flex justify-center content-center hover:scale-125 transition ease-in-out duration-200 hover:bg-gradient-to-r from-blue-600 to-cyan-500 rounded-full p-2">
           <Image src={ProfileSVG} alt="Profile" width={30} height={30}/>
         </a>
       </Link>
