@@ -3,8 +3,8 @@ import { useRouter } from 'next/router';
 import { useState } from 'react'
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
-import { FileInputButton } from './fileInput'
-import { upload, useAuth, updateUserData } from '../src/config/firebase.config'
+import { FileInputButton } from '../fileInput'
+import { upload, useAuth, updateUserData } from '../../src/config/firebase.config'
 
 const ProfileEdit = (props) => {
     const router = useRouter()
@@ -43,10 +43,33 @@ const ProfileEdit = (props) => {
 
     // form validation logics
     const validate = () => {
+        const data = {}
         if (phone.length == 11) {
-            return true
-        } else {
-            toast.warn('Form not valid! Please check again', {
+            data['phone'] = phone
+        }
+        if (section.length > 1) {
+            data['section'] = section
+        }
+        if (roll.length >= 1) {
+            data['roll'] = roll
+        }
+        if (grade.length >= 1) {
+            data['class'] = grade
+        }
+        return data
+    }
+
+
+    // handling submit
+    const handleSubmit = async (e) => {
+        e.preventDefault()
+        try {
+            let url = await upload(image, currentUser, setLoading)
+            const data = validate()
+            data['photoURL'] = url
+            console.log(url)
+            updateUserData(currentUser, data)
+            toast('Updated', {
                 position: "top-center",
                 autoClose: 3000,
                 hideProgressBar: false,
@@ -54,47 +77,18 @@ const ProfileEdit = (props) => {
                 pauseOnHover: true,
                 draggable: true,
                 progress: undefined,
-            });
+            })
+            setTimeout(()=> router.reload(), 1500)
+        } catch (error) {
+            console.log(error)
         }
+        setPhone('')
+        setSection('')
+        setRoll('')
+        setGrade('')
+
+        { props.handleToggle() }
     }
-
-
-    // handling submit
-    const handleSubmit = async (e) => {
-        e.preventDefault()
-        if (validate()) {
-            const data = {
-                phone: phone,
-                class: grade,
-                section: section,
-                roll: roll,
-            }
-            try {
-                upload(image, currentUser, setLoading)
-                updateUserData(currentUser, data)
-                toast('Updating data..', {
-                    position: "top-center",
-                    autoClose: 3000,
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true,
-                    progress: undefined,
-                })
-                setTimeout(() => router.reload(), 1500)
-            } catch (error) {
-                console.log(error)
-            }
-            setPhone('')
-            setSection('')
-            setRoll('')
-            setGrade('')
-
-            { props.handleToggle() }
-        }
-    }
-
-
 
     return (
         <div>

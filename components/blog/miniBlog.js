@@ -1,7 +1,7 @@
 import React from 'react'
 import Link from 'next/link'
 
-const Blog = (props) => {
+const MiniBlog = (props) => {
     return (
         <div className='bg-gradient-to-r from-gray-500 to-gray-500 hover:rounded-lg hover:scale-110 transition duration-200 ease-in-out hover:from-blue-600 hover:to-cyan-400 my-10 cursor-pointer'>
             <Link href={props.link}>
@@ -25,4 +25,4 @@ const Blog = (props) => {
     )
 }
 
-export default Blog
+export default MiniBlog

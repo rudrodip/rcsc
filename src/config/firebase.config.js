@@ -1,4 +1,4 @@
-import { initializeApp, getApps } from 'firebase/app'
+import { initializeApp } from 'firebase/app'
 import { getAuth, createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut, updateProfile } from 'firebase/auth'
 import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage'
 import { getFirestore, doc, setDoc, updateDoc } from 'firebase/firestore'
@@ -40,11 +40,13 @@ export function logout() {
 export async function upload(file, currentUser, setLoading) {
   setLoading(true)
   try {
-    const fileRef = ref(storage, `profilePics/${currentUser.uid}.png`)
-    const snapshot = await uploadBytes(fileRef, file)
+    const fileRef = ref(storage, `profilePics/${currentUser.uid}`)
+    const metadata = {
+      contentType: 'image/jpeg',
+    }
+    const snapshot = await uploadBytes(fileRef, file, metadata)
     let photoURL = await getDownloadURL(fileRef)
-    updateProfile(currentUser, { photoURL })
-    console.log("uploaded successfully..")
+    return photoURL
   } catch (error) {
     console.log(error)
   }

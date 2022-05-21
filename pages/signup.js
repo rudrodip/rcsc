@@ -75,7 +75,8 @@ const Login = () => {
         views: 0,
         likes: 0,
         blogs: 0,
-        role: "Member"
+        role: "Member",
+        photoURL: "https://dummyimage.com/200x200"
       }
       try {
         setLoading(true)

@@ -9,22 +9,6 @@ function Contact() {
         subtitle = "Contact"
         imageSubtitle = "We believe"
         imageTitle = "We do"
-        img = {
-          [
-            {
-              url: 'https://images.pexels.com/photos/2775196/pexels-photo-2775196.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-              caption: 'Slide 1'
-            },
-            {
-              url: 'https://images.pexels.com/photos/3408744/pexels-photo-3408744.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-              caption: 'Slide 2'
-            },
-            {
-              url: 'https://images.pexels.com/photos/3454270/pexels-photo-3454270.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-              caption: 'Slide 3'
-            }
-          ]
-        }
       />
       <section className="text-gray-400 bg-gray-900 body-font relative">
         <div className="container px-5 py-24 mx-auto flex sm:flex-nowrap flex-wrap">

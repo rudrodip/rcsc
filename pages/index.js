@@ -17,30 +17,14 @@ export default function Home() {
     setVisit(true)
   }
 
-  const slide_images = [
-    {
-      url: 'https://images.pexels.com/photos/2775196/pexels-photo-2775196.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-      caption: 'Slide 1'
-    },
-    {
-      url: 'https://images.pexels.com/photos/3408744/pexels-photo-3408744.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-      caption: 'Slide 2'
-    },
-    {
-      url: 'https://images.pexels.com/photos/3454270/pexels-photo-3454270.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-      caption: 'Slide 3'
-    }
-  ]
-
   return (
-    
+
     <div className=''>
-      <Header 
-        title = "Science Club"
-        subtitle = "Rajshahi College"
-        imageSubtitle = "We explore"
-        imageTitle = "We let others explore! 🔍"
-        img = {slide_images}
+      <Header
+        title="Science Club"
+        subtitle="Rajshahi College"
+        imageSubtitle="We explore"
+        imageTitle="We let others explore! 🔍"
       />
       <div className="stats-short">
         <section className="text-gray-400 bg-gray-900 body-font">
@@ -94,30 +78,42 @@ export default function Home() {
               </div>
             </div>
             <div className="lg:w-1/2 sm:w-1/3 w-full rounded-lg overflow-hidden mt-6 sm:mt-0">
-              <img className="object-cover object-center w-full h-full" src="https://dummyimage.com/600x300" alt="stats" />
+              <img className="object-cover object-center w-full h-full" src="/background-img/bg1.jpg" alt="stats" />
             </div>
           </div>
         </section>
       </div>
 
       <div className="flex content-center justify-around m-10 flex-wrap">
-        <Card title="Card 1" desc="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam" img="https://dummyimage.com/600x300" />
+        <Card
+          title="Card 1"
+          desc="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam"
+          img="/background-img/bg11.jpg" />
 
-        <Card title="Card 2" desc="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam" img="https://dummyimage.com/600x300" />
+        <Card
+          title="Card 2"
+          desc="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam"
+          img="/background-img/bg10.jpg" />
 
-        <Card title="Card 3" desc="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam" img="https://dummyimage.com/600x300" />
+        <Card
+          title="Card 3"
+          desc="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam"
+          img="/background-img/bg12.jpg" />
 
-        <Card title="Card 4" desc="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam" img="https://dummyimage.com/600x300" />
+        <Card
+          title="Card 4"
+          desc="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam"
+          img="/background-img/bg13.jpg" />
       </div>
-      <EventGallery 
-        title = "Science Fest 2022"
-        desc = "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ex suscipit, repudiandae voluptatem, rerum placeat excepturi ipsa recusandae consequuntur nam dolor nobis asperiores error corrupti eum cumque blanditiis optio repellendus. Quis incidunt saepe beatae corporis non quasi omnis adipisci sed dolor expedita, ratione dignissimos unde, maxime error corrupti autem suscipit nostrum!"
-        img1 = "https://dummyimage.com/500x300"
-        img2 = "https://dummyimage.com/600x300"
-        img3 = "https://dummyimage.com/500x300"
-        img4 = "https://dummyimage.com/700x300"
-        img5 = "https://dummyimage.com/600x300"
-        img6 = "https://dummyimage.com/500x300"
+      <EventGallery
+        title="Science Fest 2022"
+        desc="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ex suscipit, repudiandae voluptatem, rerum placeat excepturi ipsa recusandae consequuntur nam dolor nobis asperiores error corrupti eum cumque blanditiis optio repellendus. Quis incidunt saepe beatae corporis non quasi omnis adipisci sed dolor expedita, ratione dignissimos unde, maxime error corrupti autem suscipit nostrum!"
+        img1="/background-img/bg6.jpg"
+        img2="/background-img/bg4.jpg"
+        img3="/background-img/bg2.jpg"
+        img4="/background-img/bg1.jpg"
+        img5="/background-img/bg8.jpg"
+        img6="/background-img/bg3.jpg"
       />
     </div>
   )

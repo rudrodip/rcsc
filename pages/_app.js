@@ -16,8 +16,8 @@ function MyApp({ Component, pageProps }) {
   const router = useRouter()
   const [key, setKey] = useState(0)
   const [progress, setProgress] = useState(0)
-
   const user = useAuth()
+
   useEffect(() => {
     router.events.on('routeChangeStart', () => setProgress(40))
     router.events.on('routeChangeComplete', () => setProgress(100))

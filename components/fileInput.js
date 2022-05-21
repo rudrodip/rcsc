@@ -13,7 +13,6 @@ export const FileInputButton = (props) => {
       return;
     }
     let image = event.target.files[0]
-
     props.onChange(image);
 
     formRef.current?.reset();

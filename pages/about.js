@@ -11,22 +11,6 @@ function About() {
         subtitle = "About Us"
         imageSubtitle = "We conquer"
         imageTitle = "THE MOUNTAINS"
-        img = {
-          [
-            {
-              url: 'https://images.pexels.com/photos/2775196/pexels-photo-2775196.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-              caption: 'Slide 1'
-            },
-            {
-              url: 'https://images.pexels.com/photos/3408744/pexels-photo-3408744.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-              caption: 'Slide 2'
-            },
-            {
-              url: 'https://images.pexels.com/photos/3454270/pexels-photo-3454270.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-              caption: 'Slide 3'
-            }
-          ]
-        }
       />
       <h1 className='text-5xl text-white text-center my-20'>Our Story</h1>
       <div className="stats-short" style={{ marginTop: '1rem' }}>
@@ -54,7 +38,7 @@ function About() {
         </section>
       </div>
       <div className='flex justify-center content-center my-10'>
-        <img src="https://dummyimage.com/600x300" alt="picture" className='w-2/3' />
+        <img src="/background-img/bg11.jpg" alt="picture" className='w-2/3' />
       </div>
       <section className="about_desc">
         <div>
