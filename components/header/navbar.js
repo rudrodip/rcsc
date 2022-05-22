@@ -19,7 +19,7 @@ const Navbar = ({ props, user, path }) => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
             <div className="flex items-center">
-              <div className="flex-shrink-0">
+              <div className="flex flex-row">
                 <Link href="/">
                   <img
                     className="h-12 w-12 cursor-pointer"
@@ -27,6 +27,7 @@ const Navbar = ({ props, user, path }) => {
                     alt="RCSC"
                   />
                 </Link>
+                <p className="text-xl lg:text-2xl block px-3 py-2 rounded-md font-medium">RCSC</p>
               </div>
               <div className="hidden md:block">
                 <div className="ml-10 flex items-center space-x-4">

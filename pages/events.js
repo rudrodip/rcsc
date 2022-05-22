@@ -11,7 +11,7 @@ function Events() {
   return (
     <div>
       <Header
-        title="Science Club"
+        title="Rajshahi College Science Club"
         subtitle="Events"
         imageSubtitle="_explore!"
         imageTitle="Science Fest 2022"

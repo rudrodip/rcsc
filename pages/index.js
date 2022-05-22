@@ -21,8 +21,8 @@ export default function Home() {
 
     <div className=''>
       <Header
-        title="Science Club"
-        subtitle="Rajshahi College"
+        title="Rajshahi College Science Club"
+        subtitle="Welcome to"
         imageSubtitle="We explore"
         imageTitle="We let others explore! 🔍"
       />

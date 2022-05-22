@@ -6,8 +6,8 @@ function Journals() {
   return (
     <div>
       <Header 
-        title = "Science Club"
-        subtitle = "Journals"
+        title = "Rajshahi College Science Club"
+        subtitle = "Blogs"
         imageSubtitle = "We work"
         imageTitle = "Until we reach"
       />

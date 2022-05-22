@@ -6,7 +6,7 @@ function Gallery() {
   return (
     <div>
       <Header
-        title="Science Club"
+        title="Rajshahi College Science Club"
         subtitle="Gallery"
         imageSubtitle="We dream"
         imageTitle="We make our dream true"

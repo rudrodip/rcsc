@@ -1,8 +1,9 @@
 {
     "Home" : "/",
     "About" : "/about",
-    "Journals" : "/journals",
+    "Blogs" : "/journals",
     "Executives": "/executives",
+    "Alumnus": "/alumnus",
     "Events": "/events",
     "Gallery": "/gallery",
     "Contact": "/contact"

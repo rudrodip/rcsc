@@ -2,15 +2,16 @@ import React from 'react'
 import Header from '../components/header/header'
 import CountUp from 'react-countup';
 import Stats from '../stats.json'
+import TeachersProfile from '../components/profile/teachersProfile'
 
 function About() {
   return (
     <div>
-      <Header 
-        title = "Science Club"
-        subtitle = "About Us"
-        imageSubtitle = "We conquer"
-        imageTitle = "THE MOUNTAINS"
+      <Header
+        title="Rajshahi College Science Club"
+        subtitle="About Us"
+        imageSubtitle="We conquer"
+        imageTitle="THE MOUNTAINS"
       />
       <h1 className='text-5xl text-white text-center my-20'>Our Story</h1>
       <div className="stats-short" style={{ marginTop: '1rem' }}>
@@ -52,8 +53,24 @@ function About() {
           <p className='my-5'>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nulla culpa natus obcaecati voluptatibus veritatis? Quaerat necessitatibus corporis qui temporibus eius voluptas deserunt enim molestias, quibusdam culpa velit ullam? Maiores modi soluta aliquam ab tempore quaerat voluptate veniam molestias autem numquam. Officia pariatur vel aliquam cupiditate omnis labore rerum explicabo nostrum! Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint commodi tempora temporibus dolor exercitationem eos. Animi expedita vero quibusdam et repellat non atque dolore tenetur impedit distinctio sint quisquam, odio rem quo ipsa quasi asperiores voluptatibus facilis. Inventore voluptatum illum nesciunt, asperiores earum nam quasi eius, ducimus laudantium expedita ad. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Doloribus dolorum veniam doloremque accusamus nam adipisci voluptas harum dignissimos amet animi ipsam dolores temporibus tempora, aperiam alias perferendis, sunt aut architecto ullam illum fugiat. Reiciendis veritatis, optio, fuga cupiditate sit explicabo at blanditiis iusto aliquam adipisci quibusdam quasi voluptatibus, expedita enim eligendi quo. Fugit tempore accusamus harum, voluptates consectetur eveniet eaque tenetur </p>
         </div>
       </section>
-      <section className="text-gray-400 bg-gray-900 body-font">
+      <section>
+        <div className="container px-5 py-24 mx-auto">
+          <div className="flex flex-wrap -m-4">
+            <TeachersProfile
+              name="Habibur Rahman"
+              role="Ex-principle"
+              img="https://dummyimage.com/200x200"
+            />
+            <TeachersProfile
+              name="Shamin Ara"
+              role="First president"
+              img="https://dummyimage.com/200x200"
+            />
+          </div>
+        </div>
+      </section>
 
+      <section className="text-gray-400 bg-gray-900 body-font">
         <section className="text-gray-400 bg-gray-900 body-font">
           <div className="container px-5 py-24 mx-auto">
             <h1 className="text-3xl font-medium title-font text-white mb-12 text-center">Testimonials</h1>

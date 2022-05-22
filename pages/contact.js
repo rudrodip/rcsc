@@ -5,7 +5,7 @@ function Contact() {
   return (
     <>
       <Header 
-        title = "Science Club"
+        title = "Rajshahi College Science Club"
         subtitle = "Contact"
         imageSubtitle = "We believe"
         imageTitle = "We do"

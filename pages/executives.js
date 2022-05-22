@@ -6,7 +6,7 @@ function Executives() {
   return (
     <div>
       <Header 
-        title = "Science Club"
+        title = "Rajshahi College Science Club"
         subtitle = "Executives"
         imageSubtitle = "We dream"
         imageTitle = "We make our dream true"
