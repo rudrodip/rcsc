@@ -18,13 +18,13 @@ function Executives() {
             <p className="lg:w-2/3 mx-auto leading-relaxed text-base">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Deserunt eos maxime qui ut cum veniam adipisci voluptas placeat ex consequuntur.</p>
           </div>
           <div className="flex flex-wrap -m-4">
-            <MiniProfile name="Md Abdul Khaleque" role="Principal" desc="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Deserunt eos maxime qui ut cum veniam adipisci voluptas placeat ex consequuntur."/>
+            <MiniProfile name="Md Abdul Khaleque" role="Principal" desc="Lorem ipsum dolor, sit amet consectetur adipisicing elit"/>
 
-            <MiniProfile name="Md Abdul Khaleque" role="Principal" desc="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Deserunt eos maxime qui ut cum veniam adipisci voluptas placeat ex consequuntur."/>
+            <MiniProfile name="Md Abdul Khaleque" role="Principal" desc="Lorem ipsum dolor, sit amet consectetur adipisicing elit"/>
             
-            <MiniProfile name="Md Abdul Khaleque" role="Principal" desc="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Deserunt eos maxime qui ut cum veniam adipisci voluptas placeat ex consequuntur."/>
+            <MiniProfile name="Md Abdul Khaleque" role="Principal" desc="Lorem ipsum dolor, sit amet consectetur adipisicing elit"/>
 
-            <MiniProfile name="Md Abdul Khaleque" role="Principal" desc="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Deserunt eos maxime qui ut cum veniam adipisci voluptas placeat ex consequuntur."/>
+            <MiniProfile name="Md Abdul Khaleque" role="Principal" desc="Lorem ipsum dolor, sit amet consectetur adipisicing elit"/>
             
           </div>
         </div>
@@ -37,21 +37,21 @@ function Executives() {
             <p className="lg:w-2/3 mx-auto leading-relaxed text-base">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Deserunt eos maxime qui ut cum veniam adipisci voluptas placeat ex consequuntur.</p>
           </div>
           <div className="flex flex-wrap -m-4">
-            <MiniProfile name="Sheikh Shakil" role="President" desc="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Deserunt eos maxime qui ut cum veniam adipisci voluptas placeat ex consequuntur."/>
+            <MiniProfile name="Sheikh Shakil" role="President" desc="Lorem ipsum dolor, sit amet consectetur adipisicing elit. "/>
 
-            <MiniProfile name="Mahmud Mahi" role="Lead Programmer" desc="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Deserunt eos maxime qui ut cum veniam adipisci voluptas placeat ex consequuntur."/>
+            <MiniProfile name="Mahmud Mahi" role="Lead Programmer" desc="Lorem ipsum dolor, sit amet consectetur adipisicing elit. "/>
             
-            <MiniProfile name="Mrittika" role="Kijani" desc="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Deserunt eos maxime qui ut cum veniam adipisci voluptas placeat ex consequuntur."/>
+            <MiniProfile name="ar naam jani na" role="Kijani" desc="Lorem ipsum dolor, sit amet consectetur adipisicing elit. "/>
 
-            <MiniProfile name="1st student SIR" role="Mone nai" desc="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Deserunt eos maxime qui ut cum veniam adipisci voluptas placeat ex consequuntur."/>
+            <MiniProfile name="1st student SIR" role="Mone nai" desc="Lorem ipsum dolor, sit amet consectetur adipisicing elit. "/>
             
-            <MiniProfile name="1st student SIR" role="Mone nai" desc="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Deserunt eos maxime qui ut cum veniam adipisci voluptas placeat ex consequuntur."/>
+            <MiniProfile name="1st student SIR" role="Mone nai" desc="Lorem ipsum dolor, sit amet consectetur adipisicing elit. "/>
             
-            <MiniProfile name="1st student SIR" role="Mone nai" desc="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Deserunt eos maxime qui ut cum veniam adipisci voluptas placeat ex consequuntur."/>
+            <MiniProfile name="1st student SIR" role="Mone nai" desc="Lorem ipsum dolor, sit amet consectetur adipisicing elit. "/>
             
-            <MiniProfile name="1st student SIR" role="Mone nai" desc="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Deserunt eos maxime qui ut cum veniam adipisci voluptas placeat ex consequuntur."/>
+            <MiniProfile name="1st student SIR" role="Mone nai" desc="Lorem ipsum dolor, sit amet consectetur adipisicing elit. "/>
             
-            <MiniProfile name="1st student SIR" role="Mone nai" desc="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Deserunt eos maxime qui ut cum veniam adipisci voluptas placeat ex consequuntur."/>
+            <MiniProfile name="1st student SIR" role="Mone nai" desc="Lorem ipsum dolor, sit amet consectetur adipisicing elit. "/>
             
           </div>
         </div>

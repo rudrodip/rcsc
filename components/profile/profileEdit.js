@@ -101,7 +101,7 @@ const ProfileEdit = (props) => {
                 rtl={false}
                 draggable
             />
-            <div id="authentication-modal" tabIndex="-1" aria-hidden="true" className={`${props.toggle} backdrop-blur-sm absolute overflow-y-auto overflow-x-hidden flex justify-center z-50 w-full md:inset-0 h-modal md:h-full`}>
+            <div id="authentication-modal" tabIndex="-1" aria-hidden="true" className={`${props.toggle} backdrop-blur-none md:backdrop-blur-sm absolute overflow-y-auto overflow-x-hidden flex justify-center z-50 w-full md:inset-0 h-modal md:h-full`}>
                 <div className="relative p-4 w-full max-w-md h-full md:h-auto">
                     <div className="relative bg-white rounded-lg shadow dark:bg-gray-700">
                         <button type="button" className="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-800 dark:hover:text-white" onClick={props.handleToggle}>
