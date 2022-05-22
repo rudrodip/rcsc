@@ -7,7 +7,7 @@ const Alumni = () => {
     <div>
       <Header
         title="Rajshahi College Science Club"
-        subtitle="Alumnus"
+        subtitle="Alumni"
         imageSubtitle="We explore"
         imageTitle="We let others explore! 🔍"
       />
