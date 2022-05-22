@@ -28,11 +28,12 @@ function Header(props) {
         <div className="flex flex-col flex-wrap xl:w-1/3 items-start overflow-hidden absolute left-4 lg:left-48 translate-y-48">
           <h1 className="my-2 text-2xl md:text-4xl text-white font-bold leading-tight text-left">
             {props.subtitle}
-            <br></br>
-            <span className="text-4xl md:text-8xl bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-cyan-300 to-cyan-600">
-              {props.title}
-            </span>
           </h1>
+          <br></br>
+          <span className="font-bold text-4xl tall:text-8xl bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-cyan-300 to-cyan-600">
+            {props.title}
+          </span>
+
         </div>
         <div className='p-2 left-4 lg:right-4 lg:translate-y-48 absolute overflow-hidden items-start'>
           <h1 className="my-2 text-xl md:text-4xl text-white opacity-75 font-bold leading-tight text-left md:text-right">
