@@ -2,7 +2,7 @@ import React from 'react'
 import { useInView } from 'react-intersection-observer';
 import { useState } from 'react';
 
-const AlumnusProfile = (props) => {
+const AlumniProfile = (props) => {
   const { ref, inView, entry } = useInView({
     threshold: 0,
   });
@@ -30,4 +30,4 @@ const AlumnusProfile = (props) => {
   )
 }
 
-export default AlumnusProfile
+export default AlumniProfile

@@ -1,8 +1,8 @@
 import React from 'react'
 import Header from '../components/header/header'
-import AlumnusProfile from '../components/profile/alumnusProfile'
+import AlumniProfile from '../components/profile/alumniProfile'
 
-const Alumnus = () => {
+const Alumni = () => {
   return (
     <div>
       <Header
@@ -18,7 +18,7 @@ const Alumnus = () => {
             <p className="lg:w-2/3 mx-auto leading-relaxed text-base">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Deserunt eos maxime qui ut cum veniam adipisci voluptas placeat ex consequuntur.</p>
           </div>
           <div className="flex flex-wrap -m-4">
-            <AlumnusProfile
+            <AlumniProfile
               name="Kaukei to chinina"
               role="Ex-Member"
               batch="HSC-2019"
@@ -35,4 +35,4 @@ const Alumnus = () => {
   )
 }
 
-export default Alumnus
+export default Alumni
