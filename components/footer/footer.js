@@ -25,12 +25,9 @@ const Footer = () => {
                     <div className="flex-grow flex flex-wrap md:pl-20 -mb-10 md:mt-0 mt-10 md:text-left text-center">
                         <Catagories 
                             props = {
-                                {'name': "About",
+                                {'name': "Official Website",
                                 'links': {
-                                    '5th fest': '/gallery',
-                                    '4th fest': '/gallery',
-                                    '3rd fest': '/gallery',
-                                    '2nd fest': '/gallery'
+                                    'RC': 'http://rc.edu.bd/'
                                 }}
                             }
                         />
@@ -38,21 +35,16 @@ const Footer = () => {
                             props = {
                                 {'name': "Executives",
                                 'links': {
-                                    '5th fest': '/gallery',
-                                    '4th fest': '/gallery',
-                                    '3rd fest': '/gallery',
-                                    '2nd fest': '/gallery'
+                                    'Current Executives': '/executives',
+                                    'Alumni': '/alumni'
                                 }}
                             }
                         />
                         <Catagories 
                             props = {
-                                {'name': "Journals",
+                                {'name': "Blogs",
                                 'links': {
-                                    '5th fest': '/gallery',
-                                    '4th fest': '/gallery',
-                                    '3rd fest': '/gallery',
-                                    '2nd fest': '/gallery'
+                                    'Blogs': '/blogs'
                                 }}
                             }
                         />
@@ -60,10 +52,8 @@ const Footer = () => {
                             props = {
                                 {'name': "Upcoming Events",
                                 'links': {
-                                    '5th fest': '/gallery',
-                                    '4th fest': '/gallery',
-                                    '3rd fest': '/gallery',
-                                    '2nd fest': '/gallery'
+                                    'Events': '/events',
+                                    'New Blogs': '/blogs'
                                 }}
                             }
                         />
@@ -120,8 +110,8 @@ const Catagories = ({ props }) => (
             <nav className="list-none mb-10">
                 {Object.keys(props.links).map(i => (
                     <li key={i}>
-                        <Link href={props.links[i]} key={i}>
-                            <a className="text-gray-400 hover:text-white">{i}</a>
+                        <Link href={props.links[i]} key={i} passHref>
+                            <a className="text-gray-400 hover:text-white" target="_blank">{i}</a>
                         </Link>
                     </li>
                 ))}
