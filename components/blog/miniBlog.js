@@ -17,7 +17,6 @@ const MiniBlog = (props) => {
                         {/* <p className="text-white text-base">
                             {props.desc}
                         </p> */}
-                        <p className='text-5 text-blue-400 hover:text-red-400 font-bold transition ease-in-out duration-100'>Read more!</p>
                     </div>
                 </div>
             </Link>

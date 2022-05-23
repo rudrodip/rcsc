@@ -40,8 +40,8 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault()
     if (validate()) {
+      setLoading(true)
       try {
-        setLoading(true)
         await login(email, password)
         toast('Logged In', {
           position: "top-center",
@@ -52,13 +52,15 @@ const Login = () => {
           draggable: true,
           progress: undefined,
         })
-        setTimeout( () => {router.push("/")}, 2000)
+
+        setEmail('')
+        setPassword('')
+
+        setTimeout(() => { router.push("/") }, 2000)
       } catch (error) {
-        alert(error)
+        alert("No such account")
       }
-      
-      setEmail('')
-      setPassword('')
+      setLoading(false)
     }
   }
 
@@ -75,7 +77,7 @@ const Login = () => {
       />
       <div className="bg-grey-lighter min-h-screen flex flex-col">
         <div className="container max-w-sm mx-auto flex-1 flex flex-col items-center justify-center px-2">
-          <div className="bg-sky-400 px-6 py-8 rounded shadow-md text-black w-full">
+          <div className="bg-gradient-to-r from-blue-600 to-cyan-500  px-6 py-8 rounded shadow-md text-black w-full">
             <h1 className="mb-8 text-3xl text-center">Login</h1>
             <input
               type="text"
@@ -92,10 +94,11 @@ const Login = () => {
               placeholder="Password"
               onChange={handleChange}
               value={password} />
+            <p className='text-sm text-gray-700'>Show password</p>
 
             <button
               type="submit"
-              className="w-full text-center py-3 rounded bg-green-400 text-white hover:scale-105 transition duration-200 focus:outline-none my-1"
+              className="w-full text-center py-3 rounded bg-gradient-to-r from-green-300 to-green-400 text-white hover:scale-105 transition duration-200 focus:outline-none my-1"
               onClick={handleSubmit}
               disabled={loading}
             >
@@ -103,7 +106,7 @@ const Login = () => {
             </button>
           </div>
           <div className="text-grey-dark mt-6">
-            Do not have an account? 
+            Do not have an account?
             <Link href="/signup">
               <a className="no-underline border-b border-blue text-blue">
                 Sign up

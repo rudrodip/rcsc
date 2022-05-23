@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react'
 import { db } from '../../src/config/firebase.config';
 import { getDoc, doc } from 'firebase/firestore'
 
-const FullBlog = ({ blog }) => {
+const FullBlog = ({ blog, url }) => {
     const [user, setUser] = useState(null)
     const uid = blog?.authorProfile
     useEffect(() => {
@@ -56,7 +56,6 @@ const FullBlog = ({ blog }) => {
                             </React.Fragment>
 
                         ))}
-
                         <a className="cursor-pointer text-indigo-400 hover:bg-green-400 hover:text-black hover:scale-110 inline-flex items-center rounded-sm p-2 transition ease-in-out duration-150">
                             Share
                             <svg fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" className="w-4 h-4 ml-2" viewBox="0 0 24 24">
