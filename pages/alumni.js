@@ -13,7 +13,7 @@ const Alumni = () => {
       const docRef = collection(db, 'alumnus')
       const q = query(docRef, limit(3))
       const docSnaps = await getDocs(q)
-      setAlumni(docSnaps.docs)
+      setAlumni(docSnaps.docs.reverse())
     }
     getAlumniCollection()
   }, [])
