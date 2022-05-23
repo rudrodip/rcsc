@@ -17,9 +17,10 @@ const Journal = () => {
           const docSnaps = await getDoc(docRef)
           setBlog(docSnaps.data())
         }
-        // async function get
         getAllBlogs()
     }, [])
+
+    
 
     return (
         <div>

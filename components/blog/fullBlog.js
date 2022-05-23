@@ -1,7 +1,26 @@
 import React from 'react'
 import Link from 'next/link'
+import { useEffect, useState } from 'react'
+import { db } from '../../src/config/firebase.config';
+import { getDoc, doc } from 'firebase/firestore'
 
 const FullBlog = ({ blog }) => {
+    const [user, setUser] = useState(null)
+    const uid = blog?.authorProfile
+    useEffect(() => {
+        async function getUser(uid) {
+            if (!uid) return
+            const userRef = doc(db, `user/${uid}`)
+            const docSnap = await getDoc(userRef)
+            if (docSnap.exists()) {
+                setUser(docSnap.data())
+            } else {
+                console.log("No such document!");
+            }
+        }
+        uid && getUser(uid.trim())
+
+    }, [uid])
     return (
         <div>
             <section className="text-gray-400 bg-gray-900 body-font">
@@ -14,7 +33,9 @@ const FullBlog = ({ blog }) => {
                             <div className="sm:w-1/3 text-center sm:pr-8 sm:py-8">
                                 <div className="w-20 h-20 inline-flex items-center justify-center text-gray-600 cursor-pointer">
                                     <Link href={`/user/${blog?.authorProfile}`}>
-                                        <img src={blog?.img} className="w-full rounded-sm object-cover" />
+                                        <div className="p-4 md:p-6 text-center lg:text-left">
+                                            <div className="block rounded-full shadow-xl mx-auto -mt-16 h-36 w-36 bg-cover bg-center hover:scale-105 transition ease-in-out duration-100" style={{ backgroundImage: `url('${user ? user.photoURL : "https://dummyimage.com/200x200"}')` }}></div>
+                                        </div>
                                     </Link>
                                 </div>
                                 <div className="flex flex-col items-center text-center justify-center">

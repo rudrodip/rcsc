@@ -40,8 +40,13 @@ function Blogs() {
             </button>
           </Link>
         </div> : ''
-
       }
+      {!blogs ?
+        <div className='w-full flex justify-center p-5'>
+          <p className="lg:w-2/3 text-center text-md">Loading...</p>
+        </div>
+
+        : ''}
       <div className="flex content-center justify-around m-5 flex-wrap">
         {
           blogs && blogs.map((i, index) => {
@@ -53,7 +58,7 @@ function Blogs() {
                 category={i.data().category}
                 date="12/12/2021"
                 key={index}
-                link={`/journals/${i.id}`}
+                link={`/blogs/${i.id}`}
               />
             )
           }

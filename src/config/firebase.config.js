@@ -56,6 +56,7 @@ export async function upload(file, currentUser, setLoading) {
     }
     const snapshot = await uploadBytes(fileRef, file, metadata)
     let photoURL = await getDownloadURL(fileRef)
+    updateProfile(currentUser, {photoURL})
     return photoURL
   } catch (error) {
     console.log(error)

@@ -4,15 +4,9 @@ import ProfileSVG from '../../public/svg/profile.svg'
 import { useState } from "react";
 import { Transition } from "@headlessui/react"
 
-const Navbar = ({ props, user, path }) => {
+const Navbar = ({ props, user, path, url }) => {
   const [isOpen, setIsOpen] = useState(false)
-  const handleToggle = () => {
-    if (toggle == 'hidden') {
-      setToggle('block')
-    } else {
-      setToggle('hidden')
-    }
-  }
+
   return (
     <div className='sticky top-0 z-40'>
       <nav className="bg-gray-900">
@@ -100,7 +94,7 @@ const Navbar = ({ props, user, path }) => {
                 {Object.keys(props).map(i => (
                   path != props[i] ? <Navbutton name={i} link={props[i]} key={i} /> : <Navbutton name={i} link={props[i]} key={i} classname="bg-gradient-to-r from-blue-600 to-cyan-500" />
                 ))}
-                {user ? <ProfileButton /> : <Navbutton name="Login" link="/login" />}
+                {user ? <ProfileButton/> : <Navbutton name="Login" link="/login" />}
               </div>
             </div>
           )}
