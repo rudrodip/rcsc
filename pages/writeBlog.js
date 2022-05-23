@@ -1,15 +1,49 @@
 import React from 'react'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { FileInputButton } from '../components/fileInput'
 import Paragraph from '../components/blog/paragraph'
+import { useAuth, db, storage } from '../src/config/firebase.config';
+import { useRouter } from 'next/dist/client/router';
+import { ref, uploadBytes, getDownloadURL } from 'firebase/storage'
+import { getDoc, doc, setDoc, collection } from 'firebase/firestore'
 
 const WriteBlog = () => {
+  const router = useRouter()
+  const currentUser = useAuth()
+  const [user, setUser] = useState(null)
   const [title, setTitle] = useState('')
   const [category, setCategory] = useState('')
   const [image, setImage] = useState('')
   const [laoding, setLoading] = useState(false)
-  const [paragraphs, setParagraphs] = useState([])
   const [paragraphNo, setParagraphNo] = useState(1)
+  const [paragraphs, setParagraphs] = useState([{
+    'subtitle': '',
+    'content': ''
+  }])
+
+  useEffect(() => {
+    async function getUser(uid) {
+      if (!uid) return
+      const userRef = doc(db, `user/${uid}`)
+      const docSnap = await getDoc(userRef)
+      if (docSnap.exists()) {
+        setUser(docSnap.data())
+      } else {
+        console.log("No such document!");
+      }
+    }
+    if (currentUser) {
+      getUser(currentUser.uid)
+    }
+
+  }, [currentUser])
+
+  const addParagraph = (index, subtitle, paragraph) => {
+    let data = paragraphs[index]
+    subtitle ? data["subtitle"] = subtitle : ''
+    paragraph ? data["content"] = paragraph : ''
+  }
+
 
   const handleChange = (e) => {
     if (e.target.name == 'title') {
@@ -20,8 +54,11 @@ const WriteBlog = () => {
     }
   }
 
-  const addParagraph = () => {
-    paragraphs.push([])
+  const addParagraphNo = () => {
+    paragraphs.push({
+      'subtitle': '',
+      'content': ''
+    })
     console.log(paragraphs)
     setParagraphNo(paragraphNo + 1)
   }
@@ -36,8 +73,29 @@ const WriteBlog = () => {
     setImage(image)
   }
 
+  const addBlog = async () => {
+    const data = {
+      author: user.name,
+      authorProfile: currentUser.uid,
+      category: category,
+      title: title,
+      paragraphs: paragraphs
+    }
+    const blogref = doc(db, `blogs/${title}by${currentUser.uid}}`)
+    const blogImaRef = ref(storage, `blogImg/${title}by${currentUser.uid}`)
+    const metadata = {
+      contentType: 'image/jpeg',
+    }
+    const snapshot = await uploadBytes(blogImaRef, image, metadata)
+    let photoURL = await getDownloadURL(blogImaRef)
+    data["img"] = photoURL
+
+    setDoc(blogref, data)
+    alert("uploaded")
+  }
+
   return (
-    <div className='m-5 p-10'>
+    <div className='m-1 p-1 lg:m-5 lg:p-10'>
       <div className='mb-0 lg:mb-16'>
         <h1 className="text-4xl font-medium title-font mb-4 text-white tracking-widest text-left">Write blog 📃</h1>
       </div>
@@ -95,33 +153,34 @@ const WriteBlog = () => {
           [...Array(paragraphNo)].map((e, i) => {
             return (
               <div key={i}>
-                <Paragraph />
+                <Paragraph index={i} addParagraph={addParagraph}/>
               </div>
             )
           })
         }
-        <button
-          type="submit"
-          className="w-20 mx-3 text-center py-3 rounded bg-blue-500 text-white hover:scale-105 transition duration-200 focus:outline-none"
-          onClick={addParagraph}
-        >
-          Add
-        </button>
-        <button
-          type="submit"
-          className="w-20 mx-3 text-center py-3 rounded bg-blue-500 text-white hover:scale-105 transition duration-200 focus:outline-none"
-          onClick={removeParagraph}
-        >
-          Remove
-        </button>
-
-        <button
-          type="submit"
-          className="w-20 mx-3 text-center py-3 rounded bg-blue-500 text-white hover:scale-105 transition duration-200 focus:outline-none"
-          onClick={()=> console.log('submited')}
-        >
-          Submit
-        </button>
+        <div className="buttons">
+          <button
+            type="submit"
+            className="w-20 m-3 text-center py-3 rounded bg-blue-500 text-white hover:scale-105 transition duration-200 focus:outline-none"
+            onClick={addParagraphNo}
+          >
+            Add
+          </button>
+          <button
+            type="submit"
+            className="w-20 m-3 text-center py-3 rounded bg-blue-500 text-white hover:scale-105 transition duration-200 focus:outline-none"
+            onClick={removeParagraph}
+          >
+            Remove
+          </button>
+          <button
+            type="submit"
+            className="w-20 m-3 text-center py-3 rounded bg-blue-500 text-white hover:scale-105 transition duration-200 focus:outline-none"
+            onClick={addBlog}
+          >
+            Submit
+          </button>
+        </div>
       </div>
     </div>
   )
