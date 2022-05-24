@@ -3,8 +3,10 @@ import Image from 'next/image'
 import ProfileSVG from '../../public/svg/profile.svg'
 import { useState } from "react";
 import { Transition } from "@headlessui/react"
+import { useRef } from "react";
 
 const Navbar = ({ props, user, path, url }) => {
+  const divRef = useRef(null)
   const [isOpen, setIsOpen] = useState(false)
 
   return (
@@ -88,9 +90,9 @@ const Navbar = ({ props, user, path, url }) => {
           leaveFrom="opacity-100 scale-100"
           leaveTo="opacity-0 scale-95"
         >
-          {(ref) => (
+          {() => (
             <div className="lg:hidden" id="mobile-menu">
-              <div ref={ref} className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+              <div ref={divRef} className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
                 {Object.keys(props).map(i => (
                   path != props[i] ? <Navbutton name={i} link={props[i]} key={i} /> : <Navbutton name={i} link={props[i]} key={i} classname="bg-gradient-to-r from-blue-600 to-cyan-500" />
                 ))}

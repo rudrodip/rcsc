@@ -50,13 +50,15 @@ function Blogs() {
       <div className="flex content-center justify-around m-5 flex-wrap">
         {
           blogs && blogs.map((i, index) => {
+            const date = i.data().timestamp.toDate()
+            const formatedDate = date.toString().slice(0, 15)
             return (
               <MiniBlog
                 title={i.data().title}
                 img={i.data().img}
                 poster={i.data().author}
                 category={i.data().category}
-                date={i.data().timestamp.toDate().toString()}
+                date={formatedDate}
                 key={index}
                 link={i.id}
               />
