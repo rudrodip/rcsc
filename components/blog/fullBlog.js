@@ -19,7 +19,7 @@ const FullBlog = ({ blog, url }) => {
                 console.log("No such document!");
             }
         }
-        const date = blog.timestamp?.toDate()
+        const date = blog?.timestamp?.toDate()
         const formatedDate = date?.toString().slice(0, 15)
         setDate(formatedDate)
         uid && getUser(uid.trim())

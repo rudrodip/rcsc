@@ -97,7 +97,7 @@ const Profile = () => {
                 <p>Views: {user?.views}</p>
               </div>
               <div className='mt-4 text-left'>
-                {user && user.achievements.map((achievement, index) => {
+                {user?.achievements && user.achievements.map((achievement, index) => {
                   return (
                     <div key={index}>
                       <p className="pt-2 text-gray-200 text-xs lg:text-sm flex items-center justify-start">
