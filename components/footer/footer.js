@@ -27,8 +27,7 @@ const Footer = () => {
                             props = {
                                 {'name': "Official Website",
                                 'links': {
-                                    'RC': 'http://rc.edu.bd/',
-                                    'Email': 'rajshahicollegebd@gmail.com'
+                                    'RC': 'http://rc.edu.bd/'
                                 }}
                             }
                         />

@@ -1,30 +1,7 @@
 import React from 'react'
 import Link from 'next/link'
-import { useEffect, useState } from 'react'
-import { db } from '../../src/config/firebase.config';
-import { getDoc, doc } from 'firebase/firestore'
 
-const FullBlog = ({ blog, url }) => {
-    const [user, setUser] = useState(null)
-    const [date, setDate] = useState()
-    const uid = blog?.authorProfile
-    useEffect(() => {
-        async function getUser(uid) {
-            if (!uid) return
-            const userRef = doc(db, `user/${uid}`)
-            const docSnap = await getDoc(userRef)
-            if (docSnap.exists()) {
-                setUser(docSnap.data())
-            } else {
-                console.log("No such document!");
-            }
-        }
-        const date = blog?.timestamp?.toDate()
-        const formatedDate = date?.toString().slice(0, 15)
-        setDate(formatedDate)
-        uid && getUser(uid.trim())
-
-    }, [uid])
+const FullBlog = ({ blog, userImg, date }) => {
     return (
         <div>
             <section className="text-gray-400 bg-gray-900 body-font">
@@ -38,7 +15,7 @@ const FullBlog = ({ blog, url }) => {
                                 <div className="w-20 h-20 inline-flex items-center justify-center text-gray-600 cursor-pointer">
                                     <Link href={`/user/${blog?.authorProfile}`}>
                                         <div className="p-4 md:p-6 text-center lg:text-left">
-                                            <div className="block rounded-full shadow-xl mx-auto -mt-16 h-36 w-36 bg-cover bg-center hover:scale-105 transition ease-in-out duration-100" style={{ backgroundImage: `url('${user ? user.photoURL : "https://dummyimage.com/200x200"}')` }}></div>
+                                            <div className="block rounded-full shadow-xl mx-auto -mt-16 h-36 w-36 bg-cover bg-center hover:scale-105 transition ease-in-out duration-100" style={{ backgroundImage: `url('${userImg}` }}></div>
                                         </div>
                                     </Link>
                                 </div>

@@ -10,6 +10,7 @@ const ProfileEdit = (props) => {
     const router = useRouter()
 
     // initializing all states
+    const [name, setName] = useState('')
     const [phone, setPhone] = useState('')
     const [section, setSection] = useState('')
     const [grade, setGrade] = useState('')
@@ -39,6 +40,9 @@ const ProfileEdit = (props) => {
         else if (e.target.name == 'class') {
             setGrade(e.target.value)
         }
+        else if (e.target.name == 'name') {
+            setName(e.target.value)
+        }
     }
 
     // form validation logics
@@ -56,6 +60,9 @@ const ProfileEdit = (props) => {
         if (grade.length >= 1) {
             data['class'] = grade
         }
+        if (name.length >= 1) {
+            data["name"] = name
+        }
         return data
     }
 
@@ -64,10 +71,11 @@ const ProfileEdit = (props) => {
     const handleSubmit = async (e) => {
         e.preventDefault()
         try {
-            let url = await upload(image, currentUser, setLoading)
             const data = validate()
-            data['photoURL'] = url
-            console.log(url)
+            if (image){
+                let url = await upload(image, currentUser, setLoading)
+                data['photoURL'] = url
+            }
             updateUserData(currentUser, data)
             toast('Updated', {
                 position: "top-center",
@@ -78,7 +86,7 @@ const ProfileEdit = (props) => {
                 draggable: true,
                 progress: undefined,
             })
-            setTimeout(()=> router.reload(), 1500)
+            setTimeout(() => router.reload(), 1500)
         } catch (error) {
             console.log(error)
         }
@@ -86,6 +94,7 @@ const ProfileEdit = (props) => {
         setSection('')
         setRoll('')
         setGrade('')
+        setName('')
 
         { props.handleToggle() }
     }
@@ -125,6 +134,18 @@ const ProfileEdit = (props) => {
                                 </div>
                             </div>
                             <form className="space-y-6" action="#">
+                                <div>
+                                    <label htmlFor="phone" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Your name</label>
+                                    <input
+                                        type="text"
+                                        name="name"
+                                        id="name"
+                                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white outline-none"
+                                        placeholder="Name"
+                                        onChange={handleChange}
+                                        value={name}
+                                        required />
+                                </div>
                                 <div>
                                     <label htmlFor="phone" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Your phone</label>
                                     <input
