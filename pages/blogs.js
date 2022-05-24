@@ -56,9 +56,9 @@ function Blogs() {
                 img={i.data().img}
                 poster={i.data().author}
                 category={i.data().category}
-                date="12/12/2021"
+                date={i.data().timestamp.toDate().toString()}
                 key={index}
-                link={`/blogs/${i.id}`}
+                link={i.id}
               />
             )
           }

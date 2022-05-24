@@ -49,7 +49,7 @@ const FullBlog = ({ blog, url }) => {
                                     <h2 className="font-medium title-font mt-4 text-white text-lg">{blog?.author}</h2>
                                     <div className="w-12 h-1 bg-indigo-500 rounded mt-2 mb-4"></div>
                                     <p className="text-base text-gray-600 font-semibold">{blog?.category}</p>
-                                    <p className="text-base text-gray-400">12/12/2021</p>
+                                    <p className="text-base text-gray-400">{new Date(blog?.timestamp?.seconds*1000).toString()}</p>
                                 </div>
                             </div>
                         </div>
