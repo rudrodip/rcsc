@@ -54,7 +54,7 @@ const FullBlog = ({ blog, url }) => {
                             </div>
                         </div>
                     </div>
-                    <div className="w-full sm:pl-8 sm:py-8 sm:border-l border-gray-800 sm:border-t-0 border-t mt-4 pt-4 sm:mt-0 text-center sm:text-left">
+                    <div className="w-full sm:pl-8 sm:py-8 sm:border-l border-gray-800 sm:border-t-0 border-t mt-4 pt-4 sm:mt-0 text-left">
                         <h2 className="font-medium title-font mt-4 text-white text-5xl mb-5">{blog?.title}</h2>
                         {blog?.paragraphs && blog.paragraphs.map((i, index) => (
                             <React.Fragment key={index}>
