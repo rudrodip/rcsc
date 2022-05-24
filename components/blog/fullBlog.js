@@ -19,6 +19,7 @@ const FullBlog = ({ blog, url }) => {
             }
         }
         uid && getUser(uid.trim())
+        console.log(uid)
 
     }, [uid])
     return (
@@ -27,7 +28,7 @@ const FullBlog = ({ blog, url }) => {
                 <div className="w-full container px-5 py-24 mx-auto flex flex-col">
                     <div className="lg:w-full mx-auto">
                         <div className="rounded-lg h-96 overflow-hidden">
-                            <img alt="content" className="object-cover object-center h-full w-full" src={blog?.img} />
+                            {blog?.img ? <img alt="content" className="object-cover object-center h-full w-full" src={blog?.img} /> : ''}
                         </div>
                         <div className="flex flex-col sm:flex-row mt-10 justify-center">
                             <div className="sm:w-1/3 text-center sm:pr-8 sm:py-8">
@@ -38,6 +39,12 @@ const FullBlog = ({ blog, url }) => {
                                         </div>
                                     </Link>
                                 </div>
+                                {!blog ?
+                                    <div className='w-full flex justify-center p-5'>
+                                        <p className="lg:w-2/3 text-center text-md">Loading...</p>
+                                    </div>
+
+                                    : ''}
                                 <div className="flex flex-col items-center text-center justify-center">
                                     <h2 className="font-medium title-font mt-4 text-white text-lg">{blog?.author}</h2>
                                     <div className="w-12 h-1 bg-indigo-500 rounded mt-2 mb-4"></div>
@@ -52,7 +59,7 @@ const FullBlog = ({ blog, url }) => {
                         {blog?.paragraphs && blog.paragraphs.map((i, index) => (
                             <React.Fragment key={index}>
                                 <p className="font-normal title-font mt-8 text-cyan-300 text-xl mb-4 opacity-80">{i?.subtitle}</p>
-                                <p className="leading-relaxed text-lg mb-4">{i?.content}</p>
+                                <p className="leading-relaxed text-lg mb-4 whitespace-pre-line">{i?.content}</p>
                             </React.Fragment>
 
                         ))}

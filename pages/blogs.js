@@ -15,7 +15,7 @@ function Blogs() {
       const docRef = collection(db, 'blogs')
       const q = query(docRef, limit(30))
       const docSnaps = await getDocs(q)
-      setBlogs(docSnaps.docs)
+      setBlogs(docSnaps.docs.reverse())
     }
     getAllBlogs()
   }, [])
@@ -34,7 +34,7 @@ function Blogs() {
       {currentUser ?
         <div className='w-full flex justify-center content-center flex-row'>
           <Link href="/writeBlog">
-            <button className="bg-gray-800 hover:bg-cyan-300 uppercase text-white font-bold hover:scale-110 transition-all ease-in-out duration-100 shadow text-lg px-5 py-5 rounded outline-none focus:outline-none sm:mr-2 mb-1 mx-3"
+            <button className="bg-gray-800 hover:bg-cyan-300 uppercase text-white font-semibold hover:scale-110 transition-all ease-in-out duration-100 shadow text-md lg:text-lg p-3 lg:p-5 rounded outline-none focus:outline-none sm:mr-2 mb-1 mx-3"
             >
               Write blog
             </button>
