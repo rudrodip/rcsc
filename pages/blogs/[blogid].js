@@ -45,7 +45,7 @@ const Journal = () => {
 
     return (
         <div>
-            <FullBlog blog={blog} url={`https://rcscienceclub.vercel.app/blogs/${blogid}`} userImg={user?.photoURL} date={date} />
+            <FullBlog blog={blog} url={`https://rcscienceclub.vercel.app/blogs/${blogid}`} userImg={user?.photoURL} author={user?.name} date={date} />
         </div>
     )
 }

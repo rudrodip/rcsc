@@ -1,7 +1,7 @@
 import { initializeApp } from 'firebase/app'
 import { getAuth, createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut, updateProfile } from 'firebase/auth'
 import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage'
-import { getFirestore, doc, setDoc, updateDoc } from 'firebase/firestore'
+import { getFirestore, doc, setDoc, updateDoc, getDocs, where, collection, query } from 'firebase/firestore'
 import { useState, useEffect } from 'react'
 
 // const firebaseConfig = {
@@ -56,7 +56,7 @@ export async function upload(file, currentUser, setLoading) {
     }
     const snapshot = await uploadBytes(fileRef, file, metadata)
     let photoURL = await getDownloadURL(fileRef)
-    updateProfile(currentUser, {photoURL})
+    updateProfile(currentUser, { photoURL })
     return photoURL
   } catch (error) {
     console.log(error)

@@ -9,6 +9,7 @@ import Link from 'next/link'
 function Blogs() {
   const [blogs, setBlogs] = useState(null)
   const currentUser = useAuth()
+  
 
   useEffect(() => {
     async function getAllBlogs() {
@@ -52,6 +53,7 @@ function Blogs() {
           blogs && blogs.map((i, index) => {
             const date = i.data().timestamp.toDate()
             const formatedDate = date.toString().slice(0, 15)
+            
             return (
               <MiniBlog
                 title={i.data().title}

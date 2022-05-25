@@ -4,7 +4,7 @@ import { FileInputButton } from '../components/fileInput'
 import Paragraph from '../components/blog/paragraph'
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
-import { useAuth, db, storage } from '../src/config/firebase.config';
+import { useAuth, db, storage, updateUserData } from '../src/config/firebase.config';
 import { useRouter } from 'next/dist/client/router';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage'
 import { getDoc, doc, setDoc, serverTimestamp } from 'firebase/firestore'
@@ -84,6 +84,7 @@ const WriteBlog = () => {
         category: category,
         title: title,
         paragraphs: paragraphs,
+        views: 0,
         timestamp: serverTimestamp()
       }
       const blogref = doc(db, `blogs/${title}by${currentUser.uid}}`)
@@ -98,6 +99,7 @@ const WriteBlog = () => {
       }
 
       setDoc(blogref, data)
+      updateUserData(currentUser, {blogs: user.blogs + 1})
       toast('Uploaded', {
         position: "top-center",
         autoClose: 3000,
