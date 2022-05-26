@@ -4,6 +4,7 @@ import { useRouter } from 'next/router'
 import FullBlog from '../../components/blog/fullBlog'
 import { db } from '../../src/config/firebase.config';
 import { getDoc, doc } from 'firebase/firestore'
+import Script from 'next/script';
 
 const Journal = () => {
     const router = useRouter()
@@ -39,7 +40,7 @@ const Journal = () => {
 
         uid && getUser(uid.trim())
 
-    }, [uid])
+    }, [blogid, uid])
 
 
 

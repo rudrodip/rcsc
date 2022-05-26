@@ -1,7 +1,7 @@
 import React from 'react'
 import Link from 'next/link'
 
-const FullBlog = ({ blog, userImg, date, author }) => {
+const FullBlog = ({ blog, userImg, date, author, url }) => {
     return (
         <div>
             <section className="text-gray-400 bg-gray-900 body-font">
@@ -43,15 +43,23 @@ const FullBlog = ({ blog, userImg, date, author }) => {
                             </React.Fragment>
 
                         ))}
-                        <a className="cursor-pointer text-indigo-400 hover:bg-green-400 hover:text-black hover:scale-110 inline-flex items-center rounded-sm p-2 transition ease-in-out duration-150">
-                            Share
-                            <svg fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" className="w-4 h-4 ml-2" viewBox="0 0 24 24">
-                                <path d="M5 12h14M12 5l7 7-7 7"></path>
-                            </svg>
-                        </a>
+                        <div id="fb-root"></div>
+                        <div className="fb-share-button" data-href="https://developers.facebook.com/docs/plugins/" data-layout="button" data-size="small">
+                            <a
+                                target="_blank"
+                                href={`https://www.facebook.com/sharer/sharer.php?u=${url}`}
+                                className="fb-xfbml-parse-ignore text-indigo-400 hover:bg-green-400 hover:text-black hover:scale-110 inline-flex items-center rounded-sm p-2 transition ease-in-out duration-150"
+                                rel="noreferrer">
+                                Share
+                                <svg fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" className="w-4 h-4 ml-2" viewBox="0 0 24 24">
+                                    <path d="M5 12h14M12 5l7 7-7 7"></path>
+                                </svg>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </section>
+            <script async defer crossOrigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v14.0" nonce="E58tXvTF"></script>
         </div>
     )
 }

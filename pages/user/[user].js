@@ -8,6 +8,7 @@ const Profile = () => {
     const router = useRouter()
     const [user, setUser] = useState(null)
     const uid = router.query
+    console.log(uid)
     useEffect(() => {
         async function getUser(uid) {
             if (!uid) return
@@ -19,9 +20,9 @@ const Profile = () => {
                 console.log("No such document!");
             }
         }
-        getUser(uid.user.trim())
+        getUser(uid?.user?.trim())
 
-    }, [])
+    }, [uid?.user])
 
 
     return (
