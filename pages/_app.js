@@ -41,7 +41,7 @@ function MyApp({ Component, pageProps }) {
         onLoaderFinished={() => setProgress(0)}
         waitingTime={400}
       />
-      {key && <Navbar props={Pages} key={key} user={user} path={router.pathname}/>}
+      {key && <Navbar props={Pages} key={key} user={user} path={router.pathname} userProfile={user?.photoURL}/>}
       <Component {...pageProps} />
       <Social props={Social_media} />
       <Footer />

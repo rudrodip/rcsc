@@ -11,6 +11,11 @@ const Login = () => {
   const [loading, setLoading] = useState(false)
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [isChecked, setIsChecked] = useState(false);
+
+  const handleOnChange = () => {
+    setIsChecked(!isChecked)
+  }
 
   const handleChange = (e) => {
     if (e.target.name == 'email') {
@@ -88,13 +93,23 @@ const Login = () => {
               value={email} />
 
             <input
-              type="password"
+              type={isChecked ? 'text' : 'password'}
               className="block border border-grey-light w-full p-3 rounded mb-4 outline-none"
               name="password"
               placeholder="Password"
               onChange={handleChange}
               value={password} />
-            <p className='text-sm text-gray-700'>Show password</p>
+            <div className='text-md text-gray-200'>
+              <input
+                type="checkbox"
+                id="topping"
+                name="topping"
+                value="Paneer"
+                className='mx-2 w-4 h-4'
+                checked={isChecked}
+                onChange={handleOnChange}
+              />Show Password
+            </div>
 
             <button
               type="submit"

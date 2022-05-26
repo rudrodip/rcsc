@@ -5,7 +5,7 @@ import { useState } from "react";
 import { Transition } from "@headlessui/react"
 import { useRef } from "react";
 
-const Navbar = ({ props, user, path, url }) => {
+const Navbar = ({ props, user, path, userProfile }) => {
   const divRef = useRef(null)
   const [isOpen, setIsOpen] = useState(false)
 
@@ -30,7 +30,7 @@ const Navbar = ({ props, user, path, url }) => {
                   {Object.keys(props).map(i => (
                     path != props[i] ? <Navbutton name={i} link={props[i]} key={i} /> : <Navbutton name={i} link={props[i]} key={i} classname="bg-gradient-to-r from-blue-600 to-cyan-500" />
                   ))}
-                  {user ? <ProfileButton /> : <Navbutton name="Login" link="/login" />}
+                  {user ? <ProfileButton userProfile={userProfile} /> : <Navbutton name="Login" link="/login" />}
                 </div>
               </div>
             </div>
@@ -96,7 +96,7 @@ const Navbar = ({ props, user, path, url }) => {
                 {Object.keys(props).map(i => (
                   path != props[i] ? <Navbutton name={i} link={props[i]} key={i} /> : <Navbutton name={i} link={props[i]} key={i} classname="bg-gradient-to-r from-blue-600 to-cyan-500" />
                 ))}
-                {user ? <ProfileButton/> : <Navbutton name="Login" link="/login" />}
+                {user ? <ProfileButton userProfile={userProfile} /> : <Navbutton name="Login" link="/login" />}
               </div>
             </div>
           )}
@@ -121,13 +121,13 @@ const Navbutton = (props) => {
   )
 }
 
-const ProfileButton = () => {
+const ProfileButton = (props) => {
   return (
     <div>
       <Link href="/profile">
-        <a className="transition ease-in-out duration-200 hover:bg-gradient-to-r from-blue-600 to-cyan-500 rounded-full p-2 flex justify-center content-center">
-          <Image src={ProfileSVG} alt="Profile" width={30} height={30} />
-        </a>
+        <div className="p-2 md:p-2 text-center lg:text-left cursor-pointer">
+          <div className="block rounded-full shadow-xl mx-auto h-10 w-10 bg-cover bg-center hover:scale-125 transition ease-in-out duration-100" style={{ backgroundImage: `url('${props.userProfile}` }}></div>
+        </div>
       </Link>
     </div>
   )
