@@ -53,7 +53,7 @@ const Profile = () => {
   return (
     <main className="profile-page">
       <ProfileEdit toggle={toggle} handleToggle={handleToggle} user={currentUser} />
-      <AddAchievements toggle={achievementToggle} handleToggle={handleAchievementToggle} user={currentUser} achievements = {user && user.achievements} />
+      <AddAchievements toggle={achievementToggle} handleToggle={handleAchievementToggle} user={currentUser} achievements={user && user.achievements} />
 
       <div>
         <div className="max-w-4xl flex items-center h-auto lg:h-screen flex-wrap mx-auto my-32 lg:my-0">
