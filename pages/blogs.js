@@ -48,7 +48,7 @@ function Blogs() {
         </div>
 
         : ''}
-      <div className="flex content-center justify-around m-5 flex-col w-full">
+      <div className="flex content-center justify-around m-5 flex-col flex-wrap">
         {
           blogs && blogs.map((i, index) => {
             const date = i.data().timestamp.toDate()
