@@ -35,6 +35,11 @@ const Navbar = ({ props, user, path, userProfile }) => {
               </div>
             </div>
             <div className="-mr-2 flex lg:hidden">
+              <Link href="/profile">
+                <div className="p-2">
+                  <div className="block rounded-full shadow-xl mx-auto h-8 w-8 bg-cover bg-center" style={{ backgroundImage: `url('${userProfile}` }}></div>
+                </div>
+              </Link>
               <button
                 onClick={() => setIsOpen(!isOpen)}
                 type="button"
