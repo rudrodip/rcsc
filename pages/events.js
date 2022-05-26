@@ -4,12 +4,44 @@ import EventGallery from '../components/eventGallery'
 import FullBlog from '../components/blog/fullBlog'
 import { useEffect } from 'react'
 import { useState } from 'react'
+import { db } from '../src/config/firebase.config';
+import { getDoc, doc } from 'firebase/firestore'
 
 function Events() {
-  const [journal, setJournal] = useState({})
+  const [blog, setBlog] = useState({})
+  const [user, setUser] = useState(null)
+  const [date, setDate] = useState()
+  const uid = blog?.authorProfile
+
+  useEffect(() => {
+    async function getBlog() {
+      const docRef = doc(db, `blogs/Science Fest 2022byvf5vRJ8JyqWbQKBRjMHaUScg63g2}`)
+      const docSnaps = await getDoc(docRef)
+      setBlog(docSnaps.data())
+    }
+    getBlog()
+
+    async function getUser(uid) {
+      if (!uid) return
+      const userRef = doc(db, `user/${uid}`)
+      const docSnap = await getDoc(userRef)
+      if (docSnap.exists()) {
+        setUser(docSnap.data())
+      } else {
+        console.log("No such document!");
+      }
+    }
+
+    const date = blog?.timestamp?.toDate()
+    const formatedDate = date?.toString().slice(0, 15)
+    setDate(formatedDate)
+
+    uid && getUser(uid.trim())
+  }, [uid])
 
   return (
     <div>
+      {console.log(blog)}
       <Header
         title="Rajshahi College Science Club"
         subtitle="Events"
@@ -27,7 +59,7 @@ function Events() {
         img6="/background-img/bg3.jpg"
       />
 
-      <FullBlog journal={journal} />
+      {blog && user && <FullBlog blog={blog} url={`https://rcscienceclub.vercel.app/blogs`} userImg={user?.photoURL} author={user?.name} date={date} role={user?.role} />}
     </div>
   )
 }

@@ -4,7 +4,6 @@ import { useRouter } from 'next/router'
 import FullBlog from '../../components/blog/fullBlog'
 import { db } from '../../src/config/firebase.config';
 import { getDoc, doc } from 'firebase/firestore'
-import Script from 'next/script';
 
 const Journal = () => {
     const router = useRouter()
@@ -46,7 +45,7 @@ const Journal = () => {
 
     return (
         <div>
-            <FullBlog blog={blog} url={`https://rcscienceclub.vercel.app/blogs/${blogid}`} userImg={user?.photoURL} author={user?.name} date={date} />
+            <FullBlog blog={blog} url={`https://rcscienceclub.vercel.app/blogs/${blogid}`} userImg={user?.photoURL} author={user?.name} date={date} role={user?.role} />
         </div>
     )
 }

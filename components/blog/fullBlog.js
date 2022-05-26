@@ -1,7 +1,7 @@
 import React from 'react'
 import Link from 'next/link'
 
-const FullBlog = ({ blog, userImg, date, author, url }) => {
+const FullBlog = ({ blog, userImg, date, author, url, role }) => {
     return (
         <div>
             <section className="text-gray-400 bg-gray-900 body-font">
@@ -26,8 +26,9 @@ const FullBlog = ({ blog, userImg, date, author, url }) => {
 
                                     : ''}
                                 <div className="flex flex-col items-center text-center justify-center">
-                                    <h2 className="font-medium title-font mt-4 text-white text-lg">{author}</h2>
+                                    <h2 className="font-medium title-font mt-4 text-white text-bold text-lg">{author}</h2>
                                     <div className="w-12 h-1 bg-indigo-500 rounded mt-2 mb-4"></div>
+                                    <p className="text-base text-white font-bold">{role}</p>
                                     <p className="text-base text-gray-600 font-semibold">{blog?.category}</p>
                                     <p className="text-base text-gray-400">{date}</p>
                                 </div>
