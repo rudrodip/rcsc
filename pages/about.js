@@ -41,7 +41,7 @@ function About() {
         </section>
       </div>
       <div className='flex justify-center content-center my-10'>
-        <img src="/background-img/bg11.jpg" alt="picture" className='w-2/3' />
+        <img src="/background-img/bg11.jpg" alt="picture" className='w-full lg:w-2/3' />
       </div>
       <section className="about_desc">
         <div>

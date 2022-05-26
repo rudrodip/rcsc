@@ -1,6 +1,4 @@
 import Link from "next/link";
-import Image from 'next/image'
-import ProfileSVG from '../../public/svg/profile.svg'
 import { useState } from "react";
 import { Transition } from "@headlessui/react"
 import { useRef } from "react";
@@ -101,7 +99,6 @@ const Navbar = ({ props, user, path, userProfile }) => {
                 {Object.keys(props).map(i => (
                   path != props[i] ? <Navbutton name={i} link={props[i]} key={i} /> : <Navbutton name={i} link={props[i]} key={i} classname="bg-gradient-to-r from-blue-600 to-cyan-500" />
                 ))}
-                {user ? <ProfileButton userProfile={userProfile} /> : <Navbutton name="Login" link="/login" />}
               </div>
             </div>
           )}
