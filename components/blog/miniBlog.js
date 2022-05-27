@@ -26,7 +26,7 @@ const MiniBlog = (props) => {
         router.push(`${router.pathname}/${id}`)
     }
     return (
-        <div className={`p-4 w-1/2 xl:w-1/3 transition ease-in-out duration-500 scale-0`} ref={ref} style={{ transform: `scale(${scale})` }}>
+        <div className={`p-1 sm:p-4 w-1/2 xl:w-1/3 transition ease-in-out duration-500 scale-0`} ref={ref} style={{ transform: `scale(${scale})` }}>
             <button
                 onClick={() => handleClick(props?.link)}>
 

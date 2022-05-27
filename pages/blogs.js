@@ -67,7 +67,7 @@ function Blogs() {
       </div>
 
         : ''}
-      <div className="flex m-5 flex-wrap">
+      <div className="flex m-1 md:m-5 flex-wrap">
         {
           blogs && blogs.map((i, index) => {
             const date = i.data().timestamp.toDate()
