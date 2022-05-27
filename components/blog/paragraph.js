@@ -1,7 +1,13 @@
+// this component render a repeated portion of a write blog form
+
+
+// importing necessary dependencies
 import React from 'react'
 import { useState } from 'react'
 
 const Paragraph = (props) => {
+  // props has a function from parent component - write blog -> addParagraph
+
   const [subtitle, setSubtitle] = useState('')
   const [paragraph, setParagraph] = useState('')
 
@@ -67,3 +73,12 @@ const Paragraph = (props) => {
 }
 
 export default Paragraph
+
+// structure and how it works
+
+// there are two input forms -> 1. Subtitle 2. Paragraph
+// React listens to each of them and in any changes, it handle changes with function handleChange()
+
+// handleChange function then calls a function of parent component "addParagraph" to set the text to the parent data file
+
+// i know its a bit complicated 😅

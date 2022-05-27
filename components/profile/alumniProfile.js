@@ -1,8 +1,13 @@
+// this component shows the alumni
+
+
+// necessary dependencies
 import React from 'react'
 import { useInView } from 'react-intersection-observer';
 import { useState } from 'react';
 
 const AlumniProfile = (props) => {
+  // props properties -> img > name > role > batch > institution > phone > email
   const { ref, inView, entry } = useInView({
     threshold: 0,
   });

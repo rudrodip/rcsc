@@ -1,10 +1,19 @@
+// renderd in every page as navbar
+
+
+// necessary dependencies
 import Link from "next/link";
 import { useState } from "react";
 import { Transition } from "@headlessui/react"
 import { useRef } from "react";
 
+
+// the component
 const Navbar = ({ props, user, path, userProfile }) => {
+  // ref of the navbar
   const divRef = useRef(null)
+  
+  // responsive navbar toggle
   const [isOpen, setIsOpen] = useState(false)
 
   return (
@@ -137,3 +146,10 @@ const ProfileButton = (props) => {
 
 
 export default Navbar
+
+
+// structure
+ // -> Desktop -> Logo > RCSC > All Navbuttons > Profile Image
+
+ // Mobile -> Logo > RCSC > Profile Image > Navbar Toggle Button
+                                            // -> gives all the Nav buttons in the bottom when clicked

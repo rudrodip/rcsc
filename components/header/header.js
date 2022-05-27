@@ -1,16 +1,29 @@
+// it is rendered in almost every page as a header
+
+
+// import necessary dependencies
 import React from 'react'
 import { useState, useEffect, useRef } from 'react'
 
+// the main component
 function Header(props) {
+  // props has 4 properties
+  // -> 1. title 2. subTitle (Rendered in the left)
+  // -> 1. imageTitle 2. imageSubtitle (Rendered in the right)
+
+
   const [index, setIndex] = useState(Math.floor(Math.random() * 13) + 1)
   const timeoutRef = useRef(null)
 
+  // reset timeout function
   const resetTimeout = () => {
     if (timeoutRef.current) {
       clearTimeout(timeoutRef.current)
     }
   }
 
+
+  // useEffect for the timeout function
   useEffect(() => {
     resetTimeout()
     timeoutRef.current = setTimeout(
@@ -20,6 +33,7 @@ function Header(props) {
     )
     return () => resetTimeout()
   }, [index])
+
 
   return (
     <div className='flex' style={{ height: '70vh' }}>
@@ -51,3 +65,5 @@ function Header(props) {
 
 
 export default Header
+
+// structure -> image -> (subTitle, title) -> (imageSubtitle, imageTitle)

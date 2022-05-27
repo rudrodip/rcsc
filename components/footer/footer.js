@@ -1,8 +1,14 @@
+// it renders the footer
+
+
+// importing necessary dependencies
 import React from 'react'
 import Image from 'next/image'
 import Logo from '../../public/logo/rcsc-logo.png'
 import Link from 'next/link'
 
+
+// the main component
 const Footer = () => {
     return (
         <div>
@@ -121,3 +127,9 @@ const Catagories = ({ props }) => (
 )
 
 export default Footer
+
+
+// structure
+// it has two parts -> 1. Links 2. Credit
+// Links ->  it render a component called Categories defined in this component
+// Credits -> Gives the credit to the developer  (including social media icons)

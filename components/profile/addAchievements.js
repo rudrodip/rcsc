@@ -1,3 +1,7 @@
+// the component is responsible for adding and deleting achievements in user profile
+
+
+// necessary dependencies
 import React from 'react'
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
@@ -6,14 +10,17 @@ import { useState } from 'react'
 import { db } from '../../src/config/firebase.config'
 import { arrayRemove, arrayUnion, doc, updateDoc } from 'firebase/firestore'
 import { useEffect } from 'react';
-import { async } from '@firebase/util';
 
+
+// the main component
 const AddAchievements = (props) => {
     const router = useRouter()
     const [loading, setLoading] = useState(false)
     const [user, setUser] = useState(null)
     const [achievement, setAchievement] = useState('')
 
+
+    // setUser and handleChange in the form
     useEffect(() => {
         props.user && setUser(props.user)
     }, [props.user])
@@ -24,6 +31,8 @@ const AddAchievements = (props) => {
         }
     }
 
+
+    // validiting the form
     const validate = () => {
         if (achievement.length > 1) {
             return true
@@ -40,6 +49,7 @@ const AddAchievements = (props) => {
         }
     }
 
+    // this function adds the "Achievement" given by the user to store in his profile in DB
     async function addAchievements(user, data) {
         setLoading(true)
         if (!user) return
@@ -54,6 +64,7 @@ const AddAchievements = (props) => {
         setLoading(false)
     }
 
+    // this function delete the "Achievement" given by the user to store in his profile in DB
     async function deleteAchievement(user, data) {
         setLoading(true)
         if (!user) return
@@ -68,8 +79,11 @@ const AddAchievements = (props) => {
         setLoading(false)
     }
 
+    // handles the delete function
     const handleDelete = async (data) => {
         await deleteAchievement(user, data)
+
+        // shows the user the state
         toast.warn('Deleted', {
             position: "top-center",
             autoClose: 3000,
@@ -82,12 +96,20 @@ const AddAchievements = (props) => {
         setTimeout(() => router.reload(), 2000)
     }
 
+    // handle the submit function
     const handleSubmit = async (e) => {
+        // set the loading to true so that user can't use the button until the proceess is finished
         setLoading(true)
+
+        // to stop relaoding the page
         e.preventDefault()
+
+        // checking the validation
         if (validate()) {
             try {
                 await addAchievements(user, achievement)
+
+                // show the status
                 toast('Added', {
                     position: "top-center",
                     autoClose: 3000,
@@ -97,12 +119,19 @@ const AddAchievements = (props) => {
                     draggable: true,
                     progress: undefined,
                 })
+
+                // relaoding the page after 2 secs
                 setTimeout(() => router.reload(), 2000)
+
             } catch (error) {
                 alert(error)
             }
+
+            // seting the form to default
             setAchievement('')
         }
+
+        // setting the loading to false so that user can again use the button
         setLoading(false)
     }
     return (
@@ -173,3 +202,5 @@ const AddAchievements = (props) => {
 }
 
 export default AddAchievements
+
+// structure -> Achievements with delete button > Add achievements form > Submit button
