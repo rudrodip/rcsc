@@ -1,8 +1,8 @@
 import React from 'react'
 import Header from '../components/header/header'
 import MiniBlog from '../components/blog/miniBlog'
-import { db, useAuth, updateUserData } from '../src/config/firebase.config';
-import { getDocs, collection, query, limit, where, deleteDoc, doc } from 'firebase/firestore'
+import { db, useAuth, updateBlogNo } from '../src/config/firebase.config';
+import { getDocs, getDoc, collection, query, limit, where, deleteDoc, doc } from 'firebase/firestore'
 import { useState, useEffect } from 'react';
 import Link from 'next/link'
 import { useRouter } from 'next/router'
@@ -14,6 +14,7 @@ function Blogs() {
   const router = useRouter()
   const [blogs, setBlogs] = useState(null)
   const [category, setCategory] = useState('All Blogs')
+  const [user, setUser] = useState(null)
   const currentUser = useAuth()
 
   const handleCategory = (e) => {
@@ -36,7 +37,7 @@ function Blogs() {
   async function deleteBlog(id) {
     const docRef = doc(db, `blogs/${id}`)
     await deleteDoc(docRef)
-    updateUserData(currentUser, { blogs: user.blogs + 1 })
+    updateBlogNo(currentUser, -1)
     toast.warn('Deleted blog', {
       position: "top-center",
       autoClose: 3000,
@@ -46,7 +47,7 @@ function Blogs() {
       draggable: true,
       progress: undefined,
     })
-    setTimeout(()=> router.reload(), 2000)
+    setTimeout(() => router.reload(), 2000)
   }
 
   useEffect(() => {
@@ -63,6 +64,20 @@ function Blogs() {
       const docSnaps = await getDocs(q)
       let blogs = docSnaps.docs.sort(compare)
       setBlogs(blogs)
+    }
+
+    async function getUser(uid) {
+      if (!uid) return
+      const userRef = doc(db, `user/${uid}`)
+      const docSnap = await getDoc(userRef)
+      if (docSnap.exists()) {
+        setUser(docSnap.data())
+      } else {
+        console.log("No such document!");
+      }
+    }
+    if (currentUser) {
+      getUser(currentUser.uid)
     }
 
     getAllBlogs()

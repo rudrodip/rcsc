@@ -5,7 +5,7 @@ import Paragraph from '../components/blog/paragraph'
 import Categories from '../categories.json'
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
-import { useAuth, db, storage, updateUserData } from '../src/config/firebase.config';
+import { useAuth, db, storage, updateBlogNo } from '../src/config/firebase.config';
 import { useRouter } from 'next/dist/client/router';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage'
 import { getDoc, doc, setDoc, serverTimestamp } from 'firebase/firestore'
@@ -15,7 +15,7 @@ const WriteBlog = () => {
   const currentUser = useAuth()
   const [user, setUser] = useState(null)
   const [title, setTitle] = useState('')
-  const [category, setCategory] = useState('Catergory')
+  const [category, setCategory] = useState('All Blogs')
   const [image, setImage] = useState('')
   const [laoding, setLoading] = useState(false)
   const [paragraphNo, setParagraphNo] = useState(1)
@@ -120,7 +120,7 @@ const WriteBlog = () => {
       }
 
       setDoc(blogref, data)
-      updateUserData(currentUser, { blogs: user.blogs + 1 })
+      updateBlogNo(currentUser, 1)
       toast('Uploaded', {
         position: "top-center",
         autoClose: 3000,

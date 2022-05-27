@@ -92,7 +92,7 @@ const Profile = () => {
               </div>
 
               <div className="mt-6 pb-16 lg:pb-0 w-4/5 lg:w-full mx-auto flex flex-wrap items-center justify-between text-gray-400">
-                <p>Blogs: {user?.blogs}</p>
+                <p>Blogs: {user?.blogs ? user?.blogs : 0}</p>
               </div>
               <div className='mt-4 text-left'>
                 {user?.achievements && user.achievements.map((achievement, index) => {

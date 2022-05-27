@@ -1,7 +1,7 @@
 import { initializeApp } from 'firebase/app'
 import { getAuth, createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut, updateProfile } from 'firebase/auth'
 import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage'
-import { getFirestore, doc, setDoc, updateDoc, getDocs, where, collection, query } from 'firebase/firestore'
+import { getFirestore, doc, setDoc, updateDoc, increment } from 'firebase/firestore'
 import { useState, useEffect } from 'react'
 
 // const firebaseConfig = {
@@ -91,6 +91,18 @@ export async function updateUserData(user, data) {
   const userRef = doc(db, `user/${user.uid}`)
   try {
     updateDoc(userRef, data)
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+export async function updateBlogNo(user, val) {
+  // val must be 1 or -1
+  if (!user) return
+  const userRef = doc(db, `user/${user.uid}`)
+  try {
+    const dec = increment(val)
+    updateDoc(userRef, {"blogs": dec})
   } catch (error) {
     console.log(error)
   }
