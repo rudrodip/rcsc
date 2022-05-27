@@ -26,13 +26,13 @@ const MiniBlog = (props) => {
         router.push(`${router.pathname}/${id}`)
     }
     return (
-        <div className={`p-4 w-full lg:w-1/2 transition ease-in-out duration-500 scale-0`} ref={ref} style={{ transform: `scale(${scale})` }}>
+        <div className={`p-4 w-1/2 xl:w-1/3 transition ease-in-out duration-500 scale-0`} ref={ref} style={{ transform: `scale(${scale})` }}>
             <button
                 onClick={() => handleClick(props?.link)}>
 
-                <div className="h-full flex sm:flex-row flex-col text-left cursor-pointer">
+                <div className="h-full flex flex-col md:flex-row text-left cursor-pointer">
                     <img alt="team" className="flex-shrink-0 rounded-lg w-48 h-48 object-cover object-center sm:mb-0 mb-4" src={props.img ? props.img : "https://dummyimage.com/200x200"} />
-                    <div className="flex-grow sm:pl-8">
+                    <div className="flex-grow pl-5 sm:pt-5">
                         <h2 className="title-font font-medium text-xl text-cyan-300 text-left">{props.title}</h2>
                         <h2 className="title-font font-medium text-md text-gray-300 text-left">{props.poster}</h2>
                         <h3 className="text-gray-500 mb-3">{props.category}</h3>
