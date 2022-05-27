@@ -81,7 +81,19 @@ const WriteBlog = () => {
   }
 
   const onChange = async (image) => {
-    setImage(image)
+    if (image.size > 2097152) {
+      toast.warn('File size should be less than 2 MB', {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      })
+    } else {
+      setImage(image)
+    }
   }
 
   const addBlog = async () => {
@@ -194,7 +206,7 @@ const WriteBlog = () => {
                 <div className="py-1 h-48" role="none">
                   {Object.keys(Categories).map(i => {
                     return (
-                      i!="My Blogs" && <div key={i}>
+                      i != "My Blogs" && <div key={i}>
                         <button
                           className="w-full text-gray-100 text-left block px-4 py-2 text-sm hover:bg-gray-400"
                           name="category"

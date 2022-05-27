@@ -23,7 +23,19 @@ const ProfileEdit = (props) => {
 
     // profile picture change
     const onChange = async (image) => {
-        setImage(image)
+        if (image.size > 1048576){
+            toast.warn('File size should be less than 1 MB', {
+                position: "top-center",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            })
+        } else {
+            setImage(image)
+        }
     }
 
     // handles change in form and save in states
