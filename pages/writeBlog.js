@@ -109,6 +109,7 @@ const WriteBlog = () => {
         draggable: true,
         progress: undefined,
       })
+      setTimeout(()=> router.push('/blogs'), 2500)
     } catch (error) {
       toast.warn('Error while uploading', {
         position: "top-center",

@@ -10,16 +10,29 @@ function Blogs() {
   const [blogs, setBlogs] = useState(null)
   const currentUser = useAuth()
 
+  const compare = (a, b) => {
+    let a_date = a.data().timestamp
+    let b_date = b.data().timestamp
+    if (a_date > b_date){
+      return -1
+    }
+    if (a_date < b_date){
+      return 1
+    }
+    return 0
+  }
 
   useEffect(() => {
     async function getAllBlogs() {
       const docRef = collection(db, 'blogs')
       const q = query(docRef, limit(30))
       const docSnaps = await getDocs(q)
-      setBlogs(docSnaps.docs.reverse())
+      let blogs = docSnaps.docs.sort(compare)
+      setBlogs(blogs)
     }
     getAllBlogs()
   }, [])
+
 
   return (
     <div>
@@ -54,7 +67,7 @@ function Blogs() {
       </div>
 
         : ''}
-      <div className="flex content-center justify-around m-5 flex-wrap">
+      <div className="flex m-5 flex-wrap">
         {
           blogs && blogs.map((i, index) => {
             const date = i.data().timestamp.toDate()
