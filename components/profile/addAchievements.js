@@ -41,6 +41,7 @@ const AddAchievements = (props) => {
     }
 
     async function addAchievements(user, data) {
+        setLoading(true)
         if (!user) return
         const userRef = doc(db, `user/${user.uid}`)
         try {
@@ -50,9 +51,11 @@ const AddAchievements = (props) => {
         } catch (error) {
             console.log(error)
         }
+        setLoading(false)
     }
-    
+
     async function deleteAchievement(user, data) {
+        setLoading(true)
         if (!user) return
         const userRef = doc(db, `user/${user.uid}`)
         try {
@@ -62,10 +65,10 @@ const AddAchievements = (props) => {
         } catch (error) {
             console.log(error)
         }
+        setLoading(false)
     }
 
     const handleDelete = async (data) => {
-        // e.preventDefault()
         await deleteAchievement(user, data)
         toast.warn('Deleted', {
             position: "top-center",
@@ -80,6 +83,7 @@ const AddAchievements = (props) => {
     }
 
     const handleSubmit = async (e) => {
+        setLoading(true)
         e.preventDefault()
         if (validate()) {
             try {
@@ -99,6 +103,7 @@ const AddAchievements = (props) => {
             }
             setAchievement('')
         }
+        setLoading(false)
     }
     return (
         <div>
@@ -114,35 +119,39 @@ const AddAchievements = (props) => {
             <div className={`${props.toggle} backdrop-blur-none md:backdrop-blur-sm absolute overflow-y-auto overflow-x-hidden flex justify-center z-50 w-full md:inset-0 h-modal md:h-full`}>
                 <div className="container max-w-sm mx-auto flex-1 flex flex-col items-center justify-center px-2">
 
-                    <div className="bg-cyan-500 px-6 py-8 rounded shadow-md text-black w-full">
+                    <div className="dark:bg-gray-700 px-6 py-8 rounded shadow-md w-full">
                         <div className='my-4 text-left'>
                             {props.achievements && props.achievements.map((achievement, index) => {
                                 return (
                                     <div key={index} className='flex flex-row items-end justify-between'>
-                                        <p className="pt-2 text-gray-900 text-xs lg:text-sm flex items-center justify-start">
-                                            <img src="https://img.icons8.com/material-outlined/24/000000/circled-dot.png" className='pr-2'/>
+                                        <p className="pt-2 text-gray-300 text-xs lg:text-sm flex items-center justify-start">
+                                            {/* <img src="https://img.icons8.com/material-outlined/24/000000/circled-dot.png" className='pr-2' /> */}
+                                            <p>{index+1}. </p>
                                             {achievement}
                                         </p>
                                         <div>
                                             <button className='pointer-curson'
-                                                onClick={() =>  handleDelete(achievement)}
+                                                onClick={() => handleDelete(achievement)}
                                             >
-                                                <img src="https://img.icons8.com/material-sharp/24/000000/filled-trash.png"/>
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" className='fill-gray-300'>
+                                                    <path d="M3 6v18h18v-18h-18zm5 14c0 .552-.448 1-1 1s-1-.448-1-1v-10c0-.552.448-1 1-1s1 .448 1 1v10zm5 0c0 .552-.448 1-1 1s-1-.448-1-1v-10c0-.552.448-1 1-1s1 .448 1 1v10zm5 0c0 .552-.448 1-1 1s-1-.448-1-1v-10c0-.552.448-1 1-1s1 .448 1 1v10zm4-18v2h-20v-2h5.711c.9 0 1.631-1.099 1.631-2h5.315c0 .901.73 2 1.631 2h5.712z"/>
+                                                </svg>
                                             </button>
                                         </div>
                                     </div>
                                 )
                             })}
                         </div>
+                        <div className="w-full h-1 bg-blue-400 rounded mt-2 mb-4"></div>
                         <div className='flex flex-row justify-end'>
-                            <h1 className="mb-8 text-2xl text-center">Add your achievements</h1>
-                            <button type="button" className="px-5 mb-7" onClick={props.handleToggle}>
-                                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd"></path></svg>
+                            <h1 className="mb-8 text-2xl text-center text-gray-200">Add your achievements</h1>
+                            <button type="button" className="mb-7 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-800 dark:hover:text-white" onClick={props.handleToggle}>
+                                <svg className="w-5 h-5" fill='currentColor' viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd"></path></svg>
                             </button>
                         </div>
                         <input
                             type="text"
-                            className="block border border-grey-light w-full p-3 rounded mb-4 outline-none"
+                            className="block border border-grey-light w-full p-3 rounded mb-4 outline-none text-gray-700"
                             name="achievement"
                             placeholder="Achievement"
                             onChange={handleChange}
@@ -150,7 +159,7 @@ const AddAchievements = (props) => {
 
                         <button
                             type="submit"
-                            className="w-full text-center py-3 rounded bg-green-400 text-white hover:scale-105 transition duration-200 focus:outline-none my-1"
+                            className="w-full text-center py-3 rounded bg-cyan-500 text-white hover:scale-105 transition duration-200 focus:outline-none my-1"
                             onClick={handleSubmit}
                             disabled={loading}
                         >
