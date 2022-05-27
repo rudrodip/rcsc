@@ -85,7 +85,7 @@ const FullBlog = ({ blog, userImg, date, author, url, role }) => {
                             <a
                                 target="_blank"
                                 href={`https://www.facebook.com/sharer/sharer.php?u=${url}`}
-                                className="fb-xfbml-parse-ignore text-indigo-400 hover:bg-green-400 hover:text-black hover:scale-110 inline-flex items-center rounded-sm p-2 transition ease-in-out duration-150"
+                                className="fb-xfbml-parse-ignore text-indigo-400 hover:bg-cyan-400 hover:text-black hover:scale-110 inline-flex items-center rounded-sm p-2 transition ease-in-out duration-150"
                                 rel="noreferrer">
                                 Share
                                 <svg fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" className="w-4 h-4 ml-2" viewBox="0 0 24 24">

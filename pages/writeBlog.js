@@ -2,6 +2,7 @@ import React from 'react'
 import { useState, useEffect } from 'react'
 import { FileInputButton } from '../components/fileInput'
 import Paragraph from '../components/blog/paragraph'
+import Categories from '../categories.json'
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import { useAuth, db, storage, updateUserData } from '../src/config/firebase.config';
@@ -14,7 +15,7 @@ const WriteBlog = () => {
   const currentUser = useAuth()
   const [user, setUser] = useState(null)
   const [title, setTitle] = useState('')
-  const [category, setCategory] = useState('')
+  const [category, setCategory] = useState('Catergory')
   const [image, setImage] = useState('')
   const [laoding, setLoading] = useState(false)
   const [paragraphNo, setParagraphNo] = useState(1)
@@ -22,6 +23,11 @@ const WriteBlog = () => {
     'subtitle': '',
     'content': ''
   }])
+  const [toggle, setToggle] = useState(false)
+
+  const handleToggle = () => {
+    setToggle(!toggle)
+  }
 
   useEffect(() => {
     async function getUser(uid) {
@@ -51,9 +57,12 @@ const WriteBlog = () => {
     if (e.target.name == 'title') {
       setTitle(e.target.value)
     }
-    if (e.target.name == 'category') {
-      setCategory(e.target.value)
-    }
+  }
+
+  const handleCategory = (e) => {
+    e.preventDefault()
+    handleToggle()
+    setCategory(e.target.value)
   }
 
   const addParagraphNo = () => {
@@ -68,7 +77,7 @@ const WriteBlog = () => {
   const removeParagraph = () => {
     paragraphs.pop()
     console.log(paragraphs)
-    setParagraphNo(paragraphNo - 1)
+    paragraphNo > 1 ? setParagraphNo(paragraphNo - 1) : setParagraphNo(1)
   }
 
   const onChange = async (image) => {
@@ -88,18 +97,18 @@ const WriteBlog = () => {
         timestamp: serverTimestamp()
       }
       const blogref = doc(db, `blogs/${title}by${currentUser.uid}}`)
-      const blogImaRef = ref(storage, `blogImg/${title}by${currentUser.uid}`)
+      const blogImgRef = ref(storage, `blogImg/${title}by${currentUser.uid}`)
       const metadata = {
         contentType: 'image/jpeg',
       }
-      if (image){
-        const snapshot = await uploadBytes(blogImaRef, image, metadata)
-        let photoURL = await getDownloadURL(blogImaRef)
+      if (image) {
+        const snapshot = await uploadBytes(blogImgRef, image, metadata)
+        let photoURL = await getDownloadURL(blogImgRef)
         data["img"] = photoURL
       }
 
       setDoc(blogref, data)
-      updateUserData(currentUser, {blogs: user.blogs + 1})
+      updateUserData(currentUser, { blogs: user.blogs + 1 })
       toast('Uploaded', {
         position: "top-center",
         autoClose: 3000,
@@ -109,7 +118,7 @@ const WriteBlog = () => {
         draggable: true,
         progress: undefined,
       })
-      setTimeout(()=> router.push('/blogs'), 2500)
+      setTimeout(() => router.push('/blogs'), 2500)
     } catch (error) {
       toast.warn('Error while uploading', {
         position: "top-center",
@@ -159,22 +168,46 @@ const WriteBlog = () => {
               />
             </div>
           </div>
-          <div className="md:flex md:items-center mb-6">
-            <div className="md:w-1/3">
-              <label className="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" htmlFor="inline-password">
-                Category
-              </label>
-            </div>
-            <div className="md:w-2/3">
-              <input
-                className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none"
-                id="inline-password"
-                type="text"
-                name="category"
-                placeholder="category"
-                value={category}
-                onChange={handleChange}
-              />
+          <div className='flex justify-end m-5'>
+            <div className="relative inline-block text-left z-30">
+              <div>
+                <button
+                  type="button"
+                  className="flex justify-end rounded-md border shadow-sm px-4 py-2 bg-gray-700 text-sm font-medium text-gray-300 hover:bg-gray-500 outline-none"
+                  id="menu-button"
+                  aria-expanded="true"
+                  aria-haspopup="true"
+                  onClick={handleToggle}
+                >
+                  {category}
+                  <svg className="-mr-1 ml-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                    <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
+                  </svg>
+                </button>
+              </div>
+
+              <div
+                className={`origin-top-right ${toggle ? 'absolute' : 'hidden'} right-0 mt-2 w-56 rounded-md shadow-lg bg-gray-500 ring-1 ring-black ring-opacity-5 focus:outline-none overflow-y-auto`} role="menu"
+                aria-orientation="vertical"
+                aria-labelledby="menu-button"
+                tabIndex="-1">
+                <div className="py-1 h-48" role="none">
+                  {Object.keys(Categories).map(i => {
+                    return (
+                      i!="My Blogs" && <div key={i}>
+                        <button
+                          className="w-full text-gray-100 text-left block px-4 py-2 text-sm hover:bg-gray-400"
+                          name="category"
+                          onClick={handleCategory}
+                          value={Categories[i]}
+                        >
+                          {Categories[i]}
+                        </button>
+                      </div>
+                    )
+                  })}
+                </div>
+              </div>
             </div>
           </div>
           {

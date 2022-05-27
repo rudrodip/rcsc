@@ -41,7 +41,6 @@ function Events() {
 
   return (
     <div>
-      {console.log(blog)}
       <Header
         title="Rajshahi College Science Club"
         subtitle="Events"

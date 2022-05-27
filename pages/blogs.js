@@ -1,15 +1,25 @@
 import React from 'react'
 import Header from '../components/header/header'
 import MiniBlog from '../components/blog/miniBlog'
-import { db, useAuth } from '../src/config/firebase.config';
-import { getDocs, collection, query, limit } from 'firebase/firestore'
+import { db, useAuth, updateUserData } from '../src/config/firebase.config';
+import { getDocs, collection, query, limit, where, deleteDoc, doc } from 'firebase/firestore'
 import { useState, useEffect } from 'react';
 import Link from 'next/link'
+import { useRouter } from 'next/router'
 import SearchBlog from '../components/blog/searchBlog';
+import { ToastContainer, toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 function Blogs() {
+  const router = useRouter()
   const [blogs, setBlogs] = useState(null)
+  const [category, setCategory] = useState('All Blogs')
   const currentUser = useAuth()
+
+  const handleCategory = (e) => {
+    e.preventDefault()
+    setCategory(e.target.value)
+  }
 
   const compare = (a, b) => {
     let a_date = a.data().timestamp
@@ -23,20 +33,54 @@ function Blogs() {
     return 0
   }
 
+  async function deleteBlog(id) {
+    const docRef = doc(db, `blogs/${id}`)
+    await deleteDoc(docRef)
+    updateUserData(currentUser, { blogs: user.blogs + 1 })
+    toast.warn('Deleted blog', {
+      position: "top-center",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    })
+    setTimeout(()=> router.reload(), 2000)
+  }
+
   useEffect(() => {
     async function getAllBlogs() {
       const docRef = collection(db, 'blogs')
-      const q = query(docRef, limit(30))
+      let q = null
+      if (category == "My Blogs") {
+        q = query(docRef, where("authorProfile", "==", currentUser.uid), limit(30))
+      } else if (category == "All Blogs") {
+        q = query(docRef, limit(30))
+      } else {
+        q = query(docRef, where("category", "==", category))
+      }
       const docSnaps = await getDocs(q)
       let blogs = docSnaps.docs.sort(compare)
       setBlogs(blogs)
     }
+
     getAllBlogs()
-  }, [])
+
+  }, [category])
 
 
   return (
     <div>
+      <ToastContainer
+        position="bottom-center"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        draggable
+      />
       <Header
         title="Rajshahi College Science Club"
         subtitle="Blogs"
@@ -57,7 +101,7 @@ function Blogs() {
         </div> : ''
       }
       <div className='w-full flex flex-row justify-around'>
-        <SearchBlog />
+        <SearchBlog handleCategory={handleCategory} category={category} />
       </div>
       {!blogs ?
         <div className='flex justify-center m-5'>
@@ -83,9 +127,12 @@ function Blogs() {
                 img={i.data().img}
                 poster={i.data().author}
                 category={i.data().category}
+                authorProfile={i.data().authorProfile}
+                uid={currentUser?.uid}
                 date={formatedDate}
                 key={index}
                 link={i.id}
+                deleteBlog={deleteBlog}
               />
             )
           }

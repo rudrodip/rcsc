@@ -1,4 +1,5 @@
 {
+    "All Blogs": "All Blogs",
     "My Blogs": "My Blogs",
     "Physics": "Physics",
     "Computer Programming": "Computer Programming",
@@ -10,5 +11,10 @@
     "Fluid Dynamics": "Fluid Dynamics",
     "Computer Vision": "Computer Vision",
     "Simulation": "Simulation",
-    "AI": "AI"
+    "AI": "AI",
+    "Science Fest": "Science Fest",
+    "Robotics": "Robotics",
+    "Computer Science": "Computer Science",
+    "Health": "Health",
+    "Biology": "Biology"
 }

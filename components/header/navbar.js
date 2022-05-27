@@ -17,7 +17,7 @@ const Navbar = ({ props, user, path, userProfile }) => {
   const [isOpen, setIsOpen] = useState(false)
 
   return (
-    <div className='sticky top-0 z-40'>
+    <div className='sticky top-0 z-50'>
       <nav className="bg-gray-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
@@ -152,4 +152,4 @@ export default Navbar
  // -> Desktop -> Logo > RCSC > All Navbuttons > Profile Image
 
  // Mobile -> Logo > RCSC > Profile Image > Navbar Toggle Button
-                                            // -> gives all the Nav buttons in the bottom when clicked
+// -> gives all the Nav buttons in the bottom when clicked
