@@ -113,7 +113,7 @@ const Login = () => {
 
             <button
               type="submit"
-              className="w-full text-center py-3 rounded bg-gradient-to-r from-green-300 to-green-400 text-white hover:scale-105 transition duration-200 focus:outline-none my-1"
+              className="w-full text-center py-3 rounded bg-gradient-to-r from-blue-400 to-cyan-400 text-white hover:scale-105 transition duration-200 focus:outline-none my-1"
               onClick={handleSubmit}
               disabled={loading}
             >

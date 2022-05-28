@@ -17,6 +17,11 @@ const Login = () => {
   const [section, setSection] = useState('')
   const [grade, setGrade] = useState('')
   const [roll, setRoll] = useState('')
+  const [isChecked, setIsChecked] = useState(false);
+
+  const handleOnChange = () => {
+    setIsChecked(!isChecked)
+  }
 
   const handleChange = (e) => {
     if (e.target.name == 'name') {
@@ -120,7 +125,7 @@ const Login = () => {
       />
       <div className="bg-grey-lighter min-h-screen flex flex-col">
         <div className="container max-w-sm mx-auto flex-1 flex flex-col items-center justify-center px-2">
-          <div className="bg-sky-400 px-6 py-8 rounded shadow-md text-black w-full">
+          <div className="bg-gradient-to-t from-blue-600 to-cyan-500 px-6 py-8 rounded shadow-md text-black w-full">
             <h1 className="mb-8 text-3xl text-center">Sign up</h1>
             <input
               type="text"
@@ -171,15 +176,27 @@ const Login = () => {
               value={roll} />
 
             <input
-              type="password"
-              className="block border border-grey-light w-full p-3 rounded mb-4 outline-none"
+              type={isChecked ? 'text' : 'password'}
+              className="block border border-grey-light w-full p-3 rounded mb-2 outline-none"
               name="password"
               placeholder="Password"
               onChange={handleChange}
               value={password} />
+            
+            <div className='text-sm text-gray-200'>
+              <input
+                type="checkbox"
+                id="topping"
+                name="topping"
+                value="Paneer"
+                className='mx-2 w-4 h-4'
+                checked={isChecked}
+                onChange={handleOnChange}
+              />Show Password
+            </div>
 
             <input
-              type="password"
+              type="text"
               className="block border border-grey-light w-full p-3 rounded mb-4 outline-none"
               name="memberCode"
               placeholder="Member Code"
@@ -188,7 +205,7 @@ const Login = () => {
 
             <button
               type="submit"
-              className="w-full text-center py-3 rounded bg-green-400 text-white hover:scale-105 transition duration-200 focus:outline-none my-1"
+              className="w-full text-center py-3 rounded bg-cyan-500 text-white hover:scale-105 transition duration-200 focus:outline-none my-1"
               onClick={handleSubmit}
               disabled={loading}
             >

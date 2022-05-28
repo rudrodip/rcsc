@@ -29,7 +29,7 @@ const SearchBlog = (props) => {
                 </div>
 
                 <div
-                    className={`origin-top-right ${toggle ? 'absolute' : 'hidden'} right-0 mt-2 w-56 rounded-md shadow-lg bg-gray-500 ring-1 ring-black ring-opacity-5 focus:outline-none overflow-y-auto`} role="menu"
+                    className={`category origin-top-right ${toggle ? 'absolute' : 'hidden'} right-0 mt-2 w-56 rounded-md shadow-lg bg-gray-500 ring-1 ring-black ring-opacity-5 focus:outline-none overflow-y-auto`} role="menu"
                     aria-orientation="vertical"
                     aria-labelledby="menu-button"
                     tabIndex="-1">
