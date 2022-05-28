@@ -147,7 +147,7 @@ const WriteBlog = () => {
     setLoading(false)
   }
 
-  if (currentUser) return (
+  return (
     <div className='m-1 p-1 lg:m-5 lg:p-10'>
       <ToastContainer
         position="bottom-center"
@@ -279,37 +279,6 @@ const WriteBlog = () => {
           >
             Submit
           </button>
-        </div>
-      </div>
-    </div>
-  )
-  else return (
-    <div
-      className="
-    flex
-    items-center
-    justify-center
-    h-screen
-  "
-    >
-      <div className="px-40 py-20 bg-gray-500 rounded-md shadow-xl">
-        <div className="flex flex-col items-center">
-          <h1 className="font-bold text-gray-200 text-9xl">404</h1>
-
-          <h6 className="mb-2 text-2xl font-bold text-center text-gray-800 md:text-3xl">
-            <span className="text-red-500">Oops!</span> Page not found
-          </h6>
-
-          <p className="mb-8 text-center text-gray-200 md:text-lg">
-            You have to be a member of RCSC to write blog
-          </p>
-          <Link href="/login">
-            <a
-              className="w-20 lg:w-20 m-3 text-center py-1 lg:py-3 rounded bg-blue-500 text-white hover:scale-125 transition duration-200 focus:outline-none"
-            >
-              Login
-            </a>
-          </Link>
         </div>
       </div>
     </div>
