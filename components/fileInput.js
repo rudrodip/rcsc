@@ -23,7 +23,7 @@ export const FileInputButton = (props) => {
       <button
         type="button"
         onClick={onClickHandler}
-        className="bg-cyan-400 hover:bg-blue-400 uppercase text-white font-bold hover:shadow-md shadow text-xs px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1"
+        className="bg-blue-500 hover:scale-105 transition ease-in-out duration-150 uppercase text-white font-bold hover:shadow-md shadow text-xs px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1"
         disabled={props.loading}
       >
         {props.label}

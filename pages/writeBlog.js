@@ -165,13 +165,13 @@ const WriteBlog = () => {
         <form className="w-full max-w-sm">
           <div className="md:flex md:items-center mb-6">
             <div className="md:w-1/3">
-              <label className="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" htmlFor="inline-full-name">
+              <label className="block text-gray-400 font-bold md:text-right mb-1 md:mb-0 pr-4" htmlFor="inline-full-name">
                 Title
               </label>
             </div>
             <div className="md:w-2/3">
               <input
-                className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none"
+                className="bg-gray-600 appearance-none rounded w-full py-2 px-4 text-gray-200 leading-tight focus:outline-none"
                 id="inline-full-name"
                 name="title"
                 type="text"
@@ -200,7 +200,7 @@ const WriteBlog = () => {
               </div>
 
               <div
-                className={`origin-top-right ${toggle ? 'absolute' : 'hidden'} right-0 mt-2 w-56 rounded-md shadow-lg bg-gray-500 ring-1 ring-black ring-opacity-5 focus:outline-none overflow-y-auto`} role="menu"
+                className={`category origin-top-right ${toggle ? 'absolute' : 'hidden'} right-0 mt-2 w-56 rounded-md shadow-lg bg-gray-500 ring-1 ring-black ring-opacity-5 focus:outline-none overflow-y-auto`} role="menu"
                 aria-orientation="vertical"
                 aria-labelledby="menu-button"
                 tabIndex="-1">
@@ -239,7 +239,7 @@ const WriteBlog = () => {
             laoding={laoding}
           />
           <button
-            className='bg-green-500 hover:bg-pink-600 uppercase text-white font-bold hover:shadow-md shadow text-xs px-4 py-2 mx-3 rounded outline-none focus:outline-none sm:mr-2 mb-1'
+            className='bg-blue-500 hover:scale-110 transition ease-in-out duration-150 uppercase text-white font-bold hover:shadow-md shadow text-xs px-4 py-2 mx-3 rounded outline-none focus:outline-none sm:mr-2 mb-1'
             onClick={() => setImage(null)}
           >
             Remove
