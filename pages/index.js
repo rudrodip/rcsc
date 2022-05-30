@@ -27,7 +27,7 @@ export default function Home() {
         imageTitle="We let others explore! 🔍"
       />
 
-      <div className="stats-short">
+      {/* <div className="stats-short">
         <section className="text-gray-400 bg-gray-900 body-font">
           <div className="container px-5 py-10 lg:py-24 mx-auto">
             <div className="flex flex-wrap -m-4 text-center">
@@ -50,7 +50,7 @@ export default function Home() {
             </div>
           </div>
         </section>
-      </div>
+      </div> */}
       
       <div className='stats-detailed'>
         <section className="text-gray-400 bg-gray-900 body-font">

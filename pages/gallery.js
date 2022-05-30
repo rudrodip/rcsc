@@ -1,17 +1,31 @@
 import React from 'react'
 import Header from '../components/header/header'
 import EventGallery from '../components/eventGallery'
+import useWindowDimensions from '../components/useWindowDimensions'
+
 
 function Gallery() {
+  const { width, height } = useWindowDimensions()
 
   return (
     <div>
-      <Header
-        title="Rajshahi College Science Club"
-        subtitle="Gallery"
-        imageSubtitle="We dream"
-        imageTitle="We make our dream true"
-      />
+
+      {width > 1000 ?
+
+        <Header
+          title="Rajshahi College Science Club"
+          subtitle="Gallery"
+          imageSubtitle="We dream"
+          imageTitle="We make our dream true"
+        />
+
+        :
+
+        <div className="flex flex-col text-center w-full mb-5">
+          <h1 className="text-2xl font-medium title-font mb-4 text-white tracking-widest">GALLERY</h1>
+          <p className="lg:w-2/3 mx-auto leading-relaxed text-base">Find memories 🥰</p>
+        </div>
+      }
 
       <EventGallery
         title="Science Fest 2022"

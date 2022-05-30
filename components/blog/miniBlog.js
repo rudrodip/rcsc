@@ -35,7 +35,7 @@ const MiniBlog = (props) => {
                         src={props.img ? props.img : "https://dummyimage.com/200x200"}
                         onClick={() => handleClick(props?.link)}
                     />
-                    <div className="flex-grow pl-5 sm:pt-5">
+                    <div className="flex flex-col pl-5 sm:pt-5">
                         <h2 className="title-font font-medium text-xl text-cyan-300 text-left">{props.title}</h2>
                         <h2 className="title-font font-medium text-md text-gray-300 text-left">{props.poster}</h2>
                         <h3 className="text-gray-500 mb-3">{props.category}</h3>
@@ -49,7 +49,7 @@ const MiniBlog = (props) => {
                                 width="15"
                                 height="15"
                                 viewBox="0 0 24 24"
-                                className='fill-gray-300 transition ease-in-out duration-150 hover:scale-125'
+                                className='fill-gray-300 transition ease-in-out duration-150 hover:scale-125 hover:fill-red-500 mb-4'
                                 onClick={() => props.deleteBlog(props?.link)}
                             >
                                 <path d="M3 6v18h18v-18h-18zm5 14c0 .552-.448 1-1 1s-1-.448-1-1v-10c0-.552.448-1 1-1s1 .448 1 1v10zm5 0c0 .552-.448 1-1 1s-1-.448-1-1v-10c0-.552.448-1 1-1s1 .448 1 1v10zm5 0c0 .552-.448 1-1 1s-1-.448-1-1v-10c0-.552.448-1 1-1s1 .448 1 1v10zm4-18v2h-20v-2h5.711c.9 0 1.631-1.099 1.631-2h5.315c0 .901.73 2 1.631 2h5.712z" />

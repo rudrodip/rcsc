@@ -4,9 +4,12 @@ import AlumniProfile from '../components/profile/alumniProfile'
 import { db } from '../src/config/firebase.config';
 import { getDocs, doc, collection, query, orderBy, limit } from 'firebase/firestore'
 import { useState, useEffect } from 'react';
+import useWindowDimensions from '../components/useWindowDimensions'
+
 
 const Alumni = () => {
   const [alumni, setAlumni] = useState(null)
+  const { width, height } = useWindowDimensions()
 
   useEffect(() => {
     async function getAlumniCollection() {
@@ -20,17 +23,20 @@ const Alumni = () => {
 
   return (
     <div>
-      <Header
-        title="Rajshahi College Science Club"
-        subtitle="Alumni"
-        imageSubtitle="We explore"
-        imageTitle="We let others explore! 🔍"
-      />
+      {width > 1000 &&
+
+        <Header
+          title="Rajshahi College Science Club"
+          subtitle="AlUMNI"
+          imageSubtitle="We work"
+          imageTitle="Until we reach"
+        />
+      }
 
       <section className="text-gray-400 bg-gray-900 body-font">
         <div className="container px-5 py-6 lg:py-24 mx-auto">
           <div className="flex flex-col text-center w-full mb-20">
-            <h1 className="text-2xl font-medium title-font mb-4 text-white tracking-widest">Title goes here</h1>
+            <h1 className="text-2xl font-medium title-font mb-4 text-white tracking-widest">ALUMNI</h1>
             <p className="lg:w-2/3 mx-auto leading-relaxed text-base">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Deserunt eos maxime qui ut cum veniam adipisci voluptas placeat ex consequuntur.</p>
           </div>
           {!alumni ?

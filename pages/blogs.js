@@ -9,11 +9,13 @@ import { useRouter } from 'next/router'
 import SearchBlog from '../components/blog/searchBlog';
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
+import useWindowDimensions from '../components/useWindowDimensions'
 
 function Blogs() {
   const router = useRouter()
   const [blogs, setBlogs] = useState(null)
   const [category, setCategory] = useState('All Blogs')
+  const { width, height } = useWindowDimensions()
   const currentUser = useAuth()
 
   const handleCategory = (e) => {
@@ -82,14 +84,17 @@ function Blogs() {
         rtl={false}
         draggable
       />
-      <Header
-        title="Rajshahi College Science Club"
-        subtitle="Blogs"
-        imageSubtitle="We work"
-        imageTitle="Until we reach"
-      />
+      {width > 1000 &&
+
+        <Header
+          title="Rajshahi College Science Club"
+          subtitle="Blogs"
+          imageSubtitle="We work"
+          imageTitle="Until we reach"
+        />
+      }
       <div className='my-5'>
-        <h1 className='text-4xl text-center text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-pink-500'>Blogs</h1>
+        <h1 className='p-4 text-4xl text-center text-transparent bg-clip-text bg-gradient-to-r font-bold from-blue-400 to-cyan-500'>Blogs</h1>
       </div>
       {currentUser ?
         <div className='w-full flex justify-center content-center flex-row'>
