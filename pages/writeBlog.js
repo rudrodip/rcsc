@@ -109,7 +109,7 @@ const WriteBlog = () => {
         views: 0,
         timestamp: serverTimestamp()
       }
-      const blogref = doc(db, `blogs/${title}by${currentUser.uid}}`)
+      const blogref = doc(db, `blogs/${title}by${currentUser.uid}`)
       const blogImgRef = ref(storage, `blogImg/${title}by${currentUser.uid}`)
       const metadata = {
         contentType: 'image/jpeg',
