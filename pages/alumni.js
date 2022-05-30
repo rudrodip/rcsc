@@ -28,7 +28,7 @@ const Alumni = () => {
       />
 
       <section className="text-gray-400 bg-gray-900 body-font">
-        <div className="container px-5 py-24 mx-auto">
+        <div className="container px-5 py-6 lg:py-24 mx-auto">
           <div className="flex flex-col text-center w-full mb-20">
             <h1 className="text-2xl font-medium title-font mb-4 text-white tracking-widest">Title goes here</h1>
             <p className="lg:w-2/3 mx-auto leading-relaxed text-base">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Deserunt eos maxime qui ut cum veniam adipisci voluptas placeat ex consequuntur.</p>
@@ -48,7 +48,7 @@ const Alumni = () => {
           {
             alumni && alumni.map(year => {
               return (
-                <div key={year.id} className="mb-20">
+                <div key={year.id} className="mb-10">
                   <h1 className="text-2xl font-medium title-font mb-4 text-white tracking-widest">{year.id}</h1>
                   <div className="flex flex-wrap -m-4">
                     {

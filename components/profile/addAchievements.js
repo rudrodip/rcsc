@@ -153,7 +153,7 @@ const AddAchievements = (props) => {
                                 return (
                                     <div key={index} className='flex flex-row items-end justify-between'>
                                         <p className="pt-2 text-gray-300 text-xs lg:text-sm flex items-center justify-start">
-                                            <p>{index+1}. </p>
+                                            <span>{index+1}. </span>
                                             {achievement}
                                         </p>
                                         <div>

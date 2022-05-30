@@ -23,7 +23,7 @@ const FullBlog = ({ blog, userImg, date, author, url, role }) => {
     return (
         <div>
             <section className="text-gray-400 bg-gray-900 body-font">
-                <div className="w-full container px-5 py-24 mx-auto flex flex-col">
+                <div className="w-full container px-5 py-6 lg:py-24 mx-auto flex flex-col">
                     <div className="lg:w-full mx-auto">
 
                         <div className="rounded-lg h-96 overflow-hidden">

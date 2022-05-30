@@ -3,6 +3,7 @@ import Header from '../components/header/header'
 import EventGallery from '../components/eventGallery'
 
 function Gallery() {
+
   return (
     <div>
       <Header
@@ -11,6 +12,7 @@ function Gallery() {
         imageSubtitle="We dream"
         imageTitle="We make our dream true"
       />
+
       <EventGallery
         title="Science Fest 2022"
         desc="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ex suscipit, repudiandae voluptatem, rerum placeat excepturi ipsa recusandae consequuntur nam dolor nobis asperiores error corrupti eum cumque blanditiis optio repellendus. Quis incidunt saepe beatae corporis non quasi omnis adipisci sed dolor expedita, ratione dignissimos unde, maxime error corrupti autem suscipit nostrum!"
@@ -32,7 +34,6 @@ function Gallery() {
         img5="/background-img/bg5.jpg"
         img6="/background-img/bg2.jpg"
       />
-
     </div>
   )
 }

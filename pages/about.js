@@ -56,7 +56,7 @@ function About() {
         </div>
       </section>
       <section>
-        <div className="container px-5 py-24 mx-auto">
+        <div className="container px-5 py-6 lg:py-24 mx-auto">
           <div className="flex flex-wrap -m-4">
             <TeachersProfile
               name="Hobibur Rahman"
@@ -80,7 +80,7 @@ function About() {
 
       <section className="text-gray-400 bg-gray-900 body-font">
         <section className="text-gray-400 bg-gray-900 body-font">
-          <div className="container px-5 py-24 mx-auto">
+          <div className="container px-5 py-6 lg:py-24 mx-auto">
             <h1 className="text-3xl font-medium title-font text-white mb-12 text-center">Testimonials</h1>
             <div className="flex flex-wrap -m-4">
 

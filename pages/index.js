@@ -26,9 +26,10 @@ export default function Home() {
         imageSubtitle="We explore"
         imageTitle="We let others explore! 🔍"
       />
+
       <div className="stats-short">
         <section className="text-gray-400 bg-gray-900 body-font">
-          <div className="container px-5 py-24 mx-auto">
+          <div className="container px-5 py-10 lg:py-24 mx-auto">
             <div className="flex flex-wrap -m-4 text-center">
               <div className="p-4 sm:w-1/4 w-1/2">
                 <h2 className="title-font font-medium sm:text-4xl text-3xl text-white">{<CountUp end={Stats.members} />}</h2>
@@ -50,9 +51,10 @@ export default function Home() {
           </div>
         </section>
       </div>
+      
       <div className='stats-detailed'>
         <section className="text-gray-400 bg-gray-900 body-font">
-          <div className="container px-5 py-24 mx-auto flex flex-wrap">
+          <div className="container px-5 py-6 lg:py-24 mx-auto flex flex-wrap">
             <div className="flex flex-wrap -mx-4 mt-auto mb-auto lg:w-1/2 sm:w-2/3 content-start sm:pr-10">
               <div className="w-full sm:p-4 px-4 mb-6">
                 <h1 className="title-font font-medium text-xl mb-2 text-white">Rajshahi College Science Club</h1>
@@ -105,6 +107,7 @@ export default function Home() {
           desc="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam"
           img="/background-img/bg13.jpg" />
       </div>
+      
       <EventGallery
         title="Science Fest 2022"
         desc="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ex suscipit, repudiandae voluptatem, rerum placeat excepturi ipsa recusandae consequuntur nam dolor nobis asperiores error corrupti eum cumque blanditiis optio repellendus. Quis incidunt saepe beatae corporis non quasi omnis adipisci sed dolor expedita, ratione dignissimos unde, maxime error corrupti autem suscipit nostrum!"

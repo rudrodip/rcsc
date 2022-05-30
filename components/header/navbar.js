@@ -12,7 +12,7 @@ import { useRef } from "react";
 const Navbar = ({ props, user, path, userProfile }) => {
   // ref of the navbar
   const divRef = useRef(null)
-  
+
   // responsive navbar toggle
   const [isOpen, setIsOpen] = useState(false)
 
@@ -42,11 +42,15 @@ const Navbar = ({ props, user, path, userProfile }) => {
               </div>
             </div>
             <div className="-mr-2 flex lg:hidden">
-              <Link href="/profile">
-                <div className="p-2">
-                  <div className="block rounded-full shadow-xl mx-auto h-8 w-8 bg-cover bg-center" style={{ backgroundImage: `url('${userProfile}` }}></div>
-                </div>
-              </Link>
+              {user &&
+
+                <Link href="/profile">
+                  <div className="p-2">
+                    <div className="block rounded-full shadow-xl mx-auto h-8 w-8 bg-cover bg-center" style={{ backgroundImage: `url('${userProfile}` }}></div>
+                  </div>
+                </Link>
+              }
+              
               <button
                 onClick={() => setIsOpen(!isOpen)}
                 type="button"
@@ -108,6 +112,7 @@ const Navbar = ({ props, user, path, userProfile }) => {
                 {Object.keys(props).map(i => (
                   path != props[i] ? <Navbutton name={i} link={props[i]} key={i} /> : <Navbutton name={i} link={props[i]} key={i} classname="bg-gradient-to-r from-blue-600 to-cyan-500" />
                 ))}
+                {!user && <Navbutton name="Login" link="/login" />}
               </div>
             </div>
           )}
