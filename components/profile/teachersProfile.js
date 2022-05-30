@@ -12,7 +12,7 @@ const TeachersProfile = (props) => {
     setScale(1)
   }
   return (
-    <div className={`p-4 w-1/2 lg:w-1/3 transition ease-in-out duration-500 scale-0`} ref={ref} style={{ transform: `scale(${scale})` }}>
+    <div className={`p-4 w-1/2 lg:w-1/3 transition ease-in-out duration-300 scale-0`} ref={ref} style={{ transform: `scale(${scale})` }}>
       <div className="h-full flex sm:flex-row flex-col items-center sm:justify-start justify-center text-center sm:text-left">
         <img alt="team" className="flex-shrink-0 rounded-lg w-48 h-48 object-cover object-center sm:mb-0 mb-4" src={props.img} />
         <div className="flex-grow sm:pl-8">

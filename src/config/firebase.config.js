@@ -1,8 +1,9 @@
 import { initializeApp } from 'firebase/app'
 import { getAuth, createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut, updateProfile } from 'firebase/auth'
-import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage'
-import { getFirestore, doc, setDoc, updateDoc, increment } from 'firebase/firestore'
+import { getStorage, ref, uploadBytes, getDownloadURL, deleteObject } from 'firebase/storage'
+import { getFirestore, doc, setDoc, updateDoc, increment, deleteDoc } from 'firebase/firestore'
 import { useState, useEffect } from 'react'
+import { async } from '@firebase/util'
 
 // const firebaseConfig = {
 //   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
@@ -102,8 +103,21 @@ export async function updateBlogNo(user, val) {
   const userRef = doc(db, `user/${user.uid}`)
   try {
     const dec = increment(val)
-    updateDoc(userRef, {"blogs": dec})
+    updateDoc(userRef, { "blogs": dec })
   } catch (error) {
     console.log(error)
+  }
+}
+
+
+export async function deleteBlog(id) {
+  const docRef = doc(db, `blogs/${id}`)
+  const fileRef = ref(storage, `blogImg/${id}`)
+  try {
+    await deleteDoc(docRef)
+    await deleteObject(fileRef)
+    updateBlogNo(currentUser, -1)
+  } catch (error) {
+    return "error"
   }
 }

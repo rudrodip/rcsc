@@ -1,9 +1,9 @@
 import React from 'react'
 import Header from '../components/header/header'
 import MiniBlog from '../components/blog/miniBlog'
-import { db, useAuth, updateBlogNo } from '../src/config/firebase.config';
-import { getDocs, getDoc, collection, query, limit, where, deleteDoc, doc } from 'firebase/firestore'
-import { useState, useEffect } from 'react';
+import { db, useAuth, deleteBlog } from '../src/config/firebase.config';
+import { getDocs, collection, query, limit, where, doc } from 'firebase/firestore'
+import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import SearchBlog from '../components/blog/searchBlog';
@@ -14,7 +14,6 @@ function Blogs() {
   const router = useRouter()
   const [blogs, setBlogs] = useState(null)
   const [category, setCategory] = useState('All Blogs')
-  const [user, setUser] = useState(null)
   const currentUser = useAuth()
 
   const handleCategory = (e) => {
@@ -34,10 +33,9 @@ function Blogs() {
     return 0
   }
 
-  async function deleteBlog(id) {
-    const docRef = doc(db, `blogs/${id}`)
-    await deleteDoc(docRef)
-    updateBlogNo(currentUser, -1)
+  async function handleDeleteBlog(id) {
+    await deleteBlog(id)
+
     toast.warn('Deleted blog', {
       position: "top-center",
       autoClose: 3000,
@@ -48,6 +46,7 @@ function Blogs() {
       progress: undefined,
     })
     setTimeout(() => router.reload(), 2000)
+
   }
 
   useEffect(() => {
@@ -64,20 +63,6 @@ function Blogs() {
       const docSnaps = await getDocs(q)
       let blogs = docSnaps.docs.sort(compare)
       setBlogs(blogs)
-    }
-
-    async function getUser(uid) {
-      if (!uid) return
-      const userRef = doc(db, `user/${uid}`)
-      const docSnap = await getDoc(userRef)
-      if (docSnap.exists()) {
-        setUser(docSnap.data())
-      } else {
-        console.log("No such document!");
-      }
-    }
-    if (currentUser) {
-      getUser(currentUser.uid)
     }
 
     getAllBlogs()
@@ -147,7 +132,7 @@ function Blogs() {
                 date={formatedDate}
                 key={index}
                 link={i.id}
-                deleteBlog={deleteBlog}
+                deleteBlog={handleDeleteBlog}
               />
             )
           }
