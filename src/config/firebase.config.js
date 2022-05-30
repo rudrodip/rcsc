@@ -83,7 +83,7 @@ export async function createUserData(user, data) {
   try {
     setDoc(userRef, data)
   } catch (error) {
-    console.log(error)
+    // console.log(error)
   }
 }
 
@@ -103,7 +103,7 @@ export async function updateBlogNo(user, val) {
   const userRef = doc(db, `user/${user.uid}`)
   try {
     const dec = increment(val)
-    updateDoc(userRef, { "blogs": dec })
+    await updateDoc(userRef, { "blogs": dec })
   } catch (error) {
     console.log(error)
   }
@@ -116,7 +116,6 @@ export async function deleteBlog(id) {
   try {
     await deleteDoc(docRef)
     await deleteObject(fileRef)
-    updateBlogNo(currentUser, -1)
   } catch (error) {
     return "error"
   }

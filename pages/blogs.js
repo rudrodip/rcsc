@@ -1,8 +1,8 @@
 import React from 'react'
 import Header from '../components/header/header'
 import MiniBlog from '../components/blog/miniBlog'
-import { db, useAuth, deleteBlog } from '../src/config/firebase.config';
-import { getDocs, collection, query, limit, where, doc } from 'firebase/firestore'
+import { db, useAuth, deleteBlog, updateBlogNo } from '../src/config/firebase.config';
+import { getDocs, collection, query, limit, where } from 'firebase/firestore'
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
@@ -35,6 +35,7 @@ function Blogs() {
 
   async function handleDeleteBlog(id) {
     await deleteBlog(id)
+    await updateBlogNo(currentUser, -1)
 
     toast.warn('Deleted blog', {
       position: "top-center",
