@@ -43,8 +43,8 @@ function MyApp({ Component, pageProps }) {
       />
       {key && <Navbar props={Pages} key={key} user={user} path={router.pathname} userProfile={user?.photoURL ? user?.photoURL : "https://dummyimage.com/200x200"}/>}
       <Component {...pageProps} />
-      <Social props={Social_media} />
-      <Footer />
+      {/* <Social props={Social_media} /> */}
+      <Footer desc={router.pathname == "/" ? true : false}/>
     </div>
   </>
 }

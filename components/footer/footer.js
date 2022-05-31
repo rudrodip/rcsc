@@ -9,11 +9,12 @@ import Link from 'next/link'
 
 
 // the main component
-const Footer = () => {
+const Footer = (props) => {
     return (
         <div>
             <footer className="text-gray-400 bg-gray-900 body-font">
-                <div className="container px-5 py-12 mx-auto flex md:items-center lg:items-start md:flex-row md:flex-nowrap flex-wrap flex-col">
+                {props.desc && 
+                    <div className="container px-5 py-12 mx-auto flex md:items-center lg:items-start md:flex-row md:flex-nowrap flex-wrap flex-col">
                     <div className="w-1/2 lg:w-64 flex-shrink-0 md:mx-0 mx-auto text-left">
                         <Link href='/'>
                             <a className="flex title-font font-medium items-center text-white mb-0 lg:mb-4 md:mb-0">
@@ -64,7 +65,7 @@ const Footer = () => {
                             }
                         />
                     </div>
-                </div>
+                </div>}
                 <div className="bg-gray-800 bg-opacity-75">
                     <div className="container mx-auto py-4 px-5 flex flex-wrap flex-col sm:flex-row">
                         <p className="text-gray-400 text-sm text-center sm:text-left flex flex-row justify-center">© All rights reserved by

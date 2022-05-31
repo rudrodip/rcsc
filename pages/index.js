@@ -6,6 +6,7 @@ import Stats from '../stats.json'
 import CountUp from 'react-countup';
 import { useInView } from 'react-intersection-observer';
 import { useState } from 'react';
+import Footer from '../components/footer/footer'
 
 export default function Home() {
   const { ref, inView, entry } = useInView({
@@ -51,7 +52,7 @@ export default function Home() {
           </div>
         </section>
       </div> */}
-      
+
       <div className='stats-detailed'>
         <section className="text-gray-400 bg-gray-900 body-font">
           <div className="container px-5 py-6 lg:py-24 mx-auto flex flex-wrap">
@@ -107,7 +108,7 @@ export default function Home() {
           desc="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam"
           img="/background-img/bg13.jpg" />
       </div>
-      
+
       <EventGallery
         title="Science Fest 2022"
         desc="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ex suscipit, repudiandae voluptatem, rerum placeat excepturi ipsa recusandae consequuntur nam dolor nobis asperiores error corrupti eum cumque blanditiis optio repellendus. Quis incidunt saepe beatae corporis non quasi omnis adipisci sed dolor expedita, ratione dignissimos unde, maxime error corrupti autem suscipit nostrum!"
@@ -118,6 +119,7 @@ export default function Home() {
         img5="/background-img/bg8.jpg"
         img6="/background-img/bg3.jpg"
       />
+
     </div>
   )
 }

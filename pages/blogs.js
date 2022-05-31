@@ -84,15 +84,17 @@ function Blogs() {
         rtl={false}
         draggable
       />
-      {width > 1000 &&
-
+      {
+        width > 1000 &&
         <Header
-          title="Rajshahi College Science Club"
-          subtitle="Blogs"
-          imageSubtitle="We work"
-          imageTitle="Until we reach"
-        />
+        title="Rajshahi College Science Club"
+        subtitle="Blogs"
+        imageSubtitle="We work"
+        imageTitle="Until we reach"
+        width={width}
+      />
       }
+
       <div className='my-5'>
         <h1 className='p-4 text-4xl text-center text-transparent bg-clip-text bg-gradient-to-r font-bold from-blue-400 to-cyan-500'>Blogs</h1>
       </div>

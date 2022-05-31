@@ -15,7 +15,6 @@ function About() {
         imageSubtitle="We conquer"
         imageTitle="THE MOUNTAINS"
       />
-      <h1 className='text-5xl text-white text-center my-20'>Our Story</h1>
       <div className="stats-short" style={{ marginTop: '1rem' }}>
         <section className="text-gray-400 bg-gray-900 body-font">
           <div className="container px-5 py-10 mx-auto">
@@ -45,7 +44,7 @@ function About() {
       </div>
       <section className="about_desc">
         <div>
-          <h1 className='p-2 lg:p-4 text-4xl text-center font-bold text-transparent bg-clip-text bg-gradient-to-l from-blue-500 to-cyan-400'>Title goes here</h1>
+          <h1 className='p-2 lg:p-4 text-4xl text-center font-bold text-transparent bg-clip-text bg-gradient-to-l from-blue-500 to-cyan-400 tracking-widest'>OUR STORY</h1>
         </div>
         <div className='w-full lg:w-3/4 p-3 lg:m-auto my-4 lg:my-10 text-left'>
           <p className='my-5'>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nulla culpa natus obcaecati voluptatibus veritatis? Quaerat necessitatibus corporis qui temporibus eius voluptas deserunt enim molestias, quibusdam culpa velit ullam? Maiores modi soluta aliquam ab tempore quaerat voluptate veniam molestias autem numquam. Officia pariatur vel aliquam cupiditate omnis labore rerum explicabo nostrum! Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint commodi tempora temporibus dolor exercitationem eos. Animi expedita vero quibusdam et repellat non atque dolore tenetur impedit distinctio sint quisquam, odio rem quo ipsa quasi asperiores voluptatibus facilis. Inventore voluptatum illum nesciunt, asperiores earum nam quasi eius, ducimus laudantium expedita ad. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Doloribus dolorum veniam doloremque accusamus nam adipisci voluptas harum dignissimos amet animi ipsam dolores temporibus tempora, aperiam alias perferendis, sunt aut architecto ullam illum fugiat. Reiciendis veritatis, optio, fuga cupiditate sit explicabo at blanditiis iusto aliquam adipisci quibusdam quasi voluptatibus, expedita enim eligendi quo. Fugit tempore accusamus harum, voluptates consectetur eveniet eaque tenetur </p>
@@ -102,7 +101,7 @@ function About() {
             </div>
           </div>
         </section>
-        
+
         <Quote
           author="Professor Abdul Khaleque"
           role="Principal, Rajshahi College"
