@@ -24,8 +24,8 @@ export default function useWindowDimensions() {
       setWindowDimensions(getWindowDimensions())
     }
 
+    handleResize()
     window.addEventListener('resize', handleResize);
-    setTimeout(handleResize, 500)
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
