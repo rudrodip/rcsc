@@ -2,10 +2,19 @@ import React from 'react'
 import Header from '../components/header/header'
 import EventGallery from '../components/eventGallery'
 import useWindowDimensions from '../components/useWindowDimensions'
-
+import { useInView } from 'react-intersection-observer';
+import { useState } from 'react'
 
 function Gallery() {
   const { width, height } = useWindowDimensions()
+  const { ref, inView, entry } = useInView({
+    threshold: 0,
+  });
+  const [scale, setScale] = useState(0)
+
+  if (scale == 0 && inView) {
+    setScale(1)
+  }
 
   return (
     <div>
@@ -38,16 +47,18 @@ function Gallery() {
         img6="/background-img/bg3.jpg"
       />
 
-      <EventGallery
-        title="Science Fest 2021"
-        desc="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ex suscipit, repudiandae voluptatem, rerum placeat excepturi ipsa recusandae consequuntur nam dolor nobis asperiores error corrupti eum cumque blanditiis optio repellendus. Quis incidunt saepe beatae corporis non quasi omnis adipisci sed dolor expedita, ratione dignissimos unde, maxime error corrupti autem suscipit nostrum!"
-        img1="/background-img/bg10.jpg"
-        img2="/background-img/bg11.jpg"
-        img3="/background-img/bg12.jpg"
-        img4="/background-img/bg13.jpg"
-        img5="/background-img/bg5.jpg"
-        img6="/background-img/bg2.jpg"
-      />
+      <div className='transition ease-in-out duration-500' ref={ref} style={{ transform: `scale(${scale})` }}>
+        <EventGallery
+          title="Science Fest 2021"
+          desc="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ex suscipit, repudiandae voluptatem, rerum placeat excepturi ipsa recusandae consequuntur nam dolor nobis asperiores error corrupti eum cumque blanditiis optio repellendus. Quis incidunt saepe beatae corporis non quasi omnis adipisci sed dolor expedita, ratione dignissimos unde, maxime error corrupti autem suscipit nostrum!"
+          img1="/background-img/bg10.jpg"
+          img2="/background-img/bg11.jpg"
+          img3="/background-img/bg12.jpg"
+          img4="/background-img/bg13.jpg"
+          img5="/background-img/bg5.jpg"
+          img6="/background-img/bg2.jpg"
+        />
+      </div>
     </div>
   )
 }

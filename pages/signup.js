@@ -1,10 +1,10 @@
 import React from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/router';
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { signUp, createUserData } from '../src/config/firebase.config';
+import { signUp, createUserData, useAuth } from '../src/config/firebase.config';
 
 const Login = () => {
   const router = useRouter()
@@ -17,7 +17,9 @@ const Login = () => {
   const [section, setSection] = useState('')
   const [grade, setGrade] = useState('')
   const [roll, setRoll] = useState('')
-  const [isChecked, setIsChecked] = useState(false);
+  const [isChecked, setIsChecked] = useState(false)
+  const user = useAuth()
+
 
   const handleOnChange = () => {
     setIsChecked(!isChecked)
@@ -94,7 +96,7 @@ const Login = () => {
           draggable: true,
           progress: undefined,
         })
-        setTimeout( () => {router.push("/")}, 2000)
+        setTimeout(() => { router.push("/") }, 2000)
       } catch (error) {
         console.log(error)
       }
@@ -112,118 +114,128 @@ const Login = () => {
     }
   }
 
-  return (
-    <div>
-      <ToastContainer
-        position="bottom-center"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        draggable
-      />
-      <div className="bg-grey-lighter min-h-screen flex flex-col">
-        <div className="container max-w-sm mx-auto flex-1 flex flex-col items-center justify-center px-2">
-          <div className="bg-gradient-to-t from-blue-600 to-cyan-500 px-6 py-8 rounded shadow-md text-black w-full">
-            <h1 className="mb-8 text-3xl text-center">Sign up</h1>
-            <input
-              type="text"
-              className="block border border-grey-light w-full p-3 rounded mb-4 outline-none"
-              name="name"
-              placeholder="Full Name"
-              onChange={handleChange}
-              value={name} />
-
-            <input
-              type="text"
-              className="block border border-grey-light w-full p-3 rounded mb-4 outline-none"
-              name="phone"
-              placeholder="Phone"
-              onChange={handleChange}
-              value={phone} />
-
-            <input
-              type="text"
-              className="block border border-grey-light w-full p-3 rounded mb-4 outline-none"
-              name="email"
-              placeholder="Email"
-              onChange={handleChange}
-              value={email} />
-
-            <input
-              type="text"
-              className="block border border-grey-light w-full p-3 rounded mb-4 outline-none"
-              name="class"
-              placeholder="Class"
-              onChange={handleChange}
-              value={grade} />
-
-            <input
-              type="text"
-              className="block border border-grey-light w-full p-3 rounded mb-4 outline-none"
-              name="section"
-              placeholder="Section"
-              onChange={handleChange}
-              value={section} />
-
-            <input
-              type="number"
-              className="block border border-grey-light w-full p-3 rounded mb-4 outline-none"
-              name="roll"
-              placeholder="Roll"
-              onChange={handleChange}
-              value={roll} />
-
-            <input
-              type={isChecked ? 'text' : 'password'}
-              className="block border border-grey-light w-full p-3 rounded mb-2 outline-none"
-              name="password"
-              placeholder="Password"
-              onChange={handleChange}
-              value={password} />
-            
-            <div className='text-sm text-gray-200'>
+  if (!user) {
+    return (
+      <div>
+        <ToastContainer
+          position="bottom-center"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          draggable
+        />
+        <div className="bg-grey-lighter min-h-screen flex flex-col">
+          <div className="container max-w-sm mx-auto flex-1 flex flex-col items-center justify-center px-2">
+            <div className="bg-gradient-to-t from-blue-600 to-cyan-500 px-6 py-8 rounded shadow-md text-black w-full">
+              <h1 className="mb-8 text-3xl text-center">Sign up</h1>
               <input
-                type="checkbox"
-                id="topping"
-                name="topping"
-                value="Paneer"
-                className='mx-2 w-4 h-4'
-                checked={isChecked}
-                onChange={handleOnChange}
-              />Show Password
+                type="text"
+                className="block border border-grey-light w-full p-3 rounded mb-4 outline-none"
+                name="name"
+                placeholder="Full Name"
+                onChange={handleChange}
+                value={name} />
+
+              <input
+                type="text"
+                className="block border border-grey-light w-full p-3 rounded mb-4 outline-none"
+                name="phone"
+                placeholder="Phone"
+                onChange={handleChange}
+                value={phone} />
+
+              <input
+                type="text"
+                className="block border border-grey-light w-full p-3 rounded mb-4 outline-none"
+                name="email"
+                placeholder="Email"
+                onChange={handleChange}
+                value={email} />
+
+              <input
+                type="text"
+                className="block border border-grey-light w-full p-3 rounded mb-4 outline-none"
+                name="class"
+                placeholder="Class"
+                onChange={handleChange}
+                value={grade} />
+
+              <input
+                type="text"
+                className="block border border-grey-light w-full p-3 rounded mb-4 outline-none"
+                name="section"
+                placeholder="Section"
+                onChange={handleChange}
+                value={section} />
+
+              <input
+                type="number"
+                className="block border border-grey-light w-full p-3 rounded mb-4 outline-none"
+                name="roll"
+                placeholder="Roll"
+                onChange={handleChange}
+                value={roll} />
+
+              <input
+                type={isChecked ? 'text' : 'password'}
+                className="block border border-grey-light w-full p-3 rounded mb-2 outline-none"
+                name="password"
+                placeholder="Password"
+                onChange={handleChange}
+                value={password} />
+
+              <div className='text-sm text-gray-200'>
+                <input
+                  type="checkbox"
+                  id="topping"
+                  name="topping"
+                  value="Paneer"
+                  className='mx-2 w-4 h-4'
+                  checked={isChecked}
+                  onChange={handleOnChange}
+                />Show Password
+              </div>
+
+              <input
+                type="text"
+                className="block border border-grey-light w-full p-3 rounded mb-4 outline-none"
+                name="memberCode"
+                placeholder="Member Code"
+                onChange={handleChange}
+                value={memberCode} />
+
+              <button
+                type="submit"
+                className="w-full text-center py-3 rounded bg-cyan-500 text-white hover:scale-105 transition duration-200 focus:outline-none my-1"
+                onClick={handleSubmit}
+                disabled={loading}
+              >
+                Create Account
+              </button>
             </div>
-
-            <input
-              type="text"
-              className="block border border-grey-light w-full p-3 rounded mb-4 outline-none"
-              name="memberCode"
-              placeholder="Member Code"
-              onChange={handleChange}
-              value={memberCode} />
-
-            <button
-              type="submit"
-              className="w-full text-center py-3 rounded bg-cyan-500 text-white hover:scale-105 transition duration-200 focus:outline-none my-1"
-              onClick={handleSubmit}
-              disabled={loading}
-            >
-              Create Account
-            </button>
-          </div>
-          <div className="text-grey-dark mt-6">
-            Already have an account?
-            <Link href="/login">
-              <a className="no-underline border-b border-blue text-blue">
-                Log in
-              </a>
-            </Link>
+            <div className="text-grey-dark mt-6">
+              Already have an account?
+              <Link href="/login">
+                <a className="no-underline border-b border-blue text-blue">
+                  Log in
+                </a>
+              </Link>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  )
+    )
+  }
+  else {
+    return (
+      <div className='flex w-full h-48 justify-center items-center flex-col'>
+        <p className='text-2xl md:text-4xl text-center tracking-wider'>ভাই কয়বার সাইন-ইন করা লাগে? শুধু শুধু website চেক করা</p>
+        <p className='text-2xl md:text-4xl text-center tracking-wider'>হোম এ যান</p>
+      </div>
+    )
+  }
 }
 
 export default Login
