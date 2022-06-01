@@ -50,20 +50,11 @@ const Login = () => {
       setLoading(true)
       try {
         await login(email, password)
-        toast('Logged In', {
-          position: "top-center",
-          autoClose: 3000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        })
 
         setEmail('')
         setPassword('')
 
-        setTimeout(() => { router.push("/") }, 2000)
+        router.push("/")
       } catch (error) {
         alert("No such account")
       }

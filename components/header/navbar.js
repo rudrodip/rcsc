@@ -41,6 +41,7 @@ const Navbar = ({ props, user, path, userProfile }) => {
                 </div>
               </div>
             </div>
+
             <div className="-mr-2 flex lg:hidden">
               {user &&
 
@@ -50,8 +51,8 @@ const Navbar = ({ props, user, path, userProfile }) => {
                   </div>
                 </Link>
               }
-              
-              <button
+
+              {path != "/" ? <button
                 onClick={() => setIsOpen(!isOpen)}
                 type="button"
                 className="bg-gray-900 inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
@@ -93,6 +94,14 @@ const Navbar = ({ props, user, path, userProfile }) => {
                   </svg>
                 )}
               </button>
+
+                :
+                <Link href="http://rc.edu.bd">
+                  <div className="p-2">
+                    <div className="block rounded-full shadow-xl mx-auto h-8 w-8 bg-cover bg-center" style={{ backgroundImage: `url('/logo/rc-logo.png'` }}></div>
+                  </div>
+                </Link>
+              }
             </div>
           </div>
         </div>
