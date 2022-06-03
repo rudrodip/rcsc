@@ -3,7 +3,7 @@
 
 // importing necessary dependencies
 import React from 'react'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 const Paragraph = (props) => {
   // props has a function from parent component - write blog -> addParagraph
@@ -11,14 +11,16 @@ const Paragraph = (props) => {
   const [subtitle, setSubtitle] = useState('')
   const [paragraph, setParagraph] = useState('')
 
+  useEffect(()=> {
+    props.addParagraph(props.index, subtitle, paragraph)
+  }, [paragraph, subtitle])
+
   const handleChange = (e) => {
     if (e.target.name == 'subtitle') {
       setSubtitle(e.target.value)
-      props.addParagraph(props.index, subtitle, paragraph)
     }
     if (e.target.name == 'paragraph') {
       setParagraph(e.target.value)
-      props.addParagraph(props.index, subtitle, paragraph)
     }
   }
 

@@ -49,8 +49,9 @@ const WriteBlog = () => {
 
   const addParagraph = (index, subtitle, paragraph) => {
     let data = paragraphs[index]
-    subtitle ? data["subtitle"] = subtitle : ''
-    paragraph ? data["content"] = paragraph : ''
+    data["subtitle"] = subtitle
+    data["content"] = paragraph
+    console.log(data)
   }
 
 
@@ -71,7 +72,6 @@ const WriteBlog = () => {
       'subtitle': '',
       'content': ''
     })
-    console.log(paragraphs)
     setParagraphNo(paragraphNo + 1)
   }
 
