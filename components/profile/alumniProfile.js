@@ -31,12 +31,14 @@ const AlumniProfile = (props) => {
       <div className="h-full flex sm:flex-row flex-col items-center sm:justify-start justify-center text-left">
         <img alt="team" className="flex-shrink-0 rounded-lg w-48 h-48 object-cover object-center sm:mb-0 mb-4" src={props.img} />
         <div className="flex-grow sm:pl-8">
-          <h2 className="title-font font-medium text-lg text-white text-center lg:text-left">{props.name}</h2>
-          <p className="mb-1">{props.role}</p>
-          <p className="mb-1">{props.batch}</p>
-          <p className="mb-1">Current Institution: {props.institution}</p>
-          <p className="mb-1">Phone: {props.number}</p>
-          <p className="mb-1">Email: {props.mail}</p>
+          <h2 className="font-medium text-lg text-white text-center lg:text-left">{props.name}</h2>
+          <div className='text-sm lg:text-lg'>
+            <p className="mb-1">{props.role}</p>
+            <p className="mb-1">Batch: {props.batch}</p>
+            <p className="mb-1">Current Institution: {props.institution}</p>
+            <p className="mb-1">Phone: {props.number}</p>
+            <p className="mb-1">Email: {props.mail}</p>
+          </div>
           <span className="inline-flex">
           </span>
         </div>
