@@ -15,6 +15,7 @@ const ProfileEdit = (props) => {
     const [section, setSection] = useState('')
     const [grade, setGrade] = useState('')
     const [roll, setRoll] = useState('')
+    const [institution, setInstitution] = useState('')
     const [image, setImage] = useState('')
     const [laoding, setLoading] = useState(false)
 
@@ -23,7 +24,7 @@ const ProfileEdit = (props) => {
 
     // profile picture change
     const onChange = async (image) => {
-        if (image.size > 1048576){
+        if (image.size > 1048576) {
             toast.warn('File size should be less than 1 MB', {
                 position: "top-center",
                 autoClose: 3000,
@@ -55,6 +56,9 @@ const ProfileEdit = (props) => {
         else if (e.target.name == 'name') {
             setName(e.target.value)
         }
+        else if (e.target.name == 'institution') {
+            setInstitution(e.target.value)
+        }
     }
 
     // form validation logics
@@ -75,6 +79,9 @@ const ProfileEdit = (props) => {
         if (name.length >= 1) {
             data["name"] = name
         }
+        if (institution.length >= 1) {
+            data["institution"] = institution
+        }
         return data
     }
 
@@ -84,7 +91,7 @@ const ProfileEdit = (props) => {
         e.preventDefault()
         try {
             const data = validate()
-            if (image){
+            if (image) {
                 let url = await upload(image, currentUser, setLoading)
                 data['photoURL'] = url
             }
@@ -170,42 +177,66 @@ const ProfileEdit = (props) => {
                                         value={phone}
                                         required />
                                 </div>
-                                <div>
-                                    <label htmlFor="class" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Your Class</label>
-                                    <input
-                                        type="text"
-                                        name="class"
-                                        id="class"
-                                        placeholder="class"
-                                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white outline-none"
-                                        onChange={handleChange}
-                                        value={grade}
-                                        required />
-                                </div>
-                                <div>
-                                    <label htmlFor="section" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Your section</label>
-                                    <input
-                                        type="text"
-                                        name="section"
-                                        id="section"
-                                        placeholder="section"
-                                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white outline-none"
-                                        onChange={handleChange}
-                                        value={section}
-                                        required />
-                                </div>
-                                <div>
-                                    <label htmlFor="roll" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Your roll</label>
-                                    <input
-                                        type="text"
-                                        name="roll"
-                                        id="roll"
-                                        placeholder="roll"
-                                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white outline-none"
-                                        onChange={handleChange}
-                                        value={roll}
-                                        required />
-                                </div>
+                                {
+                                    props.isAlumnus ?
+
+                                        <div>
+                                            <div>
+                                                <label htmlFor="institution" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Current Institution</label>
+                                                <input
+                                                    type="text"
+                                                    name="institution"
+                                                    id="institution"
+                                                    placeholder="Current Institution"
+                                                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white outline-none"
+                                                    onChange={handleChange}
+                                                    value={institution}
+                                                    required />
+                                            </div>
+                                        </div>
+
+                                        :
+
+                                        <div>
+                                            <div>
+                                                <label htmlFor="class" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Your Class</label>
+                                                <input
+                                                    type="text"
+                                                    name="class"
+                                                    id="class"
+                                                    placeholder="class"
+                                                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white outline-none"
+                                                    onChange={handleChange}
+                                                    value={grade}
+                                                    required />
+                                            </div>
+                                            <div>
+                                                <label htmlFor="section" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Your section</label>
+                                                <input
+                                                    type="text"
+                                                    name="section"
+                                                    id="section"
+                                                    placeholder="section"
+                                                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white outline-none"
+                                                    onChange={handleChange}
+                                                    value={section}
+                                                    required />
+                                            </div>
+                                            <div>
+                                                <label htmlFor="roll" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Your roll</label>
+                                                <input
+                                                    type="text"
+                                                    name="roll"
+                                                    id="roll"
+                                                    placeholder="roll"
+                                                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white outline-none"
+                                                    onChange={handleChange}
+                                                    value={roll}
+                                                    required />
+                                            </div>
+                                        </div>
+                                }
+
                                 <button
                                     type="submit"
                                     className="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"

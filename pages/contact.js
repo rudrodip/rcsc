@@ -4,8 +4,6 @@ function Contact() {
 
   return (
     <div>
-
-
         <div className="flex flex-col text-center w-full my-5 ">
           <h1 className="text-2xl font-medium title-font mb-4 text-white tracking-widest">CONTACT US</h1>
         </div>

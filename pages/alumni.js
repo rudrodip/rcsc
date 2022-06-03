@@ -2,24 +2,44 @@ import React from 'react'
 import Header from '../components/header/header'
 import AlumniProfile from '../components/profile/alumniProfile'
 import { db } from '../src/config/firebase.config';
-import { getDocs, doc, collection, query, limit } from 'firebase/firestore'
+import { getDocs, collection, query, limit, where, doc } from 'firebase/firestore'
 import { useState, useEffect } from 'react';
 import useWindowDimensions from '../components/useWindowDimensions'
 
 
 const Alumni = () => {
   const [alumni, setAlumni] = useState(null)
+  const [sortedAlumni, setSortedAlumni] = useState(null)
   const { width, height } = useWindowDimensions()
+
+  function sortAlumni(alumni) {
+    let alumniObject = {}
+    let years = []
+    alumni.map(i => years.push(i.data().batch))
+    years.sort().reverse()
+
+    years.map(year => {
+      alumniObject[year] = []
+    })
+    alumni.map(i => {
+      alumniObject[i.data().batch].push(i)
+    })
+    return alumniObject
+  }
 
   useEffect(() => {
     async function getAlumniCollection() {
-      const docRef = collection(db, 'alumnus')
-      const q = query(docRef, limit(3))
+      const docRef = collection(db, 'user')
+      const q = query(docRef, where("isAlumnus", "==", true), limit(30))
       const docSnaps = await getDocs(q)
-      setAlumni(docSnaps.docs.reverse())
+      setAlumni(docSnaps.docs)
     }
     getAlumniCollection()
   }, [])
+
+  useEffect(() => {
+    alumni && setSortedAlumni(sortAlumni(alumni))
+  }, [alumni])
 
 
   return (
@@ -53,23 +73,25 @@ const Alumni = () => {
 
             : ''}
           {
-            alumni && alumni.map(year => {
+            sortedAlumni && Object.keys(sortedAlumni).map(batch => {
+
               return (
-                <div key={year.id} className="mb-10">
-                  <h1 className="text-2xl font-medium title-font mb-4 text-white tracking-widest">{year.id}</h1>
+                <div key={batch} className="mb-10">
+                  <h1 className="text-2xl font-medium title-font mb-4 text-white tracking-widest">{batch}</h1>
                   <div className="flex flex-wrap -m-4">
                     {
-                      Object.keys(year.data()).map((i, index) => {
+                      sortedAlumni[batch].map((i, index) => {
                         return (
                           <AlumniProfile
-                            name={year.data()[i].name}
-                            role={year.data()[i].role}
-                            batch={year.data()[i].batch}
-                            institution={year.data()[i].institution}
-                            number={year.data()[i].phone}
-                            mail={year.data()[i].mail}
-                            img="https://dummyimage.com/200x200"
+                            name={i.data().name}
+                            role={i.data().role}
+                            batch={i.data().batch}
+                            institution={i.data().institution}
+                            number={i.data().phone}
+                            mail={i.data().mail}
+                            img={i.data().photoURL}
                             key={index}
+                            link={i.id}
                           />
                         )
                       })

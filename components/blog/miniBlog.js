@@ -3,9 +3,9 @@
 
 // importing necessary dependencies
 import React from 'react'
-import { useInView } from 'react-intersection-observer';
-import { useState } from 'react';
-import { useRouter } from 'next/router';
+import { useInView } from 'react-intersection-observer'
+import { useState } from 'react'
+import { useRouter } from 'next/router'
 
 
 // here's the main component
