@@ -4,7 +4,8 @@ import { useRouter } from 'next/router';
 import { useState, useEffect } from 'react'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { signUp, createUserData, useAuth } from '../src/config/firebase.config';
+import { signUp, createUserData, useAuth } from '../src/config/firebase.config'
+import Decode from '../src/authCode/decode'
 
 const Login = () => {
   const router = useRouter()
@@ -19,7 +20,6 @@ const Login = () => {
   const [roll, setRoll] = useState('')
   const [isChecked, setIsChecked] = useState(false)
   const user = useAuth()
-
 
   const handleOnChange = () => {
     setIsChecked(!isChecked)
@@ -53,7 +53,7 @@ const Login = () => {
   }
 
   const validate = () => {
-    if (name.length > 2 && phone.length == 11 && memberCode.length == 6) {
+    if (name.length > 2 && phone.length == 11 && memberCode.length == 7 && Decode(grade, section, roll) == memberCode) {
       return true
     } else {
       toast.warn('Form not valid! Please check again', {

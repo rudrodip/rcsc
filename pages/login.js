@@ -74,13 +74,13 @@ const Login = () => {
           rtl={false}
           draggable
         />
-        <div className="bg-grey-lighter min-h-screen flex flex-col">
+        <div className="min-h-screen flex flex-col">
           <div className="container max-w-sm mx-auto flex-1 flex flex-col items-center justify-center px-2">
-            <div className="bg-gradient-to-r from-blue-600 to-cyan-500 px-6 py-8 rounded shadow-md text-white w-full">
-              <h1 className="mb-8 text-3xl text-center">Login</h1>
+            <div className="bg-gradient-to-r from-blue-600 to-cyan-500 px-6 py-8 rounded shadow-md text-black w-full">
+              <h1 className="mb-8 text-3xl text-center text-white">Login</h1>
               <input
                 type="text"
-                className="block border border-grey-light w-full p-3 rounded mb-4 outline-none"
+                className="block w-full p-3 rounded mb-4 outline-none"
                 name="email"
                 placeholder="Email"
                 onChange={handleChange}
@@ -88,7 +88,7 @@ const Login = () => {
 
               <input
                 type={isChecked ? 'text' : 'password'}
-                className="block border border-grey-light w-full p-3 rounded mb-4 outline-none"
+                className="block w-full p-3 rounded mb-4 outline-none"
                 name="password"
                 placeholder="Password"
                 onChange={handleChange}

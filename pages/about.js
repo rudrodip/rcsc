@@ -69,7 +69,7 @@ function About() {
             />
             <TeachersProfile
               name="Prof. Md Al-Momin Chowdhury"
-              role="Mone nai sotti 😥"
+              role="Convenor"
               img="https://dummyimage.com/200x200"
             />
 
