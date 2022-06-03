@@ -3,8 +3,6 @@ import Header from '../components/header/header'
 import CountUp from 'react-countup';
 import Stats from '../stats.json'
 import TeachersProfile from '../components/profile/teachersProfile'
-import Testimonial from '../components/testimonial';
-import Quote from '../components/quote';
 
 function About() {
   return (
@@ -77,38 +75,7 @@ function About() {
         </div>
       </section>
 
-      <section className="text-gray-400 bg-gray-900 body-font">
-        <section className="text-gray-400 bg-gray-900 body-font">
-          <div className="container px-5 py-6 lg:py-24 mx-auto">
-            <h1 className="text-3xl font-medium title-font text-white mb-12 text-center">Testimonials</h1>
-            <div className="flex flex-wrap -m-4">
-
-              <Testimonial
-                author="Ke jani bolesilo"
-                role="ki jeno koren uni"
-                desc="club ta valoi, onk kichu kore, class bunk deya jay...(ar kichu mathay asche na 😑)"
-                img="https://dummyimage.com/200x200"
-              />
-
-
-              <Testimonial
-                author="Ke jani bolesilo"
-                role="ki jeno koren uni"
-                desc="club ta valoi, onk kichu kore, class bunk deya jay...(ar kichu mathay asche na 😑)"
-                img="https://dummyimage.com/200x200"
-              />
-
-            </div>
-          </div>
-        </section>
-
-        <Quote
-          author="Professor Abdul Khaleque"
-          role="Principal, Rajshahi College"
-          quote="Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore nam temporibus quidem voluptatem sint fugiat minus, eligendi amet magnam alias id commodi mollitia eveniet, iure sed nostrum totam inventore debitis deleniti consequuntur porro vitae rem harum deserunt? Voluptatem fugit saepe error consectetur tenetur corrupti nam minus a quasi iure, pariatur amet, similique eveniet "
-        />
-
-      </section>
+      
     </div>
   )
 }

@@ -8,9 +8,13 @@ import { useInView } from 'react-intersection-observer'
 import { useState } from 'react'
 import Link from 'next/link'
 import { useAuth } from '../src/config/firebase.config'
-import Pages from '../pages.json'
+import useWindowDimensions from '../components/useWindowDimensions'
+import Quote from '../components/quote'
+import Testimonial from '../components/testimonial'
+
 
 export default function Home() {
+  const { width, height } = useWindowDimensions()
   const currentUser = useAuth()
   const { ref, inView, entry } = useInView({
     threshold: 0,
@@ -33,7 +37,7 @@ export default function Home() {
 
       <div className='stats-detailed'>
         <section className="text-gray-400 bg-gray-900 body-font">
-          <div className="container px-5 py-6 lg:py-24 mx-auto flex flex-wrap">
+          <div className="container px-5 py-6 lg:py-24 mx-auto flex flex-wrap justify-center">
             <div className="flex flex-wrap -mx-4 mt-auto mb-auto lg:w-1/2 sm:w-2/3 content-start sm:pr-10">
               <div className="w-full sm:p-4 px-4 mb-6">
                 <h1 className="title-font font-medium text-xl mb-2 text-white">Rajshahi College Science Club</h1>
@@ -42,37 +46,75 @@ export default function Home() {
                 </div>
               </div>
               <div className="p-4 sm:w-1/4 w-1/2" ref={ref}>
-                <h2 className="title-font font-medium sm:text-4xl text-3xl text-white">{visited ? <CountUp end={Stats.members} /> : 0}</h2>
+                <h2 className="title-font font-medium lg:text-4xl text-2xl text-white">{visited ? <CountUp end={Stats.members} /> : 0}</h2>
                 <p className="leading-relaxed">Members</p>
               </div>
               <div className="p-4 sm:w-1/4 w-1/2" ref={ref}>
-                <h2 className="title-font font-medium sm:text-4xl text-3xl text-white">{visited ? <CountUp end={Stats.science_fests} /> : 0}</h2>
+                <h2 className="title-font font-medium lg:text-4xl text-2xl text-white">{visited ? <CountUp end={Stats.science_fests} /> : 0}</h2>
                 <p className="leading-relaxed">Science Fests</p>
               </div>
               <div className="p-4 sm:w-1/4 w-1/2" ref={ref}>
-                <h2 className="title-font font-medium sm:text-4xl text-3xl text-white">{visited ? <CountUp end={Stats.executives} /> : 0}</h2>
+                <h2 className="title-font font-medium lg:text-4xl text-2xl text-white">{visited ? <CountUp end={Stats.executives} /> : 0}</h2>
                 <p className="leading-relaxed">Executives</p>
               </div>
               <div className="p-4 sm:w-1/4 w-1/2" ref={ref}>
-                <h2 className="title-font font-medium sm:text-4xl text-3xl text-white">{visited ? <CountUp end={Stats.olympiads} /> : 0}</h2>
+                <h2 className="title-font font-medium lg:text-4xl text-2xl text-white">{visited ? <CountUp end={Stats.olympiads} /> : 0}</h2>
                 <p className="leading-relaxed">Olympiads</p>
               </div>
             </div>
-            <div className="lg:w-1/2 sm:w-1/3 w-full rounded-lg overflow-hidden mt-6 sm:mt-0">
-              <img className="object-cover object-center w-full h-full" src="/background-img/bg1.jpg" alt="stats" />
-            </div>
+            {
+              width > 1000 &&
+              <div className="lg:w-1/2 sm:w-1/3 w-full rounded-lg overflow-hidden mt-6 sm:mt-0">
+                <img className="object-cover object-center w-full h-full" src="/background-img/bg1.jpg" alt="stats" />
+              </div>
+            }
+
           </div>
         </section>
       </div>
 
+      <div className='flex w-full flex-col p-10'>
+        <Quote
+          author="Professor Abdul Khaleque"
+          role="Principal, Rajshahi College"
+          quote="Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore nam temporibus quidem voluptatem sint fugiat minus, eligendi amet magnam alias id commodi mollitia eveniet, iure sed nostrum totam inven "
+        />
+        <section className="text-gray-400 bg-gray-900 body-font">
+          <div className="container px-5 py-6 mx-auto">
+            <h1 className="text-3xl font-medium title-font text-white mb-12 text-center">Testimonials</h1>
+            <div className="flex flex-wrap -m-4">
+
+              <Testimonial
+                author="Ke jani bolesilo"
+                role="ki jeno koren uni"
+                desc="club ta valoi, onk kichu kore, class bunk deya jay...(ar kichu mathay asche na 😑)"
+                img="https://dummyimage.com/200x200"
+              />
+
+
+              <Testimonial
+                author="Ke jani bolesilo"
+                role="ki jeno koren uni"
+                desc="club ta valoi, onk kichu kore, class bunk deya jay...(ar kichu mathay asche na 😑)"
+                img="https://dummyimage.com/200x200"
+              />
+
+            </div>
+          </div>
+
+        </section>
+      </div>
+
+
       {!currentUser ?
-        <div className='w-full flex justify-center content-center flex-row'>
+        <div className='w-full flex justify-center content-center flex-col items-center'>
           <Link href="/login">
-            <button className="bg-gradient-to-r from-blue-600 to-cyan-500 hover:bg-cyan-400 uppercase text-white font-semibold hover:scale-110 transition-all ease-in-out duration-100 shadow text-md lg:text-lg p-3 lg:p-5 rounded outline-none focus:outline-none sm:mr-2 mb-1 mx-3"
+            <button className="w-24 bg-gradient-to-r from-blue-600 to-cyan-500 uppercase text-white font-semibold hover:scale-110 transition-all ease-in-out duration-100 shadow text-md lg:text-lg p-3 lg:p-5 rounded outline-none focus:outline-none sm:mr-2 mb-1 mx-3"
             >
               Login
             </button>
           </Link>
+          <p className='text-sm text-gray-400'>For members only</p>
         </div> : ''
       }
 
