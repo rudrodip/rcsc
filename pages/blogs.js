@@ -133,7 +133,6 @@ function Blogs() {
               <MiniBlog
                 title={i.data().title}
                 img={i.data().img}
-                poster={i.data().author}
                 category={i.data().category}
                 authorProfile={i.data().authorProfile}
                 uid={currentUser?.uid}

@@ -4,14 +4,31 @@
 // importing necessary dependencies
 import React from 'react'
 import { useInView } from 'react-intersection-observer'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
+import { db } from '../../src/config/firebase.config'
+import { getDoc, doc } from 'firebase/firestore'
 
 
 // here's the main component
 const MiniBlog = (props) => {
     // props property -->
     // poster -> title -> date -> img
+    const [user, setUser] = useState(null)
+
+    useEffect(() => {
+        async function getUser(uid) {
+            if (!uid) return
+            const userRef = doc(db, `user/${uid}`)
+            const docSnap = await getDoc(userRef)
+            if (docSnap.exists()) {
+                setUser(docSnap.data())
+            } else {
+                console.log("No such document!");
+            }
+        }
+        props?.authorProfile && getUser(props?.authorProfile.trim())
+    }, [props?.authorProfile])
 
     const router = useRouter()
     const { ref, inView, entry } = useInView({
@@ -37,7 +54,7 @@ const MiniBlog = (props) => {
                     />
                     <div className="flex flex-col pl-5 sm:pt-5">
                         <h2 className="title-font font-medium text-xl text-cyan-300 text-left">{props.title}</h2>
-                        <h2 className="title-font font-medium text-md text-gray-300 text-left">{props.poster}</h2>
+                        <h2 className="title-font font-medium text-md text-gray-300 text-left">{user?.name}</h2>
                         <h3 className="text-gray-500 mb-3">{props.category}</h3>
                         <p className="mb-4 text-gray-300">{props.date}</p>
                         <span className="inline-flex">

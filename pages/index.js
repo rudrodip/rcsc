@@ -81,9 +81,7 @@ export default function Home() {
         />
         <section className="text-gray-400 bg-gray-900 body-font">
           <div className="container px-5 py-6 mx-auto">
-            <h1 className="text-3xl font-medium title-font text-white mb-12 text-center">Testimonials</h1>
             <div className="flex flex-wrap -m-4">
-
               <Testimonial
                 author="Ke jani bolesilo"
                 role="ki jeno koren uni"

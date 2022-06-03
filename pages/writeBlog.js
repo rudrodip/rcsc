@@ -101,7 +101,6 @@ const WriteBlog = () => {
     setLoading(true)
     try {
       const data = {
-        author: user.name,
         authorProfile: currentUser.uid,
         category: category,
         title: title,

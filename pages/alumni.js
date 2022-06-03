@@ -88,7 +88,7 @@ const Alumni = () => {
                             batch={i.data().batch}
                             institution={i.data().institution}
                             number={i.data().phone}
-                            mail={i.data().mail}
+                            mail={i.data().email}
                             img={i.data().photoURL}
                             key={index}
                             link={i.id}
