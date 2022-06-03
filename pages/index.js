@@ -68,7 +68,7 @@ export default function Home() {
       {!currentUser ?
         <div className='w-full flex justify-center content-center flex-row'>
           <Link href="/login">
-            <button className="bg-gray-800 hover:bg-blue-400 uppercase text-white font-semibold hover:scale-110 transition-all ease-in-out duration-100 shadow text-md lg:text-lg p-3 lg:p-5 rounded outline-none focus:outline-none sm:mr-2 mb-1 mx-3"
+            <button className="bg-gradient-to-r from-blue-600 to-cyan-500 hover:bg-cyan-400 uppercase text-white font-semibold hover:scale-110 transition-all ease-in-out duration-100 shadow text-md lg:text-lg p-3 lg:p-5 rounded outline-none focus:outline-none sm:mr-2 mb-1 mx-3"
             >
               Login
             </button>
