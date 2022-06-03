@@ -246,7 +246,7 @@ const WriteBlog = () => {
               Remove
             </button>
           </div>
-
+          <p className='text-sm text-gray-400 ml-0 lg:ml-32'>Image size must be less than 2 MB</p>
           <p className="my-3 lg:my-5 fond-bold text-xl lg:text-3xl mx-auto leading-relaxed text-white">Paragraphs</p>
           {
             [...Array(paragraphNo)].map((e, i) => {

@@ -32,7 +32,7 @@ const MiniBlog = (props) => {
                     <img
                         alt="team"
                         className="flex-shrink-0 rounded-lg w-48 h-48 object-cover object-center sm:mb-0 mb-4 cursor-pointer"
-                        src={props.img ? props.img : "https://dummyimage.com/200x200"}
+                        src={props.img ? props.img : "https://images.pexels.com/photos/1591056/pexels-photo-1591056.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"}
                         onClick={() => handleClick(props?.link)}
                     />
                     <div className="flex flex-col pl-5 sm:pt-5">
