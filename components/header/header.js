@@ -3,7 +3,10 @@
 
 // import necessary dependencies
 import React from 'react'
-import { useState, useEffect, useRef } from 'react'
+import { Swiper, SwiperSlide } from 'swiper/react'
+import { Autoplay } from 'swiper'
+import 'swiper/css'
+import 'swiper/css/autoplay'
 
 // the main component
 function Header(props) {
@@ -11,36 +14,11 @@ function Header(props) {
   // -> 1. title 2. subTitle (Rendered in the left)
   // -> 1. imageTitle 2. imageSubtitle (Rendered in the right)
 
-
-  const [index, setIndex] = useState(Math.floor(Math.random() * 13) + 1)
-  const timeoutRef = useRef(null)
-
-  // reset timeout function
-  const resetTimeout = () => {
-    if (timeoutRef.current) {
-      clearTimeout(timeoutRef.current)
-    }
-  }
-
-
-  // useEffect for the timeout function
-  useEffect(() => {
-    resetTimeout()
-    timeoutRef.current = setTimeout(
-      () =>
-        setIndex((prevIndex) => prevIndex === 13 ? 1 : prevIndex + 1),
-      2500
-    )
-    return () => resetTimeout()
-  }, [index])
-
-
   return (
     <div className='flex h-[100vh] md:h-[75vh]'>
-      <img src={`./background-img/bg${index}.jpg`} className='w-full md:h-auto object-cover opacity-60 blur-[1px]' />
-      
-      <div className='flex-col md:flex-row'>
-        <div className="flex flex-col flex-wrap xl:w-1/3 items-start overflow-hidden absolute left-4 lg:left-48 translate-y-48">
+      <div className='w-full justify-between flex-row' style={{ position: "absolute", zIndex: "25" }}>
+
+        <div className="xl:w-1/3 overflow-hidden">
           <h1 className="my-2 text-2xl md:text-4xl text-white font-bold leading-tight text-left">
             {props.subtitle}
           </h1>
@@ -48,10 +26,10 @@ function Header(props) {
           <span className="font-bold text-4xl tall:text-8xl bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-cyan-300 to-cyan-600">
             {props.title}
           </span>
-
         </div>
-        <div className='p-2 left-4 lg:right-4 lg:translate-y-48 absolute overflow-hidden items-start'>
-          <h1 className="my-2 text-xl md:text-4xl text-white opacity-75 font-bold leading-tight text-left md:text-right">
+
+        <div className='p-2 overflow-hidden'>
+          <h1 className="my-2 text-xl md:text-4xl text-white opacity-100 font-bold leading-tight text-left md:text-right">
             {props.imageSubtitle}
             <br></br>
             <span className="text-xl md:text-5xl">
@@ -60,6 +38,27 @@ function Header(props) {
           </h1>
         </div>
       </div>
+
+      <Swiper
+        spaceBetween={0}
+        slidesPerView={1}
+        modules={[Autoplay]}
+        autoplay={{ delay: 2000 }}
+        speed={1000}
+        loop={true}
+        autoHeight={true}
+      >
+        {
+          [...Array(13).keys()].map(i => {
+            return (
+              <SwiperSlide style={{ width: '100%', height: '100%' }} key={i}>
+                <img src={`./background-img/bg${i + 1}.jpg`} className='w-full md:h-auto object-cover blur-[1px] opacity-70' style={{ width: '100%', height: '100%' }} />
+              </SwiperSlide>
+            )
+          })
+        }
+
+      </Swiper>
     </div>
   )
 }
