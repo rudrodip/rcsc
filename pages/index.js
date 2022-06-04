@@ -40,7 +40,7 @@ export default function Home() {
 
       <div className='stats-detailed'>
         <section className="text-gray-400 bg-gray-900 body-font">
-          <div className="container px-5 py-6 lg:py-24 mx-auto flex flex-wrap justify-center">
+          <div className="container px-5 py-6 lg:py-24 mx-auto flex flex-wrap justify-center text-center lg:text-left">
             <div className="flex flex-wrap -mx-4 mt-auto mb-auto lg:w-1/2 sm:w-2/3 content-start sm:pr-10">
               <div className="w-full sm:p-4 px-4 mb-6">
                 <h1 className="title-font font-medium text-xl mb-2 text-white">Rajshahi College Science Club</h1>
@@ -112,37 +112,6 @@ export default function Home() {
           </div>
         </SwiperSlide>
       </Swiper>
-
-      {/* <div className='flex w-full flex-col p-10'>
-        <Quote
-          author="Professor Abdul Khaleque"
-          role="Principal, Rajshahi College"
-          quote="Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore nam temporibus quidem voluptatem sint fugiat minus, eligendi amet magnam alias id commodi mollitia eveniet, iure sed nostrum totam inven "
-        />
-        <section className="text-gray-400 bg-gray-900 body-font">
-          <div className="container px-5 py-6 mx-auto">
-            <div className="flex flex-wrap -m-4">
-              <Testimonial
-                author="Ke jani bolesilo"
-                role="ki jeno koren uni"
-                desc="club ta valoi, onk kichu kore, class bunk deya jay...(ar kichu mathay asche na 😑)"
-                img="https://dummyimage.com/200x200"
-              />
-
-
-              <Testimonial
-                author="Ke jani bolesilo"
-                role="ki jeno koren uni"
-                desc="club ta valoi, onk kichu kore, class bunk deya jay...(ar kichu mathay asche na 😑)"
-                img="https://dummyimage.com/200x200"
-              />
-
-            </div>
-          </div>
-
-        </section>
-      </div> */}
-
 
       {!currentUser ?
         <div className='w-full flex justify-center content-center flex-col items-center'>
