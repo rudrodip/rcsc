@@ -70,12 +70,21 @@ const Login = () => {
   }
 
   const validate = () => {
-    if (!isAlumni) { }
     if (name.length > 2 && phone.length == 11) {
       if (!isAlumni) {
         if (memberCode.length == 7 && Decode(grade, section, roll) == memberCode) {
           return true
         }
+        console.log(Decode(grade, section, roll))
+        toast.warn('Member Code not matched!', {
+          position: "top-center",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        })
         return false
       }
       return true
@@ -108,7 +117,7 @@ const Login = () => {
       data["institution"] = institution
       data["isAlumnus"] = isAlumni
       data["batch"] = batch
-    } 
+    }
     else {
       data["class"] = grade
       data["section"] = section
