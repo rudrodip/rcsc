@@ -75,7 +75,6 @@ const Login = () => {
         if (memberCode.length == 7 && Decode(grade, section, roll) == memberCode) {
           return true
         }
-        console.log(Decode(grade, section, roll))
         toast.warn('Member Code not matched!', {
           position: "top-center",
           autoClose: 3000,
