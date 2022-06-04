@@ -152,7 +152,7 @@ export default function Home() {
           title="Alumni"
           desc="Alumni Page"
           img="/background-img/bg10.jpg"
-          link='/'
+          link='/alumni'
         />
 
         <Card
