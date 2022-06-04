@@ -134,6 +134,7 @@ function Blogs() {
                 title={i.data().title}
                 img={i.data().img}
                 category={i.data().category}
+                poster={i.data().author}
                 authorProfile={i.data().authorProfile}
                 uid={currentUser?.uid}
                 date={formatedDate}

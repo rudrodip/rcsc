@@ -1,5 +1,4 @@
 import React from 'react'
-import Link from 'next/link'
 import { useState, useEffect } from 'react'
 import { FileInputButton } from '../components/fileInput'
 import Paragraph from '../components/blog/paragraph'
@@ -101,6 +100,7 @@ const WriteBlog = () => {
     setLoading(true)
     try {
       const data = {
+        author: user.name,
         authorProfile: currentUser.uid,
         category: category,
         title: title,

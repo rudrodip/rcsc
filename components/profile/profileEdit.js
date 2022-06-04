@@ -4,7 +4,7 @@ import { useState } from 'react'
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import { FileInputButton } from '../fileInput'
-import { upload, useAuth, updateUserData } from '../../src/config/firebase.config'
+import { upload, useAuth, updateUserData, updateBlogAuthor } from '../../src/config/firebase.config'
 
 const ProfileEdit = (props) => {
     const router = useRouter()
@@ -94,6 +94,9 @@ const ProfileEdit = (props) => {
             if (image) {
                 let url = await upload(image, currentUser, setLoading)
                 data['photoURL'] = url
+            }
+            if ("name" in data){
+                updateBlogAuthor(data["name"], currentUser.uid)
             }
             updateUserData(currentUser, data)
             toast('Updated', {

@@ -1,9 +1,8 @@
 import { initializeApp } from 'firebase/app'
 import { getAuth, createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut, updateProfile } from 'firebase/auth'
 import { getStorage, ref, uploadBytes, getDownloadURL, deleteObject } from 'firebase/storage'
-import { getFirestore, doc, setDoc, updateDoc, increment, deleteDoc } from 'firebase/firestore'
+import { getFirestore, doc, setDoc, updateDoc, increment, deleteDoc, collection, query, where, getDocs } from 'firebase/firestore'
 import { useState, useEffect } from 'react'
-import { async } from '@firebase/util'
 
 // const firebaseConfig = {
 //   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
@@ -118,5 +117,20 @@ export async function deleteBlog(id) {
     await deleteObject(fileRef)
   } catch (error) {
     return "error"
+  }
+}
+
+export async function updateBlogAuthor(authorName, authorId) {
+  try {
+
+    const collectionRef = collection(db, 'blogs')
+    let queriedBlogs = query(collectionRef, where("authorProfile", "==", authorId))
+    const snapshot = await getDocs(queriedBlogs)
+    snapshot.docs.map(async (i) => {
+      const docRef = doc(db, `blogs/${i.id}`)
+      await updateDoc(docRef, {author: authorName})
+    })
+  } catch (error) {
+    console.log("Failed: ", error)
   }
 }
