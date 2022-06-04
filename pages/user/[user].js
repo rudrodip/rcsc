@@ -42,14 +42,14 @@ const Profile = () => {
                             </p>
                             <div>
                                 {user?.isAlumnus ?
-                                    <div>
-                                        <p className="pt-2 text-white font-bold text-xl lg:text-sm flex items-center justify-center lg:justify-start">
-                                            {`Current Institution: ${user ? user.institution : ''}`}
+                                    <div className='flex flex-col justify-start items-start'>
+                                        <p className="pt-2 text-blue-400 font-bold text-xl lg:text-sm ml-8 lg:ml-0">
+                                            {user ? user.institution : ''}
                                         </p>
-                                        <p className="pt-2 text-gray-200 text-xs lg:text-sm flex items-center justify-center lg:justify-start">
+                                        <p className="pt-2 text-gray-200 text-xs lg:text-sm ml-8 lg:ml-0">
                                             {`Batch: ${user ? user.batch : ''}`}
                                         </p>
-                                        <p className="pt-2 text-gray-200 text-xs lg:text-sm flex items-center justify-center lg:justify-start">
+                                        <p className="pt-2 text-gray-200 text-xs lg:text-sm ml-8 lg:ml-0">
                                             {`E-Mail: ${user ? user.email : ''}`}
                                         </p>
                                     </div>
