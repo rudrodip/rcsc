@@ -101,7 +101,7 @@ function Blogs() {
       {currentUser ?
         <div className='w-full flex justify-center content-center flex-row'>
           <Link href="/writeBlog">
-            <button className="bg-gray-800 hover:bg-cyan-300 uppercase text-white font-semibold hover:scale-110 transition-all ease-in-out duration-100 shadow text-md lg:text-lg p-3 lg:p-5 rounded outline-none focus:outline-none sm:mr-2 mb-1 mx-3"
+            <button className="bg-gradient-to-r from-blue-600 to-cyan-500 uppercase text-white font-semibold hover:from-cyan-400 hover:to-blue-400 transition-all ease-in-out duration-100 shadow text-md lg:text-lg p-3 lg:p-5 rounded outline-none focus:outline-none sm:mr-2 mb-1 mx-3"
             >
               Write blog
             </button>

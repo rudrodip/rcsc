@@ -27,7 +27,7 @@ const Profile = () => {
     return (
         <main className="profile-page">
             <div>
-                <div className="max-w-4xl flex items-center h-auto lg:h-screen flex-wrap mx-auto my-32 lg:my-0">
+                <div className="flex items-center h-auto lg:h-screen mx-auto justify-center w-full lg:w-1/2 content-center my-24 lg:my-0">
                     <div id="profile" className="w-full lg:w-3/5 rounded-lg lg:rounded-l-lg lg:rounded-r-none shadow-2xl bg-gray-700 opacity-75 mx-6 lg:mx-0">
                         <div className="p-4 md:p-12 text-center lg:text-left">
                             <div className="block rounded-full shadow-xl mx-auto -mt-16 h-48 w-48 bg-cover bg-center" style={{ backgroundImage: `url('${user ? user.photoURL : "https://dummyimage.com/200x200"}')` }}></div>
@@ -43,7 +43,7 @@ const Profile = () => {
                             <div>
                                 {user?.isAlumnus ?
                                     <div className='flex flex-col justify-start items-start'>
-                                        <p className="pt-2 text-blue-400 font-bold text-xl lg:text-sm ml-8 lg:ml-0">
+                                        <p className="pt-2 text-cyan-400 font-bold text-xl lg:text-lg ml-8 lg:ml-0">
                                             {user ? user.institution : ''}
                                         </p>
                                         <p className="pt-2 text-gray-200 text-xs lg:text-sm ml-8 lg:ml-0">
@@ -84,10 +84,6 @@ const Profile = () => {
                                 })}
                             </div>
                         </div>
-                    </div>
-
-                    <div className='h-1/2 w-full lg:w-2/5'>
-                        <img src="https://images.pexels.com/photos/87009/earth-soil-creep-moon-lunar-surface-87009.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" className='rounded-none lg:rounded-lg shadow-2xl hidden lg:block w-full h-full object-cover' />
                     </div>
                 </div>
             </div>
