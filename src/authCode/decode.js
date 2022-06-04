@@ -3,10 +3,11 @@ const decode = (grade, section, roll) => {
     roll = parseInt(roll)
     
     function num(x, y){
-        y = y + 100
-        let output = (x**2 - 5*x + 3*y)**(1/3) + (3*y + 5*x**3 + 9*y**2)*(1/3)
-        output = parseInt(output) % y**2+x
-        output += y ** 2
+        if (y <100){
+            y = y + x + 100
+        }
+        let output = x**3 + y**2 + 4*x*y
+        output = parseInt(output)
         return output
     }
 
@@ -19,11 +20,7 @@ const decode = (grade, section, roll) => {
 
     section = section.toLowerCase()
     let sec = keyCode[section[0]][section.length - 4] + keyCode[section[0]][section.length - 3]
-    let code = number + sec    
-
-    if (code.length > 7){
-        code = code.slice(0, 6)
-    }
+    let code = number + sec
 
     return code
 
