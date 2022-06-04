@@ -11,7 +11,10 @@ import { useAuth } from '../src/config/firebase.config'
 import useWindowDimensions from '../components/useWindowDimensions'
 import Quote from '../components/quote'
 import Testimonial from '../components/testimonial'
-
+import { Swiper, SwiperSlide } from 'swiper/react'
+import { Autoplay } from 'swiper'
+import 'swiper/css'
+import 'swiper/css/autoplay'
 
 export default function Home() {
   const { width, height } = useWindowDimensions()
@@ -73,7 +76,44 @@ export default function Home() {
         </section>
       </div>
 
-      <div className='flex w-full flex-col p-10'>
+      <Swiper
+        spaceBetween={0}
+        slidesPerView={1}
+        modules={[ Autoplay]}
+        autoplay={{ delay: 2000 }}
+        speed={1000}
+        loop={true}
+      >
+        <SwiperSlide>
+          <Quote
+            author="Professor Abdul Khaleque"
+            role="Principal, Rajshahi College"
+            quote="Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore nam temporibus quidem voluptatem sint fugiat minus, eligendi amet magnam alias id commodi mollitia eveniet, iure sed nostrum totam inven "
+          />
+        </SwiperSlide>
+        <SwiperSlide>
+          <div className='flex justify-center'>
+            <Testimonial
+              author="Ke jani bolesilo"
+              role="ki jeno koren uni"
+              desc="club ta valoi, onk kichu kore, class bunk deya jay...(ar kichu mathay asche na 😑)"
+              img="https://dummyimage.com/200x200"
+            />
+          </div>
+        </SwiperSlide>
+        <SwiperSlide>
+          <div className='flex justify-center'>
+            <Testimonial
+              author="Ke jani bolesilo"
+              role="ki jeno koren uni"
+              desc="club ta valoi, onk kichu kore, class bunk deya jay...(ar kichu mathay asche na 😑)"
+              img="https://dummyimage.com/200x200"
+            />
+          </div>
+        </SwiperSlide>
+      </Swiper>
+
+      {/* <div className='flex w-full flex-col p-10'>
         <Quote
           author="Professor Abdul Khaleque"
           role="Principal, Rajshahi College"
@@ -101,7 +141,7 @@ export default function Home() {
           </div>
 
         </section>
-      </div>
+      </div> */}
 
 
       {!currentUser ?
