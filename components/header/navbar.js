@@ -38,6 +38,7 @@ const Navbar = ({ props, user, path, userProfile }) => {
                     path != props[i] ? <Navbutton name={i} link={props[i]} key={i} /> : <Navbutton name={i} link={props[i]} key={i} classname="bg-gradient-to-r from-blue-600 to-cyan-500" />
                   ))}
                   {user ? <ProfileButton userProfile={userProfile} /> : <Navbutton name="Login" link="/login" />}
+
                 </div>
               </div>
             </div>
@@ -45,8 +46,8 @@ const Navbar = ({ props, user, path, userProfile }) => {
             <div className="-mr-2 flex lg:hidden">
               {user &&
 
-                <Link href="/profile">
-                  <div className="p-2">
+                <Link href="/profile" target={'_blank'}>
+                  <div className="p-2 cursor-pointer">
                     <div className="block rounded-full shadow-xl mx-auto h-8 w-8 bg-cover bg-center" style={{ backgroundImage: `url('${userProfile}` }}></div>
                   </div>
                 </Link>
@@ -96,11 +97,12 @@ const Navbar = ({ props, user, path, userProfile }) => {
               </button>
 
                 :
-                <Link href="http://rc.edu.bd">
-                  <div className="p-2">
+
+                <div className="p-2 cursor-pointer">
+                  <a href="http://rc.edu.bd" target={'_blank'} rel="noreferrer">
                     <div className="block rounded-full shadow-xl mx-auto h-8 w-8 bg-cover bg-center" style={{ backgroundImage: `url('/logo/rc-logo.png'` }}></div>
-                  </div>
-                </Link>
+                  </a>
+                </div>
               }
             </div>
           </div>

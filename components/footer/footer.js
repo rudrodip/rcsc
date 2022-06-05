@@ -72,7 +72,7 @@ const Footer = (props) => {
                             <a href="http://rc.edu.bd/" rel="noopener noreferrer" className="text-gray-500 ml-1" target="_blank">@Rajshahi College</a>
                         </p>
                         <span className="inline-flex sm:ml-auto sm:mt-0 mt-2 justify-center sm:justify-start">
-                            <Link href="https://www.facebook.com/RajshahiCollegeOfficial/" passHref>
+                            <Link href="https://www.facebook.com/rajshahicollegescienceclub" passHref>
                                 <a className="text-gray-400" target="_blank">
                                     <svg fill="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" className="fill-current hover:fill-blue-500 transition ease-in-out duration-100 hover:scale-110 w-5 h-5" viewBox="0 0 24 24">
                                         <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"></path>
