@@ -81,6 +81,7 @@ export async function createUserData(user, data) {
   const userRef = doc(db, `user/${user.uid}`)
   try {
     setDoc(userRef, data)
+    updateProfile(user, { photoURL: "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png" })
   } catch (error) {
     // console.log(error)
   }

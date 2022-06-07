@@ -108,7 +108,8 @@ const Login = () => {
       role: "Member",
       isAlumnus: false,
       blogs: 0,
-      achievements: []
+      achievements: [],
+      socials: {}
     }
     if (isAlumni) {
       data["role"] = role

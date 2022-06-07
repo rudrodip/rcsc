@@ -40,7 +40,7 @@ const Login = () => {
         pauseOnHover: true,
         draggable: true,
         progress: undefined,
-      });
+      })
     }
   }
 
@@ -56,7 +56,15 @@ const Login = () => {
 
         router.push("/")
       } catch (error) {
-        alert("No such account")
+        toast.warn('Something went wrong!', {
+          position: "top-center",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        })
       }
       setLoading(false)
     }

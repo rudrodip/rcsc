@@ -3,6 +3,7 @@
 
 // necessary dependencies
 import React from 'react'
+import Image from 'next/image'
 import { useInView } from 'react-intersection-observer'
 import { useState } from 'react'
 import { useRouter } from 'next/router'
@@ -29,7 +30,7 @@ const AlumniProfile = (props) => {
       onClick={() => handleClick(props?.link)}
     >
       <div className="h-full flex sm:flex-row flex-col items-center sm:justify-start justify-center text-left">
-        <img alt="team" className="flex-shrink-0 rounded-lg w-48 h-48 object-cover object-center sm:mb-0 mb-4" src={props.img} />
+        <img alt="Alumni" className="flex-shrink-0 rounded-lg w-48 h-48 object-cover object-center sm:mb-0 mb-4" src={props.img} />
         <div className="flex-grow sm:pl-8">
           <h2 className="font-medium text-lg text-white text-center lg:text-left">{props.name}</h2>
           <div className='text-sm lg:text-lg'>

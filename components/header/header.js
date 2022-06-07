@@ -4,6 +4,8 @@
 // import necessary dependencies
 import React from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react'
+import Image from 'next/image'
+import useDimension from '../useWindowDimensions'
 import { Autoplay } from 'swiper'
 import 'swiper/css'
 import 'swiper/css/autoplay'
@@ -14,6 +16,8 @@ function Header(props) {
   // -> 1. title 2. subTitle (Rendered in the left)
   // -> 1. imageTitle 2. imageSubtitle (Rendered in the right)
 
+  const {width, height} = useDimension()
+
   return (
     <div className='flex h-[100vh] md:h-[75vh]'>
       <div className='flex w-full justify-between items-start md:items-center flex-col md:flex-row' style={{ position: "absolute", zIndex: "25" }}>
@@ -23,7 +27,7 @@ function Header(props) {
             {props.subtitle}
           </h1>
           <br></br>
-          <span className="font-bold text-5xl lg:text-8xl bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-cyan-300 to-cyan-600">
+          <span className="font-bold text-[5vh] lg:text-[9vh] bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-cyan-300 to-cyan-600">
             {props.title}
           </span>
         </div>
@@ -51,7 +55,14 @@ function Header(props) {
           [...Array(13).keys()].map(i => {
             return (
               <SwiperSlide style={{ width: '100%', height: '100%' }} key={i}>
-                <img src={`./background-img/bg${i + 1}.jpg`} className='w-full md:h-auto object-cover blur-[1px] opacity-70' style={{ width: '100%', height: '100%' }} />
+                <Image
+                  src={`/background-img/bg${i+1}.jpg`}
+                  alt="image"
+                  width={width}
+                  height={width < 1024 ? height : height/1.4}
+                  objectFit='cover'
+                  style={{opacity: "0.7"}}
+                />
               </SwiperSlide>
             )
           })

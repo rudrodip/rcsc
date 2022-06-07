@@ -30,7 +30,7 @@ const Profile = () => {
                 <div className="flex items-center h-auto lg:h-screen mx-auto justify-center w-full lg:w-1/2 content-center my-24 lg:my-0">
                     <div id="profile" className="w-full lg:w-3/5 rounded-lg lg:rounded-l-lg lg:rounded-r-none shadow-2xl bg-gray-700 opacity-75 mx-6 lg:mx-0">
                         <div className="p-4 md:p-12 text-center lg:text-left">
-                            <div className="block rounded-full shadow-xl mx-auto -mt-16 h-48 w-48 bg-cover bg-center" style={{ backgroundImage: `url('${user ? user.photoURL : "https://dummyimage.com/200x200"}')` }}></div>
+                            <div className="block rounded-full shadow-xl mx-auto -mt-16 h-48 w-48 bg-cover bg-center" style={{ backgroundImage: `url('${user ? user.photoURL : "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"}')` }}></div>
 
                             <h1 className="text-3xl font-bold pt-8 lg:pt-0">{user?.name}</h1>
                             <div className="mx-auto lg:mx-0 w-4/5 pt-3 border-b-2 border-sky-500 opacity-25"></div>
@@ -71,18 +71,42 @@ const Profile = () => {
                             <div className="mt-6 pb-16 lg:pb-0 w-4/5 lg:w-full mx-auto flex flex-wrap items-center justify-between text-gray-400">
                                 <p>Blogs: {user?.blogs}</p>
                             </div>
-                            <div className='mt-4 text-left'>
-                                {user && user.achievements.map((achievement, index) => {
-                                    return (
-                                        <div key={index}>
-                                            <p className="pt-2 text-gray-200 text-xs lg:text-sm flex items-center justify-start">
-                                                <span>{index + 1}. </span>
-                                                {achievement}
-                                            </p>
-                                        </div>
-                                    )
-                                })}
-                            </div>
+                            {user?.achievements.length > 0 &&
+                                <div>
+                                    <h1 className='mt-4 text-md text-cyan-300'>Achievements</h1>
+                                    <div className='text-left'>
+                                        {user?.achievements && user.achievements.map((achievement, index) => {
+                                            return (
+                                                <div key={index}>
+                                                    <p className="pt-2 text-gray-200 text-xs lg:text-sm flex items-center justify-start">
+                                                        <span>{index + 1}. </span>
+                                                        {achievement}
+                                                    </p>
+                                                </div>
+                                            )
+                                        })}
+                                    </div>
+                                </div>
+                            }
+
+                            {user?.socials && Object.keys(user?.socials).length > 0 &&
+                                <div>
+                                    <h1 className='mt-4 text-md text-cyan-300'>Socials</h1>
+                                    <div className='text-left ml-2'>
+                                        {user?.socials && Object.keys(user.socials).map((i, index) => {
+                                            return (
+                                                <div key={index}>
+                                                    <p className="pt-2 text-gray-200 text-xs lg:text-sm flex items-center justify-start">
+                                                        <a href={user.socials[i]} className='text-blue-400' target={'_blank'} rel="noreferrer">
+                                                            {i.charAt(0).toUpperCase() + i.slice(1)}
+                                                        </a>
+                                                    </p>
+                                                </div>
+                                            )
+                                        })}
+                                    </div>
+                                </div>
+                            }
                         </div>
                     </div>
                 </div>
