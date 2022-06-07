@@ -62,6 +62,7 @@ function Header(props) {
                   height={width < 1024 ? height : height/1.4}
                   objectFit='cover'
                   style={{opacity: "0.7"}}
+                  loading='lazy'
                 />
               </SwiperSlide>
             )

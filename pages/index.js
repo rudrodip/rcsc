@@ -2,6 +2,7 @@ import React from 'react'
 import EventGallery from '../components/eventGallery'
 import Header from '../components/header/header'
 import Card from '../components/card'
+import MiniProfile from '../components/profile/miniProfile'
 import Stats from '../stats.json'
 import CountUp from 'react-countup';
 import { useInView } from 'react-intersection-observer'
@@ -125,62 +126,21 @@ export default function Home() {
         </div> : ''
       }
 
-      <div className="flex content-center justify-around m-10 flex-wrap">
+      <div className="flex content-center justify-around m-4 lg:m-10 flex-wrap">
 
-        <Card
-          title="About Us"
-          desc="About Page"
-          img="/background-img/bg1.jpg"
-          link='/about'
-        />
-
-        <Card
-          title="Blogs"
-          desc="Read Blogs"
-          img="/background-img/bg7.jpg"
-          link='/blogs'
-        />
-
-        <Card
-          title="Executives"
-          desc="Executives Page"
-          img="/background-img/bg2.jpg"
-          link='/executives'
-        />
-
-        <Card
-          title="Alumni"
-          desc="Alumni Page"
-          img="/background-img/bg10.jpg"
-          link='/alumni'
-        />
-
-        <Card
-          title="Events"
-          desc="Events Page"
-          img="/background-img/bg6.jpg"
-          link='/events'
-        />
-
-        <Card
-          title="Gallery"
-          desc="Look at the gallery"
-          img="/background-img/bg5.jpg"
-          link='/gallery'
-        />
-
-        <Card
-          title="Contact"
-          desc="Contact us"
-          img="/background-img/bg4.jpg"
-          link='/contact'
-        />
+        <MiniProfile name="About Us" link="\about" />
+        <MiniProfile name="Read Blogs" link="\blogs" />
+        <MiniProfile name="Executives" link="\executives" />
+        <MiniProfile name="Alumni" link="\alumni" />
+        <MiniProfile name="Events" link="\events" />
+        <MiniProfile name="Gallery" link="\gallery" />
+        <MiniProfile name="Contact Us" link="\contact" />
 
       </div>
 
 
 
-      <EventGallery
+      {/* <EventGallery
         title=""
         desc=""
         img1="/background-img/bg6.jpg"
@@ -189,7 +149,7 @@ export default function Home() {
         img4="/background-img/bg1.jpg"
         img5="/background-img/bg8.jpg"
         img6="/background-img/bg3.jpg"
-      />
+      /> */}
 
     </div>
   )
