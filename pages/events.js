@@ -71,7 +71,7 @@ function Events() {
         img6="/background-img/bg3.jpg"
       />
 
-      {blog && user && <FullBlog blog={blog} url={`https://rcscienceclub.vercel.app/blogs`} userImg={user?.photoURL} author={user?.name} date={date} role={user?.role} />}
+      {blog && user && <FullBlog blog={blog} url={`https://rcsc.vercel.app/blogs`} userImg={user?.photoURL} author={user?.name} date={date} role={user?.role} />}
     </div>
   )
 }
