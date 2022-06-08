@@ -70,9 +70,9 @@ const Login = () => {
   }
 
   const validate = () => {
-    if (name.length > 2 && phone.length == 11) {
+    if (name.length > 2) {
       if (!isAlumni) {
-        if (memberCode.length == 7 && Decode(grade, section, roll) == memberCode) {
+        if (memberCode.length == 7 && phone.length == 11 && Decode(grade, section, roll) == memberCode) {
           return true
         }
         toast.warn('Member Code not matched!', {
@@ -103,7 +103,6 @@ const Login = () => {
     const data = {
       name: name,
       email: email,
-      phone: phone,
       photoURL: "https://dummyimage.com/200x200",
       role: "Member",
       isAlumnus: false,
@@ -112,6 +111,9 @@ const Login = () => {
       socials: {}
     }
     if (isAlumni) {
+      if (phone.length == 11){
+        data["phone"] = phone
+      }
       data["role"] = role
       data["batch"] = batch
       data["institution"] = institution
@@ -123,6 +125,7 @@ const Login = () => {
       data["section"] = section
       data["roll"] = roll
       data["memberCode"] = memberCode
+      data["phone"] = phone
     }
 
     try {
@@ -133,27 +136,6 @@ const Login = () => {
       console.log(error)
     }
   }
-
-  // const createAlumni = async () => {
-  //   const data = {
-  //     alumnus: {
-  //       name: name,
-  //       email: email,
-  //       phone: phone,
-  //       role: role,
-  //       batch: batch,
-  //       institution: institution,
-  //       photoURL: "https://dummyimage.com/200x200"
-  //     }
-  //   }
-  //   try {
-  //     let { user } = await signUp(email, password)
-  //     createAlumniData(user, data, batch)
-  //     router.push("/")
-  //   } catch (error) {
-  //     console.log(error)
-  //   }
-  // }
 
   const handleSubmit = async (e) => {
     setLoading(true)
@@ -204,7 +186,7 @@ const Login = () => {
                 type="text"
                 className="block border border-grey-light w-full p-3 rounded mb-4 outline-none"
                 name="phone"
-                placeholder="Phone"
+                placeholder={isAlumni ? "Phone (optional)" : "Phone"}
                 onChange={handleChange}
                 value={phone} />
 

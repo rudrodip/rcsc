@@ -85,6 +85,11 @@ const Profile = () => {
                     <p className="pt-2 text-gray-200 text-xs lg:text-sm ml-8 lg:ml-0">
                       {`Batch: ${user ? user.batch : ''}`}
                     </p>
+                    {user?.phone &&
+                      <p className="pt-2 text-gray-200 text-xs lg:text-sm ml-8 lg:ml-0">
+                        {`Phone: ${user.phone}`}
+                      </p>
+                    }
                     <p className="pt-2 text-gray-200 text-xs lg:text-sm ml-8 lg:ml-0">
                       {`E-Mail: ${user ? user.email : ''}`}
                     </p>
@@ -122,7 +127,7 @@ const Profile = () => {
 
               {user?.achievements.length > 0 &&
                 <div>
-                  <h1 className='mt-4 text-md text-cyan-300'>Achievements</h1>
+                  <h1 className='mt-4 text-md text-cyan-300 text-left'>Achievements</h1>
                   <div className='text-left'>
                     {user?.achievements && user.achievements.map((achievement, index) => {
                       return (
@@ -140,7 +145,7 @@ const Profile = () => {
 
               {user?.socials && Object.keys(user?.socials).length > 0 &&
                 <div>
-                  <h1 className='mt-4 text-md text-cyan-300'>Socials</h1>
+                  <h1 className='mt-4 text-md text-cyan-300 text-left'>Socials</h1>
                   <div className='text-left ml-2'>
                     {user?.socials && Object.keys(user.socials).map((i, index) => {
                       return (
