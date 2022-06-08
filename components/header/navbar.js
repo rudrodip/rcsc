@@ -28,6 +28,7 @@ const Navbar = ({ props, user, path, userProfile }) => {
                     className="h-12 w-12 cursor-pointer"
                     src="/logo/rcsc-logo.png"
                     alt="RCSC"
+                    
                   />
                 </Link>
                 <p className="text-xl lg:text-2xl block px-3 py-2 rounded-md font-medium">RCSC</p>

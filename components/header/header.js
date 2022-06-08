@@ -16,7 +16,7 @@ function Header(props) {
   // -> 1. title 2. subTitle (Rendered in the left)
   // -> 1. imageTitle 2. imageSubtitle (Rendered in the right)
 
-  const {width, height} = useDimension()
+  const { width, height } = useDimension()
 
   return (
     <div className='flex h-[100vh] md:h-[75vh]'>
@@ -47,7 +47,10 @@ function Header(props) {
         spaceBetween={0}
         slidesPerView={1}
         modules={[Autoplay]}
-        autoplay={{ delay: 2000 }}
+        autoplay={{
+          delay: 2000,
+          disableOnInteraction: false
+        }}
         speed={1000}
         loop={true}
       >
@@ -56,12 +59,12 @@ function Header(props) {
             return (
               <SwiperSlide style={{ width: '100%', height: '100%' }} key={i}>
                 <Image
-                  src={`/background-img/bg${i+1}.jpg`}
+                  src={`/background-img/bg${i + 1}.jpg`}
                   alt="image"
                   width={width}
-                  height={width < 1024 ? height : height/1.4}
+                  height={width < 1024 ? height : height / 1.4}
                   objectFit='cover'
-                  style={{opacity: "0.7"}}
+                  style={{ opacity: "0.7" }}
                   loading='lazy'
                 />
               </SwiperSlide>

@@ -4,10 +4,8 @@
 // importing necessary dependencies
 import React from 'react'
 import { useInView } from 'react-intersection-observer'
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { useRouter } from 'next/router'
-import { db } from '../../src/config/firebase.config'
-import { getDoc, doc } from 'firebase/firestore'
 
 
 // here's the main component

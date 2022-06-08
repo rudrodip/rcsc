@@ -1,7 +1,5 @@
 import React from 'react'
-import EventGallery from '../components/eventGallery'
 import Header from '../components/header/header'
-import Card from '../components/card'
 import MiniProfile from '../components/profile/miniProfile'
 import Stats from '../stats.json'
 import CountUp from 'react-countup';
@@ -81,7 +79,10 @@ export default function Home() {
         spaceBetween={0}
         slidesPerView={1}
         modules={[Autoplay]}
-        autoplay={{ delay: 2000 }}
+        autoplay={{ 
+          delay: 2000 ,
+          disableOnInteraction: false
+        }}
         speed={1000}
         loop={true}
       >

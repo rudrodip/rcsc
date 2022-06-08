@@ -2,7 +2,7 @@ import React from 'react'
 import Header from '../components/header/header'
 import AlumniProfile from '../components/profile/alumniProfile'
 import { db } from '../src/config/firebase.config';
-import { getDocs, collection, query, limit, where, doc } from 'firebase/firestore'
+import { getDocs, collection, query, limit, where } from 'firebase/firestore'
 import { useState, useEffect } from 'react';
 import useWindowDimensions from '../components/useWindowDimensions'
 

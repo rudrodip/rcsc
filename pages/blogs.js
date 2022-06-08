@@ -2,7 +2,7 @@ import React from 'react'
 import Header from '../components/header/header'
 import MiniBlog from '../components/blog/miniBlog'
 import { db, useAuth, deleteBlog, updateBlogNo } from '../src/config/firebase.config';
-import { getDocs, collection, query, limit, where } from 'firebase/firestore'
+import { getDocs, collection, query, limit, where, startAfter } from 'firebase/firestore'
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
@@ -60,11 +60,11 @@ function Blogs() {
       const docRef = collection(db, 'blogs')
       let q = null
       if (category == "My Blogs") {
-        q = query(docRef, where("authorProfile", "==", currentUser.uid), limit(30))
+        q = query(docRef, where("authorProfile", "==", currentUser.uid), limit(30), startAfter(lastBlog))
       } else if (category == "All Blogs") {
-        q = query(docRef, limit(30))
+        q = query(docRef, limit(30),startAfter(lastBlog))
       } else {
-        q = query(docRef, where("category", "==", category))
+        q = query(docRef, where("category", "==", category), startAfter(lastBlog))
       }
       const docSnaps = await getDocs(q)
       let blogs = docSnaps.docs.sort(compare)

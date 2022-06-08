@@ -6,7 +6,6 @@ import React from 'react'
 import Link from 'next/link'
 import { useState, useEffect } from 'react'
 
-
 // the component gets all necessary props
 
 const FullBlog = ({ blog, userImg, date, author, url, role }) => {
@@ -19,6 +18,7 @@ const FullBlog = ({ blog, userImg, date, author, url, role }) => {
     // author -> author name
     // url -> url of this blog post [used in share button]
     // role -> role of the poster
+
     const [blogImg, setBlogImg] = useState('')
     useEffect(() => {
         blog.img ? setBlogImg(blog.img) : setBlogImg('https://images.pexels.com/photos/1591056/pexels-photo-1591056.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1')
