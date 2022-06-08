@@ -15,6 +15,7 @@ function Blogs() {
   const router = useRouter()
   const [blogs, setBlogs] = useState(null)
   const [category, setCategory] = useState('All Blogs')
+  const [loading, setLoading] = useState(false)
   const { width, height } = useWindowDimensions()
   const currentUser = useAuth()
 
@@ -36,6 +37,7 @@ function Blogs() {
   }
 
   async function handleDeleteBlog(id) {
+    setLoading(true)
     await deleteBlog(id)
     await updateBlogNo(currentUser, -1)
 
@@ -48,6 +50,7 @@ function Blogs() {
       draggable: true,
       progress: undefined,
     })
+    setLoading(false)
     setTimeout(() => router.reload(), 2000)
 
   }
@@ -111,7 +114,7 @@ function Blogs() {
       <div className='w-full flex flex-row justify-around'>
         <SearchBlog handleCategory={handleCategory} category={category} />
       </div>
-      {!blogs ?
+      {!blogs || loading ?
         <div className='flex justify-center m-5'>
           <button disabled type="button" className="py-2.5 px-5 mr-2 text-sm font-medium  rounded-lg border hover:text-gray-200 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 bg-gray-800 text-gray-400 border-gray-600 hover:bg-gray-700 inline-flex items-center">
             <svg role="status" className="inline w-4 h-4 mr-2 animate-spin text-gray-600" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
