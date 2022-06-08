@@ -80,7 +80,7 @@ export default function Home() {
       <Swiper
         spaceBetween={0}
         slidesPerView={1}
-        modules={[ Autoplay]}
+        modules={[Autoplay]}
         autoplay={{ delay: 2000 }}
         speed={1000}
         loop={true}
@@ -126,30 +126,17 @@ export default function Home() {
         </div> : ''
       }
 
-      <div className="flex content-center justify-around m-4 lg:m-10 flex-wrap">
-
-        <MiniProfile name="About Us" link="\about" />
-        <MiniProfile name="Read Blogs" link="\blogs" />
-        <MiniProfile name="Executives" link="\executives" />
-        <MiniProfile name="Alumni" link="\alumni" />
-        <MiniProfile name="Events" link="\events" />
-        <MiniProfile name="Gallery" link="\gallery" />
-        <MiniProfile name="Contact Us" link="\contact" />
-
+      <div className='w-full m-0 md:w-3/4 md:m-auto'>
+        <div className="flex content-center justify-start m-auto lg:m-10 flex-wrap text-gray-400">
+          <MiniProfile name="About Us" desc="About Rajshahi College Science Club" link="/about" img="/pagesPhoto/aboutUs.png" />
+          <MiniProfile name="Read Blogs" desc="About Rajshahi College Science Club" link="/blogs" img="/pagesPhoto/blogs.png" />
+          <MiniProfile name="Executives" desc="About Rajshahi College Science Club" link="/executives" img="/pagesPhoto/executives.png" />
+          <MiniProfile name="Alumni" desc="About Rajshahi College Science Club" link="/alumni" img="/pagesPhoto/alumni.png" />
+          <MiniProfile name="Events" desc="About Rajshahi College Science Club" link="/events" img="/pagesPhoto/events.png" />
+          <MiniProfile name="Gallery" desc="About Rajshahi College Science Club" link="/gallery" img="/pagesPhoto/gallery.png" />
+          <MiniProfile name="Contact Us" desc="About Rajshahi College Science Club" link="/contact" img="/pagesPhoto/contact.png" />
+        </div>
       </div>
-
-
-
-      {/* <EventGallery
-        title=""
-        desc=""
-        img1="/background-img/bg6.jpg"
-        img2="/background-img/bg4.jpg"
-        img3="/background-img/bg2.jpg"
-        img4="/background-img/bg1.jpg"
-        img5="/background-img/bg8.jpg"
-        img6="/background-img/bg3.jpg"
-      /> */}
 
     </div>
   )
