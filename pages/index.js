@@ -130,12 +130,12 @@ export default function Home() {
       <div className='w-full m-0 md:w-3/4 md:m-auto'>
         <div className="flex content-center justify-start m-auto lg:m-10 flex-wrap text-gray-400">
           <MiniProfile name="About Us" desc="About Rajshahi College Science Club" link="/about" img="/pagesPhoto/aboutUs.png" />
-          <MiniProfile name="Read Blogs" desc="About Rajshahi College Science Club" link="/blogs" img="/pagesPhoto/blogs.png" />
-          <MiniProfile name="Executives" desc="About Rajshahi College Science Club" link="/executives" img="/pagesPhoto/executives.png" />
-          <MiniProfile name="Alumni" desc="About Rajshahi College Science Club" link="/alumni" img="/pagesPhoto/alumni.png" />
-          <MiniProfile name="Events" desc="About Rajshahi College Science Club" link="/events" img="/pagesPhoto/events.png" />
-          <MiniProfile name="Gallery" desc="About Rajshahi College Science Club" link="/gallery" img="/pagesPhoto/gallery.png" />
-          <MiniProfile name="Contact Us" desc="About Rajshahi College Science Club" link="/contact" img="/pagesPhoto/contact.png" />
+          <MiniProfile name="Read Blogs" desc="Read blogs here" link="/blogs" img="/pagesPhoto/blogs.png" />
+          <MiniProfile name="Executives" desc="Our executive committee" link="/executives" img="/pagesPhoto/executives.png" />
+          <MiniProfile name="Alumni" desc="Ex-members of Rajshahi College Science Club" link="/alumni" img="/pagesPhoto/alumni.png" />
+          <MiniProfile name="Events" desc="Events organized by Rajshahi College Science Club" link="/events" img="/pagesPhoto/events.png" />
+          <MiniProfile name="Gallery" desc="Special memories of our activities" link="/gallery" img="/pagesPhoto/gallery.png" />
+          <MiniProfile name="Contact Us" desc="Feel free to contact us" link="/contact" img="/pagesPhoto/contact.png" />
         </div>
       </div>
 

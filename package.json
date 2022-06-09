@@ -19,8 +19,7 @@
     "react-intersection-observer": "^9.1.0",
     "react-toastify": "^9.0.1",
     "react-top-loading-bar": "^2.1.0",
-    "swiper": "^8.2.2",
-    "vercel": "^24.2.4"
+    "swiper": "^8.2.2"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.7",
