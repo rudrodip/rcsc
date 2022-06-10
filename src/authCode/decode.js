@@ -19,7 +19,7 @@ const decode = (grade, section, roll) => {
     }
 
     section = section.toLowerCase()
-    let sec = keyCode[section[0]][section.length - 4] + keyCode[section[0]][section.length - 3]
+    let sec = keyCode[section[0]][section.length - 3] + keyCode[section[0]][section.length - 2]
     let code = number + sec
 
     return code
