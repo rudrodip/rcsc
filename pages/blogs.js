@@ -1,7 +1,7 @@
 import React from 'react'
 import Header from '../components/header/header'
 import MiniBlog from '../components/blog/miniBlog'
-import { db, useAuth, deleteBlog, updateBlogNo } from '../src/config/firebase.config';
+import { db, useAuth, deleteBlog, updateBlogNo, useUser } from '../src/config/firebase.config';
 import { getDocs, collection, query, limit, where } from 'firebase/firestore'
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
@@ -18,6 +18,7 @@ function Blogs() {
   const [loading, setLoading] = useState(false)
   const { width, height } = useWindowDimensions()
   const currentUser = useAuth()
+  const user = useUser()
 
   const handleCategory = (e) => {
     e.preventDefault()
@@ -139,7 +140,7 @@ function Blogs() {
                 category={i.data().category}
                 poster={i.data().author}
                 authorProfile={i.data().authorProfile}
-                uid={currentUser?.uid}
+                editable={currentUser?.uid == i.data().authorProfile || user?.isAdmin ? true : false}
                 date={formatedDate}
                 key={index}
                 link={i.id}

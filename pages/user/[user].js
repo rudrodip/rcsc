@@ -20,7 +20,6 @@ const Profile = () => {
             }
         }
         getUser(uid?.user?.trim())
-
     }, [uid?.user])
 
 
@@ -41,11 +40,11 @@ const Profile = () => {
                                 {user?.role}
                             </p>
                             <div>
+                                <p className="pt-2 text-cyan-400 font-bold text-xl lg:text-lg ml-8 lg:ml-0">
+                                    {user ? user.institution : ''}
+                                </p>
                                 {user?.isAlumnus ?
                                     <div className='flex flex-col justify-start items-start'>
-                                        <p className="pt-2 text-cyan-400 font-bold text-xl lg:text-lg ml-8 lg:ml-0">
-                                            {user ? user.institution : ''}
-                                        </p>
                                         <p className="pt-2 text-gray-200 text-xs lg:text-sm ml-8 lg:ml-0">
                                             {`Batch: ${user ? user.batch : ''}`}
                                         </p>
@@ -67,7 +66,6 @@ const Profile = () => {
                                             </svg>
                                             {`Class: ${user ? user.class : ''}   Section: ${user ? user.section : ''}   Roll: ${user ? user.roll : ''}`}
                                         </p>
-                                        <p className="pt-8 text-sm">Rajshahi College</p>
                                     </div>
                                 }
                             </div>

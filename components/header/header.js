@@ -19,7 +19,7 @@ function Header(props) {
   const { width, height } = useDimension()
 
   return (
-    <div className='flex h-[100vh] md:h-[75vh]'>
+    <div className='flex h-[100vh] md:h-[65vh]'>
       <div className='flex w-full justify-between items-start md:items-center flex-col md:flex-row' style={{ position: "absolute", zIndex: "25" }}>
 
         <div className="xl:w-1/3 overflow-hidden md:p-5 md:m-5 p-0 m-3">

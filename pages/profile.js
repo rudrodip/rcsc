@@ -61,7 +61,6 @@ const Profile = () => {
       <ProfileEdit toggle={toggle} handleToggle={handleToggle} user={currentUser} isAlumnus={user?.isAlumnus} />
       <AddAchievements toggle={achievementToggle} handleToggle={handleAchievementToggle} user={currentUser} achievements={user && user.achievements} />
       <AddSocialLink toggle={socialToggle} handleToggle={handleSocialToggle} user={currentUser} socials={user && user.socials} />
-
       <div>
         <div className="flex items-center h-auto lg:h-screen mx-auto justify-center w-full lg:w-1/2 content-center my-24 lg:my-0">
           <div id="profile" className="w-full lg:w-3/5 rounded-lg lg:rounded-l-lg lg:rounded-r-none shadow-2xl bg-gray-700 opacity-75 mx-6 lg:mx-0">
@@ -77,11 +76,11 @@ const Profile = () => {
                 {user?.role}
               </p>
               <div>
+                <p className="pt-2 text-cyan-400 font-bold text-xl lg:text-lg ml-8 lg:ml-0">
+                  {user ? user.institution : ''}
+                </p>
                 {user?.isAlumnus ?
                   <div className='flex flex-col justify-start items-start'>
-                    <p className="pt-2 text-cyan-400 font-bold text-xl lg:text-lg ml-8 lg:ml-0">
-                      {user ? user.institution : ''}
-                    </p>
                     <p className="pt-2 text-gray-200 text-xs lg:text-sm ml-8 lg:ml-0">
                       {`Batch: ${user ? user.batch : ''}`}
                     </p>
@@ -103,18 +102,17 @@ const Profile = () => {
                       </svg>
                       {`Class: ${user ? user.class : ''}   Section: ${user ? user.section : ''}   Roll: ${user ? user.roll : ''}`}
                     </p>
-                    <p className="pt-8 text-sm">Rajshahi College</p>
                   </div>
                 }
               </div>
 
               <div className="pt-12 pb-8">
-                <button className="bg-gray-800 hover:bg-cyan-300 uppercase text-white font-bold hover:scale-110 transition-all ease-in-out duration-100 shadow text-xs px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1 mx-3"
+                <button className="bg-gray-800 hover:bg-blue-400 uppercase text-white font-bold hover:scale-110 transition-all ease-in-out duration-100 shadow text-xs px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1 mx-3"
                   onClick={handleToggle}
                 >
                   Edit
                 </button>
-                <button className="bg-gray-800 hover:bg-cyan-300 uppercase text-white font-bold hover:scale-110 transition-all ease-in-out duration-100 shadow text-xs px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1 mx-3"
+                <button className="bg-gray-800 hover:bg-blue-400 uppercase text-white font-bold hover:scale-110 transition-all ease-in-out duration-100 shadow text-xs px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1 mx-3"
                   onClick={handleLogout}
                 >
                   Logout
@@ -162,12 +160,12 @@ const Profile = () => {
                 </div>
               }
 
-              <button className="p-5 m-5 bg-gray-800 hover:bg-cyan-300 uppercase text-white font-bold hover:scale-110 transition-all ease-in-out duration-100 shadow text-xs px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1 mx-3"
+              <button className="p-5 m-5 bg-gray-800 hover:bg-blue-400 uppercase text-white font-bold hover:scale-110 transition-all ease-in-out duration-100 shadow text-xs px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1 mx-3"
                 onClick={handleAchievementToggle}
               >
                 Edit achievements
               </button>
-              <button className="p-5 m-5 bg-gray-800 hover:bg-cyan-300 uppercase text-white font-bold hover:scale-110 transition-all ease-in-out duration-100 shadow text-xs px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1 mx-3"
+              <button className="p-5 m-5 bg-gray-800 hover:bg-blue-400 uppercase text-white font-bold hover:scale-110 transition-all ease-in-out duration-100 shadow text-xs px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1 mx-3"
                 onClick={handleSocialToggle}
               >
                 Add social media

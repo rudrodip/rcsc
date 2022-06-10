@@ -1,7 +1,7 @@
 import { initializeApp } from 'firebase/app'
 import { getAuth, createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut, updateProfile } from 'firebase/auth'
 import { getStorage, ref, uploadBytes, getDownloadURL, deleteObject } from 'firebase/storage'
-import { getFirestore, doc, setDoc, updateDoc, increment, deleteDoc, collection, query, where, getDocs } from 'firebase/firestore'
+import { getFirestore, doc, setDoc, updateDoc, increment, deleteDoc, collection, query, where, getDocs, getDoc } from 'firebase/firestore'
 import { useState, useEffect } from 'react'
 
 const firebaseConfig = {
@@ -13,7 +13,6 @@ const firebaseConfig = {
   appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
   measurementId: process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID
 }
-
 
 const app = initializeApp(firebaseConfig)
 const auth = getAuth(app)
@@ -119,9 +118,30 @@ export async function updateBlogAuthor(authorName, authorId) {
     const snapshot = await getDocs(queriedBlogs)
     snapshot.docs.map(async (i) => {
       const docRef = doc(db, `blogs/${i.id}`)
-      await updateDoc(docRef, {author: authorName})
+      await updateDoc(docRef, { author: authorName })
     })
   } catch (error) {
     console.log("Failed: ", error)
   }
+}
+
+export function useUser() {
+  const [currentUser, setCurrentUser] = useState(null)
+  const [user, setUser] = useState(null)
+  useEffect(() => {
+    const unsub = onAuthStateChanged(auth, user => setCurrentUser(user))
+    return unsub
+  }, [])
+  async function getUser(uid) {
+    if (!uid) return
+    const userRef = doc(db, `user/${uid}`)
+    const docSnap = await getDoc(userRef)
+    if (docSnap.exists()) {
+      setUser(docSnap.data())
+    } else {
+      console.log("No such document!");
+    }
+  }
+  currentUser && getUser(currentUser.uid)
+  return user
 }

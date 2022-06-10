@@ -25,6 +25,15 @@ const WriteBlog = () => {
   }])
   const [toggle, setToggle] = useState(false)
 
+  const validate = () => {
+    let isValidated = false
+    paragraphs.map(paragraph => {
+      paragraph['content'].length < 10 ? isValidated = false : isValidated = true
+    })
+    title.length < 1 ? isValidated = false : ''
+    return isValidated
+  }
+
   const handleToggle = () => {
     setToggle(!toggle)
   }
@@ -50,7 +59,6 @@ const WriteBlog = () => {
     let data = paragraphs[index]
     data["subtitle"] = subtitle
     data["content"] = paragraph
-    console.log(data)
   }
 
 
@@ -76,7 +84,6 @@ const WriteBlog = () => {
 
   const removeParagraph = () => {
     paragraphs.pop()
-    console.log(paragraphs)
     paragraphNo > 1 ? setParagraphNo(paragraphNo - 1) : setParagraphNo(1)
   }
 
@@ -97,6 +104,7 @@ const WriteBlog = () => {
   }
 
   const addBlog = async () => {
+    if (!validate()) return false
     setLoading(true)
     try {
       const data = {

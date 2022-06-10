@@ -20,8 +20,13 @@ module.exports = {
       '2xl': '1536px',
       // => @media (min-width: 1536px) { ... }
       'tall': { 'raw': '(min-height: 900px)' }
+    },
+    extend: {
+      colors: {
+        'main': 'gray-900',
+        'secondary': 'gray-700'
+      }
     }
-    
   },
   plugins: [],
 }

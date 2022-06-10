@@ -12,7 +12,6 @@ import { useRouter } from 'next/router'
 const MiniBlog = (props) => {
     // props property -->
     // poster -> title -> date -> img
-
     const router = useRouter()
     const { ref, inView, entry } = useInView({
         threshold: 0,
@@ -43,7 +42,7 @@ const MiniBlog = (props) => {
                         <span className="inline-flex">
                         </span>
 
-                        {props?.authorProfile == props?.uid &&
+                        {props?.editable &&
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 width="15"

@@ -5,7 +5,6 @@
 import React from 'react'
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
-import { useRouter } from 'next/router';
 import { useState } from 'react'
 import { db } from '../../src/config/firebase.config'
 import { arrayRemove, arrayUnion, doc, updateDoc } from 'firebase/firestore'
@@ -14,7 +13,6 @@ import { useEffect } from 'react';
 
 // the main component
 const AddAchievements = (props) => {
-    const router = useRouter()
     const [loading, setLoading] = useState(false)
     const [user, setUser] = useState(null)
     const [achievement, setAchievement] = useState('')
@@ -160,7 +158,7 @@ const AddAchievements = (props) => {
                                             <button className='pointer-cursor'
                                                 onClick={() => handleDelete(achievement, index+1)}
                                             >
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" className='fill-gray-300'>
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" className='fill-gray-300 hover:fill-red-500 hover:scale-125 transition duration-200'>
                                                     <path d="M3 6v18h18v-18h-18zm5 14c0 .552-.448 1-1 1s-1-.448-1-1v-10c0-.552.448-1 1-1s1 .448 1 1v10zm5 0c0 .552-.448 1-1 1s-1-.448-1-1v-10c0-.552.448-1 1-1s1 .448 1 1v10zm5 0c0 .552-.448 1-1 1s-1-.448-1-1v-10c0-.552.448-1 1-1s1 .448 1 1v10zm4-18v2h-20v-2h5.711c.9 0 1.631-1.099 1.631-2h5.315c0 .901.73 2 1.631 2h5.712z"/>
                                                 </svg>
                                             </button>
@@ -178,7 +176,7 @@ const AddAchievements = (props) => {
                         </div>
                         <input
                             type="text"
-                            className="block border border-grey-light w-full p-3 rounded mb-4 outline-none text-gray-700"
+                            className="block border border-grey-light w-full p-3 rounded mb-4 outline-none text-gray-300 bg-gray-800"
                             name="achievement"
                             placeholder="Achievement"
                             onChange={handleChange}

@@ -11,7 +11,7 @@ const Paragraph = (props) => {
   const [subtitle, setSubtitle] = useState('')
   const [paragraph, setParagraph] = useState('')
 
-  useEffect(()=> {
+  useEffect(() => {
     props.addParagraph(props.index, subtitle, paragraph)
   }, [paragraph, subtitle])
 

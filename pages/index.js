@@ -67,7 +67,7 @@ export default function Home() {
             {
               width > 1000 &&
               <div className="lg:w-1/2 sm:w-1/3 w-full rounded-lg overflow-hidden mt-6 sm:mt-0">
-                <img className="object-cover object-center w-full h-full" src="/background-img/bg1.jpg" alt="stats" />
+                <img className="object-cover object-center w-full h-full" src="/background-img/bg1.jpg" alt="stats" loading='lazy'/>
               </div>
             }
 
