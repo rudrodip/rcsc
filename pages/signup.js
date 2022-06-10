@@ -109,7 +109,7 @@ const Login = () => {
       blogs: 0,
       achievements: [],
       socials: {},
-      isExecutives: false,
+      isExecutive: false,
       isAdmin: false,
       institution: "Rajshahi College",
       isAlumnus: false
