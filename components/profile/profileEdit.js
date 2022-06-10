@@ -44,15 +44,6 @@ const ProfileEdit = (props) => {
         if (e.target.name == 'phone') {
             setPhone(e.target.value)
         }
-        else if (e.target.name == 'section') {
-            setSection(e.target.value)
-        }
-        else if (e.target.name == 'roll') {
-            setRoll(e.target.value)
-        }
-        else if (e.target.name == 'class') {
-            setGrade(e.target.value)
-        }
         else if (e.target.name == 'name') {
             setName(e.target.value)
         }
@@ -66,15 +57,6 @@ const ProfileEdit = (props) => {
         const data = {}
         if (phone.length == 11) {
             data['phone'] = phone
-        }
-        if (section.length > 1) {
-            data['section'] = section
-        }
-        if (roll.length >= 1) {
-            data['roll'] = roll
-        }
-        if (grade.length >= 1) {
-            data['class'] = grade
         }
         if (name.length >= 1) {
             data["name"] = name
@@ -182,63 +164,22 @@ const ProfileEdit = (props) => {
                                     required />
                             </div>
                             {
-                                props.isAlumnus ?
+                                props.isAlumnus &&
 
+                                <div>
                                     <div>
-                                        <div>
-                                            <label htmlFor="institution" className="block mb-2 text-sm font-medium text-gray-300">Current Institution</label>
-                                            <input
-                                                type="text"
-                                                name="institution"
-                                                id="institution"
-                                                placeholder="Current Institution"
-                                                className="border text-sm rounded-lg block w-full p-2.5 bg-gray-600 border-gray-500 placeholder-gray-400 text-white outline-none mb-5"
-                                                onChange={handleChange}
-                                                value={institution}
-                                                required />
-                                        </div>
+                                        <label htmlFor="institution" className="block mb-2 text-sm font-medium text-gray-300">Current Institution</label>
+                                        <input
+                                            type="text"
+                                            name="institution"
+                                            id="institution"
+                                            placeholder="Current Institution"
+                                            className="border text-sm rounded-lg block w-full p-2.5 bg-gray-600 border-gray-500 placeholder-gray-400 text-white outline-none mb-5"
+                                            onChange={handleChange}
+                                            value={institution}
+                                            required />
                                     </div>
-
-                                    :
-
-                                    <div>
-                                        <div>
-                                            <label htmlFor="class" className="block mb-2 text-sm font-medium text-gray-300">Your Class</label>
-                                            <input
-                                                type="text"
-                                                name="class"
-                                                id="class"
-                                                placeholder="class"
-                                                className="border text-sm rounded-lg block w-full p-2.5 bg-gray-600 border-gray-500 placeholder-gray-400 text-white outline-none mb-5"
-                                                onChange={handleChange}
-                                                value={grade}
-                                                required />
-                                        </div>
-                                        <div>
-                                            <label htmlFor="section" className="block mb-2 text-sm font-medium text-gray-300">Your section</label>
-                                            <input
-                                                type="text"
-                                                name="section"
-                                                id="section"
-                                                placeholder="section"
-                                                className="border text-sm rounded-lg block w-full p-2.5 bg-gray-600 border-gray-500 placeholder-gray-400 text-white outline-none mb-5"
-                                                onChange={handleChange}
-                                                value={section}
-                                                required />
-                                        </div>
-                                        <div>
-                                            <label htmlFor="roll" className="block mb-2 text-sm font-medium text-gray-300">Your roll</label>
-                                            <input
-                                                type="text"
-                                                name="roll"
-                                                id="roll"
-                                                placeholder="roll"
-                                                className="border text-sm rounded-lg block w-full p-2.5 bg-gray-600 border-gray-500 placeholder-gray-400 text-white outline-none mb-5"
-                                                onChange={handleChange}
-                                                value={roll}
-                                                required />
-                                        </div>
-                                    </div>
+                                </div>
                             }
 
                             <button
@@ -262,7 +203,6 @@ const ProfileEdit = (props) => {
                                     </button>
                                 </div>
                             }
-
                         </div>
                     </div>
                 </div>

@@ -246,7 +246,7 @@ const Login = () => {
                     type="text"
                     className="block border border-grey-light w-full p-3 rounded mb-4 outline-none"
                     name="role"
-                    placeholder="Role: e.g. Ex-President"
+                    placeholder="Designation: e.g. Ex-President"
                     onChange={handleChange}
                     value={role} />
                   <input
