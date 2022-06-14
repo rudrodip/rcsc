@@ -128,7 +128,7 @@ const ProfileEdit = (props) => {
                                     className="flex-shrink-0 rounded-lg w-48 h-48 object-contain object-center sm:mb-0"
                                     src={image ? URL.createObjectURL(image) : currentUser?.photoURL}
                                 />
-                                <div className="py-6 px-3 mt-32 sm:mt-0">
+                                <div className="py-6 px-3">
                                     <FileInputButton
                                         label="Change profile pic"
                                         uploadFileName="theFiles"

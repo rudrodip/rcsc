@@ -9,7 +9,7 @@ import { useState, useEffect } from 'react'
 function Executives() {
   const { width, height } = useWindowDimensions()
   const [executives, setExecutives] = useState(null)
-
+  
   useEffect(() => {
     async function getExecs() {
       const ref = collection(db, 'user')

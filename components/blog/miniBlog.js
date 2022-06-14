@@ -37,7 +37,7 @@ const MiniBlog = (props) => {
                     <div className="flex flex-col pl-5 sm:pt-5">
                         <h2 className="title-font font-medium text-xl text-cyan-300 text-left">{props.title}</h2>
                         <h2 className="title-font font-medium text-md text-gray-300 text-left">{props.poster}</h2>
-                        <h3 className="text-gray-500 mb-3">{props.category}</h3>
+                        <h3 className="text-gray-500 mb-3">Category: {props.category}</h3>
                         <p className="mb-4 text-gray-300">{props.date}</p>
                         <span className="inline-flex">
                         </span>
