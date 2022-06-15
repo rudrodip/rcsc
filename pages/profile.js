@@ -125,7 +125,7 @@ const Profile = () => {
                 </button>
               </div>
 
-              <div className="w-4/5 lg:w-full mx-auto flex flex-wrap items-center justify-between text-gray-400">
+              <div className="w-4/5 lg:w-full flex flex-wrap items-center justify-between text-gray-400">
                 <p>Blogs: {user?.blogs}</p>
               </div>
 
