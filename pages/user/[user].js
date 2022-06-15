@@ -26,7 +26,7 @@ const Profile = () => {
     return (
         <main className="profile-page">
             <div>
-                <div className="flex items-center h-auto lg:h-screen mx-auto justify-center w-full lg:w-1/2 content-center my-24 lg:my-0">
+                <div className="flex items-center h-auto lg:h-screen mx-auto justify-center w-full lg:w-1/2 content-center my-24">
                     <div id="profile" className="w-full lg:w-3/5 rounded-lg lg:rounded-l-lg lg:rounded-r-none shadow-2xl bg-gray-700 opacity-75 mx-6 lg:mx-0">
                         <div className="p-4 md:p-12 text-center lg:text-left">
                             <div className="block rounded-full shadow-xl mx-auto -mt-16 h-48 w-48 bg-cover bg-center" style={{ backgroundImage: `url('${user ? user.photoURL : "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"}')` }}></div>
@@ -71,9 +71,10 @@ const Profile = () => {
                             </div>
 
 
-                            <div className="mt-6 pb-16 lg:pb-0 w-4/5 lg:w-full mx-auto flex flex-wrap items-center justify-between text-gray-400">
+                            <div className="w-4/5 lg:w-full mx-auto flex flex-wrap items-center justify-between text-gray-400">
                                 <p>Blogs: {user?.blogs}</p>
                             </div>
+                            
                             {user?.achievements.length > 0 &&
                                 <div>
                                     <h1 className='mt-4 text-md text-cyan-300 text-left'>Achievements</h1>

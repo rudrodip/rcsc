@@ -126,7 +126,7 @@ const Profile = () => {
               </div>
 
               <div className="w-4/5 lg:w-full mx-auto flex flex-wrap items-center justify-between text-gray-400">
-                <p>Blogs: {user?.blogs ? user?.blogs : 0}</p>
+                <p>Blogs: {user?.blogs}</p>
               </div>
 
               {user?.achievements.length > 0 &&
