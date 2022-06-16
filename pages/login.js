@@ -84,11 +84,11 @@ const Login = () => {
         />
         <div className="min-h-screen flex flex-col">
           <div className="container max-w-sm mx-auto flex-1 flex flex-col items-center justify-center px-2">
-            <div className="bg-gradient-to-r from-blue-600 to-cyan-500 px-6 py-8 rounded shadow-md text-black w-full">
+            <div className="bg-gradient-to-r from-blue-800 to-blue-600 px-6 py-8 rounded shadow-md text-black w-full">
               <h1 className="mb-8 text-3xl text-center text-white">Login</h1>
               <input
                 type="text"
-                className="block w-full p-3 rounded mb-4 outline-none"
+                className="block border border-gray-500 w-full p-3 rounded mb-4 outline-none text-gray-300 bg-gray-800"
                 name="email"
                 placeholder="Email"
                 onChange={handleChange}
@@ -96,7 +96,7 @@ const Login = () => {
 
               <input
                 type={isChecked ? 'text' : 'password'}
-                className="block w-full p-3 rounded mb-4 outline-none"
+                className="block border border-gray-500 w-full p-3 rounded mb-4 outline-none text-gray-300 bg-gray-800"
                 name="password"
                 placeholder="Password"
                 onChange={handleChange}
@@ -148,14 +148,7 @@ const Login = () => {
       </div>
     )
   }
-  else {
-    return (
-      <div className='flex w-full h-48 justify-center items-center flex-col'>
-        <p className='text-2xl md:text-4xl text-center tracking-wider p-5'>ভাই কয়বার লগ-ইন করা লাগে? শুধু শুধু website চেক করা</p>
-        <p className='text-2xl md:text-4xl text-center tracking-wider p-5'>হোম এ যান</p>
-      </div>
-    )
-  }
+  else router.push('/')
 }
 
 export default Login

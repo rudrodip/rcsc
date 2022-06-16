@@ -79,7 +79,7 @@ const AddAchievements = (props) => {
 
     // handles the delete function
     const handleDelete = async (data, index) => {
-        achievements.pop(index)
+        achievements.splice(index, 1)
         await deleteAchievement(user, data)
 
         // shows the user the state
@@ -123,9 +123,6 @@ const AddAchievements = (props) => {
             } catch (error) {
                 alert(error)
             }
-
-            // seting the form to default
-            setAchievement('')
         }
 
         // setting the loading to false so that user can again use the button
@@ -156,7 +153,7 @@ const AddAchievements = (props) => {
                                         </p>
                                         <div>
                                             <button className='pointer-cursor'
-                                                onClick={() => handleDelete(achievement, index+1)}
+                                                onClick={() => handleDelete(achievement, index)}
                                             >
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" className='fill-gray-300 hover:fill-red-500 hover:scale-125 transition duration-200'>
                                                     <path d="M3 6v18h18v-18h-18zm5 14c0 .552-.448 1-1 1s-1-.448-1-1v-10c0-.552.448-1 1-1s1 .448 1 1v10zm5 0c0 .552-.448 1-1 1s-1-.448-1-1v-10c0-.552.448-1 1-1s1 .448 1 1v10zm5 0c0 .552-.448 1-1 1s-1-.448-1-1v-10c0-.552.448-1 1-1s1 .448 1 1v10zm4-18v2h-20v-2h5.711c.9 0 1.631-1.099 1.631-2h5.315c0 .901.73 2 1.631 2h5.712z"/>

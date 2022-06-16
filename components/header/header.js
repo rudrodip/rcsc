@@ -2,9 +2,10 @@
 
 
 // import necessary dependencies
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import Image from 'next/image'
+import Permutation from '../../src/functions/permutation'
 import useDimension from '../useWindowDimensions'
 import { Autoplay } from 'swiper'
 import 'swiper/css'
@@ -17,6 +18,11 @@ function Header(props) {
   // -> 1. imageTitle 2. imageSubtitle (Rendered in the right)
 
   const { width, height } = useDimension()
+  const [array, setArray] = useState([])
+
+  useEffect(()=> {
+    setArray(Permutation(13))
+  }, [])
 
   return (
     <div className='flex h-[100vh] md:h-[65vh]'>
@@ -55,7 +61,7 @@ function Header(props) {
         loop={true}
       >
         {
-          [...Array(13).keys()].map(i => {
+          array.map(i => {
             return (
               <SwiperSlide style={{ width: '100%', height: '100%' }} key={i}>
                 <Image

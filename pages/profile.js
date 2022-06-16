@@ -57,16 +57,15 @@ const Profile = () => {
   }
 
   return (
-    <main className="profile-page">
+    <main className="profile-page my-10">
       <ProfileEdit toggle={toggle} handleToggle={handleToggle} user={currentUser} isAlumnus={user?.isAlumnus} />
       <AddAchievements toggle={achievementToggle} handleToggle={handleAchievementToggle} user={currentUser} achievements={user && user.achievements} />
       <AddSocialLink toggle={socialToggle} handleToggle={handleSocialToggle} user={currentUser} socials={user && user.socials} />
       <div>
-        <div className="flex items-center h-auto lg:h-screen mx-auto justify-center w-full lg:w-1/2 content-center my-24">
-          <div id="profile" className="w-full lg:w-3/5 rounded-lg lg:rounded-l-lg lg:rounded-r-none shadow-2xl bg-gray-700 opacity-75 mx-6 lg:mx-0">
+        <div className="flex items-center mx-auto justify-center w-full lg:w-1/2 content-center">
+          <div id="profile" className="w-full lg:w-3/5 rounded-lg lg:rounded-l-lg lg:rounded-r-none shadow-2xl bg-gray-800 mx-6 lg:mx-0">
             <div className="p-4 md:p-12 text-center lg:text-left">
               <div className="block rounded-full shadow-xl mx-auto -mt-16 h-48 w-48 bg-cover bg-center" style={{ backgroundImage: `url('${user ? user.photoURL : "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"}')` }}></div>
-
               <h1 className="text-3xl font-bold pt-8 lg:pt-0">{user?.name}</h1>
               <div className="mx-auto lg:mx-0 w-4/5 pt-3 border-b-2 border-sky-500 opacity-25"></div>
               <p className="pt-4 text-base font-bold flex items-center justify-center lg:justify-start">
@@ -75,50 +74,59 @@ const Profile = () => {
                 </svg>
                 {user?.role}
               </p>
-              <div>
-                <p className="pt-2 text-cyan-400 font-bold text-xl lg:text-lg ml-8 lg:ml-0">
-                  {user ? user.institution : ''}
-                </p>
-                {user?.isAlumnus ?
-                  <div className='flex flex-col justify-start items-start'>
-                    <p className="pt-2 text-gray-200 text-xs lg:text-sm ml-8 lg:ml-0">
-                      {`Batch: ${user ? user.batch : ''}`}
-                    </p>
-                    {user?.phone &&
-                      <p className="pt-2 text-gray-200 text-xs lg:text-sm ml-8 lg:ml-0">
-                        {`Phone: ${user.phone}`}
-                      </p>
-                    }
-                    <p className="pt-2 text-gray-200 text-xs lg:text-sm ml-8 lg:ml-0">
-                      {`E-Mail: ${user ? user.email : ''}`}
-                    </p>
-                  </div>
-                  :
-                  <div>
-                    <p className="pt-2 text-gray-200 text-xs lg:text-sm flex items-center justify-center lg:justify-start">
+              {!user ?
+                <div className='flex justify-center m-5'>
+                  <button disabled type="button" className="py-2.5 px-5 mr-2 text-sm font-medium  rounded-lg border hover:text-gray-200 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 bg-gray-800 text-gray-400 border-gray-600 hover:bg-gray-700 inline-flex items-center">
+                    <svg role="status" className="inline w-4 h-4 mr-2 animate-spin text-gray-600" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="currentColor" />
+                      <path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="#1C64F2" />
+                    </svg>
+                    Loading...
+                  </button>
+                </div>
 
-                      <svg className="h-4 fill-current text-cyan-400 pr-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                        <path d="M10 20a10 10 0 1 1 0-20 10 10 0 0 1 0 20zm7.75-8a8.01 8.01 0 0 0 0-4h-3.82a28.81 28.81 0 0 1 0 4h3.82zm-.82 2h-3.22a14.44 14.44 0 0 1-.95 3.51A8.03 8.03 0 0 0 16.93 14zm-8.85-2h3.84a24.61 24.61 0 0 0 0-4H8.08a24.61 24.61 0 0 0 0 4zm.25 2c.41 2.4 1.13 4 1.67 4s1.26-1.6 1.67-4H8.33zm-6.08-2h3.82a28.81 28.81 0 0 1 0-4H2.25a8.01 8.01 0 0 0 0 4zm.82 2a8.03 8.03 0 0 0 4.17 3.51c-.42-.96-.74-2.16-.95-3.51H3.07zm13.86-8a8.03 8.03 0 0 0-4.17-3.51c.42.96.74 2.16.95 3.51h3.22zm-8.6 0h3.34c-.41-2.4-1.13-4-1.67-4S8.74 3.6 8.33 6zM3.07 6h3.22c.2-1.35.53-2.55.95-3.51A8.03 8.03 0 0 0 3.07 6z" />
-                      </svg>
-                      {`Class: ${user ? user.class : ''}   Section: ${user ? user.section : ''}   Roll: ${user ? user.roll : ''}`}
-                    </p>
-                  </div>
-                }
-              </div>
+                :
+                <div>
+                  <p className="pt-2 text-cyan-400 font-bold text-xl lg:text-lg">
+                    {user ? user.institution : ''}
+                  </p>
+                  {user?.isAlumnus ?
+                    <div className='flex flex-col justify-start items-start'>
+                      <p className="pt-2 text-gray-200 text-xs lg:text-sm ml-8 lg:ml-0">
+                        {`Batch: ${user ? user.batch : ''}`}
+                      </p>
+                      {user?.phone &&
+                        <p className="pt-2 text-gray-200 text-xs lg:text-sm ml-8 lg:ml-0">
+                          {`Phone: ${user.phone}`}
+                        </p>
+                      }
+                      <p className="pt-2 text-gray-200 text-xs lg:text-sm ml-8 lg:ml-0">
+                        {`E-Mail: ${user ? user.email : ''}`}
+                      </p>
+                    </div>
+                    :
+                    <div>
+                      <p><span className='text-sm font-semibold'>Class: </span>{user?.class}</p>
+                      <p><span className='text-sm font-semibold'>Section: </span>{user?.section}</p>
+                      <p><span className='text-sm font-semibold'>Roll: </span>{user?.roll}</p>
+                    </div>
+                  }
+                </div>
+              }
 
               <div className="p-5">
-                <button className="bg-gray-800 hover:bg-blue-400 uppercase text-white font-bold hover:scale-110 transition-all ease-in-out duration-100 shadow text-xs px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1 mx-3"
+                <button className="bg-gray-900 hover:bg-blue-600 uppercase text-white font-bold hover:scale-110 transition-all ease-in-out duration-100 shadow text-xs px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1 mx-3"
                   onClick={handleToggle}
                 >
                   Edit
                 </button>
 
-                <button className="p-5 m-5 bg-gray-800 hover:bg-blue-400 uppercase text-white font-bold hover:scale-110 transition-all ease-in-out duration-100 shadow text-xs px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1 mx-3"
+                <button className="p-5 m-5 bg-gray-900 hover:bg-blue-600 uppercase text-white font-bold hover:scale-110 transition-all ease-in-out duration-100 shadow text-xs px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1 mx-3"
                   onClick={handleAchievementToggle}
                 >
                   Edit achievements
                 </button>
-                <button className="p-5 m-5 bg-gray-800 hover:bg-blue-400 uppercase text-white font-bold hover:scale-110 transition-all ease-in-out duration-100 shadow text-xs px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1 mx-3"
+                <button className="p-5 m-5 bg-gray-900 hover:bg-blue-600 uppercase text-white font-bold hover:scale-110 transition-all ease-in-out duration-100 shadow text-xs px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1 mx-3"
                   onClick={handleSocialToggle}
                 >
                   Add social media
@@ -131,7 +139,7 @@ const Profile = () => {
 
               {user?.achievements.length > 0 &&
                 <div>
-                  <h1 className='mt-4 text-md text-cyan-300 text-left'>Achievements</h1>
+                  <h1 className='mt-4 text-md text-blue-500 text-left font-semibold'>Achievements</h1>
                   <div className='text-left'>
                     {user?.achievements && user.achievements.map((achievement, index) => {
                       return (
@@ -149,13 +157,13 @@ const Profile = () => {
 
               {user?.socials && Object.keys(user?.socials).length > 0 &&
                 <div>
-                  <h1 className='mt-4 text-md text-cyan-300 text-left'>Socials</h1>
+                  <h1 className='mt-4 text-md text-blue-500 font-semibold text-left'>Socials</h1>
                   <div className='text-left ml-2'>
                     {user?.socials && Object.keys(user.socials).map((i, index) => {
                       return (
                         <div key={index}>
-                          <p className="pt-2 text-gray-200 text-xs lg:text-sm flex items-center justify-start">
-                            <a href={user.socials[i]} className='text-blue-400' target={'_blank'} rel="noreferrer">
+                          <p className="pt-2 text-gray-200 text-sm lg:text-sm flex items-center justify-start italic">
+                            <a href={user.socials[i]} className='text-cyan-500' target={'_blank'} rel="noreferrer">
                               {i.charAt(0).toUpperCase() + i.slice(1)}
                             </a>
                           </p>
@@ -165,7 +173,7 @@ const Profile = () => {
                   </div>
                 </div>
               }
-              <button className="bg-gray-800 my-5 hover:bg-blue-400 uppercase text-white font-bold hover:scale-110 transition-all ease-in-out duration-100 shadow text-xs px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1 mx-3"
+              <button className="bg-gray-900 my-5 hover:bg-blue-600 uppercase text-white font-bold hover:scale-110 transition-all ease-in-out duration-100 shadow text-xs px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1 mx-3"
                 onClick={handleLogout}
               >
                 Logout

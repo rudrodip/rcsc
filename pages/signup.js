@@ -164,8 +164,8 @@ const Login = () => {
         />
         <div className="bg-grey-lighter min-h-screen flex flex-col">
           <div className="container max-w-sm mx-auto flex-1 flex flex-col items-center justify-center px-2">
-            <div className="bg-gradient-to-t from-blue-600 to-cyan-500 px-6 py-8 rounded shadow-md text-black w-full">
-              <h1 className="mb-8 text-3xl text-center">Sign up</h1>
+            <div className="bg-gradient-to-t from-blue-800 to-blue-600 px-6 py-8 rounded shadow-md text-black w-full">
+              <h1 className="mb-8 text-3xl text-center text-white">Sign up</h1>
               <div className='text-sm text-gray-200 p-2'>
                 <input
                   type="checkbox"
@@ -180,7 +180,7 @@ const Login = () => {
 
               <input
                 type="text"
-                className="block border border-grey-light w-full p-3 rounded mb-4 outline-none"
+                className="block border border-gray-500 w-full p-3 rounded mb-4 outline-none text-gray-300 bg-gray-800"
                 name="name"
                 placeholder="Full Name"
                 onChange={handleChange}
@@ -188,7 +188,7 @@ const Login = () => {
 
               <input
                 type="text"
-                className="block border border-grey-light w-full p-3 rounded mb-4 outline-none"
+                className="block border border-gray-500 w-full p-3 rounded mb-4 outline-none text-gray-300 bg-gray-800"
                 name="phone"
                 placeholder={isAlumni ? "Phone (optional)" : "Phone"}
                 onChange={handleChange}
@@ -196,7 +196,7 @@ const Login = () => {
 
               <input
                 type="text"
-                className="block border border-grey-light w-full p-3 rounded mb-4 outline-none"
+                className="block border border-gray-500 w-full p-3 rounded mb-4 outline-none text-gray-300 bg-gray-800"
                 name="email"
                 placeholder="Email"
                 onChange={handleChange}
@@ -207,7 +207,7 @@ const Login = () => {
                 <div>
                   <input
                     type="text"
-                    className="block border border-grey-light w-full p-3 rounded mb-4 outline-none"
+                    className="block border border-gray-500 w-full p-3 rounded mb-4 outline-none text-gray-300 bg-gray-800"
                     name="class"
                     placeholder="Class"
                     onChange={handleChange}
@@ -215,15 +215,15 @@ const Login = () => {
 
                   <input
                     type="text"
-                    className="block border border-grey-light w-full p-3 rounded mb-4 outline-none"
+                    className="block border border-gray-500 w-full p-3 rounded mb-4 outline-none text-gray-300 bg-gray-800"
                     name="section"
                     placeholder="Section"
                     onChange={handleChange}
                     value={section} />
 
                   <input
-                    type="number"
-                    className="block border border-grey-light w-full p-3 rounded mb-4 outline-none"
+                    type="text"
+                    className="block border border-gray-500 w-full p-3 rounded mb-4 outline-none text-gray-300 bg-gray-800"
                     name="roll"
                     placeholder="Roll"
                     onChange={handleChange}
@@ -231,7 +231,7 @@ const Login = () => {
 
                   <input
                     type="text"
-                    className="block border border-grey-light w-full p-3 rounded mb-4 outline-none"
+                    className="block border border-gray-500 w-full p-3 rounded mb-4 outline-none text-gray-300 bg-gray-800"
                     name="memberCode"
                     placeholder="Member Code"
                     onChange={handleChange}
@@ -244,21 +244,21 @@ const Login = () => {
                 <div>
                   <input
                     type="text"
-                    className="block border border-grey-light w-full p-3 rounded mb-4 outline-none"
+                    className="block border border-gray-500 w-full p-3 rounded mb-4 outline-none text-gray-300 bg-gray-800"
                     name="role"
                     placeholder="Designation: e.g. Ex-President"
                     onChange={handleChange}
                     value={role} />
                   <input
                     type="text"
-                    className="block border border-grey-light w-full p-3 rounded mb-4 outline-none"
+                    className="block border border-gray-500 w-full p-3 rounded mb-4 outline-none text-gray-300 bg-gray-800"
                     name="batch"
                     placeholder="Batch: e.g. 2019-2020"
                     onChange={handleChange}
                     value={batch} />
                   <input
                     type="text"
-                    className="block border border-grey-light w-full p-3 rounded mb-4 outline-none"
+                    className="block border border-gray-500 w-full p-3 rounded mb-4 outline-none text-gray-300 bg-gray-800"
                     name="institution"
                     placeholder="Current Institution: e.g. BUET"
                     onChange={handleChange}
@@ -268,7 +268,7 @@ const Login = () => {
 
               <input
                 type={isChecked ? 'text' : 'password'}
-                className="block border border-grey-light w-full p-3 rounded mb-2 outline-none"
+                className="block border border-gray-500 w-full p-3 rounded mb-4 outline-none text-gray-300 bg-gray-800"
                 name="password"
                 placeholder="Password"
                 onChange={handleChange}
@@ -321,14 +321,7 @@ const Login = () => {
       </div >
     )
   }
-  else {
-    return (
-      <div className='flex w-full h-48 justify-center items-center flex-col'>
-        <p className='text-2xl md:text-4xl text-center tracking-wider'>ভাই কয়বার সাইন-ইন করা লাগে? শুধু শুধু website চেক করা</p>
-        <p className='text-2xl md:text-4xl text-center tracking-wider'>হোম এ যান</p>
-      </div>
-    )
-  }
+  else router.push('/')
 }
 
 export default Login
