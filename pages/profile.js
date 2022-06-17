@@ -57,12 +57,12 @@ const Profile = () => {
   }
 
   return (
-    <main className="profile-page my-10">
+    <main className="profile-page my-14">
       <ProfileEdit toggle={toggle} handleToggle={handleToggle} user={currentUser} isAlumnus={user?.isAlumnus} />
       <AddAchievements toggle={achievementToggle} handleToggle={handleAchievementToggle} user={currentUser} achievements={user && user.achievements} />
       <AddSocialLink toggle={socialToggle} handleToggle={handleSocialToggle} user={currentUser} socials={user && user.socials} />
       <div>
-        <div className="flex items-center mx-auto justify-center w-full lg:w-1/2 content-center">
+        <div className="flex items-center mx-auto justify-center w-full md:w-2/3 xl:w-1/2 content-center">
           <div id="profile" className="w-full lg:w-3/5 rounded-lg lg:rounded-l-lg lg:rounded-r-none shadow-2xl bg-gray-800 mx-6 lg:mx-0">
             <div className="p-4 md:p-12 text-center lg:text-left">
               <div className="block rounded-full shadow-xl mx-auto -mt-16 h-48 w-48 bg-cover bg-center" style={{ backgroundImage: `url('${user ? user.photoURL : "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"}')` }}></div>
