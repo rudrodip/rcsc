@@ -4,24 +4,14 @@ import { getStorage, ref, uploadBytes, getDownloadURL, deleteObject } from 'fire
 import { getFirestore, doc, setDoc, updateDoc, increment, deleteDoc, collection, query, where, getDocs, getDoc } from 'firebase/firestore'
 import { useState, useEffect } from 'react'
 
-// const firebaseConfig = {
-//   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
-//   authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
-//   projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
-//   storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
-//   messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
-//   appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
-//   measurementId: process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID
-// }
-
 const firebaseConfig = {
-  apiKey: "AIzaSyBTnIr9_eQnXjIdzgA32GcXj5BpL1lleDk",
-  authDomain: "rcsc-web.firebaseapp.com",
-  projectId: "rcsc-web",
-  storageBucket: "rcsc-web.appspot.com",
-  messagingSenderId: "612655084739",
-  appId: "1:612655084739:web:42f98599f9e52b7f079e76",
-  measurementId: "G-QEG0YNQKNZ"
+  apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
+  authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
+  projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
+  storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
+  appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
+  measurementId: process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID
 }
 
 const app = initializeApp(firebaseConfig)
