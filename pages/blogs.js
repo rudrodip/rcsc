@@ -91,12 +91,12 @@ function Blogs() {
       {
         width > 1000 &&
         <Header
-        title="Rajshahi College Science Club"
-        subtitle="Blogs"
-        imageSubtitle="We work"
-        imageTitle="Until we reach"
-        width={width}
-      />
+          title="Rajshahi College Science Club"
+          subtitle="Blogs"
+          imageSubtitle="We work"
+          imageTitle="Until we reach"
+          width={width}
+        />
       }
 
       <div className='my-5'>
@@ -127,7 +127,7 @@ function Blogs() {
         </div>
 
         : ''}
-      <div className="flex m-1 md:m-5 flex-wrap">
+      <div className="flex m-1 md:m-5 flex-wrap duration-200 transition ease-in-out">
         {
           blogs && blogs.map((i, index) => {
             const date = i.data().timestamp.toDate()
