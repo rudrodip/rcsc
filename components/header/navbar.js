@@ -2,10 +2,11 @@
 
 
 // necessary dependencies
-import Link from "next/link";
-import { useState } from "react";
+import Link from "next/link"
+import Image from 'next/image'
+import { useState } from "react"
 import { Transition } from "@headlessui/react"
-import { useRef } from "react";
+import { useRef } from "react"
 
 
 // the component
@@ -22,21 +23,21 @@ const Navbar = ({ props, user, path, userProfile }) => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
             <div className="flex items-center">
-              <div className="flex flex-row">
-                <Link href="/">
-                  <img
-                    className="h-12 w-12 cursor-pointer"
+              <Link href="/">
+                <div className="flex cursor-pointer">
+                  <Image
                     src="/logo/rcsc-logo.png"
                     alt="RCSC"
-                    
+                    width={48}
+                    height={48}
                   />
-                </Link>
-                <p className="text-xl lg:text-2xl block px-3 py-2 rounded-md font-medium">RCSC</p>
-              </div>
+                  <p className="text-xl lg:text-2xl block px-3 py-2 rounded-md font-medium">RCSC</p>
+                </div>
+              </Link>
               <div className="hidden lg:block">
-                <div className="ml-10 flex items-center space-x-4">
+                <div className="px-4 flex items-center">
                   {Object.keys(props).map(i => (
-                    path != props[i] ? <Navbutton name={i} link={props[i]} key={i} /> : <Navbutton name={i} link={props[i]} key={i} classname="bg-gradient-to-r from-blue-600 to-cyan-500" />
+                    path != props[i] ? <Navbutton name={i} link={props[i]} key={i} /> : <Navbutton name={i} link={props[i]} key={i} classname="bg-gradient-to-r from-blue-600 to-cyan-500 text-white font-medium" />
                   ))}
                   {user ? <ProfileButton userProfile={userProfile} /> : <Navbutton name="Login" link="/login" />}
 
@@ -100,7 +101,7 @@ const Navbar = ({ props, user, path, userProfile }) => {
                 :
 
                 <div className="p-2 cursor-pointer">
-                  <a href="http://rc.edu.bd" target={'_blank'} rel="noreferrer">
+                  <a href="https://rc.gov.bd/" target={'_blank'} rel="noreferrer">
                     <div className="block rounded-full shadow-xl mx-auto h-8 w-8 bg-cover bg-center" style={{ backgroundImage: `url('/logo/rc-logo.png'` }}></div>
                   </a>
                 </div>
@@ -122,7 +123,7 @@ const Navbar = ({ props, user, path, userProfile }) => {
             <div className="lg:hidden" id="mobile-menu">
               <div ref={divRef} className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
                 {Object.keys(props).map(i => (
-                  path != props[i] ? <Navbutton name={i} link={props[i]} key={i} /> : <Navbutton name={i} link={props[i]} key={i} classname="bg-gradient-to-r from-blue-600 to-cyan-500" />
+                  path != props[i] ? <Navbutton name={i} link={props[i]} key={i} /> : <Navbutton name={i} link={props[i]} key={i} classname="bg-gradient-to-r from-blue-600 to-cyan-500 text-white font-medium" />
                 ))}
                 {!user && <Navbutton name="Login" link="/login" />}
               </div>
@@ -140,7 +141,7 @@ const Navbutton = (props) => {
       <Link href={props.link}>
         <a
           href="#"
-          className={`text-gray-300 hover:bg-gray-700 ${props.classname} hover:text-white block px-3 py-2 rounded-md text-base font-medium`}
+          className={`text-gray-400 hover:bg-gray-700 ${props.classname} block px-4 mx-3 py-2 text-base transition duration-150`}
         >
           {props.name}
         </a>
@@ -154,7 +155,7 @@ const ProfileButton = (props) => {
     <div>
       <Link href="/profile">
         <div className="p-2 md:p-2 text-center lg:text-left cursor-pointer">
-          <div className="block rounded-full shadow-xl mx-auto h-10 w-10 bg-cover bg-center hover:scale-125 transition ease-in-out duration-100" style={{ backgroundImage: `url('${props.userProfile}` }}></div>
+          <div className="block rounded-full shadow-xl mx-auto h-10 w-10 bg-cover bg-center hover:scale-125 transition ease-in-out duration-150" style={{ backgroundImage: `url('${props.userProfile}` }}></div>
         </div>
       </Link>
     </div>

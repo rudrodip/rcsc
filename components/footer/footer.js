@@ -34,7 +34,7 @@ const Footer = (props) => {
                             props = {
                                 {'name': "Official Website",
                                 'links': {
-                                    'RC': 'http://rc.edu.bd/'
+                                    'RC': 'https://rc.gov.bd/'
                                 }}
                             }
                         />
