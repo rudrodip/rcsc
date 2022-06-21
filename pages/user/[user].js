@@ -32,6 +32,7 @@ const Profile = () => {
                             <div className="block rounded-full shadow-xl mx-auto -mt-16 h-48 w-48 bg-cover bg-center" style={{ backgroundImage: `url('${user ? user.photoURL : "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"}')` }}></div>
 
                             <h1 className="text-3xl font-bold pt-8 lg:pt-0">{user?.name}</h1>
+                            <p className='text-blue-500 font-mono italic font-medium'>{user?.isAdmin && '✅ Admin'}</p>
                             <div className="mx-auto lg:mx-0 w-4/5 pt-3 border-b-2 border-sky-500 opacity-25"></div>
                             <p className="pt-4 text-base font-bold flex items-center justify-center lg:justify-start">
                                 <svg className="h-4 fill-current text-cyan-400 pr-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
