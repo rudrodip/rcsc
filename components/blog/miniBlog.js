@@ -40,7 +40,12 @@ const MiniBlog = (props) => {
                                     height="15"
                                     viewBox="0 0 24 24"
                                     className='fill-gray-300 transition ease-in-out duration-150 hover:scale-125 hover:fill-red-500'
-                                    onClick={() => props.handleHide(props.id, props.blog?.authorProfile, props.blog?.isApproved)}
+                                    onClick={() => props.handleHide(
+                                        props.id,
+                                        props.blog?.authorProfile,
+                                        props.blog?.approved,
+                                        false
+                                    )}
                                 >
                                     <path d="M3 6v18h18v-18h-18zm5 14c0 .552-.448 1-1 1s-1-.448-1-1v-10c0-.552.448-1 1-1s1 .448 1 1v10zm5 0c0 .552-.448 1-1 1s-1-.448-1-1v-10c0-.552.448-1 1-1s1 .448 1 1v10zm5 0c0 .552-.448 1-1 1s-1-.448-1-1v-10c0-.552.448-1 1-1s1 .448 1 1v10zm4-18v2h-20v-2h5.711c.9 0 1.631-1.099 1.631-2h5.315c0 .901.73 2 1.631 2h5.712z" />
                                 </svg>
@@ -48,7 +53,12 @@ const MiniBlog = (props) => {
                             {!props.blog?.approved &&
                                 <p
                                     className='ml-3 hover:text-blue-400 text-green-400 transition duration-100'
-                                    onClick = {()=> props.handleHide(props.id, props.blog?.authorProfile, props.blog?.isApproved, true)}
+                                    onClick={() => props.handleHide(
+                                        props.id,
+                                        props.blog?.authorProfile,
+                                        props.blog?.approved,
+                                        true
+                                    )}
                                 >
                                     Approve
                                 </p>

@@ -35,28 +35,30 @@ function Blogs({ user, userInfo }) {
     return 0
   }
 
-  async function handHide(id, authorProfile, status, add=false) {
+  async function handleHide(id, authorProfile, approved, add) {
     setLoading(true)
-    if (userInfo?.isAdmin && !add) {
-      await deleteBlog(id)
-    } else {
+    if (add) {
+      await updateBlogNo(authorProfile, 1)
       await hideBlog(id, add)
     }
 
-    if (add){
-      await updateBlogNo(authorProfile, 1)
+    if (!add) {
+      await deleteBlog(id)
+      if (approved){
+        await updateBlogNo(authorProfile, -1)
+      }
     }
-    if (status && !add) await updateBlogNo(authorProfile, -1)
 
     toast('Updated status', {
       position: "top-center",
       autoClose: 3000,
       hideProgressBar: false,
       closeOnClick: true,
-      pauseOnHover: true,
+      pauseOnHover: false,
       draggable: true,
       progress: undefined,
     })
+    
     setLoading(false)
     setTimeout(() => router.reload(), 2000)
   }
@@ -148,7 +150,7 @@ function Blogs({ user, userInfo }) {
                 date={formatedDate}
                 key={index}
                 id={i?.id}
-                handleHide={handHide}
+                handleHide={handleHide}
               />
             )
           }
