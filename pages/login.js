@@ -6,14 +6,12 @@ import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import { login, useAuth } from '../src/config/firebase.config'
 
-const Login = () => {
+const Login = ({ user }) => {
   const router = useRouter()
   const [loading, setLoading] = useState(false)
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [isChecked, setIsChecked] = useState(false)
-  const user = useAuth()
-
 
   const handleOnChange = () => {
     setIsChecked(!isChecked)

@@ -1,19 +1,17 @@
 import React from 'react'
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { FileInputButton } from '../components/fileInput'
 import Paragraph from '../components/blog/paragraph'
 import Categories from '../categories.json'
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
-import { useAuth, db, storage, updateBlogNo } from '../src/config/firebase.config';
+import { db, storage } from '../src/config/firebase.config';
 import { useRouter } from 'next/dist/client/router';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage'
-import { getDoc, doc, setDoc, serverTimestamp } from 'firebase/firestore'
+import { doc, setDoc, serverTimestamp } from 'firebase/firestore'
 
-const WriteBlog = () => {
+const WriteBlog = ({ user, userInfo }) => {
   const router = useRouter()
-  const currentUser = useAuth()
-  const [user, setUser] = useState(null)
   const [title, setTitle] = useState('')
   const [category, setCategory] = useState('All Blogs')
   const [image, setImage] = useState('')
@@ -37,23 +35,6 @@ const WriteBlog = () => {
   const handleToggle = () => {
     setToggle(!toggle)
   }
-
-  useEffect(() => {
-    async function getUser(uid) {
-      if (!uid) return
-      const userRef = doc(db, `user/${uid}`)
-      const docSnap = await getDoc(userRef)
-      if (docSnap.exists()) {
-        setUser(docSnap.data())
-      } else {
-        console.log("No such document!");
-      }
-    }
-    if (currentUser) {
-      getUser(currentUser.uid)
-    }
-
-  }, [currentUser])
 
   const addParagraph = (index, subtitle, paragraph) => {
     let data = paragraphs[index]
@@ -108,8 +89,8 @@ const WriteBlog = () => {
     setLoading(true)
     try {
       const data = {
-        author: user.name,
-        authorProfile: currentUser.uid,
+        author: userInfo.name,
+        authorProfile: user.uid,
         category: category,
         title: title,
         paragraphs: paragraphs,
@@ -117,8 +98,8 @@ const WriteBlog = () => {
         timestamp: serverTimestamp(),
         approved: false
       }
-      const blogref = doc(db, `blogs/${title}by${currentUser.uid}`)
-      const blogImgRef = ref(storage, `blogImg/${title}by${currentUser.uid}`)
+      const blogref = doc(db, `blogs/${title}by${user.uid}`)
+      const blogImgRef = ref(storage, `blogImg/${title}by${user.uid}`)
       const metadata = {
         contentType: 'image/jpeg',
       }
@@ -129,7 +110,6 @@ const WriteBlog = () => {
       }
 
       setDoc(blogref, data)
-      updateBlogNo(currentUser, 1)
       toast('Uploaded, Wait for approval 😊', {
         position: "top-center",
         autoClose: 3000,
@@ -155,7 +135,7 @@ const WriteBlog = () => {
     setLoading(false)
   }
 
-  if (!currentUser) return ''
+  if (!user) return ''
   return (
     <div className='m-1 p-1 lg:m-5 lg:p-10'>
       <ToastContainer

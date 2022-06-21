@@ -4,7 +4,7 @@ import CountUp from 'react-countup';
 import Stats from '../stats.json'
 import TeachersProfile from '../components/profile/teachersProfile'
 
-function About() {
+function About({ user }) {
   return (
     <div>
       <Header

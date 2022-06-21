@@ -8,13 +8,14 @@ import LoadingBar from 'react-top-loading-bar'
 import { useState } from 'react'
 import { useEffect } from 'react'
 import { useRouter } from 'next/router'
-import { useAuth } from '../src/config/firebase.config'
+import { useAuth, useUser } from '../src/config/firebase.config'
 
-function MyApp({ Component, pageProps }) {
+const MyApp = ({ Component, pageProps }) => {
   const router = useRouter()
   const [key, setKey] = useState(0)
   const [progress, setProgress] = useState(0)
   const user = useAuth()
+  const userInfo = useUser()
 
   useEffect(() => {
     router.events.on('routeChangeStart', () => setProgress(40))
@@ -39,8 +40,8 @@ function MyApp({ Component, pageProps }) {
         onLoaderFinished={() => setProgress(0)}
         waitingTime={400}
       />
-      {key && <Navbar props={Pages} key={key} user={user} path={router.pathname} userProfile={user?.photoURL ? user?.photoURL : "https://dummyimage.com/200x200"}/>}
-      <Component {...pageProps} />
+      {key && <Navbar props={Pages} key={key} user={user} path={router.pathname} userProfile={user?.photoURL || "https://dummyimage.com/200x200"}/>}
+      <Component {...pageProps} user={user} userInfo={userInfo} />
       <Footer desc={router.pathname == "/" ? true : false}/>
     </div>
   </>

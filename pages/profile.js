@@ -1,20 +1,19 @@
 import React from 'react'
 import { useRouter } from 'next/router'
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import ProfileEdit from '../components/profile/profileEdit'
-import { logout, useAuth, db } from '../src/config/firebase.config';
-import { getDoc, doc } from 'firebase/firestore'
-import AddAchievements from '../components/profile/addAchievements';
-import AddSocialLink from '../components/profile/socials';
+import { logout, useUser } from '../src/config/firebase.config'
+import AddAchievements from '../components/profile/addAchievements'
+import AddSocialLink from '../components/profile/socials'
+import ButtomPrimary from '../components/button-primary'
 
-const Profile = () => {
+const Profile = ({ user }) => {
   const router = useRouter()
   const [toggle, setToggle] = useState("hidden")
   const [achievementToggle, setAchievementToggle] = useState("hidden")
   const [socialToggle, setSocialToggle] = useState("hidden")
-  const [user, setUser] = useState(null)
   const [loading, setLoading] = useState(false)
-  const currentUser = useAuth()
+  const userInfo = useUser()
 
   const handleToggle = () => {
     toggle == "" ? setToggle("hidden") : setToggle('')
@@ -26,24 +25,6 @@ const Profile = () => {
   const handleSocialToggle = () => {
     socialToggle == "" ? setSocialToggle("hidden") : setSocialToggle('')
   }
-
-  useEffect(() => {
-    async function getUser(uid) {
-      if (!uid) return
-      const userRef = doc(db, `user/${uid}`)
-      const docSnap = await getDoc(userRef)
-      if (docSnap.exists()) {
-        setUser(docSnap.data())
-      } else {
-        console.log("No such document!");
-      }
-    }
-    if (currentUser) {
-      getUser(currentUser.uid)
-    }
-
-  }, [currentUser])
-
 
   const handleLogout = async () => {
     try {
@@ -58,23 +39,23 @@ const Profile = () => {
 
   return (
     <main className="profile-page my-14">
-      <ProfileEdit toggle={toggle} handleToggle={handleToggle} user={currentUser} isAlumnus={user?.isAlumnus} />
-      <AddAchievements toggle={achievementToggle} handleToggle={handleAchievementToggle} user={currentUser} achievements={user && user.achievements} />
-      <AddSocialLink toggle={socialToggle} handleToggle={handleSocialToggle} user={currentUser} socials={user && user.socials} />
+      <ProfileEdit toggle={toggle} handleToggle={handleToggle} user={user} isAlumnus={userInfo?.isAlumnus} />
+      <AddAchievements toggle={achievementToggle} handleToggle={handleAchievementToggle} user={user} achievements={userInfo?.achievements} />
+      <AddSocialLink toggle={socialToggle} handleToggle={handleSocialToggle} user={user} socials={userInfo?.socials} />
       <div>
         <div className="flex items-center mx-auto justify-center w-full md:w-2/3 xl:w-1/2 content-center">
           <div id="profile" className="w-full lg:w-3/5 rounded-lg lg:rounded-l-lg lg:rounded-r-none shadow-2xl bg-gray-800 mx-6 lg:mx-0">
             <div className="p-4 md:p-12 text-center lg:text-left">
-              <div className="block rounded-full shadow-xl mx-auto -mt-16 h-48 w-48 bg-cover bg-center" style={{ backgroundImage: `url('${user ? user.photoURL : "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"}')` }}></div>
-              <h1 className="text-3xl font-bold pt-8 lg:pt-0">{user?.name}</h1>
+              <div className="block rounded-full shadow-xl mx-auto -mt-16 h-48 w-48 bg-cover bg-center" style={{ backgroundImage: `url('${userInfo?.photoURL || "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"}')` }}></div>
+              <h1 className="text-3xl font-bold pt-8 lg:pt-0">{userInfo?.name}</h1>
               <div className="mx-auto lg:mx-0 w-4/5 pt-3 border-b-2 border-sky-500 opacity-25"></div>
               <p className="pt-4 text-base font-bold flex items-center justify-center lg:justify-start">
                 <svg className="h-4 fill-current text-cyan-400 pr-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
                   <path d="M9 12H1v6a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-6h-8v2H9v-2zm0-1H0V5c0-1.1.9-2 2-2h4V2a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v1h4a2 2 0 0 1 2 2v6h-9V9H9v2zm3-8V2H8v1h4z" />
                 </svg>
-                {user?.role}
+                {userInfo?.role}
               </p>
-              {!user ?
+              {!userInfo ?
                 <div className='flex justify-center m-5'>
                   <button disabled type="button" className="py-2.5 px-5 mr-2 text-sm font-medium  rounded-lg border hover:text-gray-200 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 bg-gray-800 text-gray-400 border-gray-600 hover:bg-gray-700 inline-flex items-center">
                     <svg role="status" className="inline w-4 h-4 mr-2 animate-spin text-gray-600" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -88,60 +69,47 @@ const Profile = () => {
                 :
                 <div>
                   <p className="pt-2 text-cyan-400 font-bold text-xl lg:text-lg">
-                    {user ? user.institution : ''}
+                    {userInfo ? userInfo.institution : ''}
                   </p>
-                  {user?.isAlumnus ?
+                  {userInfo?.isAlumnus ?
                     <div className='flex flex-col justify-start items-start'>
                       <p className="pt-2 text-gray-200 text-xs lg:text-sm ml-8 lg:ml-0">
-                        {`Batch: ${user ? user.batch : ''}`}
+                        {`Batch: ${user ? userInfo.batch : ''}`}
                       </p>
                       {user?.phone &&
                         <p className="pt-2 text-gray-200 text-xs lg:text-sm ml-8 lg:ml-0">
-                          {`Phone: ${user.phone}`}
+                          {`Phone: ${userInfo.phone}`}
                         </p>
                       }
                       <p className="pt-2 text-gray-200 text-xs lg:text-sm ml-8 lg:ml-0">
-                        {`E-Mail: ${user ? user.email : ''}`}
+                        {`E-Mail: ${userInfo.email}`}
                       </p>
                     </div>
                     :
                     <div>
-                      <p><span className='text-sm font-semibold'>Class: </span>{user?.class}</p>
-                      <p><span className='text-sm font-semibold'>Section: </span>{user?.section}</p>
-                      <p><span className='text-sm font-semibold'>Roll: </span>{user?.roll}</p>
+                      <p><span className='text-sm font-semibold'>Class: </span>{userInfo?.class}</p>
+                      <p><span className='text-sm font-semibold'>Section: </span>{userInfo?.section}</p>
+                      <p><span className='text-sm font-semibold'>Roll: </span>{userInfo?.roll}</p>
                     </div>
                   }
                 </div>
               }
 
-              <div className="p-5">
-                <button className="bg-gray-900 hover:bg-blue-600 uppercase text-white font-bold hover:scale-110 transition-all ease-in-out duration-100 shadow text-xs px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1 mx-3"
-                  onClick={handleToggle}
-                >
-                  Edit
-                </button>
-
-                <button className="p-5 m-5 bg-gray-900 hover:bg-blue-600 uppercase text-white font-bold hover:scale-110 transition-all ease-in-out duration-100 shadow text-xs px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1 mx-3"
-                  onClick={handleAchievementToggle}
-                >
-                  Edit achievements
-                </button>
-                <button className="p-5 m-5 bg-gray-900 hover:bg-blue-600 uppercase text-white font-bold hover:scale-110 transition-all ease-in-out duration-100 shadow text-xs px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1 mx-3"
-                  onClick={handleSocialToggle}
-                >
-                  Add social media
-                </button>
+              <div className="p-5 flex flex-wrap">
+                <ButtomPrimary text="Edit Profile" onClick={handleToggle}/>
+                <ButtomPrimary text="Edit Achievements" onClick={handleAchievementToggle}/>
+                <ButtomPrimary text="Edit Social Media" onClick={handleSocialToggle}/>
               </div>
 
               <div className="w-4/5 lg:w-full flex flex-wrap items-center justify-between text-gray-400">
-                <p>Blogs: {user?.blogs}</p>
+                <p>Blogs: {userInfo?.blogs}</p>
               </div>
 
-              {user?.achievements.length > 0 &&
+              {userInfo?.achievements.length > 0 &&
                 <div>
                   <h1 className='mt-4 text-md text-blue-500 text-left font-semibold'>Achievements</h1>
                   <div className='text-left'>
-                    {user?.achievements && user.achievements.map((achievement, index) => {
+                    {userInfo?.achievements && userInfo.achievements.map((achievement, index) => {
                       return (
                         <div key={index}>
                           <p className="pt-2 text-gray-200 text-xs lg:text-sm flex items-center justify-start">
@@ -155,15 +123,15 @@ const Profile = () => {
                 </div>
               }
 
-              {user?.socials && Object.keys(user?.socials).length > 0 &&
+              {userInfo?.socials && Object.keys(userInfo?.socials).length > 0 &&
                 <div>
                   <h1 className='mt-4 text-md text-blue-500 font-semibold text-left'>Socials</h1>
                   <div className='text-left ml-2'>
-                    {user?.socials && Object.keys(user.socials).map((i, index) => {
+                    {userInfo?.socials && Object.keys(userInfo.socials).map((i, index) => {
                       return (
                         <div key={index}>
                           <p className="pt-2 text-gray-200 text-sm lg:text-sm flex items-center justify-start italic">
-                            <a href={user.socials[i]} className='text-cyan-500' target={'_blank'} rel="noreferrer">
+                            <a href={userInfo.socials[i]} className='text-cyan-500' target={'_blank'} rel="noreferrer">
                               {i.charAt(0).toUpperCase() + i.slice(1)}
                             </a>
                           </p>

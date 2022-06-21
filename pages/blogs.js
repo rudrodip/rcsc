@@ -1,7 +1,7 @@
 import React from 'react'
 import Header from '../components/header/header'
 import MiniBlog from '../components/blog/miniBlog'
-import { db, useAuth, deleteBlog, updateBlogNo, useUser, hideBlog } from '../src/config/firebase.config';
+import { db, deleteBlog, updateBlogNo, hideBlog } from '../src/config/firebase.config';
 import { getDocs, collection, query, limit, where } from 'firebase/firestore'
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
@@ -11,14 +11,12 @@ import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import useWindowDimensions from '../components/useWindowDimensions'
 
-function Blogs() {
+function Blogs({ user, userInfo }) {
   const router = useRouter()
   const [blogs, setBlogs] = useState(null)
   const [category, setCategory] = useState('All Blogs')
   const [loading, setLoading] = useState(false)
   const { width, height } = useWindowDimensions()
-  const currentUser = useAuth()
-  const user = useUser()
 
   const handleCategory = (e) => {
     e.preventDefault()
@@ -37,15 +35,18 @@ function Blogs() {
     return 0
   }
 
-  async function handHide(id, approvalState=false) {
+  async function handHide(id, authorProfile, status, add=false) {
     setLoading(true)
-    if (user?.isAdmin && !approvalState) {
+    if (userInfo?.isAdmin && !add) {
       await deleteBlog(id)
     } else {
-      await hideBlog(id, approvalState)
+      await hideBlog(id, add)
     }
 
-    await updateBlogNo(currentUser, -1)
+    if (add){
+      await updateBlogNo(authorProfile, 1)
+    }
+    if (status && !add) await updateBlogNo(authorProfile, -1)
 
     toast('Updated status', {
       position: "top-center",
@@ -65,7 +66,7 @@ function Blogs() {
       const docRef = collection(db, 'blogs')
       let q = null
       if (category == "My Blogs") {
-        q = query(docRef, where("authorProfile", "==", currentUser.uid), limit(30))
+        q = query(docRef, where("authorProfile", "==", user.uid), limit(30))
       } else if (category == "All Blogs") {
         q = query(docRef, limit(30))
       } else {
@@ -106,7 +107,7 @@ function Blogs() {
       <div className='my-5'>
         <h1 className='p-4 text-4xl text-center text-transparent bg-clip-text bg-gradient-to-r font-bold from-blue-400 to-cyan-500'>Blogs</h1>
       </div>
-      {currentUser ?
+      {user ?
         <div className='w-full flex justify-center content-center flex-row'>
           <Link href="/writeBlog">
             <button className="bg-gradient-to-r from-blue-600 to-cyan-500 uppercase text-white font-semibold hover:from-cyan-400 hover:to-blue-400 transition-all ease-in-out duration-100 shadow text-md lg:text-lg p-3 lg:p-5 rounded outline-none focus:outline-none sm:mr-2 mb-1 mx-3"
@@ -139,11 +140,11 @@ function Blogs() {
             const date = i.data().timestamp.toDate()
             const formatedDate = date.toString().slice(0, 15)
 
-            if (!i.data().approved && !user?.isAdmin) return ''
+            if (!i.data().approved && !userInfo?.isAdmin) return ''
             return (
               <MiniBlog
                 blog={i.data()}
-                editable={currentUser?.uid == i.data().authorProfile || user?.isAdmin ? true : false}
+                editable={user?.uid == i.data().authorProfile || userInfo?.isAdmin ? true : false}
                 date={formatedDate}
                 key={index}
                 id={i?.id}

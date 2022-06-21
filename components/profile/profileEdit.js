@@ -12,15 +12,12 @@ const ProfileEdit = (props) => {
     // initializing all states
     const [name, setName] = useState('')
     const [phone, setPhone] = useState('')
-    const [section, setSection] = useState('')
-    const [grade, setGrade] = useState('')
-    const [roll, setRoll] = useState('')
     const [institution, setInstitution] = useState('')
     const [image, setImage] = useState('')
     const [loading, setLoading] = useState(false)
 
     // custom hook for auth
-    const currentUser = useAuth()
+    const currentUser = props.user
 
     // profile picture change
     const onChange = async (image) => {
@@ -95,9 +92,6 @@ const ProfileEdit = (props) => {
             console.log(error)
         }
         setPhone('')
-        setSection('')
-        setRoll('')
-        setGrade('')
         setName('')
 
         { props.handleToggle() }
