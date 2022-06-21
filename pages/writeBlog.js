@@ -114,7 +114,8 @@ const WriteBlog = () => {
         title: title,
         paragraphs: paragraphs,
         views: 0,
-        timestamp: serverTimestamp()
+        timestamp: serverTimestamp(),
+        approved: false
       }
       const blogref = doc(db, `blogs/${title}by${currentUser.uid}`)
       const blogImgRef = ref(storage, `blogImg/${title}by${currentUser.uid}`)
@@ -129,7 +130,7 @@ const WriteBlog = () => {
 
       setDoc(blogref, data)
       updateBlogNo(currentUser, 1)
-      toast('Uploaded', {
+      toast('Uploaded, Wait for approval 😊', {
         position: "top-center",
         autoClose: 3000,
         hideProgressBar: false,

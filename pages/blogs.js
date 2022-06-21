@@ -1,7 +1,7 @@
 import React from 'react'
 import Header from '../components/header/header'
 import MiniBlog from '../components/blog/miniBlog'
-import { db, useAuth, deleteBlog, updateBlogNo, useUser } from '../src/config/firebase.config';
+import { db, useAuth, deleteBlog, updateBlogNo, useUser, hideBlog } from '../src/config/firebase.config';
 import { getDocs, collection, query, limit, where } from 'firebase/firestore'
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
@@ -37,12 +37,17 @@ function Blogs() {
     return 0
   }
 
-  async function handleDeleteBlog(id) {
+  async function handHide(id, approvalState=false) {
     setLoading(true)
-    await deleteBlog(id)
+    if (user?.isAdmin && !approvalState) {
+      await deleteBlog(id)
+    } else {
+      await hideBlog(id, approvalState)
+    }
+
     await updateBlogNo(currentUser, -1)
 
-    toast.warn('Deleted blog', {
+    toast('Updated status', {
       position: "top-center",
       autoClose: 3000,
       hideProgressBar: false,
@@ -53,7 +58,6 @@ function Blogs() {
     })
     setLoading(false)
     setTimeout(() => router.reload(), 2000)
-
   }
 
   useEffect(() => {
@@ -127,24 +131,23 @@ function Blogs() {
         </div>
 
         : ''}
+
+
       <div className="flex m-1 md:m-5 flex-wrap duration-200 transition ease-in-out">
         {
           blogs && blogs.map((i, index) => {
             const date = i.data().timestamp.toDate()
             const formatedDate = date.toString().slice(0, 15)
 
+            if (!i.data().approved && !user?.isAdmin) return ''
             return (
               <MiniBlog
-                title={i.data().title}
-                img={i.data().img}
-                category={i.data().category}
-                poster={i.data().author}
-                authorProfile={i.data().authorProfile}
+                blog={i.data()}
                 editable={currentUser?.uid == i.data().authorProfile || user?.isAdmin ? true : false}
                 date={formatedDate}
                 key={index}
-                link={i.id}
-                deleteBlog={handleDeleteBlog}
+                id={i?.id}
+                handleHide={handHide}
               />
             )
           }

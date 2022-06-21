@@ -142,12 +142,12 @@ const AddAchievements = (props) => {
             <div className={`${props.toggle} backdrop-blur-none md:backdrop-blur-sm absolute overflow-y-auto overflow-x-hidden flex justify-center z-50 w-full md:inset-0 h-modal md:h-full`}>
                 <div className="container max-w-sm mx-auto flex-1 flex flex-col items-center justify-center px-2">
 
-                    <div className="dark:bg-gray-700 px-6 py-8 rounded shadow-md w-full">
+                    <div className="bg-gray-700 px-6 py-8 rounded shadow-md w-full">
                         <div className='my-4 text-left'>
                             {achievements && achievements.map((achievement, index) => {
                                 return (
                                     <div key={index} className='flex flex-row items-end justify-between'>
-                                        <p className="pt-2 text-gray-300 text-xs lg:text-sm flex items-center justify-start">
+                                        <p className="pt-2 text-white text-xs lg:text-sm flex items-center justify-start">
                                             <span>{index+1}. </span>
                                             {achievement}
                                         </p>
@@ -164,10 +164,10 @@ const AddAchievements = (props) => {
                                 )
                             })}
                         </div>
-                        <div className="w-full h-1 bg-blue-400 rounded mt-2 mb-4"></div>
+                        <div className="w-full h-1 bg-blue-600 rounded mt-2 mb-4"></div>
                         <div className='flex flex-row justify-end'>
-                            <h1 className="mb-8 text-2xl text-center text-gray-200">Add your achievements</h1>
-                            <button type="button" className="mb-7 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-800 dark:hover:text-white" onClick={props.handleToggle}>
+                            <h1 className="mb-8 text-2xl text-center text-white">Add your achievements</h1>
+                            <button type="button" className="mb-7 text-gray-400 bg-transparent rounded-lg text-sm p-1.5 ml-auto inline-flex items-center hover:bg-gray-800 hover:text-white" onClick={props.handleToggle}>
                                 <svg className="w-5 h-5" fill='currentColor' viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd"></path></svg>
                             </button>
                         </div>
@@ -181,7 +181,7 @@ const AddAchievements = (props) => {
 
                         <button
                             type="submit"
-                            className="w-full text-center py-3 rounded bg-cyan-500 text-white hover:scale-105 transition duration-200 focus:outline-none my-1"
+                            className="w-full text-center py-3 rounded bg-blue-500 text-white hover:scale-105 transition duration-200 focus:outline-none my-1"
                             onClick={handleSubmit}
                             disabled={loading}
                         >
