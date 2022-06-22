@@ -40,27 +40,23 @@ function Blogs({ user, userInfo }) {
     if (add) {
       await updateBlogNo(authorProfile, 1)
       await hideBlog(id, add)
+      userInfo.blogs += 1
     }
 
     if (!add) {
+      // remove from the array for UI
+      let index = blogs.findIndex(i => i.id == id)
+      blogs.splice(index, 1)
+
+      // actually deleting from the server
       await deleteBlog(id)
-      if (approved){
+
+      if (approved) {
         await updateBlogNo(authorProfile, -1)
+        userInfo.blogs -= 1
       }
     }
-
-    toast('Updated status', {
-      position: "top-center",
-      autoClose: 3000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: false,
-      draggable: true,
-      progress: undefined,
-    })
-    
     setLoading(false)
-    setTimeout(() => router.reload(), 2000)
   }
 
   useEffect(() => {
@@ -122,8 +118,9 @@ function Blogs({ user, userInfo }) {
       <div className='w-full flex flex-row justify-around'>
         <SearchBlog handleCategory={handleCategory} category={category} />
       </div>
+
       {!blogs || loading ?
-        <div className='flex justify-center m-5'>
+        <div className='sticky top-0 z-40 flex justify-center m-5'>
           <button disabled type="button" className="py-2.5 px-5 mr-2 text-sm font-medium  rounded-lg border hover:text-gray-200 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 bg-gray-800 text-gray-400 border-gray-600 hover:bg-gray-700 inline-flex items-center">
             <svg role="status" className="inline w-4 h-4 mr-2 animate-spin text-gray-600" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="currentColor" />
@@ -134,7 +131,6 @@ function Blogs({ user, userInfo }) {
         </div>
 
         : ''}
-
 
       <div className="flex m-1 md:m-5 flex-wrap duration-200 transition ease-in-out">
         {

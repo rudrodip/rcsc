@@ -2,18 +2,16 @@ import React from 'react'
 import { useRouter } from 'next/router'
 import { useState } from 'react'
 import ProfileEdit from '../components/profile/profileEdit'
-import { logout, useUser } from '../src/config/firebase.config'
+import { logout } from '../src/config/firebase.config'
 import AddAchievements from '../components/profile/addAchievements'
 import AddSocialLink from '../components/profile/socials'
 import ButtomPrimary from '../components/button-primary'
 
-const Profile = ({ user }) => {
+const Profile = ({ user, userInfo }) => {
   const router = useRouter()
   const [toggle, setToggle] = useState("hidden")
   const [achievementToggle, setAchievementToggle] = useState("hidden")
   const [socialToggle, setSocialToggle] = useState("hidden")
-  const [loading, setLoading] = useState(false)
-  const userInfo = useUser()
 
   const handleToggle = () => {
     toggle == "" ? setToggle("hidden") : setToggle('')
