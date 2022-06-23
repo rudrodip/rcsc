@@ -58,7 +58,7 @@ const Navbar = ({ props, user, path, userProfile }) => {
               {path != "/" ? <button
                 onClick={() => setIsOpen(!isOpen)}
                 type="button"
-                className="bg-gray-900 inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
+                className="bg-gray-900 inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-800"
                 aria-controls="mobile-menu"
                 aria-expanded="false"
               >
@@ -120,7 +120,7 @@ const Navbar = ({ props, user, path, userProfile }) => {
           leaveTo="opacity-0 scale-95"
         >
           {() => (
-            <div className="lg:hidden" id="mobile-menu">
+            <div className="lg:hidden bg-gray-800" id="mobile-menu">
               <div ref={divRef} className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
                 {Object.keys(props).map(i => (
                   path != props[i] ? <Navbutton name={i} link={props[i]} key={i} /> : <Navbutton name={i} link={props[i]} key={i} classname="bg-gradient-to-r from-blue-600 to-cyan-500 text-white font-medium" />
@@ -141,7 +141,7 @@ const Navbutton = (props) => {
       <Link href={props.link}>
         <a
           href="#"
-          className={`text-gray-400 hover:bg-gray-700 ${props.classname} block px-4 mx-3 py-2 text-base transition duration-150`}
+          className={`text-gray-400 hover:bg-gray-700 ${props.classname} block px-4 mx-3 py-2 rounded-md text-base transition duration-150 ease-in-out`}
         >
           {props.name}
         </a>
