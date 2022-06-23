@@ -120,6 +120,8 @@ const WriteBlog = ({ user, userInfo }) => {
         progress: undefined,
       })
       setTimeout(() => router.push('/blogs'), 2500)
+      setLoading(false)
+
     } catch (error) {
       toast.warn('Error while uploading', {
         position: "top-center",
@@ -131,8 +133,6 @@ const WriteBlog = ({ user, userInfo }) => {
         progress: undefined,
       })
     }
-
-    setLoading(false)
   }
 
   if (!user) return ''

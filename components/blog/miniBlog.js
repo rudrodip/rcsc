@@ -4,7 +4,7 @@
 // importing necessary dependencies
 import React from 'react'
 import { useRouter } from 'next/router'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 
 // here's the main component
@@ -12,7 +12,7 @@ const MiniBlog = (props) => {
     // props property -->
     // poster -> title -> date -> img
     const router = useRouter()
-    const [approved, setApproved] = useState(props.blog?.approved)
+    const [approved, setApproved] = useState(false)
 
     const handleClick = (id) => {
         router.push(`${router.pathname}/${id}`)
@@ -36,6 +36,11 @@ const MiniBlog = (props) => {
             true
         )
     }
+
+    useEffect(() => {
+        setApproved(props.blog?.approved)
+    }, [props.blog?.approved])
+
     return (
         <div className="p-1 sm:p-4 w-1/2 xl:w-1/3 transition ease-in-out duration-500 scale-1">
             <button>

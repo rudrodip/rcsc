@@ -5,18 +5,14 @@ import { db, deleteBlog, updateBlogNo, hideBlog } from '../src/config/firebase.c
 import { getDocs, collection, query, limit, where } from 'firebase/firestore'
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
-import { useRouter } from 'next/router'
 import SearchBlog from '../components/blog/searchBlog';
-import { ToastContainer, toast } from 'react-toastify'
-import 'react-toastify/dist/ReactToastify.css'
 import useWindowDimensions from '../components/useWindowDimensions'
 
 function Blogs({ user, userInfo }) {
-  const router = useRouter()
   const [blogs, setBlogs] = useState(null)
   const [category, setCategory] = useState('All Blogs')
-  const [loading, setLoading] = useState(false)
   const { width, height } = useWindowDimensions()
+  const [laoding, setLoading] = useState(false)
 
   const handleCategory = (e) => {
     e.preventDefault()
@@ -82,15 +78,6 @@ function Blogs({ user, userInfo }) {
 
   return (
     <div>
-      <ToastContainer
-        position="bottom-center"
-        autoClose={3000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        draggable
-      />
       {
         width > 1000 &&
         <Header
@@ -119,7 +106,7 @@ function Blogs({ user, userInfo }) {
         <SearchBlog handleCategory={handleCategory} category={category} />
       </div>
 
-      {!blogs || loading ?
+      {!blogs ?
         <div className='sticky top-0 z-40 flex justify-center m-5'>
           <button disabled type="button" className="py-2.5 px-5 mr-2 text-sm font-medium  rounded-lg border hover:text-gray-200 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 bg-gray-800 text-gray-400 border-gray-600 hover:bg-gray-700 inline-flex items-center">
             <svg role="status" className="inline w-4 h-4 mr-2 animate-spin text-gray-600" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">

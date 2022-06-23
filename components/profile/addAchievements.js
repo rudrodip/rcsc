@@ -81,17 +81,6 @@ const AddAchievements = (props) => {
     const handleDelete = async (data, index) => {
         achievements.splice(index, 1)
         await deleteAchievement(user, data)
-
-        // shows the user the state
-        toast.warn('Deleted', {
-            position: "top-center",
-            autoClose: 3000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-        })
     }
 
     // handle the submit function
