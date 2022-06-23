@@ -16,12 +16,13 @@ const AddSocialMedia = (props) => {
     const [user, setUser] = useState(null)
     const [social, setSocial] = useState('')
     const [socialName, setSocialName] = useState('')
-    let socials = props.socials
+    const [socials, setSocials] = useState('')
 
     // setUser and handleChange in the form
     useEffect(() => {
         props.user && setUser(props.user)
-    }, [props.user])
+        props.socials && setSocials(props.socials)
+    }, [props.socials, props.user])
 
     const handleChange = (e) => {
         if (e.target.name == 'social') {
@@ -77,28 +78,18 @@ const AddSocialMedia = (props) => {
 
     // handles the delete function
     const handleDelete = async (key) => {
-        key = key.charAt(0).toUpperCase() + key.slice(1)
-        delete socials[key]
+        let social_key = key.charAt(0).toUpperCase() + key.slice(1)
+        setSocials(
+            ({[social_key]: value, ...socials}) => socials
+        )
+        delete props.socials[social_key]
         await deleteSocial(user)
-
-        // shows the user the state
-        toast.warn('Deleted', {
-            position: "top-center",
-            autoClose: 3000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-        })
     }
 
     // handle the submit function
     const handleSubmit = async (e) => {
         // set the loading to true so that user can't use the button until the proceess is finished
         setLoading(true)
-        // socials.push(social)
-        // to stop relaoding the page
         e.preventDefault()
 
         // checking the validation
@@ -107,17 +98,6 @@ const AddSocialMedia = (props) => {
                 socials[socialName] = social
                 socials = { socials }
                 await addSocial(user, socials)
-
-                // show the status
-                toast('Added', {
-                    position: "top-center",
-                    autoClose: 3000,
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true,
-                    progress: undefined,
-                })
 
             } catch (error) {
                 alert(error)
@@ -145,13 +125,21 @@ const AddSocialMedia = (props) => {
             <div className={`${props.toggle} backdrop-blur-none md:backdrop-blur-sm absolute overflow-y-auto overflow-x-hidden flex justify-center z-50 w-full md:inset-0 h-modal md:h-full`}>
                 <div className="container max-w-sm mx-auto flex-1 flex flex-col items-center justify-center px-2">
 
-                    <div className="bg-gray-700 px-6 py-8 rounded shadow-md w-full">
-                        <div className='my-4 text-left'>
+                    <div className="bg-gray-700 px-6 py-8 rounded-lg shadow-md w-full">
+
+                        <div className='flex flex-row justify-end'>
+                            <h1 className="mb-8 text-xl text-center text-white">Customize Social Media</h1>
+                            <button type="button" className="bg-gray-600 mb-7 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-800 dark:hover:text-white" onClick={props.handleToggle}>
+                                <svg className="w-5 h-5" fill='currentColor' viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd"></path></svg>
+                            </button>
+                        </div>
+
+                        <div className='my-4 mb-10 text-left'>
                             {socials && Object.keys(socials).map((i, index) => {
                                 return (
-                                    <div key={index} className='flex flex-row items-end justify-between'>
-                                        <p className="pt-2 text-white text-xs lg:text-sm flex items-center justify-start">
-                                            <a href={socials[i]} className='text-blue-400' target={'_blank'} rel="noreferrer">
+                                    <div key={index} className='flex flex-row justify-between border-2 border-gray-600 m-2 rounded-md p-1'>
+                                        <p className="text-white text-md lg:text-sm flex items-center justify-start italic">
+                                            <a href={socials[i]} className='text-cyan-500' target={'_blank'} rel="noreferrer">
                                                 {i.charAt(0).toUpperCase() + i.slice(1)}
                                             </a>
                                         </p>
@@ -159,7 +147,7 @@ const AddSocialMedia = (props) => {
                                             <button className='pointer-cursor'
                                                 onClick={() => handleDelete(i)}
                                             >
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" className='fill-gray-300 hover:fill-red-500 hover:scale-125 transition duration-200'>
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" className='fill-red-500 hover:scale-125 transition duration-200'>
                                                     <path d="M3 6v18h18v-18h-18zm5 14c0 .552-.448 1-1 1s-1-.448-1-1v-10c0-.552.448-1 1-1s1 .448 1 1v10zm5 0c0 .552-.448 1-1 1s-1-.448-1-1v-10c0-.552.448-1 1-1s1 .448 1 1v10zm5 0c0 .552-.448 1-1 1s-1-.448-1-1v-10c0-.552.448-1 1-1s1 .448 1 1v10zm4-18v2h-20v-2h5.711c.9 0 1.631-1.099 1.631-2h5.315c0 .901.73 2 1.631 2h5.712z" />
                                                 </svg>
                                             </button>
@@ -168,34 +156,36 @@ const AddSocialMedia = (props) => {
                                 )
                             })}
                         </div>
-                        <div className="w-full h-1 bg-blue-600 rounded mt-2 mb-4"></div>
-                        <div className='flex flex-row justify-end'>
-                            <h1 className="mb-8 text-2xl text-center text-white">Add Social Media</h1>
-                            <button type="button" className="mb-7 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-800 dark:hover:text-white" onClick={props.handleToggle}>
-                                <svg className="w-5 h-5" fill='currentColor' viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd"></path></svg>
-                            </button>
+
+                        <div>
+                            <label htmlFor="phone" className="block mb-2 text-sm font-medium text-gray-300">Social Media Name</label>
+                            <input
+                                type="text"
+                                name="name"
+                                id="social"
+                                className="border text-sm rounded-lg block w-full p-2.5 bg-gray-600 border-gray-500 placeholder-gray-400 text-white outline-none mb-5 mb-5"
+                                placeholder="Social Media Name"
+                                onChange={handleChange}
+                                value={socialName}
+                                required />
                         </div>
 
-                        <input
-                            type="text"
-                            className="block border border-grey-light w-full p-3 rounded mb-4 outline-none text-gray-300 bg-gray-800"
-                            name="name"
-                            placeholder="Social Media Name"
-                            onChange={handleChange}
-                            value={socialName} />
-
-                        
-                        <input
-                            type="text"
-                            className="block border border-grey-light w-full p-3 rounded mb-4 outline-none text-gray-300 bg-gray-800"
-                            name="social"
-                            placeholder="Social Media Link"
-                            onChange={handleChange}
-                            value={social} />
+                        <div>
+                            <label htmlFor="phone" className="block mb-2 text-sm font-medium text-gray-300">Social Media Link</label>
+                            <input
+                                type="text"
+                                name="social"
+                                id="link"
+                                className="border text-sm rounded-lg block w-full p-2.5 bg-gray-600 border-gray-500 placeholder-gray-400 text-white outline-none mb-5 mb-5"
+                                placeholder="Social Media Link"
+                                onChange={handleChange}
+                                value={social}
+                                required />
+                        </div>
 
                         <button
                             type="submit"
-                            className="w-full text-center py-3 rounded bg-blue-600 text-white hover:scale-105 transition duration-200 focus:outline-none my-1"
+                            className="w-full text-white focus:ring-4 focus:outline-none mb-5 font-medium rounded-lg text-sm px-5 py-2.5 text-center bg-blue-600 hover:bg-blue-700 focus:ring-blue-800"
                             onClick={handleSubmit}
                             disabled={loading}
                         >
