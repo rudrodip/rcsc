@@ -63,7 +63,7 @@ const Profile = () => {
                                             <p className="pt-2 text-gray-200 text-xs lg:text-sm ml-8 lg:ml-0" ><span className='text-sm font-semibold'>E-mail: </span>{user?.email}</p>
                                         </div>
                                         :
-                                        <div>
+                                        <div className='flex flex-col justify-start items-start'>
                                             <p className="pt-2 text-gray-200 text-xs lg:text-sm ml-8 lg:ml-0" ><span className='text-sm font-semibold'>Class: </span>{user?.class}</p>
                                             <p className="pt-2 text-gray-200 text-xs lg:text-sm ml-8 lg:ml-0" ><span className='text-sm font-semibold'>Section: </span>{user?.section}</p>
                                             <p className="pt-2 text-gray-200 text-xs lg:text-sm ml-8 lg:ml-0" ><span className='text-sm font-semibold'>Roll: </span>{user?.roll}</p>

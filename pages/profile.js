@@ -11,6 +11,7 @@ const Profile = ({ user, userInfo }) => {
   const router = useRouter()
   const [toggle, setToggle] = useState("hidden")
   const [achievementToggle, setAchievementToggle] = useState("hidden")
+  const [loading, setLoading] = useState(false)
   const [socialToggle, setSocialToggle] = useState("hidden")
 
   const handleToggle = () => {
@@ -72,20 +73,12 @@ const Profile = ({ user, userInfo }) => {
                   </p>
                   {userInfo?.isAlumnus ?
                     <div className='flex flex-col justify-start items-start'>
-                      <p className="pt-2 text-gray-200 text-xs lg:text-sm ml-8 lg:ml-0">
-                        {`Batch: ${user ? userInfo.batch : ''}`}
-                      </p>
-                      {user?.phone &&
-                        <p className="pt-2 text-gray-200 text-xs lg:text-sm ml-8 lg:ml-0">
-                          {`Phone: ${userInfo.phone}`}
-                        </p>
-                      }
-                      <p className="pt-2 text-gray-200 text-xs lg:text-sm ml-8 lg:ml-0">
-                        {`E-Mail: ${userInfo.email}`}
-                      </p>
+                      <p className="pt-2 text-gray-200 text-xs lg:text-sm ml-8 lg:ml-0" ><span className='text-sm font-semibold'>Batch: </span>{userInfo?.batch}</p>
+                      <p className="pt-2 text-gray-200 text-xs lg:text-sm ml-8 lg:ml-0" ><span className='text-sm font-semibold'>Phone: </span>{userInfo?.phone}</p>
+                      <p className="pt-2 text-gray-200 text-xs lg:text-sm ml-8 lg:ml-0" ><span className='text-sm font-semibold'>E-mail: </span>{userInfo?.email}</p>
                     </div>
                     :
-                    <div>
+                    <div className='flex flex-col justify-start items-start'>
                       <p><span className='text-sm font-semibold'>Class: </span>{userInfo?.class}</p>
                       <p><span className='text-sm font-semibold'>Section: </span>{userInfo?.section}</p>
                       <p><span className='text-sm font-semibold'>Roll: </span>{userInfo?.roll}</p>
@@ -95,9 +88,9 @@ const Profile = ({ user, userInfo }) => {
               }
 
               <div className="p-5 flex flex-wrap">
-                <ButtomPrimary text="Edit Profile" onClick={handleToggle}/>
-                <ButtomPrimary text="Edit Achievements" onClick={handleAchievementToggle}/>
-                <ButtomPrimary text="Edit Social Media" onClick={handleSocialToggle}/>
+                <ButtomPrimary text="Edit Profile" onClick={handleToggle} />
+                <ButtomPrimary text="Edit Achievements" onClick={handleAchievementToggle} />
+                <ButtomPrimary text="Edit Social Media" onClick={handleSocialToggle} />
               </div>
 
               <div className="w-4/5 lg:w-full flex flex-wrap items-center justify-between text-gray-400">
@@ -140,8 +133,10 @@ const Profile = ({ user, userInfo }) => {
                   </div>
                 </div>
               }
-              <button className="bg-gray-900 my-5 hover:bg-blue-600 uppercase text-white font-bold hover:scale-110 transition-all ease-in-out duration-100 shadow text-xs px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1 mx-3"
+              <button
+                className="bg-gray-900 my-5 hover:bg-blue-600 uppercase text-white font-bold hover:scale-110 transition-all ease-in-out duration-100 shadow text-xs px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1 mx-3"
                 onClick={handleLogout}
+                disabled={loading}
               >
                 Logout
               </button>
