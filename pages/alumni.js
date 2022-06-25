@@ -52,7 +52,7 @@ const Alumni = () => {
         <meta property="og:type" content="Science Club" />
         <meta
           property="og:title"
-          content="Rajshahi College Science Club"
+          content="Alumni Members"
         />
         <meta
           property="og:description"

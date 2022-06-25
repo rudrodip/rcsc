@@ -19,7 +19,7 @@ function About({ user }) {
         />
         <meta
           property="og:description"
-          content="About Rajshahi College Scinece Club"
+          content="About Rajshahi College Science Club"
         />
         <meta property="og:image" content="https://i.ibb.co/BKSHpQ9/bg1.jpg" />
         <link rel="icon" href="/logo/rcsc-logo.png" />

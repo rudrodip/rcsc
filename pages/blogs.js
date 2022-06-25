@@ -101,7 +101,7 @@ function Blogs({ user, userInfo }) {
         />
         <meta
           property="og:description"
-          content="Read blogs written by members of RCSC"
+          content="Read blogs written by members of Rajshahi College Science Club"
         />
         <meta property="og:image" content="https://i.ibb.co/BKSHpQ9/bg1.jpg" />
         <link rel="icon" href="/logo/rcsc-logo.png" />

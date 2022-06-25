@@ -42,7 +42,7 @@ const Profile = ({ user, userInfo, handleProfile }) => {
       <Head>
         <title>RCSC</title>
         <meta name="description" content="Official Website of Rajshahi College Science Club" />
-        <meta property="og:url" content="https://rcsc.vercel.app/blogs" />
+        <meta property="og:url" content="https://rcsc.vercel.app/" />
         <meta property="og:type" content="Science Club" />
         <meta
           property="og:title"

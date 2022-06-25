@@ -53,11 +53,11 @@ const Journal = () => {
                     <meta property="og:type" content="Science Club" />
                     <meta
                         property="og:title"
-                        content={blog?.title}
+                        content={blog.title}
                     />
                     <meta
                         property="og:description"
-                        content={`Read blog about ${blog?.title}`}
+                        content={`Read blog about ${blog.title}`}
                     />
                     <meta property="og:image" content={blog.image || 'https://images.pexels.com/photos/1591056/pexels-photo-1591056.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'} />
                     <link rel="icon" href="/logo/rcsc-logo.png" />
