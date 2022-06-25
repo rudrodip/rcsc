@@ -1,4 +1,5 @@
 import React from 'react'
+import Head from 'next/head'
 import Header from '../components/header/header'
 import EventGallery from '../components/eventGallery'
 import FullBlog from '../components/blog/fullBlog'
@@ -45,6 +46,23 @@ function Events() {
 
   return (
     <div>
+      <Head>
+        <title>RCSC</title>
+        <meta name="description" content="Official Website of Rajshahi College Science Club" />
+        <meta property="og:url" content="https://rcsc.vercel.app/events" />
+        <meta property="og:type" content="Science Club" />
+        <meta
+          property="og:title"
+          content="Events"
+        />
+        <meta
+          property="og:description"
+          content="Events organized by Rajshahi College Science Club"
+        />
+        <meta property="og:image" content="https://i.ibb.co/BKSHpQ9/bg1.jpg" />
+        <link rel="icon" href="/logo/rcsc-logo.png" />
+      </Head>
+
       {width > 1000 &&
 
         <Header

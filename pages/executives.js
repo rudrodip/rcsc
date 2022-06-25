@@ -1,4 +1,5 @@
 import React from 'react'
+import Head from 'next/head'
 import Header from '../components/header/header'
 import MiniProfile from '../components/profile/miniProfile'
 import useWindowDimensions from '../components/useWindowDimensions'
@@ -9,7 +10,7 @@ import { useState, useEffect } from 'react'
 function Executives() {
   const { width, height } = useWindowDimensions()
   const [executives, setExecutives] = useState(null)
-  
+
   useEffect(() => {
     async function getExecs() {
       const ref = collection(db, 'user')
@@ -22,6 +23,23 @@ function Executives() {
 
   return (
     <div>
+      <Head>
+        <title>RCSC</title>
+        <meta name="description" content="Official Website of Rajshahi College Science Club" />
+        <meta property="og:url" content="https://rcsc.vercel.app/executives" />
+        <meta property="og:type" content="Science Club" />
+        <meta
+          property="og:title"
+          content="Executive Members"
+        />
+        <meta
+          property="og:description"
+          content="Executive members of RCSC"
+        />
+        <meta property="og:image" content="https://i.ibb.co/BKSHpQ9/bg1.jpg" />
+        <link rel="icon" href="/logo/rcsc-logo.png" />
+      </Head>
+
       {width > 1000 &&
 
         <Header
@@ -52,7 +70,7 @@ function Executives() {
 
             : ''}
 
-          
+
           <div className="flex flex-wrap -m-4">
             {
               executives && executives.map(exec => {

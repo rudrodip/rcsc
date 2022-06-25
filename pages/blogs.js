@@ -1,4 +1,5 @@
 import React from 'react'
+import Head from 'next/head';
 import Header from '../components/header/header'
 import MiniBlog from '../components/blog/miniBlog'
 import { db, deleteBlog, updateBlogNo, hideBlog } from '../src/config/firebase.config';
@@ -88,6 +89,23 @@ function Blogs({ user, userInfo }) {
           width={width}
         />
       }
+
+      <Head>
+        <title>RCSC</title>
+        <meta name="description" content="Official Website of Rajshahi College Science Club" />
+        <meta property="og:url" content="https://rcsc.vercel.app/blogs" />
+        <meta property="og:type" content="Science Club" />
+        <meta
+          property="og:title"
+          content="Blogs"
+        />
+        <meta
+          property="og:description"
+          content="Read blogs written by members of RCSC"
+        />
+        <meta property="og:image" content="https://i.ibb.co/BKSHpQ9/bg1.jpg" />
+        <link rel="icon" href="/logo/rcsc-logo.png" />
+      </Head>
 
       <div className='my-5'>
         <h1 className='p-4 text-4xl text-center text-transparent bg-clip-text bg-gradient-to-r font-bold from-blue-400 to-cyan-500'>Blogs</h1>

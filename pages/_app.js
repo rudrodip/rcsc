@@ -1,6 +1,5 @@
 import '../styles/globals.css'
 import '../src/config/firebase.config'
-import Head from 'next/head'
 import Pages from '../pages.json'
 import Navbar from '../components/header/navbar'
 import Footer from '../components/footer/footer'
@@ -38,22 +37,6 @@ const MyApp = ({ Component, pageProps }) => {
 
   return <>
     <div>
-      <Head>
-        <title>RCSC</title>
-        <meta name="description" content="Official Website of Rajshahi College Science Club" />
-        <meta property="og:url" content="https://rcsc.vercel.app" />
-        <meta property="og:type" content="Science Club" />
-        <meta
-          property="og:title"
-          content="Rajshahi College Scinece Club"
-        />
-        <meta
-          property="og:description"
-          content="Official website of Rajshahi College Science Club"
-        />
-        <meta property="og:image" content="https://i.ibb.co/BKSHpQ9/bg1.jpg" />
-        <link rel="icon" href="/logo/rcsc-logo.png" />
-      </Head>
       <LoadingBar
         color='#23b6ed'
         progress={progress}

@@ -1,4 +1,5 @@
 import React from 'react'
+import Head from 'next/head'
 import { useRouter } from 'next/router'
 import { useState } from 'react'
 import ProfileEdit from '../components/profile/profileEdit'
@@ -38,6 +39,23 @@ const Profile = ({ user, userInfo, handleProfile }) => {
 
   return (
     <main className="profile-page my-14">
+      <Head>
+        <title>RCSC</title>
+        <meta name="description" content="Official Website of Rajshahi College Science Club" />
+        <meta property="og:url" content="https://rcsc.vercel.app/blogs" />
+        <meta property="og:type" content="Science Club" />
+        <meta
+          property="og:title"
+          content="Rajshahi College Science Club"
+        />
+        <meta
+          property="og:description"
+          content="Official Website of Rajshahi College Science Club"
+        />
+        <meta property="og:image" content="https://i.ibb.co/BKSHpQ9/bg1.jpg" />
+        <link rel="icon" href="/logo/rcsc-logo.png" />
+      </Head>
+
       <ProfileEdit
         toggle={toggle}
         handleToggle={handleToggle}

@@ -1,4 +1,5 @@
 import React from 'react'
+import Head from 'next/head'
 import Header from '../components/header/header'
 import MiniProfile from '../components/profile/miniProfile'
 import Stats from '../stats.json'
@@ -28,8 +29,25 @@ export default function Home() {
   }
 
   return (
+    <div>
 
-    <div className=''>
+      <Head>
+        <title>RCSC</title>
+        <meta name="description" content="Official Website of Rajshahi College Science Club" />
+        <meta property="og:url" content="https://rcsc.vercel.app/" />
+        <meta property="og:type" content="Science Club" />
+        <meta
+          property="og:title"
+          content="Rajshahi College Science Club"
+        />
+        <meta
+          property="og:description"
+          content="Official Website of Rajshahi College Science Club"
+        />
+        <meta property="og:image" content="https://i.ibb.co/BKSHpQ9/bg1.jpg" />
+        <link rel="icon" href="/logo/rcsc-logo.png" />
+      </Head>
+
       <Header
         title="Rajshahi College Science Club"
         subtitle="Welcome to"

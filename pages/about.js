@@ -1,4 +1,5 @@
 import React from 'react'
+import Head from 'next/head';
 import Header from '../components/header/header'
 import CountUp from 'react-countup';
 import Stats from '../stats.json'
@@ -7,6 +8,23 @@ import TeachersProfile from '../components/profile/teachersProfile'
 function About({ user }) {
   return (
     <div>
+      <Head>
+        <title>RCSC</title>
+        <meta name="description" content="Official Website of Rajshahi College Science Club" />
+        <meta property="og:url" content="https://rcsc.vercel.app/about" />
+        <meta property="og:type" content="Science Club" />
+        <meta
+          property="og:title"
+          content="About us"
+        />
+        <meta
+          property="og:description"
+          content="About Rajshahi College Scinece Club"
+        />
+        <meta property="og:image" content="https://i.ibb.co/BKSHpQ9/bg1.jpg" />
+        <link rel="icon" href="/logo/rcsc-logo.png" />
+      </Head>
+
       <Header
         title="Rajshahi College Science Club"
         subtitle="About Us"

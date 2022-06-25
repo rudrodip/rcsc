@@ -1,12 +1,30 @@
 import React from 'react'
+import Head from 'next/head'
 
 function Contact() {
 
   return (
     <div>
-        <div className="flex flex-col text-center w-full my-5 ">
-          <h1 className="text-2xl font-medium title-font mb-4 text-white tracking-widest">CONTACT US</h1>
-        </div>
+      <Head>
+        <title>RCSC</title>
+        <meta name="description" content="Official Website of Rajshahi College Science Club" />
+        <meta property="og:url" content="https://rcsc.vercel.app/contact" />
+        <meta property="og:type" content="Science Club" />
+        <meta
+          property="og:title"
+          content="Contact us"
+        />
+        <meta
+          property="og:description"
+          content="Contact us via social media"
+        />
+        <meta property="og:image" content="https://i.ibb.co/BKSHpQ9/bg1.jpg" />
+        <link rel="icon" href="/logo/rcsc-logo.png" />
+      </Head>
+
+      <div className="flex flex-col text-center w-full my-5 ">
+        <h1 className="text-2xl font-medium title-font mb-4 text-white tracking-widest">CONTACT US</h1>
+      </div>
 
 
       <section className="text-gray-400 bg-gray-900 body-font relative">
