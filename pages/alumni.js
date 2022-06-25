@@ -30,7 +30,7 @@ const Alumni = () => {
   useEffect(() => {
     async function getAlumniCollection() {
       const docRef = collection(db, 'user')
-      const q = query(docRef, where("isAlumnus", "==", true), limit(30))
+      const q = query(docRef, where("roles.alumnus", "==", true), limit(30))
       const docSnaps = await getDocs(q)
       setAlumni(docSnaps.docs)
     }
@@ -84,7 +84,7 @@ const Alumni = () => {
                         return (
                           <AlumniProfile
                             name={i.data().name}
-                            role={i.data().role}
+                            role={i.data().designantion}
                             batch={i.data().batch}
                             institution={i.data().institution}
                             number={i.data().phone}

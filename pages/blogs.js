@@ -125,11 +125,11 @@ function Blogs({ user, userInfo }) {
             const date = i.data().timestamp.toDate()
             const formatedDate = date.toString().slice(0, 15)
 
-            if (!i.data().approved && !userInfo?.isAdmin) return ''
+            if (!i.data().approved && !userInfo?.roles["admin"]) return ''
             return (
               <MiniBlog
                 blog={i.data()}
-                editable={user?.uid == i.data().authorProfile || userInfo?.isAdmin ? true : false}
+                editable={user?.uid == i.data().authorProfile || userInfo?.roles["admin"] ? true : false}
                 date={formatedDate}
                 key={index}
                 id={i?.id}

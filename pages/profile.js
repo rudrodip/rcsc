@@ -73,7 +73,7 @@ const Profile = ({ user, userInfo, handleProfile }) => {
                 <svg className="h-4 fill-current text-cyan-400 pr-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
                   <path d="M9 12H1v6a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-6h-8v2H9v-2zm0-1H0V5c0-1.1.9-2 2-2h4V2a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v1h4a2 2 0 0 1 2 2v6h-9V9H9v2zm3-8V2H8v1h4z" />
                 </svg>
-                {userInfo?.role}
+                {userInfo?.designation}
               </p>
               {!userInfo ?
                 <div className='flex justify-center m-5'>
@@ -91,7 +91,7 @@ const Profile = ({ user, userInfo, handleProfile }) => {
                   <p className="pt-2 text-cyan-400 font-bold text-xl lg:text-lg">
                     {userInfo ? userInfo.institution : ''}
                   </p>
-                  {userInfo?.isAlumnus ?
+                  {userInfo?.roles["alumnus"] ?
                     <div className='flex flex-col justify-start items-start'>
                       <p className="pt-2 text-gray-200 text-xs lg:text-sm ml-8 lg:ml-0" ><span className='text-sm font-semibold'>Batch: </span>{userInfo?.batch}</p>
                       <p className="pt-2 text-gray-200 text-xs lg:text-sm ml-8 lg:ml-0" ><span className='text-sm font-semibold'>Phone: </span>{userInfo?.phone}</p>

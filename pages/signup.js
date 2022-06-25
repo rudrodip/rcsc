@@ -104,15 +104,15 @@ const Login = () => {
       name: name,
       email: email,
       photoURL: "https://dummyimage.com/200x200",
-      role: "Member",
-      isAlumnus: false,
+      designation: "Member",
       blogs: 0,
       achievements: [],
       socials: {},
-      isExecutive: false,
-      isAdmin: false,
       institution: "Rajshahi College",
-      isAlumnus: false
+      roles: {
+        admin: false,
+        executive: false
+      }
     }
     if (isAlumni) {
       if (phone.length == 11) {
@@ -121,7 +121,7 @@ const Login = () => {
       data["role"] = role
       data["batch"] = batch
       data["institution"] = institution
-      data["isAlumnus"] = isAlumni
+      data["roles"]["alumnus"] = isAlumni
       data["batch"] = batch
     }
     else {

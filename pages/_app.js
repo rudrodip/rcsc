@@ -51,7 +51,7 @@ const MyApp = ({ Component, pageProps }) => {
           property="og:description"
           content="Official website of Rajshahi College Science Club"
         />
-        <meta property="og:image" content="https://drive.google.com/file/d/1xrksL6wxZQPB-Q23vl7LNDcPxeTi3EM-/view?usp=sharing" />
+        <meta property="og:image" content="https://i.ibb.co/BKSHpQ9/bg1.jpg" />
         <link rel="icon" href="/logo/rcsc-logo.png" />
       </Head>
       <LoadingBar

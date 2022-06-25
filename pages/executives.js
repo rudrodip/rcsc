@@ -13,7 +13,7 @@ function Executives() {
   useEffect(() => {
     async function getExecs() {
       const ref = collection(db, 'user')
-      const q = query(ref, where("isExecutive", "==", true))
+      const q = query(ref, where("roles.executive", "==", true))
       const docSnaps = await getDocs(q)
       setExecutives(docSnaps.docs)
     }
@@ -60,7 +60,7 @@ function Executives() {
                   <MiniProfile
                     key={exec?.id}
                     name={exec?.data().name}
-                    role={exec?.data().role}
+                    role={exec?.data().designantion}
                     link={`/user/${exec?.id}`}
                     img={exec?.data().photoURL}
                   />
