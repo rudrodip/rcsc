@@ -4,11 +4,9 @@ import { useState } from 'react'
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import { FileInputButton } from '../fileInput'
-import { upload, useAuth, updateUserData, updateBlogAuthor } from '../../src/config/firebase.config'
+import { upload, updateUserData, updateBlogAuthor } from '../../src/config/firebase.config'
 
-const ProfileEdit = (props) => {
-    const router = useRouter()
-
+const ProfileEdit = ({ user, userInfo, handleProfile, toggle, handleToggle }) => {
     // initializing all states
     const [name, setName] = useState('')
     const [phone, setPhone] = useState('')
@@ -17,7 +15,7 @@ const ProfileEdit = (props) => {
     const [loading, setLoading] = useState(false)
 
     // custom hook for auth
-    const currentUser = props.user
+    const currentUser = user
 
     // profile picture change
     const onChange = async (image) => {
@@ -71,30 +69,31 @@ const ProfileEdit = (props) => {
         try {
             const data = validate()
             if (image) {
+                handleProfile(URL.createObjectURL(image))
                 let url = await upload(image, currentUser, setLoading)
                 data['photoURL'] = url
             }
             if ("name" in data) {
+                userInfo.name = data["name"]
                 updateBlogAuthor(data["name"], currentUser.uid)
             }
+            handleToggle()
             updateUserData(currentUser, data)
             toast('Updated', {
                 position: "top-center",
-                autoClose: 3000,
+                autoClose: 1500,
                 hideProgressBar: false,
                 closeOnClick: true,
-                pauseOnHover: true,
+                pauseOnHover: false,
                 draggable: true,
                 progress: undefined,
             })
-            setTimeout(() => router.reload(), 1500)
         } catch (error) {
             console.log(error)
         }
         setPhone('')
         setName('')
-
-        { props.handleToggle() }
+        setLoading(false)
     }
 
     return (
@@ -108,10 +107,10 @@ const ProfileEdit = (props) => {
                 rtl={false}
                 draggable
             />
-            <div id="authentication-modal" tabIndex="-1" aria-hidden="true" className={`${props.toggle} backdrop-blur-none md:backdrop-blur-sm absolute overflow-y-auto overflow-x-hidden flex justify-center z-50 w-full md:inset-0 h-modal md:h-full`}>
+            <div id="authentication-modal" tabIndex="-1" aria-hidden="true" className={`${toggle} backdrop-blur-none md:backdrop-blur-sm absolute overflow-y-auto overflow-x-hidden flex justify-center z-50 w-full md:inset-0 h-modal md:h-full`}>
                 <div className="relative p-4 w-full max-w-md h-full md:h-auto">
                     <div className="relative rounded-lg shadow bg-gray-700">
-                        <button type="button" className="absolute top-3 right-2.5 text-gray-400 bg-transparent rounded-lg text-sm p-1.5 ml-auto inline-flex items-center hover:bg-gray-800 hover:text-white" onClick={props.handleToggle}>
+                        <button type="button" className="absolute top-3 right-2.5 text-gray-400 bg-transparent rounded-lg text-sm p-1.5 ml-auto inline-flex items-center hover:bg-gray-800 hover:text-white" onClick={handleToggle}>
                             <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd"></path></svg>
                         </button>
                         <div className="py-6 px-6 lg:px-8">
@@ -139,7 +138,7 @@ const ProfileEdit = (props) => {
                                     type="text"
                                     name="name"
                                     id="name"
-                                    className="border text-sm rounded-lg block w-full p-2.5 bg-gray-600 border-gray-500 placeholder-gray-400 text-white outline-none mb-5 mb-5"
+                                    className="border text-sm rounded-lg block w-full p-2.5 bg-gray-600 border-gray-500 placeholder-gray-400 text-white outline-none mb-5"
                                     placeholder="Name"
                                     onChange={handleChange}
                                     value={name}
@@ -158,7 +157,7 @@ const ProfileEdit = (props) => {
                                     required />
                             </div>
                             {
-                                props.isAlumnus &&
+                                userInfo?.isAlumnus &&
 
                                 <div>
                                     <div>

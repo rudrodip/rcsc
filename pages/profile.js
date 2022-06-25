@@ -7,7 +7,7 @@ import AddAchievements from '../components/profile/addAchievements'
 import AddSocialLink from '../components/profile/socials'
 import ButtomPrimary from '../components/button-primary'
 
-const Profile = ({ user, userInfo }) => {
+const Profile = ({ user, userInfo, handleProfile }) => {
   const router = useRouter()
   const [toggle, setToggle] = useState("hidden")
   const [achievementToggle, setAchievementToggle] = useState("hidden")
@@ -38,9 +38,29 @@ const Profile = ({ user, userInfo }) => {
 
   return (
     <main className="profile-page my-14">
-      <ProfileEdit toggle={toggle} handleToggle={handleToggle} user={user} isAlumnus={userInfo?.isAlumnus} />
-      <AddAchievements toggle={achievementToggle} handleToggle={handleAchievementToggle} user={user} achievements={userInfo?.achievements} />
-      <AddSocialLink toggle={socialToggle} handleToggle={handleSocialToggle} user={user} socials={userInfo?.socials} />
+      <ProfileEdit
+        toggle={toggle}
+        handleToggle={handleToggle}
+        user={user}
+        userInfo={userInfo} 
+        handleProfile={handleProfile}
+      />
+
+      <AddAchievements
+        toggle={achievementToggle}
+        handleToggle={handleAchievementToggle}
+        user={user}
+        achievements={userInfo?.achievements} 
+      />
+
+      <AddSocialLink
+        toggle={socialToggle}
+        handleToggle={handleSocialToggle}
+        user={user}
+        socials={userInfo?.socials} 
+      />
+
+
       <div>
         <div className="flex items-center mx-auto justify-center w-full md:w-2/3 xl:w-1/2 content-center">
           <div id="profile" className="w-full lg:w-3/5 rounded-lg lg:rounded-l-lg lg:rounded-r-none shadow-2xl bg-gray-800 mx-6 lg:mx-0">
