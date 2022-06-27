@@ -46,11 +46,11 @@ const Profile = ({ user, userInfo, handleProfile }) => {
         <meta property="og:type" content="Science Club" />
         <meta
           property="og:title"
-          content="Rajshahi College Science Club"
+          content="Profile"
         />
         <meta
           property="og:description"
-          content="Official Website of Rajshahi College Science Club"
+          content="See your profile"
         />
         <meta property="og:image" content="https://i.ibb.co/BKSHpQ9/bg1.jpg" />
         <link rel="icon" href="/logo/rcsc-logo.png" />

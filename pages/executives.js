@@ -78,7 +78,7 @@ function Executives() {
                   <MiniProfile
                     key={exec?.id}
                     name={exec?.data().name}
-                    role={exec?.data().designantion}
+                    role={exec?.data().designation}
                     link={`/user/${exec?.id}`}
                     img={exec?.data().photoURL}
                   />
