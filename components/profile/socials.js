@@ -137,7 +137,7 @@ const AddSocialMedia = (props) => {
                         <div className='my-4 mb-10 text-left'>
                             {socials && Object.keys(socials).map((i, index) => {
                                 return (
-                                    <div key={index} className='flex flex-row justify-between border-2 border-gray-600 m-2 rounded-md p-1'>
+                                    <div key={index} className='flex flex-row justify-between border-2 border-gray-600 m-2 rounded-md p-2 bg-gray-600'>
                                         <p className="text-white text-md lg:text-sm flex items-center justify-start italic">
                                             <a href={socials[i]} className='text-cyan-500' target={'_blank'} rel="noreferrer">
                                                 {i.charAt(0).toUpperCase() + i.slice(1)}

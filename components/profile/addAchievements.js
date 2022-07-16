@@ -130,7 +130,7 @@ const AddAchievements = (props) => {
                         <div className='my-4 mb-10 text-left'>
                             {achievements && achievements.map((achievement, index) => {
                                 return (
-                                    <div key={index} className='flex flex-row justify-between border-2 border-gray-600 m-2 rounded-md p-1'>
+                                    <div key={index} className='flex flex-row justify-between border-2 border-gray-600 m-2 rounded-md p-2 bg-gray-600'>
                                         <p className="text-white text-sm flex items-center justify-start">
                                             {achievement}
                                         </p>
