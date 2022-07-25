@@ -1,4 +1,5 @@
 import React from 'react'
+import Head from 'next/head'
 import { useState, useEffect } from 'react'
 import { db } from '../../src/config/firebase.config';
 import { getDoc, doc } from 'firebase/firestore'
