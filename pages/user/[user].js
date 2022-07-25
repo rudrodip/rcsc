@@ -25,6 +25,10 @@ const Profile = () => {
 
     return (
         <main className="profile-page my-14">
+            <Head>
+                <title>RCSC</title>
+                <meta name="description" content="User profile" />
+            </Head>
             <div>
                 <div className="flex items-center mx-auto justify-center w-full md:w-2/3 xl:w-1/2 content-center">
                     <div id="profile" className="w-full lg:w-3/5 rounded-lg lg:rounded-l-lg lg:rounded-r-none shadow-2xl bg-gray-800 mx-6 lg:mx-0">
