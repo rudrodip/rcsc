@@ -27,7 +27,7 @@ const Profile = () => {
     return (
         <main className="profile-page my-14">
             <Head>
-                <title>RCSC</title>
+                <title>RCSC - {user?.name}</title>
                 <meta name="description" content="User profile" />
             </Head>
             <div>
