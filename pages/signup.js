@@ -1,5 +1,6 @@
 import React from 'react'
 import Link from 'next/link'
+import Head from 'next/head'
 import { useRouter } from 'next/router';
 import { useState } from 'react'
 import { ToastContainer, toast } from 'react-toastify';
@@ -153,6 +154,10 @@ const Login = () => {
   if (!user) {
     return (
       <div>
+        <Head>
+          <title>RCSC - Signup</title>
+        </Head>
+        
         <ToastContainer
           position="bottom-center"
           autoClose={5000}

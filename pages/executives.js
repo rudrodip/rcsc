@@ -24,7 +24,7 @@ function Executives() {
   return (
     <div>
       <Head>
-        <title>RCSC</title>
+        <title>RCSC - Executives</title>
         <meta name="description" content="Official Website of Rajshahi College Science Club" />
         <meta property="og:url" content="https://rcsc.vercel.app/executives" />
         <meta property="og:type" content="Science Club" />

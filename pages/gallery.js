@@ -11,7 +11,7 @@ function Gallery() {
     <div>
 
       <Head>
-        <title>RCSC</title>
+        <title>RCSC - Gallery</title>
         <meta name="description" content="Official Website of Rajshahi College Science Club" />
         <meta property="og:url" content="https://rcsc.vercel.app/gallery" />
         <meta property="og:type" content="Science Club" />

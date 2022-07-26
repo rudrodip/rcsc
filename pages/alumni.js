@@ -46,7 +46,7 @@ const Alumni = () => {
   return (
     <div>
       <Head>
-        <title>RCSC</title>
+        <title>RCSC - Alumni</title>
         <meta name="description" content="Official Website of Rajshahi College Science Club" />
         <meta property="og:url" content="https://rcsc.vercel.app/alumni" />
         <meta property="og:type" content="Science Club" />

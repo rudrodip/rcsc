@@ -1,4 +1,5 @@
 import React from 'react'
+import Head from 'next/head'
 import { useState } from 'react'
 import { FileInputButton } from '../components/fileInput'
 import Paragraph from '../components/blog/paragraph'
@@ -138,6 +139,10 @@ const WriteBlog = ({ user, userInfo }) => {
   if (!user) return ''
   return (
     <div className='m-1 p-1 lg:m-5 lg:p-10'>
+      <Head>
+        <title>RCSC - Writeblog</title>
+      </Head>
+      
       <ToastContainer
         position="bottom-center"
         autoClose={5000}
