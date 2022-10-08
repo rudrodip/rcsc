@@ -52,7 +52,7 @@ const Profile = ({ user, userInfo, handleProfile }) => {
           property="og:description"
           content="See your profile"
         />
-        <meta property="og:image" content="https://i.ibb.co/BKSHpQ9/bg1.jpg" />
+        <meta property="og:image" content={userInfo?.photoURL}/>
         <link rel="icon" href="/logo/rcsc-logo.png" />
       </Head>
 
