@@ -113,17 +113,16 @@ const Login = () => {
       roles: {
         admin: false,
         executive: false
-      }
+      },
+      batch: batch
     }
     if (isAlumni) {
       if (phone.length == 11) {
         data["phone"] = phone
       }
       data["role"] = role
-      data["batch"] = batch
       data["institution"] = institution
       data["roles"]["alumnus"] = isAlumni
-      data["batch"] = batch
     }
     else {
       data["class"] = grade
@@ -185,7 +184,7 @@ const Login = () => {
 
               <input
                 type="text"
-                className="block border border-gray-500 w-full p-3 rounded mb-4 outline-none text-gray-300 bg-gray-800"
+                className="block border border-gray-700 w-full p-3 rounded mb-4 outline-none text-gray-300 bg-gray-800"
                 name="name"
                 placeholder="Full Name"
                 onChange={handleChange}
@@ -193,7 +192,7 @@ const Login = () => {
 
               <input
                 type="text"
-                className="block border border-gray-500 w-full p-3 rounded mb-4 outline-none text-gray-300 bg-gray-800"
+                className="block border border-gray-700 w-full p-3 rounded mb-4 outline-none text-gray-300 bg-gray-800"
                 name="phone"
                 placeholder={isAlumni ? "Phone (optional)" : "Phone"}
                 onChange={handleChange}
@@ -201,18 +200,26 @@ const Login = () => {
 
               <input
                 type="text"
-                className="block border border-gray-500 w-full p-3 rounded mb-4 outline-none text-gray-300 bg-gray-800"
+                className="block border border-gray-700 w-full p-3 rounded mb-4 outline-none text-gray-300 bg-gray-800"
                 name="email"
                 placeholder="Email"
                 onChange={handleChange}
                 value={email} />
+
+              <input
+                    type="text"
+                    className="block border border-gray-700 w-full p-3 rounded mb-4 outline-none text-gray-300 bg-gray-800"
+                    name="batch"
+                    placeholder="Batch: e.g. 2019-2020"
+                    onChange={handleChange}
+                    value={batch} />
 
               {
                 !isAlumni &&
                 <div>
                   <input
                     type="text"
-                    className="block border border-gray-500 w-full p-3 rounded mb-4 outline-none text-gray-300 bg-gray-800"
+                    className="block border border-gray-700 w-full p-3 rounded mb-4 outline-none text-gray-300 bg-gray-800"
                     name="class"
                     placeholder="Class"
                     onChange={handleChange}
@@ -220,7 +227,7 @@ const Login = () => {
 
                   <input
                     type="text"
-                    className="block border border-gray-500 w-full p-3 rounded mb-4 outline-none text-gray-300 bg-gray-800"
+                    className="block border border-gray-700 w-full p-3 rounded mb-4 outline-none text-gray-300 bg-gray-800"
                     name="section"
                     placeholder="Section"
                     onChange={handleChange}
@@ -228,7 +235,7 @@ const Login = () => {
 
                   <input
                     type="text"
-                    className="block border border-gray-500 w-full p-3 rounded mb-4 outline-none text-gray-300 bg-gray-800"
+                    className="block border border-gray-700 w-full p-3 rounded mb-4 outline-none text-gray-300 bg-gray-800"
                     name="roll"
                     placeholder="Roll"
                     onChange={handleChange}
@@ -236,7 +243,7 @@ const Login = () => {
 
                   <input
                     type="text"
-                    className="block border border-gray-500 w-full p-3 rounded mb-4 outline-none text-gray-300 bg-gray-800"
+                    className="block border border-gray-700 w-full p-3 rounded mb-4 outline-none text-gray-300 bg-gray-800"
                     name="memberCode"
                     placeholder="Member Code"
                     onChange={handleChange}
@@ -249,21 +256,14 @@ const Login = () => {
                 <div>
                   <input
                     type="text"
-                    className="block border border-gray-500 w-full p-3 rounded mb-4 outline-none text-gray-300 bg-gray-800"
+                    className="block border border-gray-700 w-full p-3 rounded mb-4 outline-none text-gray-300 bg-gray-800"
                     name="role"
                     placeholder="Designation: e.g. Ex-President"
                     onChange={handleChange}
                     value={role} />
                   <input
                     type="text"
-                    className="block border border-gray-500 w-full p-3 rounded mb-4 outline-none text-gray-300 bg-gray-800"
-                    name="batch"
-                    placeholder="Batch: e.g. 2019-2020"
-                    onChange={handleChange}
-                    value={batch} />
-                  <input
-                    type="text"
-                    className="block border border-gray-500 w-full p-3 rounded mb-4 outline-none text-gray-300 bg-gray-800"
+                    className="block border border-gray-700 w-full p-3 rounded mb-4 outline-none text-gray-300 bg-gray-800"
                     name="institution"
                     placeholder="Current Institution: e.g. BUET"
                     onChange={handleChange}
@@ -273,7 +273,7 @@ const Login = () => {
 
               <input
                 type={isChecked ? 'text' : 'password'}
-                className="block border border-gray-500 w-full p-3 rounded mb-4 outline-none text-gray-300 bg-gray-800"
+                className="block border border-gray-700 w-full p-3 rounded mb-4 outline-none text-gray-300 bg-gray-800"
                 name="password"
                 placeholder="Password"
                 onChange={handleChange}
