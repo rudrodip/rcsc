@@ -159,7 +159,7 @@ const AddAchievements = (props) => {
           type="text"
           name="achievement"
           id="name"
-          className="border text-sm rounded-lg block w-full p-2.5 bg-gray-600 border-gray-500 placeholder-gray-400 text-white outline-none mb-5 mb-5"
+          className="border text-sm rounded-lg block w-full p-2.5 bg-gray-600 border-gray-500 placeholder-gray-400 text-white outline-none mb-5"
           placeholder="Achievement"
           onChange={handleChange}
           value={achievement}

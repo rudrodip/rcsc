@@ -171,7 +171,7 @@ const AddSocialMedia = (props) => {
           type="text"
           name="name"
           id="social"
-          className="border text-sm rounded-lg block w-full p-2.5 bg-gray-600 border-gray-500 placeholder-gray-400 text-white outline-none mb-5 mb-5"
+          className="border text-sm rounded-lg block w-full p-2.5 bg-gray-600 border-gray-500 placeholder-gray-400 text-white outline-none mb-5"
           placeholder="Social Media Name"
           onChange={handleChange}
           value={socialName}
@@ -190,7 +190,7 @@ const AddSocialMedia = (props) => {
           type="text"
           name="social"
           id="link"
-          className="border text-sm rounded-lg block w-full p-2.5 bg-gray-600 border-gray-500 placeholder-gray-400 text-white outline-none mb-5 mb-5"
+          className="border text-sm rounded-lg block w-full p-2.5 bg-gray-600 border-gray-500 placeholder-gray-400 text-white outline-none mb-5"
           placeholder="Social Media Link"
           onChange={handleChange}
           value={social}
