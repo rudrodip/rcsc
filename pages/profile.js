@@ -4,28 +4,16 @@ import { useRouter } from 'next/router'
 import { useState } from 'react'
 import ProfileEdit from '../components/profile/profileEdit'
 import { logout } from '../src/config/firebase.config'
-import AddAchievements from '../components/profile/addAchievements'
-import AddSocialLink from '../components/profile/socials'
 import ButtomPrimary from '../components/button-primary'
 
 const Profile = ({ user, userInfo, handleProfile }) => {
   const router = useRouter()
   const [toggle, setToggle] = useState("hidden")
-  const [achievementToggle, setAchievementToggle] = useState("hidden")
   const [loading, setLoading] = useState(false)
-  const [socialToggle, setSocialToggle] = useState("hidden")
 
   const handleToggle = () => {
     toggle == "" ? setToggle("hidden") : setToggle('')
   }
-  const handleAchievementToggle = () => {
-    achievementToggle == "" ? setAchievementToggle("hidden") : setAchievementToggle('')
-  }
-
-  const handleSocialToggle = () => {
-    socialToggle == "" ? setSocialToggle("hidden") : setSocialToggle('')
-  }
-
   const handleLogout = async () => {
     try {
       setLoading(true)
@@ -62,20 +50,6 @@ const Profile = ({ user, userInfo, handleProfile }) => {
         user={user}
         userInfo={userInfo} 
         handleProfile={handleProfile}
-      />
-
-      <AddAchievements
-        toggle={achievementToggle}
-        handleToggle={handleAchievementToggle}
-        user={user}
-        achievements={userInfo?.achievements} 
-      />
-
-      <AddSocialLink
-        toggle={socialToggle}
-        handleToggle={handleSocialToggle}
-        user={user}
-        socials={userInfo?.socials} 
       />
 
 
@@ -127,8 +101,6 @@ const Profile = ({ user, userInfo, handleProfile }) => {
 
               <div className="p-5 flex flex-wrap">
                 <ButtomPrimary text="Edit Profile" onClick={handleToggle} />
-                <ButtomPrimary text="Edit Achievements" onClick={handleAchievementToggle} />
-                <ButtomPrimary text="Edit Social Media" onClick={handleSocialToggle} />
               </div>
 
               <div className="w-4/5 lg:w-full flex flex-wrap items-center justify-between text-gray-400">
