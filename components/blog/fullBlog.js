@@ -1,99 +1,135 @@
 // this is a component to render a full blog post
 
-
 // importing necessary dependencies
-import React from 'react'
-import Link from 'next/link'
-import { useState, useEffect } from 'react'
+import React from "react";
+import Link from "next/link";
+import { useState, useEffect } from "react";
 
 // the component gets all necessary props
 
 const FullBlog = ({ blog, userImg, date, author, url, role }) => {
+  // Description of the props  ---->>>
 
-    // Description of the props  ---->>>
+  // blog -> is the main blog post
+  // userImg -> author's profile picture
+  // date -> date of the blog posted in
+  // author -> author name
+  // url -> url of this blog post [used in share button]
+  // role -> role of the poster
 
-    // blog -> is the main blog post
-    // userImg -> author's profile picture
-    // date -> date of the blog posted in
-    // author -> author name
-    // url -> url of this blog post [used in share button]
-    // role -> role of the poster
+  const [blogImg, setBlogImg] = useState("");
+  useEffect(() => {
+    blog.img
+      ? setBlogImg(blog.img)
+      : setBlogImg(
+          "https://images.pexels.com/photos/1591056/pexels-photo-1591056.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+        );
+  }, [blog.img]);
 
-    const [blogImg, setBlogImg] = useState('')
-    useEffect(() => {
-        blog.img ? setBlogImg(blog.img) : setBlogImg('https://images.pexels.com/photos/1591056/pexels-photo-1591056.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1')
-    }, [blog.img])
+  return (
+    <div>
+      <section className="text-gray-400 bg-gray-900 body-font">
+        <div className="w-full container px-5 py-6 mx-auto flex flex-col">
+          <div className="lg:w-full">
+            <h2 className="font-medium title-font mt-4 text-white text-5xl mb-5">
+              {blog?.title}
+            </h2>
+            <h2 className="font-medium title-font mt-4 text-white text-bold text-lg">
+              {`by ${author}`}
+            </h2>
+            <p className="text-base text-gray-300 mb-3">
+              {`${blog?.category}, ${date}`}
+            </p>
+            <div className="rounded-lg overflow-hidden">
+              <img
+                alt="content"
+                className="object-cover object-center h-full w-full"
+                src={blogImg}
+              />
+            </div>
 
-    return (
-        <div>
-            <section className="text-gray-400 bg-gray-900 body-font">
-                <div className="w-full container px-5 py-6 mx-auto flex flex-col">
-                    <div className="lg:w-full">
-
-                        <div className="rounded-lg lg:h-96 overflow-hidden">
-                            <img alt="content" className="object-cover object-center h-full w-full" src={blogImg} />
-                        </div>
-
-
-                        <div className="flex flex-col sm:flex-row mt-10 justify-center">
-
-                            <div className="sm:w-1/3 text-center sm:pr-8 sm:py-8">
-
-                                <div className="w-20 h-20 inline-flex items-center justify-center text-gray-600 cursor-pointer">
-                                    <Link href={`/user/${blog?.authorProfile}`}>
-                                        <div className="p-4 md:p-6 text-center lg:text-left">
-                                            <div className="block rounded-full shadow-xl mx-auto -mt-16 h-36 w-36 bg-cover bg-center hover:scale-105 transition ease-in-out duration-100" style={{ backgroundImage: `url('${userImg}` }}></div>
-                                        </div>
-                                    </Link>
-                                </div>
-
-
-                                <div className="flex flex-col items-center text-center justify-center">
-                                    <h2 className="font-medium title-font mt-4 text-white text-bold text-lg">{author}</h2>
-                                    <div className="w-12 h-1 bg-indigo-500 rounded mt-2 mb-4"></div>
-                                    <p className="text-base text-white font-bold">{role}</p>
-                                    <p className="text-base text-gray-600 font-semibold">{blog?.category}</p>
-                                    <p className="text-base text-gray-400">{date}</p>
-                                </div>
-
-                            </div>
-                        </div>
+            <div className="flex flex-col sm:flex-row mt-10 justify-center">
+              <div className="sm:w-1/3 text-center sm:pr-8 sm:py-8">
+                <div className="w-20 h-20 inline-flex items-center justify-center text-gray-600 cursor-pointer">
+                  <Link href={`/user/${blog?.authorProfile}`}>
+                    <div className="p-4 md:p-6 text-center lg:text-left">
+                      <div
+                        className="block rounded-full shadow-xl mx-auto -mt-16 h-36 w-36 bg-cover bg-center hover:scale-105 transition ease-in-out duration-100"
+                        style={{ backgroundImage: `url('${userImg}` }}
+                      ></div>
                     </div>
-
-                    <div className="w-full sm:pl-8 sm:py-8 sm:border-l border-gray-800 sm:border-t-0 border-t mt-4 pt-4 sm:mt-0 text-left">
-                        <h2 className="font-medium title-font mt-4 text-white text-5xl mb-5">{blog?.title}</h2>
-                        {blog?.paragraphs && blog.paragraphs.map((i, index) => (
-                            <React.Fragment key={index}>
-                                <p className="font-normal title-font mt-8 text-cyan-300 text-xl mb-4 opacity-80">{i?.subtitle}</p>
-                                <p className="leading-relaxed text-lg mb-4 whitespace-pre-line">{i?.content}</p>
-                            </React.Fragment>
-
-                        ))}
-
-                        <div id="fb-root"></div>
-                        <div className="fb-share-button" data-href="https://developers.facebook.com/docs/plugins/" data-layout="button" data-size="small">
-                            <a
-                                target="_blank"
-                                href={`https://www.facebook.com/sharer/sharer.php?u=${url}`}
-                                className="fb-xfbml-parse-ignore text-indigo-400 hover:bg-cyan-400 hover:text-black hover:scale-110 inline-flex items-center rounded-sm p-2 transition ease-in-out duration-150"
-                                rel="noreferrer">
-                                Share
-                                <svg fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" className="w-4 h-4 ml-2" viewBox="0 0 24 24">
-                                    <path d="M5 12h14M12 5l7 7-7 7"></path>
-                                </svg>
-                            </a>
-                        </div>
-                    </div>
+                  </Link>
                 </div>
-            </section>
-            <script async defer crossOrigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v14.0" nonce="E58tXvTF"></script>
+
+                <div className="flex flex-col items-center text-center justify-center">
+                  <h2 className="font-medium title-font mt-4 text-white text-bold text-lg">
+                    {author}
+                  </h2>
+                  <div className="w-12 h-1 bg-indigo-500 rounded m-2"></div>
+                  <p className="text-base text-white font-bold">{role}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="w-full sm:pl-8 sm:py-8 sm:border-l border-gray-800 sm:border-t-0 border-t mt-4 pt-4 sm:mt-0 text-left">
+            <h2 className="font-medium title-font mt-4 text-white text-5xl mb-5">
+              {blog?.title}
+            </h2>
+            {blog?.paragraphs &&
+              blog.paragraphs.map((i, index) => (
+                <React.Fragment key={index}>
+                  <p className="font-normal title-font mt-8 text-cyan-300 text-xl mb-4 opacity-80">
+                    {i?.subtitle}
+                  </p>
+                  <p className="leading-relaxed text-lg mb-4 whitespace-pre-line">
+                    {i?.content}
+                  </p>
+                </React.Fragment>
+              ))}
+
+            <div id="fb-root"></div>
+            <div
+              className="fb-share-button"
+              data-href="https://developers.facebook.com/docs/plugins/"
+              data-layout="button"
+              data-size="small"
+            >
+              <a
+                target="_blank"
+                href={`https://www.facebook.com/sharer/sharer.php?u=${url}`}
+                className="fb-xfbml-parse-ignore text-indigo-400 hover:bg-cyan-400 hover:text-black hover:scale-110 inline-flex items-center rounded-sm p-2 transition ease-in-out duration-150"
+                rel="noreferrer"
+              >
+                Share
+                <svg
+                  fill="none"
+                  stroke="currentColor"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  className="w-4 h-4 ml-2"
+                  viewBox="0 0 24 24"
+                >
+                  <path d="M5 12h14M12 5l7 7-7 7"></path>
+                </svg>
+              </a>
+            </div>
+          </div>
         </div>
-    )
-}
+      </section>
+      <script
+        async
+        defer
+        crossOrigin="anonymous"
+        src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v14.0"
+        nonce="E58tXvTF"
+      ></script>
+    </div>
+  );
+};
 
-export default FullBlog
-
-
+export default FullBlog;
 
 // structure of the component ->
 

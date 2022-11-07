@@ -59,7 +59,7 @@ const Journal = () => {
                         property="og:description"
                         content={`Read blog about ${blog.title}`}
                     />
-                    <meta property="og:image" content={blog.image || 'https://images.pexels.com/photos/1591056/pexels-photo-1591056.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'} />
+                    <meta property="og:image" content={blog.img || 'https://images.pexels.com/photos/1591056/pexels-photo-1591056.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'} />
                     <link rel="icon" href="/logo/rcsc-logo.png" />
                 </Head>
                 <FullBlog
