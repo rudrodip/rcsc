@@ -15,9 +15,8 @@ const userListFormat = {
 }
 
 const Dashboard = ({user, userInfo}) => {
-  if (!userInfo?.roles["admin"]) return
   const [users, setUsers] = useState(null);
-
+  
   useEffect(() => {
     async function getUsers() {
       const ref = collection(db, "user");
@@ -29,6 +28,7 @@ const Dashboard = ({user, userInfo}) => {
     getUsers();
   }, []);
   
+  if (!userInfo?.roles["admin"]) return ''
   return (
     <div>
       <Head>
