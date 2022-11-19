@@ -84,7 +84,7 @@ function CheckBox({ name, action, checked = true }) {
         checked={checked}
         onChange={action}
       />
-      <label for="link-checkbox" class="ml-2 text-md font-medium text-gray-900 dark:text-gray-300">{name}</label>
+      <label htmlFor="link-checkbox" className="ml-2 text-md font-medium text-gray-900 dark:text-gray-300">{name}</label>
     </div>
   )
 }

@@ -23,7 +23,7 @@ const Dashboard = ({user, userInfo}) => {
       const ref = collection(db, "user");
       const docSnaps = await getDocs(ref);
       let users = docSnaps.docs
-      users && setUsers(users)
+      setUsers(users)
     }
     
     getUsers();

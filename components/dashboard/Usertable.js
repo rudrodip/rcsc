@@ -215,7 +215,7 @@ const Table = (props) => {
                     userList && userList.map(elem => {
                       let user = elem.data()
                       return (
-                        <tr>
+                        <tr key={elem}>
                           <td className="py-3 pl-4">
                             <div className="flex items-center h-5">
                               <input
@@ -232,7 +232,7 @@ const Table = (props) => {
                           </td>
                           <td className="px-6 py-4 text-sm font-medium whitespace-nowrap">
                             <Link href={`/user/${elem?.id}`}>
-                              <img src={user.photoURL} alt="Avatar" class="w-10 h-10 rounded-full align-middle cursor-pointer" />
+                              <img src={user.photoURL} alt="Avatar" className="w-10 h-10 rounded-full align-middle cursor-pointer" />
                             </Link>
                           </td>
                           <td className="px-6 py-4 text-sm whitespace-nowrap">
