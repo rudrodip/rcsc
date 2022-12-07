@@ -64,15 +64,6 @@ function Executives() {
         <link rel="icon" href="/logo/rcsc-logo.png" />
       </Head>
 
-      {width > 1000 && (
-        <Header
-          title="Rajshahi College Science Club"
-          subtitle="Executives"
-          imageSubtitle="We dream"
-          imageTitle="We make our dream true"
-        />
-      )}
-
       <section className="text-gray-400 bg-gray-900 body-font">
         <div className="container px-5 py-6 lg:py-16 mx-auto">
           <div className="flex flex-col text-center w-full mb-20">

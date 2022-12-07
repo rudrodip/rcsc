@@ -1,11 +1,14 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import url('https://fonts.googleapis.com/css2?family=Raleway&family=Ubuntu:wght@300&display=swap');
 
 @layer base {
     html {
       background-color: #111827;
       color: white;
+      font-family: 'Raleway', sans-serif;
+      font-family: 'Ubuntu', sans-serif;
     }
   }
 

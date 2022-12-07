@@ -82,15 +82,6 @@ function Blogs({ user, userInfo }) {
 
   return (
     <div>
-      {width > 1000 && (
-        <Header
-          title="Rajshahi College Science Club"
-          subtitle="Blogs"
-          imageSubtitle="We work"
-          imageTitle="Until we reach"
-          width={width}
-        />
-      )}
 
       <Head>
         <title>RCSC - Blogs</title>

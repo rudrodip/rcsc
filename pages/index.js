@@ -48,13 +48,6 @@ export default function Home() {
         <link rel="icon" href="/logo/rcsc-logo.png" />
       </Head>
 
-      <Header
-        title="Rajshahi College Science Club"
-        subtitle="Welcome to"
-        imageSubtitle="We explore"
-        imageTitle="We let others explore! 🔍"
-      />
-
       <div className='stats-detailed'>
         <section className="text-gray-400 bg-gray-900 body-font">
           <div className="container px-5 py-6 lg:py-24 mx-auto flex flex-wrap justify-center text-center lg:text-left">

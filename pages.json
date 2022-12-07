@@ -1,10 +1,62 @@
 {
-    "Home" : "/",
-    "About" : "/about",
-    "Blogs" : "/blogs",
-    "Executives": "/executives",
-    "Alumni": "/alumni",
-    "Events": "/events",
-    "Gallery": "/gallery",
-    "Contact": "/contact"
+    "Home" : {
+        "route": "/",
+        "header": true,
+        "title": "Rajshahi College Science Club",
+        "subtitle": "Welcome to",
+        "imageSubtitle": "We explore",
+        "imageTitle": "We let others explore! 🔍"
+    },
+    "About" :  {
+        "route": "/about",
+        "header": true,
+        "title": "Rajshahi College Science Club",
+        "subtitle": "About Us",
+        "imageSubtitle": "We conquer",
+        "imageTitle": "THE MOUNTAINS"
+    },
+    "Blogs" :  {
+        "route": "/blogs",
+        "header": true,
+        "title": "Rajshahi College Science Club",
+        "subtitle": "Blogs",
+        "imageSubtitle": "We work",
+        "imageTitle": "until we reach"
+    },
+    "Executives":  {
+        "route": "/executives",
+        "header": true,
+        "title": "Rajshahi College Science Club",
+        "subtitle": "Executives",
+        "imageSubtitle": "We dream",
+        "imageTitle": "We make our dream true"
+    },
+    "Alumni":  {
+        "route": "/alumni",
+        "header": true,
+        "title": "Rajshahi College Science Club",
+        "subtitle": "AlUMNI",
+        "imageSubtitle": "We work",
+        "imageTitle": "until we reach"
+    },
+    "Gallery":  {
+        "route": "/gallery",
+        "header": true,
+        "title": "Rajshahi College Science Club",
+        "subtitle": "Gallery",
+        "imageSubtitle": "We dream",
+        "imageTitle": "We make our dream true"
+    },
+    "Events":  {
+        "route": "/events",
+        "header": true,
+        "title": "Rajshahi College Science Club",
+        "subtitle": "Events",
+        "imageSubtitle": "_explore!",
+        "imageTitle": "Events arranged by RCSC"
+    },
+    "Contact":  {
+        "route": "/contact",
+        "header": false
+    }
 }

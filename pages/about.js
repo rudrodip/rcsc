@@ -25,12 +25,6 @@ function About({ user }) {
         <link rel="icon" href="/logo/rcsc-logo.png" />
       </Head>
 
-      <Header
-        title="Rajshahi College Science Club"
-        subtitle="About Us"
-        imageSubtitle="We conquer"
-        imageTitle="THE MOUNTAINS"
-      />
       <div className="stats-short" style={{ marginTop: '1rem' }}>
         <section className="text-gray-400 bg-gray-900 body-font">
           <div className="container px-5 py-10 mx-auto">

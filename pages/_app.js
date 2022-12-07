@@ -4,10 +4,12 @@ import Pages from '../pages.json'
 import Navbar from '../components/header/navbar'
 import Footer from '../components/footer/footer'
 import LoadingBar from 'react-top-loading-bar'
+import Header from '../components/header/header'
 import { useState } from 'react'
 import { useEffect } from 'react'
 import { useRouter } from 'next/router'
 import { useAuth, useUser } from '../src/config/firebase.config'
+import useWindowDimensions from '../components/useWindowDimensions'
 
 const MyApp = ({ Component, pageProps }) => {
   const router = useRouter()
@@ -16,9 +18,10 @@ const MyApp = ({ Component, pageProps }) => {
   const [profile, setProfile] = useState('https://dummyimage.com/200x200')
   const user = useAuth()
   const userInfo = useUser()
+  const { width, height } = useWindowDimensions()
 
   const handleProfile = (image) => {
-    if (userInfo){
+    if (userInfo) {
       userInfo.photoURL = image
     }
     setProfile(image)
@@ -49,10 +52,18 @@ const MyApp = ({ Component, pageProps }) => {
         key={key || 1}
         user={user}
         path={router.pathname}
-        userProfile={profile} 
+        userProfile={profile}
       />
-        
-      <Component {...pageProps} user={user} userInfo={userInfo} handleProfile={handleProfile}/>
+
+      {
+        width > 1000
+        ?
+        <Header props={Pages} route={router.pathname}/>
+        :
+        ''
+      }
+
+      <Component {...pageProps} user={user} userInfo={userInfo} handleProfile={handleProfile} />
       <Footer desc={router.pathname == "/" ? true : false} />
     </div>
   </>

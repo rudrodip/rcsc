@@ -39,7 +39,7 @@ const Table = (props) => {
         handleAction={filter}
       />
       <div className="flex flex-col">
-        <div className="overflow-x-auto">
+        <div className="">
           <div className="flex justify-between py-3 pl-2">
             <div className="relative max-w-xs">
               <label htmlFor="hs-table-search" className="sr-only">
