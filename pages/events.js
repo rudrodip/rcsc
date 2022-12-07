@@ -7,15 +7,11 @@ import { useEffect } from 'react'
 import { useState } from 'react'
 import { db } from '../src/config/firebase.config';
 import { getDoc, doc } from 'firebase/firestore'
-import useWindowDimensions from '../components/useWindowDimensions'
-
 
 function Events() {
   const [blog, setBlog] = useState({})
   const [user, setUser] = useState(null)
   const [date, setDate] = useState()
-  const { width, height } = useWindowDimensions()
-
   const uid = blog?.authorProfile
 
   useEffect(() => {

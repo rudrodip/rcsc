@@ -1,17 +1,14 @@
 import React from 'react'
 import Head from 'next/head';
-import Header from '../components/header/header'
 import AlumniProfile from '../components/profile/alumniProfile'
 import { db } from '../src/config/firebase.config';
 import { getDocs, collection, query, limit, where } from 'firebase/firestore'
 import { useState, useEffect } from 'react';
-import useWindowDimensions from '../components/useWindowDimensions'
 
 
 const Alumni = () => {
   const [alumni, setAlumni] = useState(null)
   const [sortedAlumni, setSortedAlumni] = useState(null)
-  const { width, height } = useWindowDimensions()
 
   function sortAlumni(alumni) {
     let alumniObject = {}

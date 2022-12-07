@@ -1,6 +1,5 @@
 import React from "react";
 import Head from "next/head";
-import Header from "../components/header/header";
 import MiniBlog from "../components/blog/miniBlog";
 import {
   db,
@@ -12,12 +11,10 @@ import { getDocs, collection, query, limit, where } from "firebase/firestore";
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import SearchBlog from "../components/blog/searchBlog";
-import useWindowDimensions from "../components/useWindowDimensions";
 
 function Blogs({ user, userInfo }) {
   const [blogs, setBlogs] = useState(null);
   const [category, setCategory] = useState("All Blogs");
-  const { width, height } = useWindowDimensions();
   const [laoding, setLoading] = useState(false);
 
   const handleCategory = (e) => {

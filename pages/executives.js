@@ -2,13 +2,11 @@ import React from "react";
 import Head from "next/head";
 import Header from "../components/header/header";
 import MiniProfile from "../components/profile/miniProfile";
-import useWindowDimensions from "../components/useWindowDimensions";
 import { getDocs, collection, query, where } from "firebase/firestore";
 import { db } from "../src/config/firebase.config";
 import { useState, useEffect } from "react";
 
 function Executives() {
-  const { width, height } = useWindowDimensions();
   const [executives, setExecutives] = useState(null);
 
   useEffect(() => {

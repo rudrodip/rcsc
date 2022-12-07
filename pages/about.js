@@ -1,6 +1,5 @@
 import React from 'react'
 import Head from 'next/head';
-import Header from '../components/header/header'
 import CountUp from 'react-countup';
 import Stats from '../stats.json'
 import TeachersProfile from '../components/profile/teachersProfile'
