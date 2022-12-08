@@ -25,7 +25,7 @@
     },
     "Executives":  {
         "route": "/executives",
-        "header": true,
+        "header": false,
         "title": "Rajshahi College Science Club",
         "subtitle": "Executives",
         "imageSubtitle": "We dream",
@@ -33,7 +33,7 @@
     },
     "Alumni":  {
         "route": "/alumni",
-        "header": true,
+        "header": false,
         "title": "Rajshahi College Science Club",
         "subtitle": "AlUMNI",
         "imageSubtitle": "We work",

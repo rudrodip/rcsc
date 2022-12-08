@@ -14,6 +14,7 @@ import useWindowDimensions from '../components/useWindowDimensions'
 const MyApp = ({ Component, pageProps }) => {
   const router = useRouter()
   const [key, setKey] = useState(0)
+  const [headerKey, setHeaderKey] = useState(0)
   const [progress, setProgress] = useState(0)
   const [profile, setProfile] = useState('https://dummyimage.com/200x200')
   const user = useAuth()
@@ -32,6 +33,7 @@ const MyApp = ({ Component, pageProps }) => {
     router.events.on('routeChangeComplete', () => setProgress(100))
     try {
       setKey(Math.random())
+      setHeaderKey(Math.random())
     } catch (error) {
       console.log(error)
     }
@@ -58,7 +60,7 @@ const MyApp = ({ Component, pageProps }) => {
       {
         width > 1000
         ?
-        <Header props={Pages} route={router.pathname}/>
+        <Header props={Pages} route={router.pathname} key={headerKey || 2}/>
         :
         ''
       }

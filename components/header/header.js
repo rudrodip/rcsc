@@ -18,7 +18,7 @@ function Header({ props, route }) {
   // -> 1. imageTitle 2. imageSubtitle (Rendered in the right)
 
   const { width, height } = useDimension()
-  const [pageData, setPageData] = useState()
+  const [pageData, setPageData] = useState(null)
   const [array, setArray] = useState([])
 
   useEffect(() => {
