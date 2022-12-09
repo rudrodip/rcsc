@@ -37,11 +37,11 @@ const Navbar = ({ props, user, path, userProfile }) => {
               <div className="hidden lg:block">
                 <div className="px-4 flex items-center">
                   {Object.keys(props).map(i => (
-                    path != props[i]['route'] 
+                    path != i
                     ? 
-                    <Navbutton name={i} link={props[i]['route']} key={i} /> 
+                    <Navbutton name={props[i]['name']} link={i} key={i} /> 
                     : 
-                    <Navbutton name={i} link={props[i]['route']} key={i} classname="bg-gradient-to-r from-blue-600 to-cyan-500 text-white font-medium" />
+                    <Navbutton name={props[i]['name']} link={i} key={i} classname="bg-gradient-to-r from-blue-600 to-cyan-500 text-white font-medium" />
                   ))}
                   {user ? <ProfileButton userProfile={userProfile} /> : <Navbutton name="Login" link="/login" />}
 
@@ -127,11 +127,11 @@ const Navbar = ({ props, user, path, userProfile }) => {
             <div className="lg:hidden bg-gray-800" id="mobile-menu">
               <div ref={divRef} className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
                 {Object.keys(props).map(i => (
-                  path != props[i]['route'] 
+                  path != i
                   ? 
-                  <Navbutton name={i} link={props[i]['route']} key={i} /> 
+                  <Navbutton name={props[i]['name']} link={i} key={i} /> 
                   : 
-                  <Navbutton name={i} link={props[i]['route']} key={i} classname="bg-gradient-to-r from-blue-600 to-cyan-500 text-white font-medium" />
+                  <Navbutton name={props[i]['name']} link={i} key={i} classname="bg-gradient-to-r from-blue-600 to-cyan-500 text-white font-medium" />
                 ))}
                 {!user && <Navbutton name="Login" link="/login" />}
               </div>

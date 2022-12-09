@@ -57,14 +57,7 @@ const MyApp = ({ Component, pageProps }) => {
         userProfile={profile}
       />
 
-      {
-        width > 1000
-        ?
-        <Header props={Pages} route={router.pathname} key={headerKey || 2}/>
-        :
-        ''
-      }
-
+      <Header page={Pages[router.pathname]} key={headerKey || 2}/>
       <Component {...pageProps} user={user} userInfo={userInfo} handleProfile={handleProfile} />
       <Footer desc={router.pathname == "/" ? true : false} />
     </div>
