@@ -23,7 +23,7 @@ function Header({ page }) {
 
   useEffect(() => {
     setArray(Permutation(13))
-    page['header'] && (width > 1000 || page['important']) ? setPageData(page) : ''
+    page && page['header'] && (width > 1000 || page['important']) ? setPageData(page) : ''
   }, [page, width])
 
   if (!pageData) return
