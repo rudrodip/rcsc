@@ -31,7 +31,7 @@ const FullBlog = ({ blog, userImg, date, author, url, role }) => {
       <section className="text-gray-400 bg-gray-900 body-font">
         <div className="w-full container px-5 py-6 mx-auto flex flex-col">
           <div className="lg:w-full">
-            <h2 className="font-medium title-font mt-4 text-white text-5xl mb-5">
+            <h2 className="font-medium title-font mt-4 text-white lg:text-5xl text-4xl mb-5">
               {blog?.title}
             </h2>
             <h2 className="font-medium title-font mt-4 text-white text-bold text-lg">
@@ -73,7 +73,7 @@ const FullBlog = ({ blog, userImg, date, author, url, role }) => {
           </div>
 
           <div className="w-full sm:pl-8 sm:py-8 sm:border-l border-gray-800 sm:border-t-0 border-t mt-4 pt-4 sm:mt-0 text-left">
-            <h2 className="font-medium title-font mt-4 text-white text-5xl mb-5">
+            <h2 className="font-bold title-font mt-4 text-white text-3xl mb-5">
               {blog?.title}
             </h2>
             {blog?.paragraphs &&
