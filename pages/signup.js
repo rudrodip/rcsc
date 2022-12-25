@@ -8,6 +8,16 @@ import 'react-toastify/dist/ReactToastify.css';
 import { signUp, createUserData, useAuth } from '../src/config/firebase.config'
 import Decode from '../src/authCode/decode'
 
+const toast_warn_config = {
+  position: "top-center",
+  autoClose: 3000,
+  hideProgressBar: false,
+  closeOnClick: true,
+  pauseOnHover: true,
+  draggable: true,
+  progress: undefined,
+}
+
 const Login = () => {
   const router = useRouter()
   const [loading, setLoading] = useState(false)
@@ -73,31 +83,19 @@ const Login = () => {
   const validate = () => {
     if (name.length > 2) {
       if (!isAlumni) {
-        if (memberCode.length == 7 && phone.length == 11 && Decode(grade, section, roll) == memberCode) {
-          return true
+        try {
+          let year = parseInt(batch.split('-').pop().trim())
+          if (Decode(memberCode, grade, year) == roll) return true
+        } catch (error) {
+          toast.warn('Batch format is not valid, try again', toast_warn_config)
+          return false
         }
-        toast.warn('Member Code not matched!', {
-          position: "top-center",
-          autoClose: 3000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        })
+        toast.warn('Member Code not matched!', toast_warn_config)
         return false
       }
       return true
     }
-    toast.warn('Form not valid! Please check again', {
-      position: "top-center",
-      autoClose: 3000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-    })
+    toast.warn('Form not valid! Please check again', toast_warn_config)
   }
 
   const createUser = async () => {
