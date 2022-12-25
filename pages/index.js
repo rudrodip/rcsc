@@ -54,8 +54,16 @@ export default function Home() {
             <div className="flex flex-wrap -mx-4 mt-auto mb-auto lg:w-1/2 sm:w-2/3 content-start sm:pr-10">
               <div className="w-full sm:p-4 px-4 mb-6">
                 <h1 className="title-font font-medium text-xl mb-2 text-white">Rajshahi College Science Club</h1>
-                <div className="leading-relaxed">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                <div className="leading-relaxed mb-3 text-gray-300">
+                  Rajshahi College Science Club is one of the most renowned co-organizations affiliated to Rajshahi College which works to uphold the contributions of Bangladeshi geniuses and encourage the new generation in scientific practices emphasizing on both theoretical and practical fields.
+                </div>
+                <div className='font-bold text-white text-left text-md'>
+                  Club motives:
+                </div>
+                <div className='flex flex-col flex-wrap text-left text-gray-300'>
+                  <span>1. Enlightening the society by the flame of science.</span>
+                  <span>2. Exploring the latent talents from our college by providing platforms and facilities.</span>
+                  <span>3. Upholding the contributions of Bangladeshi science pioneers.</span>
                 </div>
               </div>
               <div className="p-4 sm:w-1/4 w-1/2" ref={ref}>
@@ -78,7 +86,7 @@ export default function Home() {
             {
               width > 1000 &&
               <div className="lg:w-1/2 sm:w-1/3 w-full rounded-lg overflow-hidden mt-6 sm:mt-0">
-                <img className="object-cover object-center w-full h-full" src="/background-img/bg1.jpg" alt="stats" loading='lazy'/>
+                <img className="object-cover object-center w-full h-full" src="/background-img/bg1.jpg" alt="stats" loading='lazy' />
               </div>
             }
 
@@ -90,8 +98,8 @@ export default function Home() {
         spaceBetween={0}
         slidesPerView={1}
         modules={[Autoplay]}
-        autoplay={{ 
-          delay: 2000 ,
+        autoplay={{
+          delay: 2000,
           disableOnInteraction: false
         }}
         speed={1000}
