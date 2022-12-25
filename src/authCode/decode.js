@@ -1,29 +1,9 @@
-const decode = (grade, section, roll) => {
-  grade = parseInt(grade);
-  roll = parseInt(roll);
-
-  function num(x, y) {
-    if (y < 100) {
-      y = y + x + 100;
-    }
-    let output = x ** 3 + y ** 2 + 4 * x * y;
-    output = parseInt(output);
-    return output;
-  }
-
-  let number = num(grade, roll);
-  let keyCode = {
-    p: "jamuna",
-    j: "meghna",
-    m: "padma",
-  };
-
-  section = section.toLowerCase();
-  let string = keyCode[section[0]];
-  let sec = string[string.length - 3] + string[string.length - 2];
-  let code = number + sec;
-
-  return code;
+const decode = (encoded, grade, year) => {
+  let key = process.env.NEXT_MEMBER_KEY
+  let length = encoded.slice(-1)
+  encoded = encoded.slice(length, -1)
+  let roll = parseInt(encoded) / (grade * key * (year%100))
+  return roll;
 };
 
 export default decode;
