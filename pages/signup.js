@@ -83,13 +83,14 @@ const Login = () => {
   const validate = () => {
     if (name.length > 2) {
       if (!isAlumni) {
+        let year;
         try {
-          let year = parseInt(batch.split('-').pop().trim())
-          if (Decode(memberCode, grade, year) == roll) return true
+          year = parseInt(batch.split('-').pop().trim())
         } catch (error) {
           toast.warn('Batch format is not valid, try again', toast_warn_config)
           return false
         }
+        if (Decode(memberCode, grade, year) == roll) return true
         toast.warn('Member Code not matched!', toast_warn_config)
         return false
       }
