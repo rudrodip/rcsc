@@ -114,7 +114,7 @@ function About({ user }) {
             />
             <TeachersProfile
               name="Prof. Md Al-Momin Chowdhury"
-              role="Convenor"
+              role="First convener"
               img="https://dummyimage.com/200x200"
             />
           </div>
