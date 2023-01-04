@@ -314,7 +314,7 @@ const Login = () => {
             </div>
             <div className="text-grey-dark mt-6">
               Already have an account?
-              <Link href="/login">
+              <Link legacyBehavior href="/login">
                 <a className="no-underline border-b border-blue text-blue">
                   Log in
                 </a>

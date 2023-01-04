@@ -13,7 +13,7 @@ const Profile = (props) => {
     setScale(1)
   }
   return (
-    <Link href={props.link ? props.link : "#"}>
+    <Link legacyBehavior href={props.link ? props.link : "#"}>
       <div className='p-4 w-1/2 transition ease-in-out duration-500 scale-0 cursor-pointer' ref={ref} style={{ transform: `scale(${scale})` }}>
         <div className="h-full flex flex-col lg:flex-row items-center justify-center text-left">
           <img alt="team" className="flex-shrink-0 rounded-lg w-36 h-36 md:w-48 md:h-48 object-cover object-center mb-4 lg:mb-0" src={props.img ? props.img : "https://dummyimage.com/200x200"} />

@@ -67,15 +67,13 @@ function Header({ page }) {
           array.map(i => {
             return (
               <SwiperSlide style={{ width: '100%', height: '100%' }} key={i}>
-                <Image
-                  src={`/background-img/bg${i + 1}.jpg`}
-                  alt="image"
-                  width={width}
-                  height={width < 1024 ? height : height / 1.4}
-                  objectFit='cover'
-                  style={{ opacity: "0.7" }}
-                  loading='lazy'
-                />
+                  <Image
+                    src={`/background-img/bg${i + 1}.jpg`}
+                    alt="image"
+                    width={width}
+                    height={height}
+                    style={{ opacity: "0.7", objectFit: "cover", width: width, height: height }}
+                  />
               </SwiperSlide>
             )
           })

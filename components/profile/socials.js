@@ -65,8 +65,8 @@ const AddSocialMedia = (props) => {
     setLoading(true);
     if (!user) return;
     try {
-      socials = { socials };
-      updateUserData(user, socials);
+      let social_object = { socials };
+      updateUserData(user, social_object);
     } catch (error) {
       console.log(error);
     }
@@ -91,8 +91,8 @@ const AddSocialMedia = (props) => {
     if (validate()) {
       try {
         socials[socialName] = social;
-        socials = { socials };
-        await addSocial(user, socials);
+        let social_object = { socials };
+        await addSocial(user, social_object);
       } catch (error) {
         alert(error);
       }

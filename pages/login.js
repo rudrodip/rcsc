@@ -139,7 +139,7 @@ const Login = ({ user }) => {
             </div>
             <div className="text-grey-dark mt-6">
               Do not have an account?
-              <Link href="/signup">
+              <Link legacyBehavior href="/signup">
                 <a className="no-underline border-b border-blue text-blue">
                   Sign up
                 </a>

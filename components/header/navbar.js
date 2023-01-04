@@ -146,7 +146,7 @@ const Navbar = ({ props, user, path, userProfile }) => {
 const Navbutton = (props) => {
   return (
     <div>
-      <Link href={props.link}>
+      <Link legacyBehavior href={props.link}>
         <a
           href="#"
           className={`text-gray-400 hover:bg-gray-700 ${props.classname} block px-4 mx-3 py-2 rounded-md text-base transition duration-150 ease-in-out`}
