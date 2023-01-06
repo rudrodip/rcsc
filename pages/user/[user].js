@@ -24,7 +24,11 @@ const Profile = () => {
     }, [uid?.user])
 
 
-    return (<MainProfile custom_user={user}/>)
+    return (
+        <main className='my-14'>
+            <MainProfile custom_user={user} />
+        </main>
+    )
 }
 
 export default Profile
