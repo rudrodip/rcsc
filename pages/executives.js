@@ -17,19 +17,19 @@ function Executives() {
       let execs = docSnaps.docs
       execs && setExecutives(sort_exec(execs))
     }
-    
+
     getExecs();
   }, []);
 
   const hierarchy = [
     "president",
     "general secretary",
-    "joint secretary",
+    "secretary of human resource",
     "treasurer",
     "organizing secretary",
     "academic co-ordinator",
     "project co-ordinator",
-    "chief it coordinator",
+    "secretary of it",
     "publication secretary",
     "promotional secretary",
   ];
@@ -38,7 +38,7 @@ function Executives() {
     let sorted = []
     hierarchy.map(i => {
       execs?.map(exec => {
-        if (exec.data().designation.toLowerCase() == i && !sorted.includes(exec)){
+        if (exec.data().designation.toLowerCase() == i && !sorted.includes(exec)) {
           sorted.push(exec)
         }
       })
@@ -115,6 +115,10 @@ function Executives() {
                     role={exec?.data().designation}
                     link={`/user/${exec?.id}`}
                     img={exec?.data().photoURL}
+                    batch={exec.data().batch}
+                    institution={exec.data().institution}
+                    number={exec.data().phone}
+                    mail={exec.data().email}
                   />
                 );
               })}

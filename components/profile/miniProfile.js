@@ -19,8 +19,12 @@ const Profile = (props) => {
           <img alt="team" className="flex-shrink-0 rounded-lg w-36 h-36 md:w-48 md:h-48 object-cover object-center mb-4 lg:mb-0" src={props.img ? props.img : "https://dummyimage.com/200x200"} />
           <div className="flex-grow sm:pl-8">
             <h2 className="title-font font-medium text-lg text-white text-center md:text-left">{props.name}</h2>
-            <h3 className="text-gray-500 mb-3 md:text-left text-center">{props.role}</h3>
+            <h3 className="mb-3 md:text-left text-center text-blue-500">{props.role}</h3>
             <p className="mb-4 md:text-left text-center">{props.desc}</p>
+            <p className="mb-1">Batch: {props.batch}</p>
+            <p className="mb-1">Current Institution: {props.institution}</p>
+            <p className="mb-1">Phone: {props.number}</p>
+            <p className="mb-1">Email: {props.mail}</p>
             <span className="inline-flex">
             </span>
           </div>

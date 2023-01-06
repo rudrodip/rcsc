@@ -133,70 +133,71 @@ const AddAchievements = (props) => {
         rtl={false}
         draggable
       />
+      <div id="forms" className="border-2 rounded-xl p-3 mb-5 border-gray-600">
+        <h1 className="mt-4 text-xl font-medium text-white">
+          Customize your achievements
+        </h1>
 
-      <h1 className="mt-4 text-xl font-medium text-white">
-        Customize your achievements
-      </h1>
-
-      <div className="mb-10 text-left">
-        {achievements &&
-          achievements.map((achievement, index) => {
-            return (
-              <div
-                key={index}
-                className="flex flex-row justify-between border-2 border-gray-600 m-2 rounded-md p-2 bg-gray-600"
-              >
-                <p className="text-white text-sm flex items-center justify-start">
-                  {achievement}
-                </p>
-                <div>
-                  <button
-                    className="pointer-cursor "
-                    onClick={() => submit(achievement, index, handleDelete)}
-                  >
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="15"
-                      height="15"
-                      viewBox="0 0 24 24"
-                      className="fill-red-500 hover:scale-125 transition duration-200"
+        <div className="mb-10 text-left">
+          {achievements &&
+            achievements.map((achievement, index) => {
+              return (
+                <div
+                  key={index}
+                  className="flex flex-row justify-between border-2 border-gray-600 m-2 rounded-md p-2 bg-gray-600"
+                >
+                  <p className="text-white text-sm flex items-center justify-start">
+                    {achievement}
+                  </p>
+                  <div>
+                    <button
+                      className="pointer-cursor "
+                      onClick={() => submit(achievement, index, handleDelete)}
                     >
-                      <path d="M3 6v18h18v-18h-18zm5 14c0 .552-.448 1-1 1s-1-.448-1-1v-10c0-.552.448-1 1-1s1 .448 1 1v10zm5 0c0 .552-.448 1-1 1s-1-.448-1-1v-10c0-.552.448-1 1-1s1 .448 1 1v10zm5 0c0 .552-.448 1-1 1s-1-.448-1-1v-10c0-.552.448-1 1-1s1 .448 1 1v10zm4-18v2h-20v-2h5.711c.9 0 1.631-1.099 1.631-2h5.315c0 .901.73 2 1.631 2h5.712z" />
-                    </svg>
-                  </button>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="15"
+                        height="15"
+                        viewBox="0 0 24 24"
+                        className="fill-red-500 hover:scale-125 transition duration-200"
+                      >
+                        <path d="M3 6v18h18v-18h-18zm5 14c0 .552-.448 1-1 1s-1-.448-1-1v-10c0-.552.448-1 1-1s1 .448 1 1v10zm5 0c0 .552-.448 1-1 1s-1-.448-1-1v-10c0-.552.448-1 1-1s1 .448 1 1v10zm5 0c0 .552-.448 1-1 1s-1-.448-1-1v-10c0-.552.448-1 1-1s1 .448 1 1v10zm4-18v2h-20v-2h5.711c.9 0 1.631-1.099 1.631-2h5.315c0 .901.73 2 1.631 2h5.712z" />
+                      </svg>
+                    </button>
+                  </div>
                 </div>
-              </div>
-            );
-          })}
-      </div>
+              );
+            })}
+        </div>
 
-      <div>
-        <label
-          htmlFor="phone"
-          className="block mb-2 text-sm font-medium text-gray-300"
+        <div>
+          <label
+            htmlFor="phone"
+            className="block mb-2 text-sm font-medium text-gray-300"
+          >
+            Add your achievements
+          </label>
+          <input
+            type="text"
+            name="achievement"
+            id="name"
+            className="border text-sm rounded-lg block w-full p-2.5 bg-gray-600 border-gray-500 placeholder-gray-400 text-white outline-none mb-5"
+            placeholder="Achievement"
+            onChange={handleChange}
+            value={achievement}
+            required
+          />
+        </div>
+
+        <button
+          type="submit"
+          className="w-1/4 text-white focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center bg-blue-600 hover:bg-blue-700 focus:ring-blue-800"
+          onClick={handleSubmit}
+          disabled={loading}
         >
-          Add your achievements
-        </label>
-        <input
-          type="text"
-          name="achievement"
-          id="name"
-          className="border text-sm rounded-lg block w-full p-2.5 bg-gray-600 border-gray-500 placeholder-gray-400 text-white outline-none mb-5"
-          placeholder="Achievement"
-          onChange={handleChange}
-          value={achievement}
-          required
-        />
+          Add
+        </button>
       </div>
-
-      <button
-        type="submit"
-        className="w-1/4 text-white focus:ring-4 focus:outline-none mb-5 font-medium rounded-lg text-sm px-5 py-2.5 text-center bg-blue-600 hover:bg-blue-700 focus:ring-blue-800"
-        onClick={handleSubmit}
-        disabled={loading}
-      >
-        Add
-      </button>
     </div>
   );
 };

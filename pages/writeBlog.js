@@ -232,6 +232,8 @@ const WriteBlog = ({ user, userInfo }) => {
             uploadFileName="theFiles"
             onChange={onChange}
             loading={loading}
+            acceptedFileTypes="image/png, image/jpeg, image/jpg"
+            allowMultipleFiles={false}
           />
           <button
             className='bg-blue-500 hover:scale-110 transition ease-in-out duration-150 uppercase text-white font-bold hover:shadow-md shadow text-xs px-4 py-2 mx-3 rounded outline-none focus:outline-none sm:mr-2 mb-1'

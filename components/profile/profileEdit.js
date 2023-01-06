@@ -126,7 +126,7 @@ const ProfileEdit = ({
           <div className="relative rounded-lg shadow bg-gray-700">
             <button
               type="button"
-              className="absolute top-3 right-2.5 text-gray-400 bg-transparent rounded-lg text-sm p-1.5 ml-auto inline-flex items-center hover:bg-gray-800 hover:text-white"
+              className="absolute top-3 right-2.5 text-gray-400 bg-transparent rounded-lg text-sm p-1.5 ml-auto inline-flex items-center bg-gray-600 transition ease-in-out duration-100 hover:bg-gray-800 hover:text-white"
               onClick={handleToggle}
             >
               <svg
@@ -144,7 +144,7 @@ const ProfileEdit = ({
             </button>
             <div className="py-6 px-6 lg:px-8">
               <h3 className="mb-4 text-xl font-medium text-white">
-                Edit your info
+                Edit your profile
               </h3>
               <div className="flex flex-wrap flex-row justify-around content-center">
                 <img
@@ -160,68 +160,71 @@ const ProfileEdit = ({
                     uploadFileName="theFiles"
                     onChange={onChange}
                     loading={loading}
+                    acceptedFileTypes="image/png, image/jpeg, image/jpg"
+                    allowMultipleFiles={false}
                   />
                 </div>
               </div>
-
-              <div>
-                <label
-                  htmlFor="phone"
-                  className="block mb-2 text-sm font-medium text-gray-300"
-                >
-                  Your name
-                </label>
-                <input
-                  type="text"
-                  name="name"
-                  id="name"
-                  className="border text-sm rounded-lg block w-full p-2.5 bg-gray-600 border-gray-500 placeholder-gray-400 text-white outline-none mb-5"
-                  placeholder="Name"
-                  onChange={handleChange}
-                  value={name}
-                  required
-                />
-              </div>
-              <div>
-                <label
-                  htmlFor="phone"
-                  className="block mb-2 text-sm font-medium text-gray-300"
-                >
-                  Your phone
-                </label>
-                <input
-                  type="text"
-                  name="phone"
-                  id="phone"
-                  className="border text-sm rounded-lg block w-full p-2.5 bg-gray-600 border-gray-500 placeholder-gray-400 text-white outline-none mb-5"
-                  placeholder="phone number"
-                  onChange={handleChange}
-                  value={phone}
-                  required
-                />
-              </div>
-              {userInfo?.isAlumnus && (
+              <div id="forms" className="border-2 rounded-xl p-3 mb-5 border-gray-600">
                 <div>
-                  <div>
-                    <label
-                      htmlFor="institution"
-                      className="block mb-2 text-sm font-medium text-gray-300"
-                    >
-                      Current Institution
-                    </label>
-                    <input
-                      type="text"
-                      name="institution"
-                      id="institution"
-                      placeholder="Current Institution"
-                      className="border text-sm rounded-lg block w-full p-2.5 bg-gray-600 border-gray-500 placeholder-gray-400 text-white outline-none mb-5"
-                      onChange={handleChange}
-                      value={institution}
-                      required
-                    />
-                  </div>
+                  <label
+                    htmlFor="phone"
+                    className="block mb-2 text-sm font-medium text-gray-300"
+                  >
+                    Your name
+                  </label>
+                  <input
+                    type="text"
+                    name="name"
+                    id="name"
+                    className="border text-sm rounded-lg block w-full p-2.5 bg-gray-600 border-gray-500 placeholder-gray-400 text-white outline-none mb-5"
+                    placeholder="Name"
+                    onChange={handleChange}
+                    value={name}
+                    required
+                  />
                 </div>
-              )}
+                <div>
+                  <label
+                    htmlFor="phone"
+                    className="block mb-2 text-sm font-medium text-gray-300"
+                  >
+                    Your phone
+                  </label>
+                  <input
+                    type="text"
+                    name="phone"
+                    id="phone"
+                    className="border text-sm rounded-lg block w-full p-2.5 bg-gray-600 border-gray-500 placeholder-gray-400 text-white outline-none"
+                    placeholder="phone number"
+                    onChange={handleChange}
+                    value={phone}
+                    required
+                  />
+                </div>
+                {userInfo?.isAlumnus && (
+                  <div>
+                    <div>
+                      <label
+                        htmlFor="institution"
+                        className="block mb-2 text-sm font-medium text-gray-300"
+                      >
+                        Current Institution
+                      </label>
+                      <input
+                        type="text"
+                        name="institution"
+                        id="institution"
+                        placeholder="Current Institution"
+                        className="border text-sm rounded-lg block w-full p-2.5 bg-gray-600 border-gray-500 placeholder-gray-400 text-white outline-none mb-5"
+                        onChange={handleChange}
+                        value={institution}
+                        required
+                      />
+                    </div>
+                  </div>
+                )}
+              </div>
               <AddAchievements
                 user={user}
                 achievements={userInfo?.achievements}
