@@ -10,6 +10,7 @@ import { useEffect } from 'react'
 import { useRouter } from 'next/router'
 import { useAuth, useUser } from '../src/config/firebase.config'
 import useWindowDimensions from '../components/useWindowDimensions'
+import '../styles/custom_confirm.css'
 
 const MyApp = ({ Component, pageProps }) => {
   const router = useRouter()

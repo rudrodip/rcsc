@@ -38,10 +38,10 @@ const Navbar = ({ props, user, path, userProfile }) => {
                 <div className="px-4 flex items-center">
                   {Object.keys(props).map(i => (
                     path != i
-                    ? 
-                    <Navbutton name={props[i]['name']} link={i} key={i} /> 
-                    : 
-                    <Navbutton name={props[i]['name']} link={i} key={i} classname="bg-gradient-to-r from-blue-600 to-cyan-500 text-white font-medium" />
+                      ?
+                      <Navbutton name={props[i]['name']} link={i} key={i} />
+                      :
+                      <Navbutton name={props[i]['name']} link={i} key={i} classname="bg-gradient-to-r from-blue-600 to-cyan-500 text-white font-medium" />
                   ))}
                   {user ? <ProfileButton userProfile={userProfile} /> : <Navbutton name="Login" link="/login" />}
 
@@ -50,14 +50,7 @@ const Navbar = ({ props, user, path, userProfile }) => {
             </div>
 
             <div className="-mr-2 flex lg:hidden">
-              {user &&
-
-                <Link href="/profile" target={'_blank'}>
-                  <div className="p-2 cursor-pointer">
-                    <div className="block rounded-full shadow-xl mx-auto h-8 w-8 bg-cover bg-center" style={{ backgroundImage: `url('${userProfile}` }}></div>
-                  </div>
-                </Link>
-              }
+              {user && <ProfileButton userProfile={userProfile} /> }
 
               {path != "/" ? <button
                 onClick={() => setIsOpen(!isOpen)}
@@ -128,10 +121,10 @@ const Navbar = ({ props, user, path, userProfile }) => {
               <div ref={divRef} className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
                 {Object.keys(props).map(i => (
                   path != i
-                  ? 
-                  <Navbutton name={props[i]['name']} link={i} key={i} /> 
-                  : 
-                  <Navbutton name={props[i]['name']} link={i} key={i} classname="bg-gradient-to-r from-blue-600 to-cyan-500 text-white font-medium" />
+                    ?
+                    <Navbutton name={props[i]['name']} link={i} key={i} />
+                    :
+                    <Navbutton name={props[i]['name']} link={i} key={i} classname="bg-gradient-to-r from-blue-600 to-cyan-500 text-white font-medium" />
                 ))}
                 {!user && <Navbutton name="Login" link="/login" />}
               </div>
@@ -161,7 +154,7 @@ const Navbutton = (props) => {
 const ProfileButton = (props) => {
   return (
     <div>
-      <Link href="/profile">
+      <Link legacyBehavior href="/profile">
         <div className="p-2 md:p-2 text-center lg:text-left cursor-pointer">
           <div className="block rounded-full shadow-xl mx-auto h-10 w-10 bg-cover bg-center hover:scale-125 transition ease-in-out duration-150" style={{ backgroundImage: `url('${props.userProfile}` }}></div>
         </div>

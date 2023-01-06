@@ -4,7 +4,6 @@
 import React from "react";
 import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
-import Confirmation from "../confirmationModal";
 
 // here's the main component
 const MiniBlog = (props) => {
@@ -12,36 +11,31 @@ const MiniBlog = (props) => {
   // poster -> title -> date -> img
   const router = useRouter();
   const [approved, setApproved] = useState(false);
-  const [deleteToggle, setDeleteToggle] = useState(false);
-  const [addToggle, setAddToggle] = useState(false);
   const handleClick = (id) => {
     router.push(`${router.pathname}/${id}`);
   };
 
-  const handleDeleteToggle = () => {
-    setDeleteToggle(!deleteToggle);
-  };
-  const handleAddToggle = () => {
-    setAddToggle(!addToggle);
-  };
-  const handleRemove = () => {
-    props.handleHide(
-      props.id,
-      props.blog?.authorProfile,
-      props.blog?.approved,
-      false
-    );
-  };
+  const deleteHandler = () => {
+    props.select({
+      id: props.id,
+      authorProfile: props.blog?.authorProfile,
+      approved: props.blog?.approved,
+      add: false
+    })
 
-  const handleAdd = () => {
-    setApproved(true);
-    props.handleHide(
-      props.id,
-      props.blog?.authorProfile,
-      props.blog?.approved,
-      true
-    );
-  };
+    props.deleteConfirmation()
+  }
+
+  const approveHandler = () => {
+    props.select({
+      id: props.id,
+      authorProfile: props.blog?.authorProfile,
+      approved: props.blog?.approved,
+      add: true
+    })
+
+    props.addConfirmation()
+  }
 
   useEffect(() => {
     setApproved(props.blog?.approved);
@@ -49,18 +43,6 @@ const MiniBlog = (props) => {
 
   return (
     <div className="p-1 sm:p-4 w-1/2 xl:w-1/3 transition ease-in-out duration-500 scale-1">
-      <Confirmation
-        toggle={deleteToggle}
-        warning="Are you sure to delete this article?"
-        handleToggle={handleDeleteToggle}
-        handleAction={handleRemove}
-      />
-      <Confirmation
-        toggle={addToggle}
-        warning="Are you sure to approve this article?"
-        handleToggle={handleAddToggle}
-        handleAction={handleAdd}
-      />
       <button>
         <div className="h-full flex flex-col md:flex-row text-left">
           <img
@@ -93,7 +75,7 @@ const MiniBlog = (props) => {
                   height="15"
                   viewBox="0 0 24 24"
                   className="fill-gray-300 transition ease-in-out duration-150 hover:scale-125 hover:fill-red-500"
-                  onClick={handleDeleteToggle}
+                  onClick={deleteHandler}
                 >
                   <path d="M3 6v18h18v-18h-18zm5 14c0 .552-.448 1-1 1s-1-.448-1-1v-10c0-.552.448-1 1-1s1 .448 1 1v10zm5 0c0 .552-.448 1-1 1s-1-.448-1-1v-10c0-.552.448-1 1-1s1 .448 1 1v10zm5 0c0 .552-.448 1-1 1s-1-.448-1-1v-10c0-.552.448-1 1-1s1 .448 1 1v10zm4-18v2h-20v-2h5.711c.9 0 1.631-1.099 1.631-2h5.315c0 .901.73 2 1.631 2h5.712z" />
                 </svg>
@@ -101,7 +83,7 @@ const MiniBlog = (props) => {
               {!approved && (
                 <p
                   className="ml-3 hover:text-blue-400 text-green-400 transition duration-100"
-                  onClick={handleAddToggle}
+                  onClick={approveHandler}
                 >
                   Approve
                 </p>

@@ -8,6 +8,7 @@ import { useState } from "react";
 import { db } from "../../src/config/firebase.config";
 import { arrayRemove, arrayUnion, doc, updateDoc } from "firebase/firestore";
 import { useEffect } from "react";
+import { confirmAlert } from 'react-confirm-alert'; // Import
 
 // the main component
 const AddAchievements = (props) => {
@@ -20,6 +21,27 @@ const AddAchievements = (props) => {
   useEffect(() => {
     props.user && setUser(props.user);
   }, [props.user]);
+
+  const submit = (achievement, index, handleAction) => {
+    let options = {
+      title: 'Are you sure to delete?',
+      // message: 'delete social media link',
+      buttons: [
+        {
+          label: 'No',
+          onClick: () => console.log('valo korsen delete na kore 🙂')
+        },
+        {
+          label: 'Yes',
+          onClick: () => handleAction(achievement, index)
+        }
+      ],
+      closeOnEscape: true,
+      closeOnClickOutside: true,
+      keyCodeForClose: [8, 32],
+    };
+    confirmAlert(options)
+  }
 
   const handleChange = (e) => {
     if (e.target.name == "achievement") {
@@ -130,7 +152,7 @@ const AddAchievements = (props) => {
                 <div>
                   <button
                     className="pointer-cursor "
-                    onClick={() => handleDelete(achievement, index)}
+                    onClick={() => submit(achievement, index, handleDelete)}
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"

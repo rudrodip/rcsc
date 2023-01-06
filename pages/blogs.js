@@ -11,11 +11,27 @@ import { getDocs, collection, query, limit, where } from "firebase/firestore";
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import SearchBlog from "../components/blog/searchBlog";
+import Confirmation from "../components/confirmationModal";
 
 function Blogs({ user, userInfo }) {
   const [blogs, setBlogs] = useState(null);
   const [category, setCategory] = useState("All Blogs");
   const [laoding, setLoading] = useState(false);
+  const [deleteToggle, setDeleteToggle] = useState(false);
+  const [addToggle, setAddToggle] = useState(false);
+  const [selectedBlog, setSelectedBlog] = useState({
+    id: null,
+    authorProfile: null,
+    approved: null,
+    add: null
+  })
+
+  const handleDeleteToggle = () => {
+    setDeleteToggle(!deleteToggle);
+  };
+  const handleAddToggle = () => {
+    setAddToggle(!addToggle);
+  };
 
   const handleCategory = (e) => {
     e.preventDefault();
@@ -79,7 +95,6 @@ function Blogs({ user, userInfo }) {
 
   return (
     <div>
-
       <Head>
         <title>RCSC - Blogs</title>
         <meta
@@ -96,6 +111,34 @@ function Blogs({ user, userInfo }) {
         <meta property="og:image" content="https://i.ibb.co/BKSHpQ9/bg1.jpg" />
         <link rel="icon" href="/logo/rcsc-logo.png" />
       </Head>
+
+      <Confirmation
+        toggle={deleteToggle}
+        warning="Are you sure to delete this article?"
+        handleToggle={handleDeleteToggle}
+        handleAction={()=>{
+          console.log(selectedBlog)
+          handleHide(
+            selectedBlog['id'],
+            selectedBlog['authorProfile'],
+            selectedBlog['approved'],
+            selectedBlog['add']
+          )
+        }}
+      />
+      <Confirmation
+        toggle={addToggle}
+        warning="Are you sure to approve this article?"
+        handleToggle={handleAddToggle}
+        handleAction={()=>{
+          handleHide(
+            selectedBlog['id'],
+            selectedBlog['authorProfile'],
+            selectedBlog['approved'],
+            selectedBlog['add']
+          )
+        }}
+      />
 
       <div className="my-5">
         <h1 className="p-4 text-4xl text-center text-transparent bg-clip-text bg-gradient-to-r font-bold from-blue-400 to-cyan-500">
@@ -166,7 +209,9 @@ function Blogs({ user, userInfo }) {
                 date={formatedDate}
                 key={index}
                 id={i?.id}
-                handleHide={handleHide}
+                select={setSelectedBlog}
+                addConfirmation={handleAddToggle}
+                deleteConfirmation={handleDeleteToggle}
               />
             );
           })}
@@ -191,9 +236,7 @@ function Blogs({ user, userInfo }) {
               background: "white",
               margin: "10px",
             }}
-            scrolling="no"
-            frameBorder="0"
-            allowFullScreen="true"
+            allowFullScreen={true}
             allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
           ></iframe>
 
@@ -207,9 +250,7 @@ function Blogs({ user, userInfo }) {
               background: "white",
               margin: "10px",
             }}
-            scrolling="no"
-            frameBorder="0"
-            allowFullScreen="true"
+            allowFullScreen={true}
             allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
           ></iframe>
 
@@ -223,9 +264,7 @@ function Blogs({ user, userInfo }) {
               background: "white",
               margin: "10px",
             }}
-            scrolling="no"
-            frameBorder="0"
-            allowFullScreen="true"
+            allowFullScreen={true}
             allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
           ></iframe>
 
@@ -239,9 +278,7 @@ function Blogs({ user, userInfo }) {
               background: "white",
               margin: "10px",
             }}
-            scrolling="no"
-            frameBorder="0"
-            allowFullScreen="true"
+            allowFullScreen={true}
             allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
           ></iframe>
 
@@ -255,9 +292,7 @@ function Blogs({ user, userInfo }) {
               background: "white",
               margin: "10px",
             }}
-            scrolling="no"
-            frameBorder="0"
-            allowFullScreen="true"
+            allowFullScreen={true}
             allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
           ></iframe>
 
@@ -271,9 +306,7 @@ function Blogs({ user, userInfo }) {
               background: "white",
               margin: "10px",
             }}
-            scrolling="no"
-            frameBorder="0"
-            allowFullScreen="true"
+            allowFullScreen={true}
             allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
           ></iframe>
         </div>

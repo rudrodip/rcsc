@@ -7,6 +7,28 @@ import "react-toastify/dist/ReactToastify.css";
 import { useState } from "react";
 import { updateUserData } from "../../src/config/firebase.config";
 import { useEffect } from "react";
+import { confirmAlert } from 'react-confirm-alert'; // Import
+
+const submit = (id, handleAction) => {
+  let options = {
+    title: 'Are you sure to delete?',
+    // message: 'delete social media link',
+    buttons: [
+      {
+        label: 'No',
+        onClick: () => console.log('valo korsen delete na kore 🙂')
+      },
+      {
+        label: 'Yes',
+        onClick: () => handleAction(id)
+      }
+    ],
+    closeOnEscape: true,
+    closeOnClickOutside: true,
+    keyCodeForClose: [8, 32],
+  };
+  confirmAlert(options)
+}
 
 // the main component
 const AddSocialMedia = (props) => {
@@ -33,10 +55,10 @@ const AddSocialMedia = (props) => {
 
   // validiting the form
   const validate = () => {
-    if (social.length > 1) {
+    if (social.length > 1 && social.startsWith("https://")) {
       return true;
     } else {
-      toast.warn("Form not valid! Please check again", {
+      toast.warn("Link should start with 'https://'", {
         position: "top-center",
         autoClose: 3000,
         hideProgressBar: false,
@@ -91,7 +113,9 @@ const AddSocialMedia = (props) => {
     if (validate()) {
       try {
         socials[socialName] = social;
-        let social_object = { socials };
+        let social_object = { socials }
+        setSocials(socials)
+        console.log(socials);
         await addSocial(user, social_object);
       } catch (error) {
         alert(error);
@@ -142,7 +166,7 @@ const AddSocialMedia = (props) => {
                 <div>
                   <button
                     className="pointer-cursor"
-                    onClick={() => handleDelete(i)}
+                    onClick={()=>submit(i, handleDelete)}
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"

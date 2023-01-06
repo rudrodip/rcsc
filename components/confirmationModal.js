@@ -19,12 +19,14 @@ const Confirmation = (props) => {
         draggable
       />
       <div
+        tabIndex="-1"
+        aria-hidden="true"
         className={`${
           props.toggle == true ? "" : "hidden"
         } backdrop-blur-none md:backdrop-blur-[2px] fixed overflow-y-auto overflow-x-hidden flex justify-center z-50 w-full md:inset-0 h-modal md:h-full`}
       >
-        <div className="container max-w-sm mx-auto flex-1 flex flex-col items-center justify-center px-2">
-          <div className="bg-gray-700 px-6 py-8 rounded shadow-md w-full">
+        <div className="relative p-4 w-full max-w-md h-full md:h-auto">
+          <div className="bg-gray-700 px-6 py-8 rounded-2xl shadow-md w-full">
             <div>
               <h1 className="mb-8 text-xl font-normal text-center text-white">
                 {props.warning}

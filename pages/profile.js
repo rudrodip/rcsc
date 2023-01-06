@@ -40,7 +40,7 @@ const Profile = ({ user, userInfo, handleProfile }) => {
           property="og:description"
           content="See your profile"
         />
-        <meta property="og:image" content="https://images.unsplash.com/photo-1511367461989-f85a21fda167?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1631&q=80"/>
+        <meta property="og:image" content="https://images.unsplash.com/photo-1511367461989-f85a21fda167?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1631&q=80" />
         <link rel="icon" href="/logo/rcsc-logo.png" />
       </Head>
 
@@ -48,7 +48,7 @@ const Profile = ({ user, userInfo, handleProfile }) => {
         toggle={toggle}
         handleToggle={handleToggle}
         user={user}
-        userInfo={userInfo} 
+        userInfo={userInfo}
         handleProfile={handleProfile}
       />
 
@@ -57,9 +57,17 @@ const Profile = ({ user, userInfo, handleProfile }) => {
         <div className="flex items-center mx-auto justify-center w-full md:w-2/3 xl:w-1/2 content-center">
           <div id="profile" className="w-full lg:w-3/5 rounded-lg lg:rounded-l-lg lg:rounded-r-none shadow-2xl bg-gray-800 mx-6 lg:mx-0">
             <div className="p-4 md:p-12 text-center lg:text-left">
-              <div className="block rounded-full shadow-xl mx-auto -mt-16 h-48 w-48 bg-cover bg-center" style={{ backgroundImage: `url('${userInfo?.photoURL || "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"}')` }}></div>
+              <div className="block rounded-full shadow-xl m-auto -mt-16 h-48 w-48 bg-cover bg-center" style={{ backgroundImage: `url('${userInfo?.photoURL || "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"}')` }}></div>
               <h1 className="text-3xl font-bold pt-8 lg:pt-0">{userInfo?.name}</h1>
-              <p className='text-blue-500 font-mono italic font-medium'>{userInfo?.isAdmin && '✅ Admin'}</p>
+              <div className='flex flex-wrap'>
+                {
+                  userInfo?.roles && Object.keys(userInfo?.roles).map(elem => {
+                    return (
+                      <p className='text-blue-500 font-mono font-medium mr-3 mt-2'>{userInfo?.roles[elem] && `✅ ${elem.toUpperCase()}`}</p>
+                    )
+                  })
+                }
+              </div>
               <div className="mx-auto lg:mx-0 w-4/5 pt-3 border-b-2 border-sky-500 opacity-25"></div>
               <p className="pt-4 text-base font-bold flex items-center justify-center lg:justify-start">
                 <svg className="h-4 fill-current text-cyan-400 pr-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
@@ -115,7 +123,7 @@ const Profile = ({ user, userInfo, handleProfile }) => {
                       return (
                         <div key={index}>
                           <p className="pt-2 text-gray-200 text-xs lg:text-sm flex items-center justify-start">
-                            <span>{index + 1}. </span>
+                            <span>🔹 </span>
                             {achievement}
                           </p>
                         </div>
@@ -127,12 +135,12 @@ const Profile = ({ user, userInfo, handleProfile }) => {
 
               {userInfo?.socials && Object.keys(userInfo?.socials).length > 0 &&
                 <div>
-                  <h1 className='mt-4 text-md text-blue-500 font-semibold text-left'>Socials</h1>
-                  <div className='text-left ml-2'>
+                  <h1 className='mt-4 text-md text-blue-500 font-semibold text-left'>Social Media</h1>
+                  <div className='text-left mr-2 flex flex-wrap'>
                     {userInfo?.socials && Object.keys(userInfo.socials).map((i, index) => {
                       return (
-                        <div key={index}>
-                          <p className="pt-2 text-gray-200 text-sm lg:text-sm flex items-center justify-start italic">
+                        <div key={index} className='ml-3'>
+                          <p className="pt-2 text-gray-200 text-sm lg:text-sm flex items-center justify-start italic underline">
                             <a href={userInfo.socials[i]} className='text-cyan-500' target={'_blank'} rel="noreferrer">
                               {i.charAt(0).toUpperCase() + i.slice(1)}
                             </a>
