@@ -63,7 +63,7 @@ const Profile = ({ user, userInfo, handleProfile }) => {
                 {
                   userInfo?.roles && Object.keys(userInfo?.roles).map(elem => {
                     return (
-                      <p className='text-blue-500 font-mono font-medium mr-3 mt-2'>{userInfo?.roles[elem] && `✅ ${elem.toUpperCase()}`}</p>
+                      <p className='text-blue-500 font-mono font-medium mr-3 mt-2' key={elem}>{userInfo?.roles[elem] && `✅ ${elem.toUpperCase()}`}</p>
                     )
                   })
                 }
