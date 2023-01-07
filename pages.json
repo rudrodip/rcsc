@@ -51,7 +51,7 @@
   },
   "/events": {
     "name": "Events",
-    "header": true,
+    "header": false,
     "title": "Rajshahi College Science Club",
     "subtitle": "Events",
     "imageSubtitle": "_explore!",
