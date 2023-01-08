@@ -82,7 +82,7 @@ const FullBlog = ({ blog, userImg, date, author, url, role }) => {
                   <p className="font-normal title-font mt-8 text-cyan-300 text-xl mb-4 opacity-80">
                     {i?.subtitle}
                   </p>
-                  <p className="leading-relaxed text-lg mb-4 whitespace-pre-line">
+                  <p className="leading-relaxed text-lg mb-4 whitespace-pre-line break-all">
                     {i?.content}
                   </p>
                 </React.Fragment>
