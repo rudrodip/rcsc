@@ -3,11 +3,10 @@
 
 // necessary dependencies
 import React from 'react'
-import Image from 'next/image'
 import { useInView } from 'react-intersection-observer'
 import { useState } from 'react'
 import { useRouter } from 'next/router'
-
+import Link from 'next/link'
 
 const AlumniProfile = (props) => {
   // props properties -> img > name > role > batch > institution > phone > email
@@ -36,9 +35,9 @@ const AlumniProfile = (props) => {
           <div className='text-sm lg:text-lg'>
             <p className="mb-1">{props.role}</p>
             <p className="mb-1">Batch: {props.batch}</p>
-            <p className="mb-1">Current Institution: {props.institution}</p>
-            <p className="mb-1">Phone: {props.number}</p>
-            <p className="mb-1">Email: {props.mail}</p>
+            <p className="mb-1">Current Institution: <span className='text-imp-text-2'>{props.institution}</span></p>
+            <p className="mb-1">Phone: <a href={`tel:+880${props.number}`} >{props.number}</a></p>
+            <p className="mb-1">Email: <a href={`mailto:${props.mail}`} >{props.mail}</a></p>
           </div>
           <span className="inline-flex">
           </span>
