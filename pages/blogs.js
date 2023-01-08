@@ -13,6 +13,34 @@ import Link from "next/link";
 import SearchBlog from "../components/blog/searchBlog";
 import Confirmation from "../components/confirmationModal";
 
+const compare = (a, b) => {
+  let a_date = a.data().timestamp;
+  let b_date = b.data().timestamp;
+  if (a_date > b_date) {
+    return -1;
+  }
+  if (a_date < b_date) {
+    return 1;
+  }
+  return 0;
+};
+
+
+async function fetchBlogs(category) {
+  const docRef = collection(db, "blogs");
+  let q = null;
+  if (category == "My Blogs") {
+    q = query(docRef, where("authorProfile", "==", user.uid), limit(12));
+  } else if (category == "All Blogs") {
+    q= query(docRef, limit(30));
+  } else {
+    q = query(docRef, where("category", "==", category));
+  }
+  const docSnaps = await getDocs(q);
+  let blogs = docSnaps.docs.sort(compare);
+  return blogs
+}
+
 function Blogs({ user, userInfo }) {
   const [blogs, setBlogs] = useState(null);
   const [category, setCategory] = useState("All Blogs");
@@ -36,18 +64,6 @@ function Blogs({ user, userInfo }) {
   const handleCategory = (e) => {
     e.preventDefault();
     setCategory(e.target.value);
-  };
-
-  const compare = (a, b) => {
-    let a_date = a.data().timestamp;
-    let b_date = b.data().timestamp;
-    if (a_date > b_date) {
-      return -1;
-    }
-    if (a_date < b_date) {
-      return 1;
-    }
-    return 0;
   };
 
   async function handleHide(id, authorProfile, approved, add) {
@@ -75,22 +91,11 @@ function Blogs({ user, userInfo }) {
   }
 
   useEffect(() => {
-    async function getAllBlogs() {
-      const docRef = collection(db, "blogs");
-      let q = null;
-      if (category == "My Blogs") {
-        q = query(docRef, where("authorProfile", "==", user.uid), limit(12));
-      } else if (category == "All Blogs") {
-        q = query(docRef, limit(30));
-      } else {
-        q = query(docRef, where("category", "==", category));
-      }
-      const docSnaps = await getDocs(q);
-      let blogs = docSnaps.docs.sort(compare);
-      setBlogs(blogs);
+    async function updateBlog(){
+      const blog_data = await fetchBlogs(category);
+      setBlogs(blog_data);
     }
-
-    getAllBlogs();
+    updateBlog();
   }, [category]);
 
   return (
@@ -116,7 +121,7 @@ function Blogs({ user, userInfo }) {
         toggle={deleteToggle}
         warning="Are you sure to delete this article?"
         handleToggle={handleDeleteToggle}
-        handleAction={()=>{
+        handleAction={() => {
           console.log(selectedBlog)
           handleHide(
             selectedBlog['id'],
@@ -130,7 +135,7 @@ function Blogs({ user, userInfo }) {
         toggle={addToggle}
         warning="Are you sure to approve this article?"
         handleToggle={handleAddToggle}
-        handleAction={()=>{
+        handleAction={() => {
           handleHide(
             selectedBlog['id'],
             selectedBlog['authorProfile'],
@@ -202,7 +207,7 @@ function Blogs({ user, userInfo }) {
                 blog={i.data()}
                 editable={
                   user?.uid == i.data().authorProfile ||
-                  userInfo?.roles["admin"]
+                    userInfo?.roles["admin"]
                     ? true
                     : false
                 }
