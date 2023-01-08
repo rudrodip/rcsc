@@ -23,8 +23,13 @@ module.exports = {
     },
     extend: {
       colors: {
-        'main': 'gray-900',
-        'secondary': 'gray-700'
+        'main': '#111827',
+        'secondary': '#1B2533',
+        'grad-start': '#1e88e5',
+        'grad-end': '#00bcd4',
+        'imp-text': '#2196f3',
+        'imp-text-2': '#26c6da',
+        'text-normal': '#bdbdbd'
       }
     }
   },
