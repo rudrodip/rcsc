@@ -1,10 +1,9 @@
 import React from 'react'
 import Head from 'next/head';
-import AlumniProfile from '../components/profile/alumniProfile'
+import MiniProfile from '../components/profile/miniProfile'
 import { db } from '../src/config/firebase.config';
 import { getDocs, collection, query, limit, where } from 'firebase/firestore'
 import { useState, useEffect } from 'react';
-
 
 const Alumni = () => {
   const [alumni, setAlumni] = useState(null)
@@ -85,18 +84,18 @@ const Alumni = () => {
                   <h1 className="text-2xl font-medium title-font mb-4 text-white tracking-widest">{batch}</h1>
                   <div className="flex flex-wrap -m-4">
                     {
-                      sortedAlumni[batch].map((i, index) => {
+                      sortedAlumni[batch].map((exec, index) => {
                         return (
-                          <AlumniProfile
-                            name={i.data().name}
-                            role={i.data().designantion}
-                            batch={i.data().batch}
-                            institution={i.data().institution}
-                            number={i.data().phone}
-                            mail={i.data().email}
-                            img={i.data().photoURL}
+                          <MiniProfile
                             key={index}
-                            link={i.id}
+                            name={exec?.data().name}
+                            role={exec?.data().designation}
+                            link={`/user/${exec?.id}`}
+                            img={exec?.data().photoURL}
+                            batch={exec.data().batch}
+                            institution={exec.data().institution}
+                            number={exec.data().phone}
+                            mail={exec.data().email}
                           />
                         )
                       })
