@@ -4,13 +4,14 @@ import { useRouter } from 'next/router'
 import { useState } from 'react'
 import ProfileEdit from '../components/profile/profileEdit'
 import { logout } from '../src/config/firebase.config'
-import ButtomPrimary from '../components/button-primary'
 import MainProfile from '../components/profile/mainProfile'
+import { useAuth } from '../context/AuthContext'
 
-const Profile = ({ user, userInfo, handleProfile }) => {
+const Profile = ({ handleProfile }) => {
   const router = useRouter()
   const [toggle, setToggle] = useState("hidden")
   const [loading, setLoading] = useState(false)
+  const {user, userInfo} = useAuth()
 
   const handleToggle = () => {
     toggle == "" ? setToggle("hidden") : setToggle('')

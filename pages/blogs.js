@@ -1,50 +1,18 @@
 import React from "react";
 import Head from "next/head";
 import MiniBlog from "../components/blog/miniBlog";
-import {
-  db,
-  deleteBlog,
-  updateBlogNo,
-  hideBlog,
-} from "../src/config/firebase.config";
-import { getDocs, collection, query, limit, where } from "firebase/firestore";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Link from "next/link";
 import SearchBlog from "../components/blog/searchBlog";
 import Confirmation from "../components/confirmationModal";
+import { useAuth } from "../context/AuthContext";
+import { useBlogContext } from "../context/BlogContext";
 
-const compare = (a, b) => {
-  let a_date = a.data().timestamp;
-  let b_date = b.data().timestamp;
-  if (a_date > b_date) {
-    return -1;
-  }
-  if (a_date < b_date) {
-    return 1;
-  }
-  return 0;
-};
+function Blogs() {
+  const { user, userInfo } = useAuth()
+  const { blogs, handleHide } = useBlogContext()
 
-
-async function fetchBlogs(category) {
-  const docRef = collection(db, "blogs");
-  let q = null;
-  if (category == "My Blogs") {
-    q = query(docRef, where("authorProfile", "==", user.uid), limit(12));
-  } else if (category == "All Blogs") {
-    q= query(docRef, limit(30));
-  } else {
-    q = query(docRef, where("category", "==", category));
-  }
-  const docSnaps = await getDocs(q);
-  let blogs = docSnaps.docs.sort(compare);
-  return blogs
-}
-
-function Blogs({ user, userInfo }) {
-  const [blogs, setBlogs] = useState(null);
   const [category, setCategory] = useState("All Blogs");
-  const [laoding, setLoading] = useState(false);
   const [deleteToggle, setDeleteToggle] = useState(false);
   const [addToggle, setAddToggle] = useState(false);
   const [selectedBlog, setSelectedBlog] = useState({
@@ -65,38 +33,6 @@ function Blogs({ user, userInfo }) {
     e.preventDefault();
     setCategory(e.target.value);
   };
-
-  async function handleHide(id, authorProfile, approved, add) {
-    setLoading(true);
-    if (add) {
-      await updateBlogNo(authorProfile, 1);
-      await hideBlog(id, add);
-      userInfo.blogs += 1;
-    }
-
-    if (!add) {
-      // remove from the array for UI
-      let index = blogs.findIndex((i) => i.id == id);
-      blogs.splice(index, 1);
-
-      // actually deleting from the server
-      await deleteBlog(id);
-
-      if (approved) {
-        await updateBlogNo(authorProfile, -1);
-        userInfo.blogs -= 1;
-      }
-    }
-    setLoading(false);
-  }
-
-  useEffect(() => {
-    async function updateBlog(){
-      const blog_data = await fetchBlogs(category);
-      setBlogs(blog_data);
-    }
-    updateBlog();
-  }, [category]);
 
   return (
     <div>
@@ -122,7 +58,6 @@ function Blogs({ user, userInfo }) {
         warning="Are you sure to delete this article?"
         handleToggle={handleDeleteToggle}
         handleAction={() => {
-          console.log(selectedBlog)
           handleHide(
             selectedBlog['id'],
             selectedBlog['authorProfile'],
@@ -222,7 +157,7 @@ function Blogs({ user, userInfo }) {
           })}
       </div>
 
-      <section id="fb-attachments">
+      {/* <section id="fb-attachments">
         <h1 className="p-4 text-4xl text-center text-transparent bg-clip-text bg-gradient-to-r font-bold from-blue-400 to-cyan-500">
           Facebook Posts
         </h1>
@@ -315,7 +250,7 @@ function Blogs({ user, userInfo }) {
             allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
           ></iframe>
         </div>
-      </section>
+      </section> */}
     </div>
   );
 }

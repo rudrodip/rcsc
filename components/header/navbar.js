@@ -7,12 +7,13 @@ import Image from 'next/image'
 import { useState } from "react"
 import { Transition } from "@headlessui/react"
 import { useRef } from "react"
-
+import { useAuth } from "../../context/AuthContext"
 
 // the component
-const Navbar = ({ props, user, path, userProfile }) => {
+const Navbar = ({ props, path }) => {
   // ref of the navbar
   const divRef = useRef(null)
+  const { user } = useAuth()
 
   // responsive navbar toggle
   const [isOpen, setIsOpen] = useState(false)
@@ -43,14 +44,14 @@ const Navbar = ({ props, user, path, userProfile }) => {
                       :
                       <Navbutton name={props[i]['name']} link={i} key={i} classname="bg-gradient-to-r from-blue-600 to-cyan-500 text-white font-medium" />
                   ))}
-                  {user ? <ProfileButton userProfile={userProfile} /> : <Navbutton name="Login" link="/login" />}
+                  {user ? <ProfileButton userProfile={user.photoURL} /> : <Navbutton name="Login" link="/login" />}
 
                 </div>
               </div>
             </div>
 
             <div className="-mr-2 flex lg:hidden">
-              {user && <ProfileButton userProfile={userProfile} /> }
+              {user && <ProfileButton userProfile={user.photoURL} />}
 
               {path != "/" ? <button
                 onClick={() => setIsOpen(!isOpen)}

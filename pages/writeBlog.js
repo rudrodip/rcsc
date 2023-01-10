@@ -10,8 +10,10 @@ import { db, storage } from '../src/config/firebase.config';
 import { useRouter } from 'next/dist/client/router';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage'
 import { doc, setDoc, serverTimestamp } from 'firebase/firestore'
+import { useAuth } from '../context/AuthContext'
 
-const WriteBlog = ({ user, userInfo }) => {
+const WriteBlog = () => {
+  const { user, userInfo } = useAuth()
   const router = useRouter()
   const [title, setTitle] = useState('')
   const [category, setCategory] = useState('All Blogs')

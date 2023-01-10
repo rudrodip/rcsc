@@ -5,7 +5,7 @@ import { useRouter } from 'next/router';
 import { useState } from 'react'
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
-import { login, useAuth } from '../src/config/firebase.config'
+import { useAuth } from '../context/AuthContext';
 
 const Login = ({ user }) => {
   const router = useRouter()
@@ -13,6 +13,7 @@ const Login = ({ user }) => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [isChecked, setIsChecked] = useState(false)
+  const {login} = useAuth()
 
   const handleOnChange = () => {
     setIsChecked(!isChecked)

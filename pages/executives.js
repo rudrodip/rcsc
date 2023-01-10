@@ -1,6 +1,5 @@
 import React from "react";
 import Head from "next/head";
-import Header from "../components/header/header";
 import MiniProfile from "../components/profile/miniProfile";
 import { getDocs, collection, query, where } from "firebase/firestore";
 import { db } from "../src/config/firebase.config";

@@ -5,29 +5,17 @@ import Navbar from '../components/header/navbar'
 import Footer from '../components/footer/footer'
 import LoadingBar from 'react-top-loading-bar'
 import Header from '../components/header/header'
-import { useState } from 'react'
-import { useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
-import { useAuth, useUser } from '../src/config/firebase.config'
-import useWindowDimensions from '../components/useWindowDimensions'
 import '../styles/custom_confirm.css'
+import { AuthContextProvider } from '../context/AuthContext'
+import { BlogContextProvider } from '../context/BlogContext'
 
 const MyApp = ({ Component, pageProps }) => {
   const router = useRouter()
   const [key, setKey] = useState(0)
   const [headerKey, setHeaderKey] = useState(0)
   const [progress, setProgress] = useState(0)
-  const [profile, setProfile] = useState('https://dummyimage.com/200x200')
-  const user = useAuth()
-  const userInfo = useUser()
-  const { width, height } = useWindowDimensions()
-
-  const handleProfile = (image) => {
-    if (userInfo) {
-      userInfo.photoURL = image
-    }
-    setProfile(image)
-  }
 
   useEffect(() => {
     router.events.on('routeChangeStart', () => setProgress(40))
@@ -38,11 +26,10 @@ const MyApp = ({ Component, pageProps }) => {
     } catch (error) {
       console.log(error)
     }
-    handleProfile(userInfo?.photoURL)
-  }, [router.query, router.events, userInfo?.photoURL])
+  }, [router.query, router.events])
 
   return <>
-    <div>
+    <AuthContextProvider>
       <LoadingBar
         color='#23b6ed'
         progress={progress}
@@ -53,15 +40,15 @@ const MyApp = ({ Component, pageProps }) => {
       <Navbar
         props={Pages}
         key={key || 1}
-        user={user}
         path={router.pathname}
-        userProfile={profile}
       />
 
-      <Header page={Pages[router.pathname]} key={headerKey || 2}/>
-      <Component {...pageProps} user={user} userInfo={userInfo} handleProfile={handleProfile} />
+      <Header page={Pages[router.pathname]} key={headerKey || 2} />
+      <BlogContextProvider>
+        <Component {...pageProps} />
+      </BlogContextProvider>
       <Footer desc={router.pathname == "/" ? true : false} />
-    </div>
+    </AuthContextProvider>
   </>
 }
 
