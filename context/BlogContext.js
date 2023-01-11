@@ -66,7 +66,6 @@ export const BlogContextProvider = ({ children }) => {
 // fetch blogs from db
 async function fetchBlogs(user, category, maxNumBlogs = 12) {
     const docRef = collection(db, "blogs");
-    console.log('called')
     let q = null;
     if (category == "My Blogs") {
         q = query(docRef, orderBy("timestamp", "desc"), where("authorProfile", "==", user.uid), limit(maxNumBlogs));
