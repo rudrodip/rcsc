@@ -1,33 +1,24 @@
 import React from "react";
-import { useRouter } from "next/router";
 import { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import AddAchievements from "./addAchievements";
 import AddSocialLink from "./socials";
 import "react-toastify/dist/ReactToastify.css";
 import { FileInputButton } from "../fileInput";
-import {
-  upload,
-  updateUserData,
-  updateBlogAuthor,
-} from "../../src/config/firebase.config";
+import { useAuth } from "../../context/AuthContext";
 
 const ProfileEdit = ({
-  user,
-  userInfo,
-  handleProfile,
   toggle,
   handleToggle,
 }) => {
+  const { user, userInfo, upload, updateUserData, updateBlogAuthor } = useAuth()
+
   // initializing all states
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [institution, setInstitution] = useState("");
   const [image, setImage] = useState("");
   const [loading, setLoading] = useState(false);
-
-  // custom hook for auth
-  const currentUser = user;
 
   // profile picture change
   const onChange = async (image) => {
@@ -78,16 +69,17 @@ const ProfileEdit = ({
     try {
       const data = validate();
       if (image) {
-        handleProfile(URL.createObjectURL(image));
-        let url = await upload(image, currentUser, setLoading);
+        userInfo.photoURL = URL.createObjectURL(image);
+        user.photoURL = URL.createObjectURL(image);
+        let url = await upload(image, user, setLoading);
         data["photoURL"] = url;
       }
       if ("name" in data) {
         userInfo.name = data["name"];
-        updateBlogAuthor(data["name"], currentUser.uid);
+        updateBlogAuthor(data["name"], user.uid);
       }
       handleToggle();
-      updateUserData(currentUser, data);
+      updateUserData(user, data);
       toast("Updated", {
         position: "top-center",
         autoClose: 1500,
@@ -151,7 +143,7 @@ const ProfileEdit = ({
                   alt="team"
                   className="flex-shrink-0 rounded-lg w-48 h-48 object-contain object-center sm:mb-0"
                   src={
-                    image ? URL.createObjectURL(image) : currentUser?.photoURL
+                    image ? URL.createObjectURL(image) : user?.photoURL
                   }
                 />
                 <div className="py-6 px-3">
