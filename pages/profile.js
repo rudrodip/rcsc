@@ -53,7 +53,7 @@ const Profile = ({ handleProfile }) => {
         handleProfile={handleProfile}
       />
 
-      <MainProfile custom_user={userInfo} editProfile={handleToggle} handleLogout={handleLogout} />
+      <MainProfile user={userInfo} editProfile={handleToggle} handleLogout={handleLogout} />
     </main>
   )
 }

@@ -6,6 +6,9 @@ import { useState } from 'react'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Decode from '../src/authCode/decode'
+import TextFormField from '../components/form/textFormField'
+import PasswordInputField from '../components/form/passwordField'
+import SelectionBox from '../components/form/selectionBox';
 import { FileInputButton } from '../components/fileInput';
 import { useAuth } from '../context/AuthContext';
 
@@ -31,6 +34,7 @@ const Signup = () => {
   const [email, setEmail] = useState('')
   const [phone, setPhone] = useState('')
   const [password, setPassword] = useState('')
+  const [confirmedPassword, setConfirmedPassword] = useState('')
   const [memberCode, setMemberCode] = useState('')
   const [batch, setBatch] = useState('')
   const [institution, setInstitution] = useState('')
@@ -38,17 +42,17 @@ const Signup = () => {
   const [section, setSection] = useState('')
   const [grade, setGrade] = useState('')
   const [roll, setRoll] = useState('')
-
-  // show password state
-  const [isChecked, setIsChecked] = useState(false)
   const [isAlumni, setIsAlumni] = useState(false)
+
+  const sections = ['Select your section', 'Padma', 'Meghna', 'Jamuna']
+
   // if the user is alumnus, then isAlumni is set to true
   const { user, signup, createUserData, upload } = useAuth()
 
   // profile picture change
-  const onChange = async (image) => {
-    if (image.size > 1048576) {
-      toast.warn("File size should be less than 1 MB", {
+  const onImageChange = async (image) => {
+    if (image.size > 5242880) {
+      toast.warn("File size should be less than 5MB", {
         position: "top-center",
         autoClose: 3000,
         hideProgressBar: false,
@@ -61,11 +65,6 @@ const Signup = () => {
       setImage(image);
     }
   };
-
-  // password show state change handler
-  const handleOnChange = () => {
-    setIsChecked(!isChecked)
-  }
 
   // isAlumni check hanlder
   const handleAlumni = () => {
@@ -86,11 +85,17 @@ const Signup = () => {
     else if (e.target.name == 'password') {
       setPassword(e.target.value)
     }
+    else if (e.target.name == 'password-confirm') {
+      setConfirmedPassword(e.target.value)
+    }
     else if (e.target.name == 'memberCode') {
       setMemberCode(e.target.value)
     }
     else if (e.target.name == 'section') {
       setSection(e.target.value)
+    }
+    else if (e.target.name == 'sectionTest') {
+      setTest(e.target.value)
     }
     else if (e.target.name == 'class') {
       setGrade(e.target.value)
@@ -109,24 +114,29 @@ const Signup = () => {
     }
   }
 
-  // validates from data
-  const validate = () => {
-    if (name.length > 2) {
-      if (!isAlumni) {
-        let year;
-        try {
-          year = parseInt(batch.split('-').pop().trim())
-        } catch (error) {
-          toast.warn('Batch format is not valid, try again', toast_warn_config)
-          return false
-        }
-        if (Decode(memberCode, grade, year) == roll) return true
-        toast.warn('Member Code not matched!', toast_warn_config)
+  const validateMemberCode = () => {
+    if (!isAlumni) {
+      let year;
+      try {
+        year = parseInt(batch.split('-').pop().trim())
+      } catch (error) {
+        toast.warn('Batch format is not valid, try again', toast_warn_config)
         return false
       }
-      return true
+      if (Decode(memberCode, grade, year) == roll) return true
+      toast.warn('Member Code not matched!', toast_warn_config)
+      return false
+    }
+    return true
+  }
+
+  // validates from data
+  const validate = () => {
+    if (name.length > 2 && validateMemberCode() && password == confirmedPassword) {
+      return true;
     }
     toast.warn('Form not valid! Please check again', toast_warn_config)
+    return false;
   }
 
   // create user-data in db
@@ -183,196 +193,179 @@ const Signup = () => {
     setLoading(false)
   }
 
-  if (!user) {
-    return (
-      <div>
-        <Head>
-          <title>RCSC - Signup</title>
-        </Head>
-
-        <ToastContainer
-          position="bottom-center"
-          autoClose={5000}
-          hideProgressBar={false}
-          newestOnTop={false}
-          closeOnClick
-          rtl={false}
-          draggable
+  return (
+    <div>
+      <Head>
+        <title>RCSC - Signup</title>
+        <meta name="description" content="Official Website of Rajshahi College Science Club" />
+        <meta property="og:url" content="https://rcsc.vercel.app/" />
+        <meta property="og:type" content="Science Club" />
+        <meta
+          property="og:title"
+          content="Rajshahi College Science Club"
         />
-        <div className="bg-grey-lighter min-h-screen flex flex-col">
-          <div className="container max-w-sm mx-auto flex-1 flex flex-col items-center justify-center px-2">
-            <div className="bg-gradient-to-t from-blue-800 to-blue-400 px-6 py-8 rounded-xl shadow-md text-black w-full">
-              <h1 className="mb-8 text-3xl text-center text-white">Sign up</h1>
-              <div className='text-sm text-gray-200 p-2'>
-                <input
-                  type="checkbox"
-                  id="topping"
-                  name="topping"
-                  value="Paneer"
-                  className='mx-2 w-4 h-4 items-center'
-                  checked={isAlumni}
-                  onChange={handleAlumni}
-                />Alumni ?
+        <meta
+          property="og:description"
+          content="Official Website of Rajshahi College Science Club"
+        />
+        <meta property="og:image" content="https://i.ibb.co/BKSHpQ9/bg1.jpg" />
+        <link rel="icon" href="/logo/rcsc-logo.png" />
+      </Head>
 
-                <div className="block mx-auto rounded-full h-20 w-20 bg-cover bg-center" style={{ backgroundImage: `url('${image ? URL.createObjectURL(image) : "https://dummyimage.com/200x200"}` }}></div>
-
-                <div className="py-6 px-3 flex justify-center">
-                  <FileInputButton
-                    label="Upload avatar"
-                    uploadFileName="theFiles"
-                    onChange={onChange}
-                    loading={loading}
-                    acceptedFileTypes="image/png, image/jpeg, image/jpg"
-                    allowMultipleFiles={false}
-                  />
-                </div>
-              </div>
-
-              <input
-                type="text"
-                className="block border border-gray-700 w-full p-3 rounded-xl mb-4 outline-none text-gray-300 bg-gray-800"
-                name="name"
-                placeholder="Full Name"
-                onChange={handleChange}
-                value={name} />
-
-              <input
-                type="text"
-                className="block border border-gray-700 w-full p-3 rounded-xl mb-4 outline-none text-gray-300 bg-gray-800"
-                name="phone"
-                placeholder={isAlumni ? "Phone (optional)" : "Phone"}
-                onChange={handleChange}
-                value={phone} />
-
-              <input
-                type="text"
-                className="block border border-gray-700 w-full p-3 rounded-xl mb-4 outline-none text-gray-300 bg-gray-800"
-                name="email"
-                placeholder="Email"
-                onChange={handleChange}
-                value={email} />
-
-              <input
-                type="text"
-                className="block border border-gray-700 w-full p-3 rounded-xl mb-4 outline-none text-gray-300 bg-gray-800"
-                name="batch"
-                placeholder="Batch: e.g. 2019-2020"
-                onChange={handleChange}
-                value={batch} />
-
-              {
-                !isAlumni &&
-                <div>
-                  <input
-                    type="text"
-                    className="block border border-gray-700 w-full p-3 rounded-xl mb-4 outline-none text-gray-300 bg-gray-800"
-                    name="class"
-                    placeholder="Class"
-                    onChange={handleChange}
-                    value={grade} />
-
-                  <input
-                    type="text"
-                    className="block border border-gray-700 w-full p-3 rounded-xl mb-4 outline-none text-gray-300 bg-gray-800"
-                    name="section"
-                    placeholder="Section"
-                    onChange={handleChange}
-                    value={section} />
-
-                  <input
-                    type="text"
-                    className="block border border-gray-700 w-full p-3 rounded-xl mb-4 outline-none text-gray-300 bg-gray-800"
-                    name="roll"
-                    placeholder="Roll"
-                    onChange={handleChange}
-                    value={roll} />
-
-                  <input
-                    type="text"
-                    className="block border border-gray-700 w-full p-3 rounded-xl mb-4 outline-none text-gray-300 bg-gray-800"
-                    name="memberCode"
-                    placeholder="Member Code"
-                    onChange={handleChange}
-                    value={memberCode} />
-                </div>
-              }
-
-              {
-                isAlumni &&
-                <div>
-                  <input
-                    type="text"
-                    className="block border border-gray-700 w-full p-3 rounded-xl mb-4 outline-none text-gray-300 bg-gray-800"
-                    name="role"
-                    placeholder="Designation: e.g. Ex-President"
-                    onChange={handleChange}
-                    value={role} />
-                  <input
-                    type="text"
-                    className="block border border-gray-700 w-full p-3 rounded-xl mb-4 outline-none text-gray-300 bg-gray-800"
-                    name="institution"
-                    placeholder="Current Institution: e.g. BUET"
-                    onChange={handleChange}
-                    value={institution} />
-                </div>
-              }
-
-              <input
-                type={isChecked ? 'text' : 'password'}
-                className="block border border-gray-700 w-full p-3 rounded-xl mb-3 outline-none text-gray-300 bg-gray-800"
-                name="password"
-                placeholder="Password"
-                onChange={handleChange}
-                value={password} />
-
-              <div className='text-sm text-cyan-200 mb-3'>
-                <input
-                  type="checkbox"
-                  id="topping"
-                  name="topping"
-                  value="Paneer"
-                  className='mx-2 w-4 h-4'
-                  checked={isChecked}
-                  onChange={handleOnChange}
-                />Show Password
-              </div>
-
-              <button
-                type="submit"
-                className="w-full text-center py-3 rounded-xl bg-cyan-500 text-white hover:scale-105 transition duration-200 focus:outline-none my-1"
-                onClick={handleSubmit}
-                disabled={loading}
-              >
-                Create Account
-              </button>
-              {
-                loading &&
-
-                <div className='flex justify-center m-5'>
-                  <button disabled type="button" className="py-2.5 px-5 mr-2 text-sm font-medium  rounded-xl-lg border hover:text-gray-200 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 bg-gray-800 text-gray-400 border-gray-600 hover:bg-gray-700 inline-flex items-center">
-                    <svg role="status" className="inline w-4 h-4 mr-2 animate-spin text-gray-600" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="currentColor" />
-                      <path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="#1C64F2" />
-                    </svg>
-                    Uploading...
-                  </button>
-                </div>
-              }
-            </div>
-            <div className="text-grey-dark mt-6">
-              Already have an account?
-              <Link legacyBehavior href="/login">
-                <a className="no-underline border-b border-blue text-blue">
-                  Log in
-                </a>
-              </Link>
-            </div>
-          </div>
+      <ToastContainer
+        position="bottom-center"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        draggable
+      />
+      <section className="max-w-4xl p-6 mx-auto bg-gray-800 rounded-md shadow-md my-10">
+        <h1 className="text-xl font-bold text-white capitalize dark:text-white">Sign up</h1>
+        <div className='text-sm text-gray-200 mt-3'>
+          <div className="block mx-auto rounded-full h-40 w-40 bg-cover bg-center" style={{ backgroundImage: `url('${image ? URL.createObjectURL(image) : "https://dummyimage.com/200x200"}` }}></div>
+          <input
+            type="checkbox"
+            name="isAlumni"
+            className='w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600'
+            checked={isAlumni}
+            onChange={handleAlumni}
+          />
+          <label className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Alumni?</label>
         </div>
-      </div >
-    )
-  }
-  else router.push('/')
+        <div className="py-6 px-3 flex justify-center">
+          <FileInputButton
+            label="Upload avatar"
+            uploadFileName="theFiles"
+            onChange={onImageChange}
+            loading={loading}
+            acceptedFileTypes="image/png, image/jpeg, image/jpg"
+            allowMultipleFiles={false}
+          />
+        </div>
+        <form>
+          <div className="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-2">
+            <TextFormField
+              label="Fullname"
+              placeholder="Fullname"
+              name="name"
+              handleChange={handleChange}
+            />
+            <TextFormField
+              label="Phone"
+              placeholder="e.g. 01771122334"
+              name="phone"
+              handleChange={handleChange}
+            />
+            <TextFormField
+              label="Batch"
+              placeholder="e.g. 2020-2021"
+              name="batch"
+              handleChange={handleChange}
+            />
+            {isAlumni &&
+              <TextFormField
+                label="Designation"
+                placeholder="e.g. Ex President"
+                name="role"
+                handleChange={handleChange}
+              />
+            }
+            {isAlumni &&
+              <TextFormField
+                label="Current Institution"
+                placeholder="e.g. BUET"
+                name="institution"
+                handleChange={handleChange}
+              />
+            }
+            {!isAlumni &&
+              <TextFormField
+                label="Class"
+                placeholder="e.g. 11"
+                name="grade"
+                handleChange={handleChange}
+              />
+            }
+            {!isAlumni &&
+              <SelectionBox
+                label="Section"
+                name="sectionTest"
+                options={sections}
+                handleChange={handleChange}
+              />
+
+            }
+            {!isAlumni &&
+              <TextFormField
+                label="Roll"
+                placeholder="e.g. 155"
+                name="roll"
+                handleChange={handleChange}
+              />
+            }
+            {!isAlumni &&
+              <TextFormField
+                label="Member Code"
+                placeholder="e.g. 898923213"
+                name="memberCode"
+                handleChange={handleChange}
+              />
+            }
+            <TextFormField
+              label="Email Address"
+              placeholder="e.g. example@gmail.com"
+              name="email"
+              handleChange={handleChange}
+            />
+            <PasswordInputField
+              name='password'
+              handleChange={handleChange}
+              showPassToggle={true}
+            />
+            <PasswordInputField
+              label="Password Confirmation"
+              name='password-confirm'
+              handleChange={handleChange}
+              showPassToggle={true}
+            />
+
+
+          </div>
+          {
+            loading &&
+
+            <div className='flex justify-center m-5'>
+              <button disabled type="button" className="py-2.5 px-5 mr-2 text-sm font-medium  rounded-lg border hover:text-gray-200 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 bg-gray-800 text-gray-400 border-gray-600 hover:bg-gray-700 inline-flex items-center">
+                <svg role="status" className="inline w-4 h-4 mr-2 animate-spin text-gray-600" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="currentColor" />
+                  <path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="#1C64F2" />
+                </svg>
+                Uploading...
+              </button>
+            </div>
+          }
+        </form>
+        <div className="flex justify-center mt-6">
+          <button
+            className="px-6 py-2 leading-5 text-white transition-all duration-200 transform bg-blue-500 rounded-md hover:bg-blue-700 hover:scale-110 focus:outline-none focus:bg-gray-600"
+            onClick={handleSubmit}
+          >Create Account
+          </button>
+        </div>
+        <div className="text-grey-dark mt-6 text-center">
+          Already have an account?
+          <Link legacyBehavior href="/login">
+            <a className="no-underline border-b border-blue text-blue">
+              Log in
+            </a>
+          </Link>
+        </div>
+      </section>
+
+    </div >
+  )
 }
 
 export default Signup
