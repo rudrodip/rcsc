@@ -12,7 +12,6 @@ const ProfileEdit = ({
   handleToggle,
 }) => {
   const { user, userInfo, upload, updateUserData, updateBlogAuthor } = useAuth()
-
   // initializing all states
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");

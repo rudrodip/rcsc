@@ -1,25 +1,24 @@
 import React from 'react'
 import Head from 'next/head'
-import ButtomPrimary from '../button-primary'
 
-const MainProfile = ({ custom_user, editProfile, handleLogout, loading }) => {
+const MainProfile = ({ user, editProfile, handleLogout, loading }) => {
     return (
         <div>
             <Head>
-                <title>RCSC - {custom_user?.name}</title>
+                <title>RCSC - {user?.name}</title>
                 <meta name="description" content="User profile" />
             </Head>
             <div>
                 <div className="flex items-center mx-auto justify-center w-full md:w-2/3 xl:w-1/2 content-center">
                     <div id="profile" className="w-full lg:w-3/5 rounded-lg lg:rounded-l-lg lg:rounded-r-none shadow-2xl bg-gray-800 mx-6 lg:mx-0">
                         <div className="p-4 md:p-12 text-center lg:text-left">
-                            <div className="block rounded-full shadow-xl m-auto -mt-16 h-48 w-48 bg-cover bg-center" style={{ backgroundImage: `url('${custom_user?.photoURL || "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"}')` }}></div>
-                            <h1 className="text-3xl font-bold pt-8 lg:pt-0">{custom_user?.name}</h1>
+                            <div className="block rounded-full shadow-xl m-auto -mt-16 h-48 w-48 bg-cover bg-center" style={{ backgroundImage: `url('${user?.photoURL || "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"}')` }}></div>
+                            <h1 className="text-3xl font-bold pt-8 lg:pt-0">{user?.name}</h1>
                             <div className='flex flex-wrap'>
                                 {
-                                    custom_user?.roles && Object.keys(custom_user?.roles).map(elem => {
+                                    user?.roles && Object.keys(user?.roles).map(elem => {
                                         return (
-                                            <p className='text-blue-500 font-mono font-medium mr-3 mt-2' key={elem}>{custom_user?.roles[elem] && `✅ ${elem.toUpperCase()}`}</p>
+                                            <p className='text-blue-500 font-mono font-medium mr-3 mt-2' key={elem}>{user?.roles[elem] && `✅ ${elem.toUpperCase()}`}</p>
                                         )
                                     })
                                 }
@@ -29,9 +28,9 @@ const MainProfile = ({ custom_user, editProfile, handleLogout, loading }) => {
                                 <svg className="h-4 fill-current text-cyan-400 pr-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
                                     <path d="M9 12H1v6a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-6h-8v2H9v-2zm0-1H0V5c0-1.1.9-2 2-2h4V2a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v1h4a2 2 0 0 1 2 2v6h-9V9H9v2zm3-8V2H8v1h4z" />
                                 </svg>
-                                {custom_user?.designation}
+                                {user?.designation}
                             </p>
-                            {!custom_user ?
+                            {!user ?
                                 <div className='flex justify-center m-5'>
                                     <button disabled type="button" className="py-2.5 px-5 mr-2 text-sm font-medium  rounded-lg border hover:text-gray-200 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 bg-gray-800 text-gray-400 border-gray-600 hover:bg-gray-700 inline-flex items-center">
                                         <svg role="status" className="inline w-4 h-4 mr-2 animate-spin text-gray-600" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -41,45 +40,84 @@ const MainProfile = ({ custom_user, editProfile, handleLogout, loading }) => {
                                         Loading...
                                     </button>
                                 </div>
-
                                 :
-                                <div>
+                                <div className='mb-3'>
                                     <p className="pt-2 text-cyan-400 font-bold text-xl lg:text-lg">
-                                        {custom_user ? custom_user.institution : ''}
+                                        {user ? user.institution : ''}
                                     </p>
-                                    {custom_user?.roles["alumnus"] ?
-                                        <div className='flex flex-col justify-start items-start'>
-                                            <p className="pt-2 text-gray-200 text-xs lg:text-sm ml-8 lg:ml-0" ><span className='text-sm font-semibold'>Batch: </span>{custom_user?.batch}</p>
-                                            <p className="pt-2 text-gray-200 text-xs lg:text-sm ml-8 lg:ml-0" ><span className='text-sm font-semibold'>Phone: </span>{custom_user?.phone}</p>
-                                            <p className="pt-2 text-gray-200 text-xs lg:text-sm ml-8 lg:ml-0" ><span className='text-sm font-semibold'>E-mail: </span>{custom_user?.email}</p>
+                                    {user?.roles["alumnus"] ?
+                                        <div className='flex flex-col justify-start items-start text-gray-200'>
+                                            <p className="pt-2 ml-8 lg:ml-0" >
+                                                {user?.email
+                                                    &&
+                                                    <span>
+                                                        <span className='text-sm font-semibold'>Batch: </span>
+                                                        <span>{user?.batch}</span>
+                                                    </span>
+                                                }
+                                            </p>
+                                            <p className="pt-2 ml-8 lg:ml-0" >
+                                                {user?.email
+                                                    &&
+                                                    <span>
+                                                        <span className='text-sm font-semibold'>E-mail: </span>
+                                                        <span>{user?.email}</span>
+                                                    </span>
+                                                }
+                                            </p>
+                                            <p className="pt-2 ml-8 lg:ml-0" >
+                                                {user?.email
+                                                    &&
+                                                    <span>
+                                                        <span className='text-sm font-semibold'>Phone: </span>
+                                                        <span>{user?.phone}</span>
+                                                    </span>
+                                                }
+                                            </p>
                                         </div>
                                         :
                                         <div className='flex flex-col justify-start items-start'>
-                                            <p><span className='text-sm font-semibold'>Class: </span>{custom_user?.class}</p>
-                                            <p><span className='text-sm font-semibold'>Section: </span>{custom_user?.section}</p>
-                                            <p><span className='text-sm font-semibold'>Roll: </span>{custom_user?.roll}</p>
+                                            <p className="pt-2 lg:ml-0" >
+                                                {user?.email
+                                                    &&
+                                                    <span>
+                                                        <span className='text-sm font-semibold'>Class: </span>
+                                                        <span>{user?.class}</span>
+                                                    </span>
+                                                }
+                                            </p>
+                                            <p className="pt-2 lg:ml-0" >
+                                                {user?.email
+                                                    &&
+                                                    <span>
+                                                        <span className='text-sm font-semibold'>Section: </span>
+                                                        <span>{user?.section}</span>
+                                                    </span>
+                                                }
+                                            </p>
+                                            <p className="pt-2 lg:ml-0" >
+                                                {user?.email
+                                                    &&
+                                                    <span>
+                                                        <span className='text-sm font-semibold'>Roll: </span>
+                                                        <span>{user?.roll}</span>
+                                                    </span>
+                                                }
+                                            </p>
                                         </div>
                                     }
                                 </div>
                             }
 
-
-                            {
-                                editProfile &&
-                                <div className="p-5 flex flex-wrap">
-                                    <ButtomPrimary text="Edit Profile" onClick={editProfile} />
-                                </div>
-                            }
-
-                            <div className="w-4/5 lg:w-full flex flex-wrap items-center justify-between text-gray-400">
-                                <p>Blogs: {custom_user?.blogs}</p>
+                            <div className="w-4/5 lg:w-full flex flex-wrap items-center justify-between text-gray-400 mt-3">
+                                <p>Blogs: {user?.blogs}</p>
                             </div>
 
-                            {custom_user?.achievements.length > 0 &&
+                            {user?.achievements.length > 0 &&
                                 <div>
                                     <h1 className='mt-4 text-md text-blue-500 text-left font-semibold'>Achievements</h1>
                                     <div className='text-left'>
-                                        {custom_user?.achievements && custom_user.achievements.map((achievement, index) => {
+                                        {user?.achievements && user.achievements.map((achievement, index) => {
                                             return (
                                                 <div key={index}>
                                                     <p className="pt-2 text-gray-200 text-xs lg:text-sm flex items-center justify-start">
@@ -93,15 +131,15 @@ const MainProfile = ({ custom_user, editProfile, handleLogout, loading }) => {
                                 </div>
                             }
 
-                            {custom_user?.socials && Object.keys(custom_user?.socials).length > 0 &&
+                            {user?.socials && Object.keys(user?.socials).length > 0 &&
                                 <div>
                                     <h1 className='mt-4 text-md text-blue-500 font-semibold text-left'>Social Media</h1>
                                     <div className='text-left mr-2 flex flex-wrap'>
-                                        {custom_user?.socials && Object.keys(custom_user.socials).map((i, index) => {
+                                        {user?.socials && Object.keys(user.socials).map((i, index) => {
                                             return (
                                                 <div key={index} className='ml-3'>
                                                     <p className="pt-2 text-gray-200 text-sm lg:text-sm flex items-center justify-start italic underline">
-                                                        <a href={custom_user.socials[i]} className='text-cyan-500' target={'_blank'} rel="noreferrer">
+                                                        <a href={user.socials[i]} className='text-cyan-500' target={'_blank'} rel="noreferrer">
                                                             {i.charAt(0).toUpperCase() + i.slice(1)}
                                                         </a>
                                                     </p>
@@ -113,13 +151,22 @@ const MainProfile = ({ custom_user, editProfile, handleLogout, loading }) => {
                             }
                             {
                                 handleLogout &&
-                                <button
-                                    className="bg-gray-900 my-5 hover:bg-blue-600 uppercase text-white font-bold hover:scale-110 transition-all ease-in-out duration-100 shadow text-xs px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1 mx-3"
-                                    onClick={handleLogout}
-                                    disabled={loading}
-                                >
-                                    Logout
-                                </button>
+                                <div>
+                                    <button
+                                        className="bg-gray-900 my-5 hover:bg-blue-600 uppercase text-white font-bold hover:scale-110 transition-all ease-in-out duration-100 shadow text-xs px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1 mx-3"
+                                        onClick={editProfile}
+                                        disabled={loading}
+                                    >
+                                        Edit profile
+                                    </button>
+                                    <button
+                                        className="bg-gray-900 my-5 hover:bg-blue-600 uppercase text-white font-bold hover:scale-110 transition-all ease-in-out duration-100 shadow text-xs px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1 mx-3"
+                                        onClick={handleLogout}
+                                        disabled={loading}
+                                    >
+                                        Logout
+                                    </button>
+                                </div>
                             }
                         </div>
                     </div>
