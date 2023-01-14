@@ -59,7 +59,7 @@ const Alumni = () => {
       </Head>
 
       <section className="text-gray-400 bg-gray-900 body-font">
-        <div className="container px-5 py-6 lg:py-16 mx-auto">
+        <div className="container px-2 py-6 lg:py-16 mx-auto">
           <div className="flex flex-col text-center w-full mb-20">
             <h1 className="p-4 text-4xl text-center text-transparent bg-clip-text bg-gradient-to-r font-bold from-blue-400 to-cyan-500 tracking-widest">ALUMNI</h1>
             <p className="lg:w-2/3 mx-auto leading-relaxed text-base">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Deserunt eos maxime qui ut cum veniam adipisci voluptas placeat ex consequuntur.</p>
@@ -82,7 +82,7 @@ const Alumni = () => {
               return (
                 <div key={batch} className="mb-10">
                   <h1 className="text-2xl font-medium title-font mb-4 text-white tracking-widest">{batch}</h1>
-                  <div className="flex flex-wrap -m-4">
+                  <div className="flex flex-wrap">
                     {
                       sortedAlumni[batch].map((exec, index) => {
                         return (
