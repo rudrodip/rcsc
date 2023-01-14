@@ -8,7 +8,6 @@ import 'react-toastify/dist/ReactToastify.css';
 import Decode from '../src/authCode/decode'
 import TextFormField from '../components/form/textFormField'
 import PasswordInputField from '../components/form/passwordField'
-import SelectionBox from '../components/form/selectionBox';
 import { FileInputButton } from '../components/fileInput';
 import { useAuth } from '../context/AuthContext';
 
