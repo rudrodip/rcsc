@@ -90,15 +90,6 @@ const MainProfile = ({ user, editProfile, handleLogout, loading }) => {
                                                 {user?.email
                                                     &&
                                                     <span>
-                                                        <span className='text-sm font-semibold'>Section: </span>
-                                                        <span>{user?.section}</span>
-                                                    </span>
-                                                }
-                                            </p>
-                                            <p className="pt-2 lg:ml-0" >
-                                                {user?.email
-                                                    &&
-                                                    <span>
                                                         <span className='text-sm font-semibold'>Roll: </span>
                                                         <span>{user?.roll}</span>
                                                     </span>
