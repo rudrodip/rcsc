@@ -5,6 +5,7 @@ import {
     signInWithEmailAndPassword,
     signOut,
     updateProfile,
+    deleteUser
 } from "firebase/auth";
 import {
     ref,
@@ -56,8 +57,7 @@ export const AuthContextProvider = ({ children }) => {
         return signOut(auth)
     }
 
-    async function upload(file, currentUser, setLoading) {
-        setLoading(true);
+    async function upload(file, currentUser) {
         try {
             const fileRef = ref(storage, `profilePics/${currentUser.uid}`);
             const metadata = {
@@ -70,7 +70,6 @@ export const AuthContextProvider = ({ children }) => {
         } catch (error) {
             console.log(error);
         }
-        setLoading(false);
     }
 
     async function createUserData(user, data) {
@@ -79,8 +78,7 @@ export const AuthContextProvider = ({ children }) => {
         try {
             setDoc(userRef, data);
             updateProfile(user, {
-                photoURL:
-                    "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png",
+                photoURL: data['photoURL'],
             });
         } catch (error) {
             console.log(error)
@@ -158,9 +156,25 @@ export const AuthContextProvider = ({ children }) => {
         }
     }
 
+    async function deleteUser(user) {
+        let uid = user.uid
+        deleteUser(user).then(() =>
+            console.log('user deleted')
+        ).catch(error => console.log(error))
+        const collectionRef = collection(db, "blogs");
+        let queriedBlogs = query(
+            collectionRef,
+            where("authorProfile", "==", uid)
+        );
+        const snapshot = await getDocs(queriedBlogs);
+        snapshot.docs.map(async (i) => {
+            deleteBlog(i.id)
+        });
+    }
+
 
     return (
-        <AuthContext.Provider value={{ user, userInfo, signup, login, logout, createUserData, upload, updateUserData, updateBlogNo, updateBlogAuthor, deleteBlog, hideBlog }}>
+        <AuthContext.Provider value={{ user, userInfo, signup, login, logout, createUserData, upload, updateUserData, deleteUser, updateBlogNo, updateBlogAuthor, deleteBlog, hideBlog }}>
             {!loading && children}
         </AuthContext.Provider>
     )
