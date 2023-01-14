@@ -78,6 +78,9 @@ const ProfileEdit = ({
         updateBlogAuthor(data["name"], user.uid);
       }
       handleToggle();
+      Object.keys(data).map(key => {
+        userInfo[key] = data[key]
+      })
       updateUserData(user, data);
       toast("Updated", {
         position: "top-center",
@@ -193,12 +196,12 @@ const ProfileEdit = ({
                     required
                   />
                 </div>
-                {userInfo?.isAlumnus && (
+                {userInfo?.roles['alumnus'] && (
                   <div>
                     <div>
                       <label
                         htmlFor="institution"
-                        className="block mb-2 text-sm font-medium text-gray-300"
+                        className="block mb-2 text-sm font-medium text-gray-300 mt-5"
                       >
                         Current Institution
                       </label>
@@ -207,7 +210,7 @@ const ProfileEdit = ({
                         name="institution"
                         id="institution"
                         placeholder="Current Institution"
-                        className="border text-sm rounded-lg block w-full p-2.5 bg-gray-600 border-gray-500 placeholder-gray-400 text-white outline-none mb-5"
+                        className="border text-sm rounded-lg block w-full p-2.5 bg-gray-600 border-gray-500 placeholder-gray-400 text-white outline-none"
                         onChange={handleChange}
                         value={institution}
                         required
