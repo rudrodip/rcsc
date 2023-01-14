@@ -20,12 +20,12 @@ const RouteCard = ({ link, name, img, desc, props }) => {
                     <img alt="team" className="flex-shrink-0 rounded-lg w-36 h-36 md:w-48 md:h-48 object-cover object-center mb-4 lg:mb-0 cursor-pointer" src={img ? img : "https://dummyimage.com/200x200"} />
                 </Link>
                 <div className="flex-grow sm:pl-8">
-                    <h2 className="title-font font-medium text-lg text-white text-center md:text-left">{name}</h2>
-                    <p className="mb-4 md:text-left text-center">{desc}</p>
+                    <h2 className="title-font font-medium text-lg text-white text-center md:text-left break-word">{name}</h2>
+                    <p className="mb-4 md:text-left text-center break-all">{desc}</p>
                     {
                         props && Object.keys(props).map((prop, key) => {
                             return (
-                                <p className="mb-4 text-left" key={key}>
+                                <p className="mb-4 text-left break-all" key={key}>
                                     <span className='font-bold'>
                                         {prop}:
                                     </span>
