@@ -17,7 +17,7 @@ import 'swiper/css/autoplay'
 
 export default function Home() {
   const { width, height } = useWindowDimensions()
-  const currentUser = useAuth()
+  const { user } = useAuth()
   const { ref, inView, entry } = useInView({
     threshold: 0,
   });
@@ -133,7 +133,7 @@ export default function Home() {
         </SwiperSlide>
       </Swiper>
 
-      {!currentUser ?
+      {!user ?
         <div className='w-full flex justify-center content-center flex-col items-center'>
           <Link href="/login">
             <button className="w-24 bg-gradient-to-r from-blue-600 to-cyan-500 uppercase text-white font-semibold hover:scale-110 transition-all ease-in-out duration-100 shadow text-md lg:text-lg p-3 lg:p-5 rounded outline-none focus:outline-none sm:mr-2 mb-1 mx-3"
