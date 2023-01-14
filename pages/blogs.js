@@ -5,6 +5,7 @@ import { useState } from "react";
 import Link from "next/link";
 import SearchBlog from "../components/blog/searchBlog";
 import Confirmation from "../components/confirmationModal";
+import FBpost from "../components/fbPost";
 import { useAuth } from "../context/AuthContext";
 import { useBlogContext } from "../context/BlogContext";
 
@@ -157,7 +158,7 @@ function Blogs() {
           })}
       </div>
 
-      {/* <section id="fb-attachments">
+      <section id="fb-attachments">
         <h1 className="p-4 text-4xl text-center text-transparent bg-clip-text bg-gradient-to-r font-bold from-blue-400 to-cyan-500">
           Facebook Posts
         </h1>
@@ -166,91 +167,26 @@ function Blogs() {
           id="post"
           className="flex flex-row justify-around flex-wrap m-1 md:m-5"
         >
-          <iframe
-            src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2Frajshahicollegescienceclub%2Fposts%2Fpfbid02eGbE9TguMehE2RCkC597kgg73Lv3MRmHzQrBhzcNhFpdX5FtF4svooTdeM5c2ULpl&show_text=true&width=500"
-            width="500"
-            height="620"
-            style={{
-              border: "none",
-              overflow: " hidden",
-              background: "white",
-              margin: "10px",
-            }}
-            allowFullScreen={true}
-            allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
-          ></iframe>
+          <FBpost url="https://www.facebook.com/rajshahicollegescienceclub/posts/pfbid0MNX39GqBz6XJdbNJPovusAojLRhBAifWtY4Rng8XK6rgborfQSzPZL7HRdmX6tvTl" />
+          <FBpost url="https://www.facebook.com/rajshahicollegescienceclub/posts/pfbid02R2AdYpcFjedC4dbV7NjkJZccRyCv2FraquykKDsSXpUzDVnALzUQw9HrdgXbH1S1l" />
+          <FBpost url="https://www.facebook.com/rajshahicollegescienceclub/posts/pfbid02FrRUg2obWEMN3qujgChcF6LfGK2U6qxU69ok1eGD4MgfWj96WTkFto7nTkJi78Gsl" />
+          <FBpost url="https://www.facebook.com/rajshahicollegescienceclub/posts/pfbid02aA45UvweLwC9d1XhgEpeD7wcCzPShtGXZVwXqhzULP2irRTmEHtrtXhSuTs2KMidl" />
+          <FBpost url="https://www.facebook.com/rajshahicollegescienceclub/posts/pfbid031iUM7BMXsdJqmy49PqNPjLjoZxFZhx9wXJLiuXPnQ1eUbWtWixjnebbbiLQxFnPNl" />
+          <FBpost url="https://www.facebook.com/rajshahicollegescienceclub/posts/pfbid0225mYngneVnEoQjr6X8hYPXzTZ9zkJV7duA1fvj8XZZNZnRUmQp3qY6eKPP3DaUdGl" />
+          <FBpost url="https://www.facebook.com/rajshahicollegescienceclub/posts/pfbid02x4c12mXezeWfhSSECJ4D68u3pGYV1vwRQB5uupyMNWQ66TN5ivwarRU8E1gWyqYkl" />
+          <FBpost url="https://www.facebook.com/rajshahicollegescienceclub/posts/pfbid033rXxYB6QfEnrgeoQbhNkYw8hLkWsGKwd8e527xo6XyX9VtiaFB2nS1tQVNSZe7NEl" />
+          <FBpost url="https://www.facebook.com/rajshahicollegescienceclub/posts/pfbid0E6e3w8ehrdMzsubynK8sZQYfWv6X2xQeUMLFtnUaZbyoUsmRhFBkqiC8CK4nRi78l" />
+          <FBpost url="https://www.facebook.com/rajshahicollegescienceclub/posts/pfbid0TaoX1shggMRGWJkVni9pAVX5i2y41v9W9WVCBbnx3c5HD1Px6UePGDJzpbmkufQgl" />
+          <FBpost url="https://www.facebook.com/rajshahicollegescienceclub/posts/pfbid0ajh4raJPiQyV3kYSqdZDmEGiK2q7buJi687NnjPsG5tMU5vZq5faYAzHbHMSQFVgl" />
+          <FBpost url="https://www.facebook.com/rajshahicollegescienceclub/posts/pfbid0J46BCwMCMtp5RTtWSiVUeV55537kARajpQ8yANbjLXJPEv9LGnv9trArdqnM7M2dl" />
+          <FBpost url="https://www.facebook.com/rajshahicollegescienceclub/posts/pfbid02T6qt7Xx7k4NuAoWBJ5cYUMo7JPsgirvWvyJ9WxCUahTp5NDbYQzEztgSgLYJbkz1l" />
+          <FBpost url="https://www.facebook.com/rajshahicollegescienceclub/posts/pfbid0hCpznjpEfTKnCq2jatHKCjmaZbf6kuwfUXn9nbYxQaJDAWmh6pjjRdLVoPYYrrx3l" />
+          <FBpost url="https://www.facebook.com/rajshahicollegescienceclub/posts/pfbid0PjuSiEHfsfKRgqdQNQa34pVveAXY3MP5r2Ds3ehg9gdesEbfh6KuVpU76RqJLJ6Al" />
+          <FBpost url="https://www.facebook.com/rajshahicollegescienceclub/posts/pfbid0BgQxQua5q2skRshWq7xQTtTHSZcmyeCH5fxTGycNjZKiiEdsCaC2zg1J237dKVakl" />
 
-          <iframe
-            src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2Frajshahicollegescienceclub%2Fposts%2Fpfbid02MazLVpji1DoGczJ8Eiz7NScUWkxXbjBvMsoFNdaLTzddYeNGkHac3ai1YtjEXh2il&show_text=true&width=500"
-            width="500"
-            height="660"
-            style={{
-              border: "none",
-              overflow: " hidden",
-              background: "white",
-              margin: "10px",
-            }}
-            allowFullScreen={true}
-            allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
-          ></iframe>
 
-          <iframe
-            src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2Frajshahicollegescienceclub%2Fposts%2Fpfbid0PEf9JanSgj2eoSBQJFwyNrABGjLk6xwgZXf4W3VThT4cWGfMfXeJaxhiYMLnqv8ol&show_text=true&width=500"
-            width="500"
-            height="660"
-            style={{
-              border: "none",
-              overflow: " hidden",
-              background: "white",
-              margin: "10px",
-            }}
-            allowFullScreen={true}
-            allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
-          ></iframe>
-
-          <iframe
-            src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2Frajshahicollegescienceclub%2Fposts%2Fpfbid02Tkm8ZmFPLuNkzHuK9RbT1pVmPzUVhV6R85xZMD6VnYiH3RbCMofBJhY6BhcpyF2rl&show_text=true&width=500"
-            width="500"
-            height="660"
-            style={{
-              border: "none",
-              overflow: " hidden",
-              background: "white",
-              margin: "10px",
-            }}
-            allowFullScreen={true}
-            allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
-          ></iframe>
-
-          <iframe
-            src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2Frajshahicollegescienceclub%2Fposts%2Fpfbid02FhGeGSXoJ3g2R3Pv2FVWqVhkppgeECZXnPaqEoAt3Y8jX1XJpCT3racVs2VHqbPzl&show_text=true&width=500"
-            width="500"
-            height="660"
-            style={{
-              border: "none",
-              overflow: " hidden",
-              background: "white",
-              margin: "10px",
-            }}
-            allowFullScreen={true}
-            allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
-          ></iframe>
-
-          <iframe
-            src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2Frajshahicollegescienceclub%2Fposts%2Fpfbid057QGRhhtCif3e5xuLd9LNZjmJBJWxhEXZmMhH3FkcHwB4dRAHQXkH5i88mrA5YZtl&show_text=true&width=500"
-            width="500"
-            height="660"
-            style={{
-              border: "none",
-              overflow: " hidden",
-              background: "white",
-              margin: "10px",
-            }}
-            allowFullScreen={true}
-            allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
-          ></iframe>
         </div>
-      </section> */}
+      </section>
     </div>
   );
 }
