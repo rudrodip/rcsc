@@ -1,6 +1,7 @@
 import React from "react";
 import Head from "next/head";
 import MiniProfile from "../components/profile/miniProfile";
+import RouteCard from '../components/profile/routeCards'
 import { getDocs, collection, query, where } from "firebase/firestore";
 import { db } from "../src/config/firebase.config";
 import { useState, useEffect } from "react";
@@ -62,7 +63,7 @@ function Executives() {
       </Head>
 
       <section className="text-gray-400 bg-gray-900 body-font">
-        <div className="container px-5 py-6 lg:py-16 mx-auto">
+        <div className="container px-2 py-6 lg:py-16 mx-auto">
           <div className="flex flex-col text-center w-full mb-20">
             <h1 className="p-4 text-4xl text-center text-transparent bg-clip-text bg-gradient-to-r font-bold from-blue-400 to-cyan-500 tracking-widest">
               Executive Members
@@ -104,7 +105,7 @@ function Executives() {
             ""
           )}
 
-          <div className="flex flex-wrap -m-4">
+          <div className="flex flex-wrap">
             {executives &&
               executives.map((exec) => {
                 return (
