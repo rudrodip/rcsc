@@ -53,7 +53,7 @@ const Navbar = ({ props, path }) => {
             <div className="-mr-2 flex lg:hidden">
               {user && <ProfileButton userProfile={user.photoURL} />}
 
-              {path != "/" ? <button
+              <button
                 onClick={() => setIsOpen(!isOpen)}
                 type="button"
                 className="bg-gray-900 inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-800"
@@ -95,15 +95,6 @@ const Navbar = ({ props, path }) => {
                   </svg>
                 )}
               </button>
-
-                :
-
-                <div className="p-2 cursor-pointer">
-                  <a href="https://rc.gov.bd/" target={'_blank'} rel="noreferrer">
-                    <div className="block rounded-full shadow-xl mx-auto h-8 w-8 bg-cover bg-center" style={{ backgroundImage: `url('/logo/rc-logo.png'` }}></div>
-                  </a>
-                </div>
-              }
             </div>
           </div>
         </div>
