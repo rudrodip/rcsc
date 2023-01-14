@@ -25,10 +25,9 @@ const toast_warn_config = {
 const Signup = () => {
   const router = useRouter()
   const [loading, setLoading] = useState(false)
-
   // profile picture
   const [image, setImage] = useState("");
-
+  const [tempImageUrl, setTempImageUrl] = useState("https://dummyimage.com/200x200")
   // form values
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
@@ -39,12 +38,9 @@ const Signup = () => {
   const [batch, setBatch] = useState('')
   const [institution, setInstitution] = useState('')
   const [role, setRole] = useState('')
-  const [section, setSection] = useState('')
   const [grade, setGrade] = useState('')
   const [roll, setRoll] = useState('')
   const [isAlumni, setIsAlumni] = useState(false)
-
-  const sections = ['Select your section', 'Padma', 'Meghna', 'Jamuna']
 
   // if the user is alumnus, then isAlumni is set to true
   const { user, signup, createUserData, upload } = useAuth()
@@ -63,6 +59,7 @@ const Signup = () => {
       });
     } else {
       setImage(image);
+      setTempImageUrl(URL.createObjectURL(image))
     }
   };
 
@@ -90,12 +87,6 @@ const Signup = () => {
     }
     else if (e.target.name == 'memberCode') {
       setMemberCode(e.target.value)
-    }
-    else if (e.target.name == 'section') {
-      setSection(e.target.value)
-    }
-    else if (e.target.name == 'sectionTest') {
-      setTest(e.target.value)
     }
     else if (e.target.name == 'class') {
       setGrade(e.target.value)
@@ -157,22 +148,20 @@ const Signup = () => {
       batch: batch
     }
     if (isAlumni) {
-      if (phone.length == 11) {
-        data["phone"] = phone
-      }
-      data["role"] = role
+      data["phone"] = phone
+      data["designation"] = role
       data["institution"] = institution
       data["roles"]["alumnus"] = isAlumni
     }
     else {
       data["class"] = grade
-      data["section"] = section
       data["roll"] = roll
       data["memberCode"] = memberCode
       data["phone"] = phone
     }
 
     try {
+      setLoading(true)
       let { user } = await signup(email, password)
       if (image) {
         let url = await upload(image, user, setLoading);
@@ -180,8 +169,9 @@ const Signup = () => {
       }
       createUserData(user, data)
     } catch (error) {
-      console.log(error)
+      toast.warn('Email already used!', toast_warn_config)
     }
+    setLoading(false)
   }
 
   const handleSubmit = async (e) => {
@@ -193,6 +183,9 @@ const Signup = () => {
     setLoading(false)
   }
 
+  if (user && !loading) {
+    router.push('/profile')
+  }
   return (
     <div>
       <Head>
@@ -222,17 +215,17 @@ const Signup = () => {
         draggable
       />
       <section className="max-w-4xl p-6 mx-auto bg-gray-800 rounded-md shadow-md my-10">
-        <h1 className="text-xl font-bold text-white capitalize dark:text-white">Sign up</h1>
+        <h1 className="text-xl font-bold text-white capitalize">Sign up</h1>
         <div className='text-sm text-gray-200 mt-3'>
-          <div className="block mx-auto rounded-full h-40 w-40 bg-cover bg-center" style={{ backgroundImage: `url('${image ? URL.createObjectURL(image) : "https://dummyimage.com/200x200"}` }}></div>
+          <div className="block mx-auto rounded-full h-40 w-40 bg-cover bg-center" style={{ backgroundImage: `url('${tempImageUrl}`}}></div>
           <input
             type="checkbox"
             name="isAlumni"
-            className='w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600'
+            className='w-4 h-4 text-blue-600 rounded-lg focus:ring-blue-600 ring-offset-gray-800 focus:ring-2 bg-gray-700 border-gray-600'
             checked={isAlumni}
             onChange={handleAlumni}
           />
-          <label className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Alumni?</label>
+          <label className="ml-2 text-sm font-medium text-gray-300">Alumni?</label>
         </div>
         <div className="py-6 px-3 flex justify-center">
           <FileInputButton
@@ -284,18 +277,9 @@ const Signup = () => {
               <TextFormField
                 label="Class"
                 placeholder="e.g. 11"
-                name="grade"
+                name="class"
                 handleChange={handleChange}
               />
-            }
-            {!isAlumni &&
-              <SelectionBox
-                label="Section"
-                name="sectionTest"
-                options={sections}
-                handleChange={handleChange}
-              />
-
             }
             {!isAlumni &&
               <TextFormField
@@ -325,7 +309,7 @@ const Signup = () => {
               showPassToggle={true}
             />
             <PasswordInputField
-              label="Password Confirmation"
+              label="Confirm your password"
               name='password-confirm'
               handleChange={handleChange}
               showPassToggle={true}
@@ -349,7 +333,7 @@ const Signup = () => {
         </form>
         <div className="flex justify-center mt-6">
           <button
-            className="px-6 py-2 leading-5 text-white transition-all duration-200 transform bg-blue-500 rounded-md hover:bg-blue-700 hover:scale-110 focus:outline-none focus:bg-gray-600"
+            className="px-6 py-2 leading-5 text-white transition-all duration-200 transform bg-gradient-to-r from-blue-400 to-cyan-400 rounded-md hover:scale-110 focus:outline-none focus:bg-gray-600"
             onClick={handleSubmit}
           >Create Account
           </button>
