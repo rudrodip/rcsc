@@ -1,6 +1,6 @@
 import React from 'react'
 import Head from 'next/head'
-import EventGallery from '../components/eventGallery'
+import EventGallery from '../components/gallery/eventGallery'
 import { useEffect } from 'react'
 import { useState } from 'react'
 import { db } from '../src/config/firebase.config';
