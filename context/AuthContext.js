@@ -5,7 +5,7 @@ import {
     signInWithEmailAndPassword,
     signOut,
     updateProfile,
-    deleteUser
+    sendPasswordResetEmail
 } from "firebase/auth";
 import {
     ref,
@@ -55,6 +55,11 @@ export const AuthContextProvider = ({ children }) => {
 
     const logout = () => {
         return signOut(auth)
+    }
+
+    const triggerResetEmail = async (email) => {
+        await sendPasswordResetEmail(auth, email);
+        console.log("Password reset email sent")
     }
 
     async function upload(file, currentUser) {
@@ -174,7 +179,7 @@ export const AuthContextProvider = ({ children }) => {
 
 
     return (
-        <AuthContext.Provider value={{ user, userInfo, signup, login, logout, createUserData, upload, updateUserData, deleteUser, updateBlogNo, updateBlogAuthor, deleteBlog, hideBlog }}>
+        <AuthContext.Provider value={{ user, userInfo, signup, login, logout, createUserData, upload, updateUserData, deleteUser, updateBlogNo, updateBlogAuthor, deleteBlog, hideBlog, triggerResetEmail }}>
             {!loading && children}
         </AuthContext.Provider>
     )
