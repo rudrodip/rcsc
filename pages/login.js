@@ -14,7 +14,7 @@ const Login = ({ user }) => {
   const [loading, setLoading] = useState(false)
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  const { login } = useAuth()
+  const { login, triggerResetEmail } = useAuth()
 
   const handleChange = (e) => {
     if (e.target.name == 'email') {
@@ -22,6 +22,31 @@ const Login = ({ user }) => {
     }
     else if (e.target.name == 'password') {
       setPassword(e.target.value)
+    }
+  }
+
+  const handlePasswordReset = () => {
+    if (email){
+      triggerResetEmail(email)
+      toast('Password reset email sent, check your email', {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      })
+    } else {
+      toast.warn('Give your email to reset your password!', {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      })
     }
   }
 
@@ -72,6 +97,7 @@ const Login = ({ user }) => {
       <div className='overflow-y-hidden'>
         <Head>
           <title>RCSC - Login</title>
+          <link rel="icon" href="/logo/rcsc-logo.png" />
         </Head>
         <ToastContainer
           position="bottom-center"
@@ -99,6 +125,11 @@ const Login = ({ user }) => {
                   handleChange={handleChange}
                   showPassToggle={true}
                 />
+                <div className='text-sm text-right cursor-pointer'>
+                  <p className='underline text-gray-100' onClick={handlePasswordReset}>
+                    Forgot password?
+                  </p>
+                </div>
                 <br></br>
                 <button
                   type="submit"
@@ -122,10 +153,10 @@ const Login = ({ user }) => {
                 </div>
               }
             </div>
-            <div className="text-grey-dark mt-6">
-              Do not have an account? 
+            <div className="mt-6">
+              Do not have an account?
               <Link legacyBehavior href="/signup">
-                <a className="no-underline border-b border-blue text-blue">
+                <a className='underline'>
                   Sign up
                 </a>
               </Link>
