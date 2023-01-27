@@ -21,8 +21,8 @@ const ProfileEdit = ({
 
   // profile picture change
   const onChange = async (image) => {
-    if (image.size > 1048576) {
-      toast.warn("File size should be less than 1 MB", {
+    if (image.size > 5242880) {
+      toast.warn("File size should be less than 5MB", {
         position: "top-center",
         autoClose: 3000,
         hideProgressBar: false,
