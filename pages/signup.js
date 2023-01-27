@@ -32,7 +32,6 @@ const Signup = () => {
   const [email, setEmail] = useState('')
   const [phone, setPhone] = useState('')
   const [password, setPassword] = useState('')
-  const [confirmedPassword, setConfirmedPassword] = useState('')
   const [memberCode, setMemberCode] = useState('')
   const [batch, setBatch] = useState('')
   const [institution, setInstitution] = useState('')
@@ -42,7 +41,7 @@ const Signup = () => {
   const [isAlumni, setIsAlumni] = useState(false)
 
   // if the user is alumnus, then isAlumni is set to true
-  const { user, signup, createUserData, upload } = useAuth()
+  const { user, signup, createUserData, upload, setUserInfo } = useAuth()
 
   // profile picture change
   const onImageChange = async (image) => {
@@ -80,9 +79,6 @@ const Signup = () => {
     }
     else if (e.target.name == 'password') {
       setPassword(e.target.value)
-    }
-    else if (e.target.name == 'password-confirm') {
-      setConfirmedPassword(e.target.value)
     }
     else if (e.target.name == 'memberCode') {
       setMemberCode(e.target.value)
@@ -122,7 +118,7 @@ const Signup = () => {
 
   // validates from data
   const validate = () => {
-    if (name.length > 2 && validateMemberCode() && password == confirmedPassword) {
+    if (name.length > 2 && validateMemberCode()) {
       return true;
     }
     toast.warn('Form not valid! Please check again', toast_warn_config)
@@ -160,24 +156,27 @@ const Signup = () => {
     }
 
     try {
-      setLoading(true)
       let { user } = await signup(email, password)
       if (image) {
-        let url = await upload(image, user, setLoading);
+        let url = await upload(image, user);
         data["photoURL"] = url;
       }
       createUserData(user, data)
+      setUserInfo(data)
     } catch (error) {
       toast.warn('Email already used!', toast_warn_config)
     }
-    setLoading(false)
   }
 
   const handleSubmit = async (e) => {
     setLoading(true)
     e.preventDefault()
-    if (validate()) {
-      await createUser()
+    try {
+      if (validate()) {
+        await createUser()
+      }
+    } catch (error) {
+      console.log(error)
     }
     setLoading(false)
   }
@@ -307,14 +306,6 @@ const Signup = () => {
               handleChange={handleChange}
               showPassToggle={true}
             />
-            <PasswordInputField
-              label="Confirm your password"
-              name='password-confirm'
-              handleChange={handleChange}
-              showPassToggle={true}
-            />
-
-
           </div>
           {
             loading &&
