@@ -251,7 +251,7 @@ const Signup = () => {
               handleChange={handleChange}
             />
             <TextFormField
-              label="Batch"
+              label="Session"
               placeholder="e.g. 2020-2021"
               name="batch"
               handleChange={handleChange}
