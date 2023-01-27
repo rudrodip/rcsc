@@ -5,9 +5,9 @@ import React from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useState } from "react";
-import { updateUserData } from "../../src/config/firebase.config";
 import { useEffect } from "react";
 import { confirmAlert } from 'react-confirm-alert'; // Import
+import { useAuth } from "../../context/AuthContext";
 
 const submit = (id, handleAction) => {
   let options = {
@@ -37,6 +37,7 @@ const AddSocialMedia = (props) => {
   const [social, setSocial] = useState("");
   const [socialName, setSocialName] = useState("");
   const [socials, setSocials] = useState("");
+  const { updateUserData } = useAuth()
 
   // setUser and handleChange in the form
   useEffect(() => {
@@ -115,7 +116,6 @@ const AddSocialMedia = (props) => {
         socials[socialName] = social;
         let social_object = { socials }
         setSocials(socials)
-        console.log(socials);
         await addSocial(user, social_object);
       } catch (error) {
         alert(error);
