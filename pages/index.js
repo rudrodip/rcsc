@@ -43,7 +43,7 @@ export default function Home() {
           property="og:description"
           content="Official Website of Rajshahi College Science Club"
         />
-        <meta property="og:image" content="https://i.ibb.co/BKSHpQ9/bg1.jpg" />
+        <meta property="og:image" content="https://firebasestorage.googleapis.com/v0/b/rcsc-web.appspot.com/o/events%2F5th%20RCSF%2Fbg1.jpg?alt=media&token=7f0f6213-9085-48e3-a60b-74d08025ad6d" />
         <link rel="icon" href="/logo/rcsc-logo.png" />
       </Head>
 
