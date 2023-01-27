@@ -164,7 +164,8 @@ const Signup = () => {
       createUserData(user, data)
       setUserInfo(data)
     } catch (error) {
-      toast.warn('Email already used!', toast_warn_config)
+      console.log(error)
+      toast.warn('Error!', toast_warn_config)
     }
   }
 
