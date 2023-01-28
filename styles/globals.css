@@ -5,7 +5,7 @@
 
 @layer base {
     html {
-      background-color: #111827;
+      background-color: #111827 !important;
       color: white;
       font-family: 'Raleway', sans-serif;
       font-family: 'Ubuntu', sans-serif;
