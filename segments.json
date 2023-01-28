@@ -1,0 +1,60 @@
+{
+    "Individual Segments": {
+        "Olympiads": {
+            "name": "Olympiads",
+            "desc": "There are olympiads for three categories, i.e Junior, Secondary and Higher Secondary. Students can participate in Math, Physics, Chemistry, Biology and Astronomy Olympiad.",
+            "img": "/segments/olympiads.jpg",
+            "url": "/registration"
+        },
+        "Problem Solving": {
+            "name": "Problem Solving",
+            "desc": "Students from any class can participate in this segment",
+            "img": "/segments/prob.jpg",
+            "url": "/registration"
+        },
+        "Competitive Programming": {
+            "name": "Competitive Programming",
+            "desc": "This is an online competition. Students from any class can participate in this segment.",
+            "img": "/segments/cp.jpg",
+            "url": "/registration"
+        },
+        "Speedcubing": {
+            "name": "Speedcubing",
+            "desc": "Students from any class can participate in this segment. The individual who'll solve it in the shortest time, will win.",
+            "img": "/segments/bg3.jpg",
+            "url": "/registration"
+        },
+        "Sudoku Solving": {
+            "name": "Sudoku Solving",
+            "desc": "Students from any class can participate in this segment. The individual who'll solve it in the shortest time, will win.",
+            "img": "/segments/sudoku.jpg",
+            "url": "/registration"
+        },
+        "Photography": {
+            "name": "Photography",
+            "desc": "Its an online segment. Participants can submit their photograph here.",
+            "img": "/segments/photography.jpg",
+            "url": "/registration"
+        },
+        "Science Fiction Writing": {
+            "name": "Science Fiction Writing",
+            "desc": "Its an online segment. Participants can submit their fiction story here.",
+            "img": "/segments/scifi.jpg",
+            "url": "/registration"
+        }
+    },
+    "Team Segments": {
+        "Project showcase": {
+            "name": "Project Showcase",
+            "desc": "A team will make their project and show it in the venue.",
+            "img": "/segments/robot.jpg",
+            "url": "/registration"
+        },
+        "Wall Magazine": {
+            "name": "Wall Magazine",
+            "desc": "A team will make their magazine and show it in the venue.",
+            "img": "/segments/mag.jpg",
+            "url": "/registration"
+        }
+    }
+}
