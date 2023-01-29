@@ -20,13 +20,12 @@ const PasswordInputField = ({ label = 'Password', name, handleChange, showPassTo
             {
                 showPassToggle &&
 
-                <div className='text-sm text-gray-200 mt-3'>
+                <div className='text-sm text-gray-200 mt-3 flex items-center'>
                     <input
                         type="checkbox"
-                        name="topping"
-                        className='w-4 h-4 text-blue-600 rounded focus:ring-blue-600 ring-offset-gray-800 focus:ring-2 bg-gray-700 border-gray-600'
                         checked={checked}
                         onChange={handleOnChange}
+                        className="checkbox checkbox-info"
                     />
                     <label className="ml-2 text-sm font-medium text-gray-300">Show Password</label>
                 </div>
