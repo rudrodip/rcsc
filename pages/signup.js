@@ -217,14 +217,8 @@ const Signup = () => {
         <h1 className="text-xl font-bold text-white capitalize">Sign up</h1>
         <div className='text-sm text-gray-200 mt-3'>
           <div className="block mx-auto rounded-full h-40 w-40 bg-cover bg-center" style={{ backgroundImage: `url('${tempImageUrl}`}}></div>
-          <input
-            type="checkbox"
-            name="isAlumni"
-            className='w-4 h-4 text-blue-600 rounded-lg focus:ring-blue-600 ring-offset-gray-800 focus:ring-2 bg-gray-700 border-gray-600'
-            checked={isAlumni}
-            onChange={handleAlumni}
-          />
-          <label className="ml-2 text-sm font-medium text-gray-300">Alumni?</label>
+          <p>Alumni?</p>
+          <input type="checkbox" className="toggle toggle-success" checked={isAlumni} onChange={handleAlumni} />
         </div>
         <div className="py-6 px-3 flex justify-center">
           <FileInputButton
