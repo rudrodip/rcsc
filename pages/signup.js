@@ -138,7 +138,8 @@ const Signup = () => {
       institution: "Rajshahi College",
       roles: {
         admin: false,
-        executive: false
+        executive: false,
+        querist: false
       },
       batch: batch
     }
