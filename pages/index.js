@@ -31,20 +31,22 @@ export default function Home() {
     <div>
 
       <Head>
-        <title>RCSC - Home</title>
+        <title>Rajshahi College Science Club</title>
         <meta name="description" content="Official Website of Rajshahi College Science Club" />
-        <meta property="og:url" content="https://rcsc.vercel.app/" />
-        <meta property="og:type" content="Science Club" />
-        <meta
-          property="og:title"
-          content="Rajshahi College Science Club"
-        />
-        <meta
-          property="og:description"
-          content="Official Website of Rajshahi College Science Club"
-        />
+
+        <meta property="og:url" content="https://rcsc.vercel.app" />
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="Rajshahi College Science Club" />
+        <meta property="og:description" content="Official Website of Rajshahi College Science Club" />
         <meta property="og:image" content="https://firebasestorage.googleapis.com/v0/b/rcsc-web.appspot.com/o/events%2F5th%20RCSF%2Fbg1.jpg?alt=media&token=7f0f6213-9085-48e3-a60b-74d08025ad6d" />
-        <link rel="icon" href="/logo/rcsc-logo.png" />
+
+
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta property="twitter:domain" content="rcsc.vercel.app" />
+        <meta property="twitter:url" content="https://rcsc.vercel.app" />
+        <meta name="twitter:title" content="Rajshahi College Science Club" />
+        <meta name="twitter:description" content="Official Website of Rajshahi College Science Club" />
+        <meta name="twitter:image" content="https://firebasestorage.googleapis.com/v0/b/rcsc-web.appspot.com/o/events%2F5th%20RCSF%2Fbg1.jpg?alt=media&token=7f0f6213-9085-48e3-a60b-74d08025ad6d" />
       </Head>
 
       <div className='stats-detailed'>
