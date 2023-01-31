@@ -32,7 +32,7 @@ export default function Home() {
 
       <Head>
         <title>Rajshahi College Science Club</title>
-        <meta name="description" content="Official Website of Rajshahi College Science Club" />
+        <meta name="description" content="Official Website of Rajshahi College Science Club" key="desc" />
 
         <meta property="og:url" content="https://rcsc.vercel.app" />
         <meta property="og:type" content="website" />
@@ -47,6 +47,7 @@ export default function Home() {
         <meta name="twitter:title" content="Rajshahi College Science Club" />
         <meta name="twitter:description" content="Official Website of Rajshahi College Science Club" />
         <meta name="twitter:image" content="https://firebasestorage.googleapis.com/v0/b/rcsc-web.appspot.com/o/events%2F5th%20RCSF%2Fbg1.jpg?alt=media&token=7f0f6213-9085-48e3-a60b-74d08025ad6d" />
+        <link rel="icon" type="image/x-icon" href="/logo/rcsc-logo.png"></link>
       </Head>
 
       <div className='stats-detailed'>
