@@ -54,7 +54,7 @@ const MiniBlog = (props) => {
             }
             onClick={() => handleClick(props.id)}
           />
-          <div className="flex flex-col pl-5 sm:pt-5">
+          <div className="flex flex-col pl-5">
             <h2 className="title-font font-medium text-xl text-cyan-300 text-left">
               {props.blog?.title}
             </h2>
