@@ -125,9 +125,9 @@ const Login = ({ user }) => {
                   handleChange={handleChange}
                   showPassToggle={true}
                 />
-                <div className='text-sm text-right cursor-pointer'>
-                  <p className='underline text-gray-100' onClick={handlePasswordReset}>
-                    Forgot password?
+                <div className='text-sm text-right'>
+                  <p className='underline text-gray-100'>
+                    <span className='cursor-pointer' onClick={handlePasswordReset}>Forgot password?</span>
                   </p>
                 </div>
                 <br></br>
