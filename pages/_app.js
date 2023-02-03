@@ -9,7 +9,6 @@ import { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
 import '../styles/custom_confirm.css'
 import { AuthContextProvider } from '../context/AuthContext'
-import { BlogContextProvider } from '../context/BlogContext'
 
 const MyApp = ({ Component, pageProps }) => {
   const router = useRouter()
@@ -44,9 +43,7 @@ const MyApp = ({ Component, pageProps }) => {
       />
 
       <Header page={Pages[router.pathname]} key={headerKey || 2} />
-      <BlogContextProvider>
-        <Component {...pageProps} />
-      </BlogContextProvider>
+      <Component {...pageProps} />
       <Footer desc={router.pathname == "/" ? true : false} />
     </AuthContextProvider>
   </>
