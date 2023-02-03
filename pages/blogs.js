@@ -1,40 +1,40 @@
 import React from "react";
 import Head from "next/head";
 import MiniBlog from "../components/blog/miniBlog";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import SearchBlog from "../components/blog/searchBlog";
-import Confirmation from "../components/confirmationModal";
 import FBpost from "../components/fbPost";
 import { useAuth } from "../context/AuthContext";
-import { useBlogContext } from "../context/BlogContext";
+import {
+  collection,
+  query,
+  where,
+  getDocs,
+  orderBy,
+  limit
+} from "firebase/firestore";
+import { db } from '../src/config/firebase.config'
 
 function Blogs() {
   const { user, userInfo } = useAuth()
-  const { blogs, handleHide } = useBlogContext()
-
+  const [blogs, setBlogs] = useState(null)
   const [category, setCategory] = useState("All Blogs");
-  const [deleteToggle, setDeleteToggle] = useState(false);
-  const [addToggle, setAddToggle] = useState(false);
-  const [selectedBlog, setSelectedBlog] = useState({
-    id: null,
-    authorProfile: null,
-    approved: null,
-    add: null
-  })
-
-  const handleDeleteToggle = () => {
-    setDeleteToggle(!deleteToggle);
-  };
-  const handleAddToggle = () => {
-    setAddToggle(!addToggle);
-  };
-
+  
   const handleCategory = (e) => {
     e.preventDefault();
     setCategory(e.target.value);
   };
 
+  
+  useEffect(() => {
+    async function updateBlog() {
+      const blog_data = await fetchBlogs(user, category);
+      setBlogs(blog_data);
+    }
+    updateBlog();
+  }, [category]);
+  
   return (
     <div>
       <Head>
@@ -42,7 +42,7 @@ function Blogs() {
         <meta
           name="description"
           content="Official Website of Rajshahi College Science Club"
-        />
+          />
         <meta property="og:url" content="https://rcsc.vercel.app/blogs" />
         <meta property="og:type" content="Science Club" />
         <meta property="og:title" content="Blogs" />
@@ -53,33 +53,6 @@ function Blogs() {
         <meta property="og:image" content="https://i.ibb.co/BKSHpQ9/bg1.jpg" />
         <link rel="icon" href="/logo/rcsc-logo.png" />
       </Head>
-
-      <Confirmation
-        toggle={deleteToggle}
-        warning="Are you sure to delete this article?"
-        handleToggle={handleDeleteToggle}
-        handleAction={() => {
-          handleHide(
-            selectedBlog['id'],
-            selectedBlog['authorProfile'],
-            selectedBlog['approved'],
-            selectedBlog['add']
-          )
-        }}
-      />
-      <Confirmation
-        toggle={addToggle}
-        warning="Are you sure to approve this article?"
-        handleToggle={handleAddToggle}
-        handleAction={() => {
-          handleHide(
-            selectedBlog['id'],
-            selectedBlog['authorProfile'],
-            selectedBlog['approved'],
-            selectedBlog['add']
-          )
-        }}
-      />
 
       <div className="my-5">
         <h1 className="p-4 text-4xl text-center text-transparent bg-clip-text bg-gradient-to-r font-bold from-blue-400 to-cyan-500">
@@ -141,18 +114,9 @@ function Blogs() {
             return (
               <MiniBlog
                 blog={i.data()}
-                editable={
-                  user?.uid == i.data().authorProfile ||
-                    userInfo?.roles["admin"]
-                    ? true
-                    : false
-                }
                 date={formatedDate}
                 key={index}
                 id={i?.id}
-                select={setSelectedBlog}
-                addConfirmation={handleAddToggle}
-                deleteConfirmation={handleDeleteToggle}
               />
             );
           })}
@@ -184,7 +148,6 @@ function Blogs() {
           <FBpost url="https://www.facebook.com/rajshahicollegescienceclub/posts/pfbid0PjuSiEHfsfKRgqdQNQa34pVveAXY3MP5r2Ds3ehg9gdesEbfh6KuVpU76RqJLJ6Al" />
           <FBpost url="https://www.facebook.com/rajshahicollegescienceclub/posts/pfbid0BgQxQua5q2skRshWq7xQTtTHSZcmyeCH5fxTGycNjZKiiEdsCaC2zg1J237dKVakl" />
 
-
         </div>
       </section>
     </div>
@@ -192,3 +155,17 @@ function Blogs() {
 }
 
 export default Blogs;
+
+async function fetchBlogs(user, category, maxNumBlogs = 12) {
+  const docRef = collection(db, "blogs");
+  let q = null;
+  if (category == "My Blogs") {
+      q = query(docRef, orderBy("timestamp", "desc"), where("authorProfile", "==", user.uid), limit(maxNumBlogs));
+  } else if (category == "All Blogs") {
+      q = query(docRef, orderBy("timestamp", "desc"), limit(limit));
+  } else {
+      q = query(docRef, orderBy("timestamp", "desc"), where("category", "==", category));
+  }
+  const docSnaps = await getDocs(q);
+  return docSnaps.docs;
+}
