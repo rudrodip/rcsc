@@ -100,46 +100,6 @@ export const AuthContextProvider = ({ children }) => {
         }
     }
 
-    async function updateBlogNo(userUid, val) {
-        // val must be 1 or -1
-        if (!userUid) return;
-        const userRef = doc(db, `user/${userUid}`);
-        try {
-            const dec = increment(val);
-            await updateDoc(userRef, { blogs: dec });
-        } catch (error) {
-            console.log(error);
-        }
-    }
-
-    async function deleteBlog(id) {
-        const docRef = doc(db, `blogs/${id}`);
-        const fileRef = ref(storage, `blogImg/${id}`);
-        try {
-            await deleteDoc(docRef);
-            await deleteObject(fileRef);
-        } catch (error) {
-            return "error";
-        }
-    }
-
-    async function updateBlogAuthor(authorName, authorId) {
-        try {
-            const collectionRef = collection(db, "blogs");
-            let queriedBlogs = query(
-                collectionRef,
-                where("authorProfile", "==", authorId)
-            );
-            const snapshot = await getDocs(queriedBlogs);
-            snapshot.docs.map(async (i) => {
-                const docRef = doc(db, `blogs/${i.id}`);
-                await updateDoc(docRef, { author: authorName });
-            });
-        } catch (error) {
-            console.log("Failed: ", error);
-        }
-    }
-
     async function getUserInfo(uid) {
         if (!uid) return;
         const userRef = doc(db, `user/${uid}`);
@@ -149,15 +109,6 @@ export const AuthContextProvider = ({ children }) => {
         } else {
             console.log("No such document!");
             return null;
-        }
-    }
-
-    async function hideBlog(id, approvalState = false) {
-        const docRef = doc(db, `blogs/${id}`);
-        try {
-            updateDoc(docRef, { approved: approvalState });
-        } catch (error) {
-            console.log(error);
         }
     }
 
@@ -179,7 +130,7 @@ export const AuthContextProvider = ({ children }) => {
 
 
     return (
-        <AuthContext.Provider value={{ user, userInfo, signup, login, logout, createUserData, upload, updateUserData, deleteUser, updateBlogNo, updateBlogAuthor, deleteBlog, hideBlog, triggerResetEmail, setUserInfo }}>
+        <AuthContext.Provider value={{ user, userInfo, signup, login, logout, createUserData, upload, updateUserData, deleteUser, triggerResetEmail, setUserInfo }}>
             {!loading && children}
         </AuthContext.Provider>
     )
