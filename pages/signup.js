@@ -8,6 +8,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import Decode from '../src/authCode/decode'
 import TextFormField from '../components/form/textFormField'
 import PasswordInputField from '../components/form/passwordField'
+import SelectionBox from '../components/form/selectionBox'
 import { FileInputButton } from '../components/fileInput';
 import { useAuth } from '../context/AuthContext';
 
@@ -102,13 +103,7 @@ const Signup = () => {
 
   const validateMemberCode = () => {
     if (!isAlumni) {
-      let year;
-      try {
-        year = parseInt(batch.split('-').pop().trim())
-      } catch (error) {
-        toast.warn('Batch format is not valid, try again', toast_warn_config)
-        return false
-      }
+      let year = parseInt(batch.split('-').pop().trim())
       if (Decode(memberCode, grade, year) == roll) return true
       toast.warn('Member Code not matched!', toast_warn_config)
       return false
@@ -219,7 +214,7 @@ const Signup = () => {
         <div className='text-sm text-gray-200 mt-3'>
           <div className="block mx-auto rounded-full h-40 w-40 bg-cover bg-center" style={{ backgroundImage: `url('${tempImageUrl}`}}></div>
           <p>Alumni?</p>
-          <input type="checkbox" className="toggle toggle-success" checked={isAlumni} onChange={handleAlumni} />
+          <input type="checkbox" className="toggle toggle-info" checked={isAlumni} onChange={handleAlumni} />
         </div>
         <div className="py-6 px-3 flex justify-center">
           <FileInputButton
@@ -245,10 +240,10 @@ const Signup = () => {
               name="phone"
               handleChange={handleChange}
             />
-            <TextFormField
+            <SelectionBox 
               label="Session"
-              placeholder="e.g. 2020-2021"
               name="batch"
+              options={['2014-2015', '2015-2016', '2016-2017', '2017-2018', '2019-2020', '2020-2021', '2021-2022', '2022-2023', '2023-2024']}
               handleChange={handleChange}
             />
             {isAlumni &&
