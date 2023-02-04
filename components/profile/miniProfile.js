@@ -22,7 +22,7 @@ const Profile = (props) => {
           <h2 className="title-font font-medium text-lg text-white text-center md:text-left">{props.name}</h2>
           <h3 className="mb-3 md:text-left text-center text-blue-500 break-word">{props.role}</h3>
           <p className="mb-4 md:text-left text-center break-word">{props.desc}</p>
-          <p className="mb-1 break-word">Batch: {props.batch}</p>
+          <p className="mb-1 break-word">Session: {props.batch}</p>
           <p className="mb-1 break-word"><span className='text-imp-text-2'>{props.institution}</span></p>
           <p className="mb-1 break-all">Phone: <a href={`tel:${props.number}`} >{props.number}</a></p>
           <p className="mb-1 break-all">Email: <a href={`mailto:${props.mail}`} >{props.mail}</a></p>

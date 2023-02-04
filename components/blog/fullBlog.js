@@ -28,12 +28,9 @@ const FullBlog = ({ blog, userImg, date, author, url, role }) => {
 
   return (
     <div>
-      <div class="container px-6 mx-auto text-center">
-        {/* <div class="max-w-lg mx-auto">
-          <h1 class="text-3xl font-semibold text-gray-800 dark:text-white lg:text-4xl mb-5">{blog?.title}</h1>
-        </div> */}
-        <div class="flex justify-center mt-10">
-          <img class="object-cover w-full h-96 rounded-xl lg:w-4/5" src={blogImg} />
+      <div className="container px-6 mx-auto text-center">
+        <div className="flex justify-center mt-10">
+          <img className="object-cover w-full h-96 rounded-xl lg:w-4/5" src={blogImg} />
         </div>
         <div className="w-20 h-20 inline-flex items-center justify-center text-gray-600 cursor-pointer">
           <Link href={`/user/${blog?.authorProfile}`}>
