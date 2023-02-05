@@ -33,7 +33,7 @@ function Events() {
 
       <div>
         <div className="hero min-h-[90vh]" style={{ backgroundImage: `url("/background-img/bg.png")` }}>
-          <div className="hero-overlay bg-opacity-60"></div>
+          <div className="hero-overlay bg-opacity-40"></div>
           <div className="hero-content text-center text-neutral-content p-2 m-0">
             <div className="max-w-xl">
               <h1 className="mb-5 text-4xl md:text-6xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-cyan-500 to-blue-700 leading-tight">6<sup className='text-cyan-500 text-2xl md:text-4xl'>th</sup> Rajshahi College Science Fest</h1>
