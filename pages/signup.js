@@ -161,7 +161,7 @@ const Signup = () => {
       setUserInfo(data)
     } catch (error) {
       console.log(error)
-      toast.warn('Error!', toast_warn_config)
+      toast.warn(error, toast_warn_config)
     }
   }
 
