@@ -46,8 +46,9 @@ function Events() {
               <h1 className="mb-2 text-2xl font-bold text-cyan-400">Venue: <span className='text-blue-500'>Rajshahi College, Rajshahi</span></h1>
               <h1 className="mb-5 text-4xl font-bold text-cyan-400">Registration ending in</h1>
               <CustomCountdown date={new Date('2023-03-3')} />
-              <button role="button" onClick={executeScroll} className="btn bg-cyan-500 border-blue-400 text-gray-800 hover:text-gray-200 hover:bg-blue-800 m-6">Register now!</button>
-              <button role="button" onClick={scheduleScroll} className="btn bg-cyan-500 border-blue-400 text-gray-800 hover:text-gray-200 hover:bg-blue-800 m-6">Schedule!</button>
+              <button role="button" onClick={executeScroll} className="btn bg-cyan-500 border-blue-400 text-gray-800 hover:text-gray-200 hover:bg-blue-800 m-2">Register now!</button>
+              <button role="button" onClick={scheduleScroll} className="btn bg-cyan-500 border-blue-400 text-gray-800 hover:text-gray-200 hover:bg-blue-800 m-2">Schedule</button>
+              <button role="button" onClick={contactScroll} className="btn bg-cyan-500 border-blue-400 text-gray-800 hover:text-gray-200 hover:bg-blue-800 m-2">Contact</button>
             </div>
           </div>
         </div>
@@ -119,27 +120,24 @@ function Events() {
         </div>
 
         <div className="divider"></div>
-        <h1 className="text-5xl font-medium title-font py-4 text-white text-center">SCHEDULE</h1>
-        <div ref={scheduleRef} className='container mx-auto'>
-          <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+        <h1 ref={scheduleRef} className="text-5xl font-medium title-font py-4 text-white text-center">SCHEDULE</h1>
+        <div className='container mx-auto'>
+          <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
             <h1 className="text-3xl font-medium title-font py-8 text-white text-center">Date: March 3rd, 2023</h1>
-            <table class="w-full text-sm text-left text-gray-400">
-              <thead class="text-xs uppercase bg-gray-700 text-gray-400">
+            <table className="w-full text-sm text-left text-gray-400">
+              <thead className="text-xs uppercase bg-gray-700 text-gray-400">
                 <tr>
-                  <th scope="col" class="px-6 py-3">
+                  <th scope="col" className="px-6 py-3">
                     Time
                   </th>
-                  <th scope="col" class="px-6 py-3">
+                  <th scope="col" className="px-6 py-3">
                     Segment
                   </th>
-                  <th scope="col" class="px-6 py-3">
+                  <th scope="col" className="px-6 py-3">
                     Category
                   </th>
-                  <th scope="col" class="px-6 py-3">
+                  <th scope="col" className="px-6 py-3">
                     Place
-                  </th>
-                  <th scope="col" class="px-6 py-3">
-                    Register
                   </th>
                 </tr>
               </thead>
@@ -147,21 +145,18 @@ function Events() {
                 {
                   Object.keys(Schedule["3/3/2023"]).map(elem => {
                     return (
-                      <tr key={elem} class="border-b bg-gray-800 border-gray-700 hover:bg-gray-600">
-                        <th scope="row" class="px-6 py-4 font-medium whitespace-nowrap text-white">
+                      <tr key={elem} className="border-b bg-gray-800 border-gray-700">
+                        <th scope="row" className="px-6 py-4 font-medium whitespace-nowrap text-white">
                           {Schedule['3/3/2023'][elem].time}
                         </th>
-                        <td class="px-6 py-4">
+                        <td className="px-6 py-4">
                           {Schedule['3/3/2023'][elem].name}
                         </td>
-                        <td class="px-6 py-4">
+                        <td className="px-6 py-4">
                           {Schedule['3/3/2023'][elem].category}
                         </td>
-                        <td class="px-6 py-4">
+                        <td className="px-6 py-4">
                           {Schedule['3/3/2023'][elem].place}
-                        </td>
-                        <td class="px-6 py-4">
-                          Register
                         </td>
                       </tr>
                     )
@@ -171,47 +166,41 @@ function Events() {
             </table>
           </div>
 
-          <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-            <h1 className="text-3xl font-medium title-font py-8 text-white text-center">Date: March 3rd, 2023</h1>
-            <table class="w-full text-sm text-left text-gray-400">
-              <thead class="text-xs uppercase bg-gray-700 text-gray-400">
+          <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
+            <h1 className="text-3xl font-medium title-font py-8 text-white text-center">Date: March 4th, 2023</h1>
+            <table className="w-full text-sm text-left text-gray-400">
+              <thead className="text-xs uppercase bg-gray-700 text-gray-400">
                 <tr>
-                  <th scope="col" class="px-6 py-3">
+                  <th scope="col" className="px-6 py-3">
                     Time
                   </th>
-                  <th scope="col" class="px-6 py-3">
+                  <th scope="col" className="px-6 py-3">
                     Segment
                   </th>
-                  <th scope="col" class="px-6 py-3">
+                  <th scope="col" className="px-6 py-3">
                     Category
                   </th>
-                  <th scope="col" class="px-6 py-3">
+                  <th scope="col" className="px-6 py-3">
                     Place
-                  </th>
-                  <th scope="col" class="px-6 py-3">
-                    Register
                   </th>
                 </tr>
               </thead>
               <tbody>
                 {
-                  Object.keys(Schedule["3/3/2023"]).map(elem => {
+                  Object.keys(Schedule["4/3/2023"]).map(elem => {
                     return (
-                      <tr key={elem} class="border-b bg-gray-800 border-gray-700 hover:bg-gray-600">
-                        <th scope="row" class="px-6 py-4 font-medium whitespace-nowrap text-white">
+                      <tr key={elem} className="border-b bg-gray-800 border-gray-700">
+                        <th scope="row" className="px-6 py-4 font-medium whitespace-nowrap text-white">
                           {Schedule['3/3/2023'][elem].time}
                         </th>
-                        <td class="px-6 py-4">
+                        <td className="px-6 py-4">
                           {Schedule['3/3/2023'][elem].name}
                         </td>
-                        <td class="px-6 py-4">
+                        <td className="px-6 py-4">
                           {Schedule['3/3/2023'][elem].category}
                         </td>
-                        <td class="px-6 py-4">
+                        <td className="px-6 py-4">
                           {Schedule['3/3/2023'][elem].place}
-                        </td>
-                        <td class="px-6 py-4">
-                          Register
                         </td>
                       </tr>
                     )
@@ -231,7 +220,7 @@ function Events() {
               <div className="flex flex-wrap items-center">
                 <div className="grow-0 shrink-0 basis-auto block w-full lg:flex lg:w-6/12 xl:w-4/12">
                   <div className="map-container-2 w-full h-[500px]">
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3634.4623009405773!2d88.59337991537024!3d24.365216170927003!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39fbefa83aca4799%3A0xc31ce6d40ec9c0f6!2sRajshahi%20College!5e0!3m2!1sen!2sbd!4v1652174946035!5m2!1sen!2sbd" className="left-0 top-0 h-full w-full rounded-t-lg lg:rounded-tr-none lg:rounded-bl-lg" frameborder="0" allowfullscreen></iframe>
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3634.4623009405773!2d88.59337991537024!3d24.365216170927003!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39fbefa83aca4799%3A0xc31ce6d40ec9c0f6!2sRajshahi%20College!5e0!3m2!1sen!2sbd!4v1652174946035!5m2!1sen!2sbd" className="left-0 top-0 h-full w-full rounded-t-lg lg:rounded-tr-none lg:rounded-bl-lg"></iframe>
                   </div>
                 </div>
                 <div className="grow-0 shrink-0 basis-auto w-full lg:w-6/12 xl:w-8/12">
