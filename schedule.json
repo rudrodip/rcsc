@@ -4,50 +4,87 @@
             "name": "Reporting",
             "time": "8:00 am - 9:00 am",
             "category": "All",
-            "place": "In front of Padmapukur",
-            "register": "https://rcsc.vercel.app"
+            "place": "In front of Padmapukur"
         },
         "inauguration": {
             "name": "Inauguration Ceremony",
             "time": "9:00 am - 10:15 am",
             "category": "All",
-            "place": "In front of First Science Building",
-            "register": "https://rcsc.vercel.app"
+            "place": "In front of First Science Building"
         },
         "math": {
             "name": "Math Olympiad",
             "time": "10:30 am - 11:30 am",
             "category": "All",
-            "place": "Arts Building",
-            "register": "https://rcsc.vercel.app"
+            "place": "Arts Building"
         },
         "astronomy": {
             "name": "Astronomy Olympiad",
             "time": "12:00 pm - 1:00 pm",
             "category": "Secondary & Higher Secondary",
-            "place": "Arts Building",
-            "register": "https://rcsc.vercel.app"
+            "place": "Arts Building"
         },
         "physics": {
             "name": "Physics Olympiad",
             "time": "3:00 pm - 4:00 pm",
             "category": "Secondary & Higher Secondary",
-            "place": "Arts Building",
-            "register": "https://rcsc.vercel.app"
+            "place": "Arts Building"
         },
         "problem": {
             "name": "Problem Solving",
             "time": "4:15 pm - 4:45 pm",
             "category": "Secondary & Higher Secondary",
-            "place": "Arts Building",
-            "register": "https://rcsc.vercel.app"
+            "place": "Arts Building"
         },
         "cp": {
             "name": "Competitive Prgramming",
             "time": "8:00 pm - 10 pm",
             "category": "Secondary & Higher Secondary",
-            "place": "Hackerrank Platform",
-            "register": "https://rcsc.vercel.app"
+            "place": "Hackerrank Platform"
+        }
+    },
+    "4/3/2023":{
+        "reporting": {
+            "name": "Reporting",
+            "time": "8:00 am - 9:00 am",
+            "category": "All",
+            "place": "In front of Padmapukur"
+        },
+        "inauguration": {
+            "name": "Inauguration Ceremony",
+            "time": "9:00 am - 10:15 am",
+            "category": "All",
+            "place": "In front of First Science Building"
+        },
+        "math": {
+            "name": "Math Olympiad",
+            "time": "10:30 am - 11:30 am",
+            "category": "All",
+            "place": "Arts Building"
+        },
+        "astronomy": {
+            "name": "Astronomy Olympiad",
+            "time": "12:00 pm - 1:00 pm",
+            "category": "Secondary & Higher Secondary",
+            "place": "Arts Building"
+        },
+        "physics": {
+            "name": "Physics Olympiad",
+            "time": "3:00 pm - 4:00 pm",
+            "category": "Secondary & Higher Secondary",
+            "place": "Arts Building"
+        },
+        "problem": {
+            "name": "Problem Solving",
+            "time": "4:15 pm - 4:45 pm",
+            "category": "Secondary & Higher Secondary",
+            "place": "Arts Building"
+        },
+        "cp": {
+            "name": "Competitive Prgramming",
+            "time": "8:00 pm - 10 pm",
+            "category": "Secondary & Higher Secondary",
+            "place": "Hackerrank Platform"
         }
     }
 }
