@@ -5,12 +5,16 @@ import Head from 'next/head'
 import CustomCountdown from '../components/customCountdown'
 import SegmentGrid from '../components/segment/segmentGrid'
 import Segments from '../segments.json'
+import Schedule from '../schedule.json'
 
 function Events() {
-  const segmentRef = useRef(null)
-  const contactRef = useRef(null)
+  const segmentRef = useRef(1)
+  const contactRef = useRef(2)
+  const scheduleRef = useRef(3)
+
   const executeScroll = () => segmentRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' })
   const contactScroll = () => contactRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' })
+  const scheduleScroll = () => scheduleRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' })
 
   return (
     <div>
@@ -43,6 +47,7 @@ function Events() {
               <h1 className="mb-5 text-4xl font-bold text-cyan-400">Registration ending in</h1>
               <CustomCountdown date={new Date('2023-03-3')} />
               <button role="button" onClick={executeScroll} className="btn bg-cyan-500 border-blue-400 text-gray-800 hover:text-gray-200 hover:bg-blue-800 m-6">Register now!</button>
+              <button role="button" onClick={scheduleScroll} className="btn bg-cyan-500 border-blue-400 text-gray-800 hover:text-gray-200 hover:bg-blue-800 m-6">Schedule!</button>
             </div>
           </div>
         </div>
@@ -110,6 +115,110 @@ function Events() {
               </div>
               <button role="button" onClick={contactScroll} className="btn bg-cyan-500 border-blue-400 text-gray-200 hover:text-gray-200 hover:bg-blue-800 m-6">Contact</button>
             </div>
+          </div>
+        </div>
+
+        <div className="divider"></div>
+        <h1 className="text-5xl font-medium title-font py-4 text-white text-center">SCHEDULE</h1>
+        <div ref={scheduleRef} className='container mx-auto'>
+          <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+            <h1 className="text-3xl font-medium title-font py-8 text-white text-center">Date: March 3rd, 2023</h1>
+            <table class="w-full text-sm text-left text-gray-400">
+              <thead class="text-xs uppercase bg-gray-700 text-gray-400">
+                <tr>
+                  <th scope="col" class="px-6 py-3">
+                    Time
+                  </th>
+                  <th scope="col" class="px-6 py-3">
+                    Segment
+                  </th>
+                  <th scope="col" class="px-6 py-3">
+                    Category
+                  </th>
+                  <th scope="col" class="px-6 py-3">
+                    Place
+                  </th>
+                  <th scope="col" class="px-6 py-3">
+                    Register
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                {
+                  Object.keys(Schedule["3/3/2023"]).map(elem => {
+                    return (
+                      <tr key={elem} class="border-b bg-gray-800 border-gray-700 hover:bg-gray-600">
+                        <th scope="row" class="px-6 py-4 font-medium whitespace-nowrap text-white">
+                          {Schedule['3/3/2023'][elem].time}
+                        </th>
+                        <td class="px-6 py-4">
+                          {Schedule['3/3/2023'][elem].name}
+                        </td>
+                        <td class="px-6 py-4">
+                          {Schedule['3/3/2023'][elem].category}
+                        </td>
+                        <td class="px-6 py-4">
+                          {Schedule['3/3/2023'][elem].place}
+                        </td>
+                        <td class="px-6 py-4">
+                          Register
+                        </td>
+                      </tr>
+                    )
+                  })
+                }
+              </tbody>
+            </table>
+          </div>
+
+          <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+            <h1 className="text-3xl font-medium title-font py-8 text-white text-center">Date: March 3rd, 2023</h1>
+            <table class="w-full text-sm text-left text-gray-400">
+              <thead class="text-xs uppercase bg-gray-700 text-gray-400">
+                <tr>
+                  <th scope="col" class="px-6 py-3">
+                    Time
+                  </th>
+                  <th scope="col" class="px-6 py-3">
+                    Segment
+                  </th>
+                  <th scope="col" class="px-6 py-3">
+                    Category
+                  </th>
+                  <th scope="col" class="px-6 py-3">
+                    Place
+                  </th>
+                  <th scope="col" class="px-6 py-3">
+                    Register
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                {
+                  Object.keys(Schedule["3/3/2023"]).map(elem => {
+                    return (
+                      <tr key={elem} class="border-b bg-gray-800 border-gray-700 hover:bg-gray-600">
+                        <th scope="row" class="px-6 py-4 font-medium whitespace-nowrap text-white">
+                          {Schedule['3/3/2023'][elem].time}
+                        </th>
+                        <td class="px-6 py-4">
+                          {Schedule['3/3/2023'][elem].name}
+                        </td>
+                        <td class="px-6 py-4">
+                          {Schedule['3/3/2023'][elem].category}
+                        </td>
+                        <td class="px-6 py-4">
+                          {Schedule['3/3/2023'][elem].place}
+                        </td>
+                        <td class="px-6 py-4">
+                          Register
+                        </td>
+                      </tr>
+                    )
+                  })
+                }
+              </tbody>
+            </table>
           </div>
         </div>
 
