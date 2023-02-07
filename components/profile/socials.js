@@ -32,7 +32,7 @@ const submit = (id, handleAction) => {
   confirmAlert(options)
 }
 
-const socialMedia = ["Facebook", "Instagram", "Twitter", "LinkedIn", "Youtube", "Discord", "Github", "Reddit", "Whatsapp"]
+const socialMedia = ["Facebook", "Instagram", "Twitter", "LinkedIn", "Youtube", "Discord", "Github", "Reddit", "Whatsapp", "Telegram"]
 const warningToast = {
   position: "top-center",
   autoClose: 3000,
@@ -56,7 +56,8 @@ const AddSocialMedia = (props) => {
   useEffect(() => {
     props.user && setUser(props.user);
     props.socials && setSocials(props.socials);
-  }, [props.socials, props.user]);
+    social.startsWith('+') || !isNaN(social) ? setSocial(`tel:${social}`) : ''
+  }, [props.socials, props.user, social]);
 
   const handleChange = (e) => {
     if (e.target.name == "social") {
@@ -69,10 +70,15 @@ const AddSocialMedia = (props) => {
 
   // validiting the form
   const validate = () => {
-    if (social.length > 1 && social.startsWith("https://")) {
-      return true;
-    } else {
-      toast.warn("Link should start with 'https://'", warningToast);
+    if (social.length > 1){
+      if (social.startsWith("https://")){
+        return true;
+      } else if (social.startsWith('tel')) {
+        return true;
+      } else {
+        toast.warn("Link should start with 'https://'", warningToast);
+        return false;
+      }
     }
   };
 
