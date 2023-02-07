@@ -1,6 +1,19 @@
 import React from 'react'
 import Head from 'next/head'
 
+const socialMediaIcons = {
+	"facebook": "/logo/facebook.png",
+	"instagram": "/logo/instagram.png",
+	"discord": "/logo/discord.png",
+	"github": "/logo/github.png",
+	"whatsapp": "/logo/whatsapp.png",
+	"reddit": "/logo/reddit.png",
+	"linkedin": "/logo/linkedin.png",
+	"youtube": "/logo/youtube.png",
+	"twitter": "/logo/twitter.png",
+	"telegram": "/logo/telegram.png",
+}
+
 const MainProfile = ({ user, editProfile, handleLogout, loading }) => {
 	return (
 		<div>
@@ -128,7 +141,7 @@ const MainProfile = ({ user, editProfile, handleLogout, loading }) => {
 										{user?.socials && Object.keys(user.socials).map((i, index) => {
 											return (
 												<a key={index} className='ml-3 mt-3' href={user.socials[i]} target="_blank" rel="noreferrer">
-													<img src={socialMediaIcons[i.toLocaleLowerCase()]} className="w-8 h-8" alt={i} />
+													<img src={socialMediaIcons[i.toLowerCase()]} className="w-8 h-8" alt={i.toLowerCase()} />
 												</a>
 											)
 										})}
@@ -163,16 +176,3 @@ const MainProfile = ({ user, editProfile, handleLogout, loading }) => {
 }
 
 export default MainProfile
-
-const socialMediaIcons = {
-	"facebook": "/logo/facebook.png",
-	"instagram": "/logo/instagram.png",
-	"discord": "/logo/discord.png",
-	"github": "/logo/github.png",
-	"whatsapp": "/logo/whatsapp.png",
-	"reddit": "/logo/reddit.png",
-	"linkedin": "/logo/linkedin.png",
-	"youtube": "/logo/youtube.png",
-	"twitter": "/logo/twitter.png",
-	"telegram": "/logo/telegram.png",
-}
