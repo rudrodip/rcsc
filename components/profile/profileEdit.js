@@ -11,7 +11,7 @@ const ProfileEdit = ({
   toggle,
   handleToggle,
 }) => {
-  const { user, userInfo, upload, updateUserData, updateBlogAuthor } = useAuth()
+  const { user, userInfo, upload, updateUserData } = useAuth()
   // initializing all states
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
@@ -75,7 +75,6 @@ const ProfileEdit = ({
       }
       if ("name" in data) {
         userInfo.name = data["name"];
-        updateBlogAuthor(data["name"], user.uid);
       }
       handleToggle();
       Object.keys(data).map(key => {
