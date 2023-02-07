@@ -81,7 +81,7 @@ const ProfileEdit = ({
         userInfo.photoURL = URL.createObjectURL(image);
         user.photoURL = URL.createObjectURL(image);
         let url = await upload(image, user, setLoading);
-        data["photoURL"] = url;
+        validatedData["photoURL"] = url;
       }
       handleToggle();
       Object.keys(validatedData).map(key => {
