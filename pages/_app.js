@@ -1,6 +1,6 @@
 import '../styles/globals.css'
 import '../src/config/firebase.config'
-import Pages from '../pages.json'
+import Pages from '../public/jsons/pages.json'
 import Navbar from '../components/header/navbar'
 import Footer from '../components/footer/footer'
 import LoadingBar from 'react-top-loading-bar'
