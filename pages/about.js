@@ -1,7 +1,7 @@
 import React from 'react'
 import Head from 'next/head';
 import CountUp from 'react-countup';
-import Stats from '../stats.json'
+import Stats from '../public/jsons/stats.json'
 import TeachersProfile from '../components/profile/teachersProfile'
 
 function About({ user }) {
