@@ -9,6 +9,27 @@ import { db } from "../../src/config/firebase.config";
 import { arrayRemove, arrayUnion, doc, updateDoc } from "firebase/firestore";
 import { useEffect } from "react";
 import { confirmAlert } from 'react-confirm-alert'; // Import
+import TextFormField from '../form/textFormField'
+
+const submit = (achievement, index, handleAction) => {
+  let options = {
+    title: 'Are you sure to delete?',
+    buttons: [
+      {
+        label: 'No',
+        onClick: () => console.log('valo korsen delete na kore 🙂')
+      },
+      {
+        label: 'Yes',
+        onClick: () => handleAction(achievement, index)
+      }
+    ],
+    closeOnEscape: true,
+    closeOnClickOutside: true,
+    keyCodeForClose: [8, 32],
+  };
+  confirmAlert(options)
+}
 
 // the main component
 const AddAchievements = (props) => {
@@ -21,27 +42,6 @@ const AddAchievements = (props) => {
   useEffect(() => {
     props.user && setUser(props.user);
   }, [props.user]);
-
-  const submit = (achievement, index, handleAction) => {
-    let options = {
-      title: 'Are you sure to delete?',
-      // message: 'delete social media link',
-      buttons: [
-        {
-          label: 'No',
-          onClick: () => console.log('valo korsen delete na kore 🙂')
-        },
-        {
-          label: 'Yes',
-          onClick: () => handleAction(achievement, index)
-        }
-      ],
-      closeOnEscape: true,
-      closeOnClickOutside: true,
-      keyCodeForClose: [8, 32],
-    };
-    confirmAlert(options)
-  }
 
   const handleChange = (e) => {
     if (e.target.name == "achievement") {
@@ -133,18 +133,19 @@ const AddAchievements = (props) => {
         rtl={false}
         draggable
       />
-      <div id="forms" className="border-2 rounded-xl p-3 mb-5 border-gray-600">
-        <h1 className="mt-4 text-xl font-medium text-white">
+      <div className="divider"></div>
+      <div id="forms" className="rounded-xl mb-5">
+        <h1 className="text-xl mb-5 font-medium text-white text-center">
           Customize your achievements
         </h1>
 
-        <div className="mb-10 text-left">
+        <div className="">
           {achievements &&
             achievements.map((achievement, index) => {
               return (
                 <div
                   key={index}
-                  className="flex flex-row justify-between border-2 border-gray-600 m-2 rounded-md p-2 bg-gray-600"
+                  className="flex justify-between m-2 rounded-md p-2 bg-gray-800"
                 >
                   <p className="text-white text-sm flex items-center justify-start">
                     {achievement}
@@ -168,28 +169,14 @@ const AddAchievements = (props) => {
                 </div>
               );
             })}
-        </div>
-
-        <div>
-          <label
-            htmlFor="phone"
-            className="block mb-2 text-sm font-medium text-gray-300"
-          >
-            Add your achievements
-          </label>
-          <input
-            type="text"
+          <TextFormField
+            label="Add your achievments"
             name="achievement"
-            id="name"
-            className="border text-sm rounded-lg block w-full p-2.5 bg-gray-600 border-gray-500 placeholder-gray-400 text-white outline-none mb-5"
             placeholder="Achievement"
-            onChange={handleChange}
-            value={achievement}
-            required
+            handleChange={handleChange}
           />
-        </div>
-
-        <button
+          <br></br>
+          <button
           type="submit"
           className="w-1/4 text-white focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center bg-blue-600 hover:bg-blue-700 focus:ring-blue-800"
           onClick={handleSubmit}
@@ -197,6 +184,7 @@ const AddAchievements = (props) => {
         >
           Add
         </button>
+        </div>
       </div>
     </div>
   );
