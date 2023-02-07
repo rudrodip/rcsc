@@ -1,21 +1,35 @@
 import React from "react";
 import { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
+import TextFormField from '../form/textFormField'
+import SelectionBox from "../form/selectionBox";
 import AddAchievements from "./addAchievements";
 import AddSocialLink from "./socials";
 import "react-toastify/dist/ReactToastify.css";
 import { FileInputButton } from "../fileInput";
 import { useAuth } from "../../context/AuthContext";
 
+const successToastConfig = {
+  position: "top-center",
+  autoClose: 1500,
+  hideProgressBar: false,
+  closeOnClick: true,
+  pauseOnHover: false,
+  draggable: true,
+  progress: undefined,
+}
+
 const ProfileEdit = ({
   toggle,
   handleToggle,
 }) => {
   const { user, userInfo, upload, updateUserData } = useAuth()
-  // initializing all states
-  const [name, setName] = useState("");
-  const [phone, setPhone] = useState("");
-  const [institution, setInstitution] = useState("");
+  const data = {
+    name: null,
+    phone: null,
+    institution: null,
+    session: null
+  }
   const [image, setImage] = useState("");
   const [loading, setLoading] = useState(false);
 
@@ -39,62 +53,46 @@ const ProfileEdit = ({
   // handles change in form and save in states
   const handleChange = (e) => {
     if (e.target.name == "phone") {
-      setPhone(e.target.value);
+      data["phone"] = e.target.value;
     } else if (e.target.name == "name") {
-      setName(e.target.value);
+      data["name"] = e.target.value;
     } else if (e.target.name == "institution") {
-      setInstitution(e.target.value);
+      data["institution"] = e.target.value;
+    } else if (e.target.name == "session") {
+      data["session"] = e.target.value;
     }
   };
 
   // form validation logics
   const validate = () => {
-    const data = {};
-    if (phone.length == 11) {
-      data["phone"] = phone;
-    }
-    if (name.length >= 1) {
-      data["name"] = name;
-    }
-    if (institution.length >= 1) {
-      data["institution"] = institution;
-    }
-    return data;
+    let validatedData = {}
+    Object.keys(data).map(key => {
+      data[key] ? validatedData[key] = data[key] : ''
+    })
+    return validatedData;
   };
 
   // handling submit
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const data = validate();
+      const validatedData = validate();
+      console.log(validatedData)
       if (image) {
         userInfo.photoURL = URL.createObjectURL(image);
         user.photoURL = URL.createObjectURL(image);
         let url = await upload(image, user, setLoading);
         data["photoURL"] = url;
       }
-      if ("name" in data) {
-        userInfo.name = data["name"];
-      }
       handleToggle();
-      Object.keys(data).map(key => {
-        userInfo[key] = data[key]
+      Object.keys(validatedData).map(key => {
+        userInfo[key] = validatedData[key]
       })
-      updateUserData(user, data);
-      toast("Updated", {
-        position: "top-center",
-        autoClose: 1500,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: false,
-        draggable: true,
-        progress: undefined,
-      });
+      updateUserData(user, validatedData);
+      toast("Updated", successToastConfig);
     } catch (error) {
       console.log(error);
     }
-    setPhone("");
-    setName("");
     setLoading(false);
   };
 
@@ -136,10 +134,10 @@ const ProfileEdit = ({
               </svg>
             </button>
             <div className="py-6 px-6 lg:px-8">
-              <h3 className="mb-4 text-xl font-medium text-white">
-                Edit your profile
-              </h3>
-              <div className="flex flex-wrap flex-row justify-around content-center">
+              <div className="flex flex-wrap flex-col justify-around content-center">
+                <h3 className="mb-4 text-xl font-medium text-white">
+                  Edit your profile
+                </h3>
                 <img
                   alt="team"
                   className="flex-shrink-0 rounded-lg w-48 h-48 object-contain object-center sm:mb-0"
@@ -158,64 +156,34 @@ const ProfileEdit = ({
                   />
                 </div>
               </div>
-              <div id="forms" className="border-2 rounded-xl p-3 mb-5 border-gray-600">
-                <div>
-                  <label
-                    htmlFor="phone"
-                    className="block mb-2 text-sm font-medium text-gray-300"
-                  >
-                    Your name
-                  </label>
-                  <input
-                    type="text"
-                    name="name"
-                    id="name"
-                    className="border text-sm rounded-lg block w-full p-2.5 bg-gray-600 border-gray-500 placeholder-gray-400 text-white outline-none mb-5"
-                    placeholder="Name"
-                    onChange={handleChange}
-                    value={name}
-                    required
-                  />
-                </div>
-                <div>
-                  <label
-                    htmlFor="phone"
-                    className="block mb-2 text-sm font-medium text-gray-300"
-                  >
-                    Your phone
-                  </label>
-                  <input
-                    type="text"
-                    name="phone"
-                    id="phone"
-                    className="border text-sm rounded-lg block w-full p-2.5 bg-gray-600 border-gray-500 placeholder-gray-400 text-white outline-none"
-                    placeholder="phone number"
-                    onChange={handleChange}
-                    value={phone}
-                    required
-                  />
-                </div>
+              <div id="forms" className="">
+                <TextFormField
+                  label="Name"
+                  name="name"
+                  handleChange={handleChange}
+                  placeholder="Your name"
+                />
+                <br></br>
+                <TextFormField
+                  label="Phone Number"
+                  name="phone"
+                  handleChange={handleChange}
+                  placeholder=""
+                />
+                <br></br>
+                <SelectionBox
+                  label="Session"
+                  name="session"
+                  options={['2014-2015', '2015-2016', '2016-2017', '2017-2018', '2019-2020', '2020-2021', '2021-2022', '2022-2023', '2023-2024']}
+                  handleChange={handleChange}
+                />
                 {userInfo?.roles['alumnus'] && (
-                  <div>
-                    <div>
-                      <label
-                        htmlFor="institution"
-                        className="block mb-2 text-sm font-medium text-gray-300 mt-5"
-                      >
-                        Current Institution
-                      </label>
-                      <input
-                        type="text"
-                        name="institution"
-                        id="institution"
-                        placeholder="Current Institution"
-                        className="border text-sm rounded-lg block w-full p-2.5 bg-gray-600 border-gray-500 placeholder-gray-400 text-white outline-none"
-                        onChange={handleChange}
-                        value={institution}
-                        required
-                      />
-                    </div>
-                  </div>
+                  <TextFormField
+                    label="Current Institution"
+                    name="institution"
+                    handleChange={handleChange}
+                    placeholder={userInfo.institution}
+                  />
                 )}
               </div>
               <AddAchievements
