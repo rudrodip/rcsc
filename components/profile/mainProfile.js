@@ -127,13 +127,9 @@ const MainProfile = ({ user, editProfile, handleLogout, loading }) => {
 									<div className='text-left mr-2 flex flex-wrap'>
 										{user?.socials && Object.keys(user.socials).map((i, index) => {
 											return (
-												<div key={index} className='ml-3'>
-													<p className="pt-2 text-gray-200 text-sm lg:text-sm flex items-center justify-start italic underline">
-														<a href={user.socials[i]} className='text-cyan-500' target={'_blank'} rel="noreferrer">
-															{i.charAt(0).toUpperCase() + i.slice(1)}
-														</a>
-													</p>
-												</div>
+												<a key={index} className='ml-3 mt-3' href={user.socials[i]} target="_blank" rel="noreferrer">
+													<img src={socialMediaIcons[i.toLocaleLowerCase()]} className="w-8 h-8" alt={i} />
+												</a>
 											)
 										})}
 									</div>
@@ -167,3 +163,16 @@ const MainProfile = ({ user, editProfile, handleLogout, loading }) => {
 }
 
 export default MainProfile
+
+const socialMediaIcons = {
+	"facebook": "/logo/facebook.png",
+	"instagram": "/logo/instagram.png",
+	"discord": "/logo/discord.png",
+	"github": "/logo/github.png",
+	"whatsapp": "/logo/whatsapp.png",
+	"reddit": "/logo/reddit.png",
+	"linkedin": "/logo/linkedin.png",
+	"youtube": "/logo/youtube.png",
+	"twitter": "/logo/twitter.png",
+	"telegram": "/logo/telegram.png",
+}
