@@ -8,6 +8,8 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { confirmAlert } from 'react-confirm-alert'; // Import
 import { useAuth } from "../../context/AuthContext";
+import TextFormField from "../form/textFormField";
+import SelectionBox from "../form/selectionBox";
 
 const submit = (id, handleAction) => {
   let options = {
@@ -28,6 +30,17 @@ const submit = (id, handleAction) => {
     keyCodeForClose: [8, 32],
   };
   confirmAlert(options)
+}
+
+const socialMedia = ["Facebook", "Instagram", "Twitter", "LinkedIn", "Youtube", "Discord", "Github", "Reddit", "Whatsapp"]
+const warningToast = {
+  position: "top-center",
+  autoClose: 3000,
+  hideProgressBar: false,
+  closeOnClick: true,
+  pauseOnHover: true,
+  draggable: true,
+  progress: undefined,
 }
 
 // the main component
@@ -59,15 +72,7 @@ const AddSocialMedia = (props) => {
     if (social.length > 1 && social.startsWith("https://")) {
       return true;
     } else {
-      toast.warn("Link should start with 'https://'", {
-        position: "top-center",
-        autoClose: 3000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-      });
+      toast.warn("Link should start with 'https://'", warningToast);
     }
   };
 
@@ -140,19 +145,19 @@ const AddSocialMedia = (props) => {
         rtl={false}
         draggable
       />
-      <div id="forms" className="border-2 rounded-xl p-3 mb-5 border-gray-600">
+      <div id="forms" className="rounded-xl p-3 mb-5 border-gray-600">
 
         <h1 className="mb-4 text-xl font-medium text-white">
           Customize Social Media
         </h1>
 
-        <div className="my-4 mb-10 text-left">
+        <div className="my-4 text-left">
           {socials &&
             Object.keys(socials).map((i, index) => {
               return (
                 <div
                   key={index}
-                  className="flex flex-row justify-between border-2 border-gray-600 m-2 rounded-md p-2 bg-gray-600"
+                  className="flex flex-row justify-between m-2 rounded-md p-2 bg-gray-800"
                 >
                   <p className="text-white text-md lg:text-sm flex items-center justify-start italic">
                     <a
@@ -185,46 +190,20 @@ const AddSocialMedia = (props) => {
             })}
         </div>
 
-
-        <div>
-          <label
-            htmlFor="phone"
-            className="block mb-2 text-sm font-medium text-gray-300"
-          >
-            Social Media Name
-          </label>
-          <input
-            type="text"
-            name="name"
-            id="social"
-            className="border text-sm rounded-lg block w-full p-2.5 bg-gray-600 border-gray-500 placeholder-gray-400 text-white outline-none mb-5"
-            placeholder="e.g. Facebook"
-            onChange={handleChange}
-            value={socialName}
-            required
-          />
-        </div>
-
-        <div>
-          <label
-            htmlFor="phone"
-            className="block mb-2 text-sm font-medium text-gray-300"
-          >
-            Social Media Link
-          </label>
-          <input
-            type="text"
-            name="social"
-            id="link"
-            className="border text-sm rounded-lg block w-full p-2.5 bg-gray-600 border-gray-500 placeholder-gray-400 text-white outline-none mb-5"
-            placeholder="e.g. https://www.facebook.com/enthusiast.math"
-            onChange={handleChange}
-            value={social}
-            required
-          />
-        </div>
-
-
+        <SelectionBox
+          label="Social Media"
+          name="name"
+          options={socialMedia}
+          handleChange={handleChange}
+        />
+        <br></br>
+        <TextFormField
+          label="Link"
+          name="social"
+          placeholder="https://facebook.com/enthusiast.math"
+          handleChange={handleChange}
+        />
+        <br></br>
         <button
           type="submit"
           className="w-1/4 text-white focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center bg-blue-600 hover:bg-blue-700 focus:ring-blue-800"
