@@ -11,14 +11,11 @@ import {
     ref,
     uploadBytes,
     getDownloadURL,
-    deleteObject,
 } from "firebase/storage";
 import {
     doc,
     setDoc,
     updateDoc,
-    increment,
-    deleteDoc,
     collection,
     query,
     where,
