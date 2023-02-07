@@ -3,7 +3,7 @@ import Head from 'next/head'
 import { useState } from 'react'
 import { FileInputButton } from '../components/fileInput'
 import Paragraph from '../components/blog/paragraph'
-import Categories from '../categories.json'
+import Categories from '../public/jsons/categories.json'
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import { db, storage } from '../src/config/firebase.config';
