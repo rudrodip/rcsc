@@ -4,8 +4,8 @@ import Link from 'next/link'
 import Head from 'next/head'
 import CustomCountdown from '../components/customCountdown'
 import SegmentGrid from '../components/segment/segmentGrid'
-import Segments from '../segments.json'
-import Schedule from '../schedule.json'
+import Segments from '../public/jsons/segments.json'
+import Schedule from '../public/jsons/schedule.json'
 
 function Events() {
   const segmentRef = useRef(1)
