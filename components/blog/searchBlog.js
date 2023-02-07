@@ -1,6 +1,6 @@
 import React from 'react'
 import { useState } from 'react'
-import Categories from '../../categories.json'
+import Categories from '../../public/jsons/categories.json'
 
 const SearchBlog = (props) => {
     const [toggle, setToggle] = useState(false)
