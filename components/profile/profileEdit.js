@@ -77,7 +77,6 @@ const ProfileEdit = ({
     e.preventDefault();
     try {
       const validatedData = validate();
-      console.log(validatedData)
       if (image) {
         userInfo.photoURL = URL.createObjectURL(image);
         user.photoURL = URL.createObjectURL(image);
