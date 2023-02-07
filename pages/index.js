@@ -1,7 +1,7 @@
 import React from 'react'
 import Head from 'next/head'
 import RouteCard from '../components/profile/routeCards'
-import Stats from '../stats.json'
+import Stats from '../public/jsons/stats.json'
 import CountUp from 'react-countup';
 import { useInView } from 'react-intersection-observer'
 import { useState } from 'react'
