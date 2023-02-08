@@ -19,6 +19,7 @@ const SegmentGrid = ({ name, segments }) => {
                 desc={segments[seg].desc}
                 img={segments[seg].img}
                 link={segments[seg].url}
+                details={segments[seg].details}
               />
             )
           })
