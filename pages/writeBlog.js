@@ -12,6 +12,26 @@ import { ref, uploadBytes, getDownloadURL } from 'firebase/storage'
 import { doc, setDoc, serverTimestamp } from 'firebase/firestore'
 import { useAuth } from '../context/AuthContext'
 
+const warningToastConfig = {
+  position: "top-center",
+  autoClose: 3000,
+  hideProgressBar: false,
+  closeOnClick: true,
+  pauseOnHover: true,
+  draggable: true,
+  progress: undefined,
+}
+
+const successToastConfig = {
+  position: "top-center",
+  autoClose: 3000,
+  hideProgressBar: false,
+  closeOnClick: true,
+  pauseOnHover: true,
+  draggable: true,
+  progress: undefined,
+}
+
 const WriteBlog = () => {
   const { user, userInfo } = useAuth()
   const router = useRouter()
@@ -27,11 +47,17 @@ const WriteBlog = () => {
   const [toggle, setToggle] = useState(false)
 
   const validate = () => {
-    let isValidated = false
+    let isValidated = true
     paragraphs.map(paragraph => {
-      paragraph['content'].length < 10 ? isValidated = false : isValidated = true
+      if (paragraph['content'].length < 10){
+        toast.warn('Paragraphs must have more than 10 characters', warningToastConfig)
+        isValidated = false
+      }
     })
-    title.length < 1 ? isValidated = false : ''
+    if (title.length <= 1){
+      toast.warn('Please enter a valid title', warningToastConfig)
+      isValidated = false;
+    }
     return isValidated
   }
 
@@ -73,15 +99,7 @@ const WriteBlog = () => {
 
   const onChange = async (image) => {
     if (image.size > 2097152) {
-      toast.warn('File size should be less than 2 MB', {
-        position: "top-center",
-        autoClose: 3000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-      })
+      toast.warn('File size should be less than 2 MB', warningToastConfig)
     } else {
       setImage(image)
     }
@@ -92,7 +110,6 @@ const WriteBlog = () => {
     setLoading(true)
     try {
       const data = {
-        author: userInfo.name,
         authorProfile: user.uid,
         category: category,
         title: title,
@@ -113,28 +130,12 @@ const WriteBlog = () => {
       }
 
       setDoc(blogref, data)
-      toast('Uploaded, Wait for approval 😊', {
-        position: "top-center",
-        autoClose: 3000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-      })
+      toast('Uploaded, Wait for approval 😊', successToastConfig)
       setTimeout(() => router.push('/blogs'), 2500)
       setLoading(false)
 
     } catch (error) {
-      toast.warn('Error while uploading', {
-        position: "top-center",
-        autoClose: 3000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-      })
+      toast.warn('Error while uploading', warningToastConfig)
     }
   }
 
