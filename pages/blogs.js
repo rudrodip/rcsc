@@ -20,13 +20,11 @@ function Blogs() {
   const { user, userInfo } = useAuth()
   const [blogs, setBlogs] = useState(null)
   const [category, setCategory] = useState("All Blogs");
-  
   const handleCategory = (e) => {
     e.preventDefault();
     setCategory(e.target.value);
   };
 
-  
   useEffect(() => {
     async function updateBlog() {
       const blog_data = await fetchBlogs(user, category);
@@ -34,7 +32,7 @@ function Blogs() {
     }
     updateBlog();
   }, [category]);
-  
+
   return (
     <div>
       <Head>
@@ -42,7 +40,7 @@ function Blogs() {
         <meta
           name="description"
           content="Official Website of Rajshahi College Science Club"
-          />
+        />
         <meta property="og:url" content="https://rcsc.vercel.app/blogs" />
         <meta property="og:type" content="Science Club" />
         <meta property="og:title" content="Blogs" />
@@ -160,11 +158,11 @@ async function fetchBlogs(user, category, maxNumBlogs = 12) {
   const docRef = collection(db, "blogs");
   let q = null;
   if (category == "My Blogs") {
-      q = query(docRef, orderBy("timestamp", "desc"), where("authorProfile", "==", user.uid), limit(maxNumBlogs));
+    q = query(docRef, orderBy("timestamp", "desc"), where("authorProfile", "==", user.uid), limit(maxNumBlogs));
   } else if (category == "All Blogs") {
-      q = query(docRef, orderBy("timestamp", "desc"), limit(limit));
+    q = query(docRef, orderBy("timestamp", "desc"), limit(limit));
   } else {
-      q = query(docRef, orderBy("timestamp", "desc"), where("category", "==", category));
+    q = query(docRef, orderBy("timestamp", "desc"), where("category", "==", category));
   }
   const docSnaps = await getDocs(q);
   return docSnaps.docs;

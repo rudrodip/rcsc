@@ -4,10 +4,34 @@
 import React from "react";
 import Link from "next/link";
 import { useState, useEffect } from "react";
+import { db } from '../../src/config/firebase.config';
+import { doc, updateDoc } from 'firebase/firestore'
+import { ToastContainer, toast } from 'react-toastify'
+import RichTextEditor from '../RichText';
+
+const warningToastConfig = {
+  position: "top-center",
+  autoClose: 3000,
+  hideProgressBar: false,
+  closeOnClick: true,
+  pauseOnHover: true,
+  draggable: true,
+  progress: undefined,
+}
+
+const successToastConfig = {
+  position: "top-center",
+  autoClose: 3000,
+  hideProgressBar: false,
+  closeOnClick: true,
+  pauseOnHover: true,
+  draggable: true,
+  progress: undefined,
+}
 
 // the component gets all necessary props
 
-const FullBlog = ({ blog, userImg, date, author, url, role }) => {
+const FullBlog = ({ blog, userImg, date, author, url, role, editable }) => {
   // Description of the props  ---->>>
 
   // blog -> is the main blog post
@@ -17,14 +41,39 @@ const FullBlog = ({ blog, userImg, date, author, url, role }) => {
   // url -> url of this blog post [used in share button]
   // role -> role of the poster
 
+  const [blogText, setBlogText] = useState("")
   const [blogImg, setBlogImg] = useState("");
+  const [editMode, setEditMode] = useState(true);
+  const [loading, setLoading] = useState(false)
+
+  const editHandler = () => {
+    if (editMode) setEditMode(!editMode)
+    if (!editMode) {
+      setEditMode(!editMode)
+      setLoading(true)
+
+      const docRef = doc(db, `blogs/${blog?.title}by${blog?.authorProfile}`)
+      try{
+        updateDoc(docRef, {
+          text: blogText
+        })
+        toast('Edited', successToastConfig)
+      } catch (error) {
+        toast.warn('Error', warningToastConfig)
+        console.log(error)
+      }
+    }
+    setLoading(false)
+  }
+
   useEffect(() => {
     blog.img
       ? setBlogImg(blog.img)
       : setBlogImg(
         "https://images.pexels.com/photos/1591056/pexels-photo-1591056.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
       );
-  }, [blog.img]);
+    blog?.text && setBlogText(blog?.text)
+  }, [blog.img, blog?.text]);
 
   return (
     <div>
@@ -64,18 +113,27 @@ const FullBlog = ({ blog, userImg, date, author, url, role }) => {
             <h2 className="font-bold title-font mt-4 text-white text-2xl mb-5">
               {blog?.title}
             </h2>
-            {blog?.paragraphs &&
-              blog.paragraphs.map((i, index) => (
-                <React.Fragment key={index}>
-                  <p className="font-normal title-font mt-8 text-cyan-300 text-xl mb-4 opacity-80">
-                    {i?.subtitle}
-                  </p>
-                  <p className="leading-relaxed text-lg mb-4 whitespace-pre-line break-word">
-                    {i?.content}
-                  </p>
-                </React.Fragment>
-              ))}
+            {
+              blog?.text && <RichTextEditor
+                value={blogText}
+                onChange={setBlogText}
+                id="rte"
+                controls={[
+                  ['bold', 'italic', 'underline', 'link'],
+                  ['unorderedList', 'h1', 'h2', 'h3', 'h4'],
+                  ['sup', 'sub'],
+                  ['code', 'codeBlock'],
+                  ['alignLeft', 'alignCenter', 'alignRight'],
+                ]}
+                stickyOffset={70}
+                className='bg-gray-800 text-white border-0'
+                readOnly={editMode}
+              />
+            }
 
+            {editable &&
+              <button className="btn btn-info mt-4" disabled={loading} onClick={editHandler}>{editMode ? 'Edit' : 'Save'}</button>
+            }
             <div id="fb-root"></div>
             <div
               className="fb-share-button"
