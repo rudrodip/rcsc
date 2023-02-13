@@ -118,13 +118,6 @@ const FullBlog = ({ blog, userImg, date, author, url, role, editable }) => {
                 value={blogText}
                 onChange={setBlogText}
                 id="rte"
-                controls={[
-                  ['bold', 'italic', 'underline', 'link'],
-                  ['unorderedList', 'h1', 'h2', 'h3', 'h4'],
-                  ['sup', 'sub'],
-                  ['code', 'codeBlock'],
-                  ['alignLeft', 'alignCenter', 'alignRight'],
-                ]}
                 stickyOffset={70}
                 className='bg-gray-800 text-white border-0'
                 readOnly={editMode}
