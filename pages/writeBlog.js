@@ -2,7 +2,6 @@ import React from 'react'
 import Head from 'next/head'
 import { useState } from 'react'
 import { FileInputButton } from '../components/fileInput'
-import Paragraph from '../components/blog/paragraph'
 import Categories from '../public/jsons/categories.json'
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
@@ -11,6 +10,10 @@ import { useRouter } from 'next/dist/client/router';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage'
 import { doc, setDoc, serverTimestamp } from 'firebase/firestore'
 import { useAuth } from '../context/AuthContext'
+import RichTextEditor from '../components/RichText';
+
+const initialValue =
+  '';
 
 const warningToastConfig = {
   position: "top-center",
@@ -39,38 +42,18 @@ const WriteBlog = () => {
   const [category, setCategory] = useState('All Blogs')
   const [image, setImage] = useState('')
   const [loading, setLoading] = useState(false)
-  const [paragraphNo, setParagraphNo] = useState(1)
-  const [paragraphs, setParagraphs] = useState([{
-    'subtitle': '',
-    'content': ''
-  }])
   const [toggle, setToggle] = useState(false)
+  const [text, onTextChange] = useState(initialValue);
 
   const validate = () => {
     let isValidated = true
-    paragraphs.map(paragraph => {
-      if (paragraph['content'].length < 10){
-        toast.warn('Paragraphs must have more than 10 characters', warningToastConfig)
-        isValidated = false
-      }
-    })
-    if (title.length <= 1){
-      toast.warn('Please enter a valid title', warningToastConfig)
-      isValidated = false;
-    }
+    if (text.length < 40) isValidated = false
     return isValidated
   }
 
   const handleToggle = () => {
     setToggle(!toggle)
   }
-
-  const addParagraph = (index, subtitle, paragraph) => {
-    let data = paragraphs[index]
-    data["subtitle"] = subtitle
-    data["content"] = paragraph
-  }
-
 
   const handleChange = (e) => {
     if (e.target.name == 'title') {
@@ -82,19 +65,6 @@ const WriteBlog = () => {
     e.preventDefault()
     handleToggle()
     setCategory(e.target.value)
-  }
-
-  const addParagraphNo = () => {
-    paragraphs.push({
-      'subtitle': '',
-      'content': ''
-    })
-    setParagraphNo(paragraphNo + 1)
-  }
-
-  const removeParagraph = () => {
-    paragraphs.pop()
-    paragraphNo > 1 ? setParagraphNo(paragraphNo - 1) : setParagraphNo(1)
   }
 
   const onChange = async (image) => {
@@ -110,10 +80,11 @@ const WriteBlog = () => {
     setLoading(true)
     try {
       const data = {
+        author: userInfo.name,
         authorProfile: user.uid,
         category: category,
         title: title,
-        paragraphs: paragraphs,
+        text: text,
         views: 0,
         timestamp: serverTimestamp(),
         approved: false
@@ -145,7 +116,7 @@ const WriteBlog = () => {
       <Head>
         <title>RCSC - Writeblog</title>
       </Head>
-      
+
       <ToastContainer
         position="bottom-center"
         autoClose={5000}
@@ -229,6 +200,7 @@ const WriteBlog = () => {
             </div>
           }
         </form>
+
         <div className='ml-0 lg:ml-32 flex flex-row'>
           <FileInputButton
             label="Add image"
@@ -246,31 +218,24 @@ const WriteBlog = () => {
           </button>
         </div>
         <p className='text-sm text-gray-400 ml-0 lg:ml-32'>Image size must be less than 2 MB</p>
-        <p className="my-3 lg:my-5 fond-bold text-xl lg:text-3xl mx-auto leading-relaxed text-white">Paragraphs</p>
-        {
-          [...Array(paragraphNo)].map((e, i) => {
-            return (
-              <div key={i}>
-                <Paragraph index={i} addParagraph={addParagraph} />
-              </div>
-            )
-          })
-        }
+        <p className="my-3 lg:my-5 fond-bold text-xl lg:text-3xl mx-auto leading-relaxed text-white">Blog</p>
+
+        <RichTextEditor
+          value={text}
+          onChange={onTextChange}
+          id="rte"
+          controls={[
+            ['bold', 'italic', 'underline', 'link'],
+            ['unorderedList', 'h1', 'h2', 'h3', 'h4'],
+            ['sup', 'sub'],
+            ['code', 'codeBlock'],
+            ['alignLeft', 'alignCenter', 'alignRight'],
+          ]}
+          stickyOffset={70}
+          className='bg-gray-800 text-white'
+        />
+
         <div className="buttons">
-          <button
-            type="submit"
-            className="w-20 lg:w-20 m-3 text-center py-1 lg:py-3 rounded bg-blue-500 text-white hover:scale-105 transition duration-200 focus:outline-none"
-            onClick={addParagraphNo}
-          >
-            Add
-          </button>
-          <button
-            type="submit"
-            className="w-20 lg:w-20 m-3 text-center py-1 lg:py-3 rounded bg-blue-500 text-white hover:scale-105 transition duration-200 focus:outline-none"
-            onClick={removeParagraph}
-          >
-            Remove
-          </button>
           <button
             type="submit"
             className="w-20 lg:w-20 m-3 text-center py-1 lg:py-3 rounded bg-blue-500 text-white hover:scale-105 transition duration-200 focus:outline-none"
