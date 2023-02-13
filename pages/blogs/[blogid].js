@@ -5,14 +5,16 @@ import { useRouter } from 'next/router'
 import FullBlog from '../../components/blog/fullBlog'
 import { db } from '../../src/config/firebase.config';
 import { getDoc, doc } from 'firebase/firestore'
+import { useAuth } from '../../context/AuthContext'
 
 const Journal = () => {
     const router = useRouter()
     const [blog, setBlog] = useState({})
-    const [user, setUser] = useState(null)
+    const [author, setAuthor] = useState(null)
     const [date, setDate] = useState()
     const uid = blog?.authorProfile
     const { blogid } = router.query
+    const {user, userInfo} = useAuth()
 
     useEffect(() => {
         async function getAllBlogs() {
@@ -27,7 +29,7 @@ const Journal = () => {
             const userRef = doc(db, `user/${uid}`)
             const docSnap = await getDoc(userRef)
             if (docSnap.exists()) {
-                setUser(docSnap.data())
+                setAuthor(docSnap.data())
             } else {
                 console.log("No such document!");
             }
@@ -43,7 +45,7 @@ const Journal = () => {
     }, [blogid, uid])
 
 
-    if (user) {
+    if (author) {
         return (
             <div>
                 <Head>
@@ -65,10 +67,11 @@ const Journal = () => {
                 <FullBlog
                     blog={blog}
                     url={`https://rcsc.vercel.app/blogs/${blogid}`}
-                    userImg={user.photoURL}
-                    author={user.name}
+                    userImg={author.photoURL}
+                    author={author.name}
                     date={date}
-                    role={user.designation}
+                    role={author.designation}
+                    editable={user?.uid == uid || 'admin' in userInfo?.roles}
                 />
             </div>
         )
