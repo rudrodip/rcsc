@@ -32,13 +32,13 @@ export default function Home() {
 
       <Head>
         <title>Rajshahi College Science Club</title>
-        <meta name="description" content="Official Website of Rajshahi College Science Club" key="desc" />
+        <meta name="description" content="Official Website of Rajshahi College Science Club" />
 
-        <meta property="og:url" content="" />
-        <meta property="og:type" content="website" />
-        <meta property="og:title" content="Rajshahi College Science Club" />
-        <meta property="og:description" content="Official Website of Rajshahi College Science Club" />
-        <meta property="og:image" content="https://firebasestorage.googleapis.com/v0/b/rcsc-web.appspot.com/o/events%2F5th%20RCSF%2Fbg1.jpg?alt=media&token=7f0f6213-9085-48e3-a60b-74d08025ad6d" />
+        <meta property="og:url" content="https://rcsc.vercel.app" key="ogurl" />
+        <meta property="og:type" content="website" key="ogtype" />
+        <meta property="og:title" content="Rajshahi College Science Club" key="ogtitle" />
+        <meta property="og:description" content="Official Website of Rajshahi College Science Club" key="ogdesc" />
+        <meta property="og:image" content="https://firebasestorage.googleapis.com/v0/b/rcsc-web.appspot.com/o/events%2F5th%20RCSF%2Fbg1.jpg?alt=media&token=7f0f6213-9085-48e3-a60b-74d08025ad6d" key="ogimage" />
 
 
         <meta name="twitter:card" content="summary_large_image" />
