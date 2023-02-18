@@ -53,7 +53,7 @@ const FullBlog = ({ blog, userImg, date, author, url, role, editable }) => {
       setLoading(true)
 
       const docRef = doc(db, `blogs/${blog?.title}by${blog?.authorProfile}`)
-      try{
+      try {
         updateDoc(docRef, {
           text: blogText
         })
@@ -77,6 +77,15 @@ const FullBlog = ({ blog, userImg, date, author, url, role, editable }) => {
 
   return (
     <div>
+      <ToastContainer
+        position="bottom-center"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        draggable
+      />
       <div className="container px-6 mx-auto text-center">
         <div className="flex justify-center mt-10">
           <img className="object-cover w-full h-96 rounded-xl lg:w-4/5" src={blogImg} />
@@ -124,9 +133,14 @@ const FullBlog = ({ blog, userImg, date, author, url, role, editable }) => {
               />
             }
 
-            {editable &&
-              <button className="btn btn-info mt-4" disabled={loading} onClick={editHandler}>{editMode ? 'Edit' : 'Save'}</button>
+            {
+              editable && !editMode &&
+              <button className="btn btn-info mt-4 mr-4 btn-sm" onClick={() => setEditMode(!editMode)}>Discard</button>
             }
+            {editable &&
+              <button className="btn btn-info mt-4 btn-sm" disabled={loading} onClick={editHandler}>{editMode ? 'Edit' : 'Save'}</button>
+            }
+            
             <div id="fb-root"></div>
             <div
               className="fb-share-button"
