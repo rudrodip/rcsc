@@ -41,10 +41,10 @@ function Executives({ members }) {
           content="Official Website of Rajshahi College Science Club"
           key="description"
         />
-        <meta property="og:url" content="https://rcsc.vercel.app/executives" key="url"/>
-        <meta property="og:type" content="Science Club" key="type"/>
+        <meta property="og:type" content="website" key="type"/>
         <meta property="og:title" content="Executive Members" key="title"/>
         <meta property="og:description" content="Executive members of RCSC" key="description"/>
+        <meta property="og:url" content="https://rcsc.vercel.app/executives" key="url"/>
         <meta property="og:image" content="https://i.ibb.co/BKSHpQ9/bg1.jpg" key="image"/>
         <link rel="icon" href="/logo/rcsc-logo.png" />
       </Head>
