@@ -2,43 +2,25 @@ import React from 'react'
 import Head from 'next/head';
 import MiniProfile from '../components/profile/miniProfile'
 import { db } from '../src/config/firebase.config';
-import { getDocs, collection, query, limit, where } from 'firebase/firestore'
-import { useState, useEffect } from 'react';
+import { getDocs, collection, query, where } from 'firebase/firestore'
 
-const Alumni = () => {
-  const [alumni, setAlumni] = useState(null)
-  const [sortedAlumni, setSortedAlumni] = useState(null)
-
+const Alumni = ({ members }) => {
   function sortAlumni(alumni) {
     let alumniObject = {}
     let years = []
-    alumni.map(i => years.push(i.data().batch))
+    alumni.map(i => years.push(i.batch))
     years.sort().reverse()
 
     years.map(year => {
       alumniObject[year] = []
     })
     alumni.map(i => {
-      alumniObject[i.data().batch].push(i)
+      alumniObject[i.batch].push(i)
     })
     return alumniObject
   }
 
-  useEffect(() => {
-    async function getAlumniCollection() {
-      const docRef = collection(db, 'user')
-      const q = query(docRef, where("roles.alumnus", "==", true), limit(30))
-      const docSnaps = await getDocs(q)
-      setAlumni(docSnaps.docs)
-    }
-    getAlumniCollection()
-  }, [])
-
-  useEffect(() => {
-    alumni && setSortedAlumni(sortAlumni(alumni))
-  }, [alumni])
-
-
+  const sortedAlumni = sortAlumni(members)
   return (
     <div>
       <Head>
@@ -64,7 +46,7 @@ const Alumni = () => {
             <h1 className="p-4 text-4xl text-center text-transparent bg-clip-text bg-gradient-to-r font-bold from-blue-400 to-cyan-500 tracking-widest">ALUMNI</h1>
             <p className="lg:w-2/3 mx-auto leading-relaxed text-base">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Deserunt eos maxime qui ut cum veniam adipisci voluptas placeat ex consequuntur.</p>
           </div>
-          {!alumni ?
+          {!sortedAlumni ?
             <div className='m-5 flex justify-center'>
               <button disabled type="button" className="py-2.5 px-5 mr-2 text-sm font-medium  rounded-lg border hover:text-gray-200 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 bg-gray-800 text-gray-400 border-gray-600 hover:bg-gray-700 inline-flex items-center">
                 <svg role="status" className="inline w-4 h-4 mr-2 animate-spin text-gray-600" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -88,14 +70,14 @@ const Alumni = () => {
                         return (
                           <MiniProfile
                             key={index}
-                            name={exec?.data().name}
-                            role={exec?.data().designation}
-                            link={`/user/${exec?.id}`}
-                            img={exec?.data().photoURL}
-                            batch={exec.data().batch}
-                            institution={exec.data().institution}
-                            number={exec.data().phone}
-                            mail={exec.data().email}
+                            name={exec.name}
+                            role={exec.designation}
+                            link={`/user/${exec.id}`}
+                            img={exec.photoURL}
+                            batch={exec.batch}
+                            institution={exec.institution}
+                            number={exec.phone}
+                            mail={exec.email}
                           />
                         )
                       })
@@ -112,3 +94,20 @@ const Alumni = () => {
 }
 
 export default Alumni
+
+export async function getServerSideProps() {
+  const ref = collection(db, "user");
+  const alumni = query(ref, where("roles.alumnus", "==", true));
+  const alumniSnap = await getDocs(alumni);
+  let members = []
+
+  alumniSnap.forEach(
+    doc => members.push({
+      id: doc.id,
+      ...doc.data()
+    })
+  )
+  return {
+    props: { members }
+  }
+}
