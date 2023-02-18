@@ -34,7 +34,7 @@ export default function Home() {
         <title>Rajshahi College Science Club</title>
         <meta name="description" content="Official Website of Rajshahi College Science Club" key="desc" />
 
-        <meta property="og:url" content="https://rcsc.vercel.app" />
+        <meta property="og:url" content="" />
         <meta property="og:type" content="website" />
         <meta property="og:title" content="Rajshahi College Science Club" />
         <meta property="og:description" content="Official Website of Rajshahi College Science Club" />
