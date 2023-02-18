@@ -1,35 +1,10 @@
 import React from "react";
 import Head from "next/head";
 import MiniProfile from "../components/profile/miniProfile";
-import RouteCard from '../components/profile/routeCards'
 import { getDocs, collection, query, where } from "firebase/firestore";
 import { db } from "../src/config/firebase.config";
-import { useState, useEffect } from "react";
 
-function Executives() {
-  const [executives, setExecutives] = useState(null);
-  const [querists, setQuerists] = useState(null);
-
-  useEffect(() => {
-    async function getExecs() {
-      const ref = collection(db, "user");
-      const q = query(ref, where("roles.executive", "==", true));
-      const docSnaps = await getDocs(q);
-      let execs = docSnaps.docs
-      execs && setExecutives(sort_exec(execs))
-    }
-
-    async function getQuerists() {
-      const ref = collection(db, "user");
-      const q = query(ref, where("roles.querist", "==", true));
-      const docSnaps = await getDocs(q);
-      let querist = docSnaps.docs
-      querist && setQuerists(querist)
-    }
-
-    getExecs();
-    getQuerists();
-  }, []);
+function Executives({ members }) {
 
   const hierarchy = [
     "president",
@@ -48,7 +23,7 @@ function Executives() {
     let sorted = []
     hierarchy.map(i => {
       execs?.map(exec => {
-        if (exec.data().designation.toLowerCase() == i && !sorted.includes(exec)) {
+        if (exec.designation.toLowerCase() == i && !sorted.includes(exec)) {
           sorted.push(exec)
         }
       })
@@ -56,6 +31,7 @@ function Executives() {
     return sorted
   }
 
+  const executives = sort_exec(members)
   return (
     <div>
       <Head>
@@ -118,19 +94,21 @@ function Executives() {
           <div className="flex flex-wrap">
             {executives &&
               executives.map((exec) => {
-                return (
-                  <MiniProfile
-                    key={exec?.id}
-                    name={exec?.data().name}
-                    role={exec?.data().designation}
-                    link={`/user/${exec?.id}`}
-                    img={exec?.data().photoURL}
-                    batch={exec.data().batch}
-                    institution={exec.data().institution}
-                    number={exec.data().phone}
-                    mail={exec.data().email}
-                  />
-                );
+                if (exec.roles['executive']){
+                  return (
+                    <MiniProfile
+                      key={exec.id}
+                      name={exec.name}
+                      role={exec.designation}
+                      link={`/user/${exec.id}`}
+                      img={exec.photoURL}
+                      batch={exec.batch}
+                      institution={exec.institution}
+                      number={exec.phone}
+                      mail={exec.email}
+                    />
+                  );
+                }
               })}
           </div>
         </div>
@@ -150,7 +128,7 @@ function Executives() {
             </p>
           </div>
 
-          {!querists ? (
+          {!members ? (
             <div className="flex justify-center m-5">
               <button
                 disabled
@@ -181,21 +159,23 @@ function Executives() {
           )}
 
           <div className="flex flex-wrap">
-            {querists &&
-              querists.map((member) => {
-                return (
-                  <MiniProfile
-                    key={member?.id}
-                    name={member?.data().name}
-                    role={member?.data().designation}
-                    link={`/user/${member?.id}`}
-                    img={member?.data().photoURL}
-                    batch={member.data().batch}
-                    institution={member.data().institution}
-                    number={member.data().phone}
-                    mail={member.data().email}
-                  />
-                );
+            {members &&
+              members.map((member) => {
+                if (member.roles['querist']){
+                  return (
+                    <MiniProfile
+                      key={member.id}
+                      name={member.name}
+                      role={member.designation}
+                      link={`/user/${member.id}`}
+                      img={member.photoURL}
+                      batch={member.batch}
+                      institution={member.institution}
+                      number={member.phone}
+                      mail={member.email}
+                    />
+                  );
+                }
               })}
           </div>
         </div>
@@ -205,3 +185,31 @@ function Executives() {
 }
 
 export default Executives;
+
+
+export async function getStaticProps() {
+  const ref = collection(db, "user");
+  const executives = query(ref, where("roles.executive", "==", true));
+  const querists = query(ref, where("roles.querist", "==", true));
+  const execSnap = await getDocs(executives);
+  const queristSnap = await getDocs(querists);
+  let members = []
+
+  execSnap.forEach(
+    doc => members.push({
+      id: doc.id,
+      ...doc.data()
+    })
+  )
+  queristSnap.forEach(
+    doc => members.push({
+      id: doc.id,
+      ...doc.data()
+    })
+  )
+  return {
+    props: {
+      members
+    }
+  }
+}
