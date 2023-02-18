@@ -10,7 +10,6 @@ import { useAuth } from '../context/AuthContext'
 import useWindowDimensions from '../components/useWindowDimensions'
 import Quote from '../components/quote'
 import Testimonial from '../components/testimonial'
-import CustomHead from '../components/customHead';
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Autoplay } from 'swiper'
 import 'swiper/css'
@@ -31,7 +30,7 @@ export default function Home() {
   return (
     <div>
 
-      {/* <Head>
+      <Head>
         <title>Rajshahi College Science Club</title>
         <meta name="description" content="Official Website of Rajshahi College Science Club" key="desc" />
 
@@ -49,12 +48,7 @@ export default function Home() {
         <meta name="twitter:description" content="Official Website of Rajshahi College Science Club" />
         <meta name="twitter:image" content="https://firebasestorage.googleapis.com/v0/b/rcsc-web.appspot.com/o/events%2F5th%20RCSF%2Fbg1.jpg?alt=media&token=7f0f6213-9085-48e3-a60b-74d08025ad6d" />
         <link rel="icon" type="image/x-icon" href="/logo/rcsc-logo.png"></link>
-      </Head> */}
-      <CustomHead 
-        title={meta.title}
-        description={meta.description}
-        image={meta.image}
-      />
+      </Head>
 
       <div className='stats-detailed'>
         <section className="text-gray-400 bg-gray-900 body-font">
