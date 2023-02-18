@@ -42,10 +42,10 @@ function Events() {
             <div className="max-w-xl">
               <h1 className="mb-5 text-4xl md:text-6xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-cyan-500 to-blue-700 leading-tight">6<sup className='text-cyan-500 text-2xl md:text-4xl'>th</sup> Rajshahi College Science Fest</h1>
               <p className="mb-5">Welcome to the <span className='text-blue-500'>6th Rajshahi College Science Fest 2023</span> official website. <span className='text-blue-500 font-bold'>RCSC</span> is one of the leading science clubs at the national level. Every year we have arranged Rajshahi College Science Fest since 2017. Like before we now organized the <span className='text-blue-500'>6th Rajshahi College Science Fest 2023</span> for you. Please join us as an individual or a team.</p>
-              <h1 className="mb-2 text-2xl font-bold text-cyan-400">Date: <span className='text-blue-500'>March 3rd - 4th, 2023</span></h1>
+              <h1 className="mb-2 text-2xl font-bold text-cyan-400">Date: <span className='text-blue-500'>March 10th - 11th, 2023</span></h1>
               <h1 className="mb-2 text-2xl font-bold text-cyan-400">Venue: <span className='text-blue-500'>Rajshahi College, Rajshahi</span></h1>
-              <h1 className="mb-5 text-4xl font-bold text-cyan-400">Registration ending in</h1>
-              <CustomCountdown date={new Date('2023-03-3')} />
+              <h1 className="mb-5 text-4xl font-bold text-cyan-400">Event starting in</h1>
+              <CustomCountdown date={new Date('2023-03-10')} />
               <button role="button" onClick={executeScroll} className="btn bg-cyan-500 border-blue-400 text-gray-800 hover:text-gray-200 hover:bg-blue-800 m-2">Register now!</button>
               <button role="button" onClick={scheduleScroll} className="btn bg-cyan-500 border-blue-400 text-gray-800 hover:text-gray-200 hover:bg-blue-800 m-2">Schedule</button>
               <button role="button" onClick={contactScroll} className="btn bg-cyan-500 border-blue-400 text-gray-800 hover:text-gray-200 hover:bg-blue-800 m-2">Contact</button>
@@ -68,12 +68,16 @@ function Events() {
 
         <div className="hero min-h-[50vh] bg-transparent">
           <div className="hero-content flex-col lg:flex-row">
-            <img src="/segments/jaforsir.jpg" className="max-w-sm rounded-lg shadow-2xl" />
+            <img src="/segments/kaykobad_sir.jpg" className="max-w-sm rounded-lg shadow-2xl" />
             <div>
               <h1 className="text-5xl font-bold text-white">Chief Guest</h1>
-              <p className="py-6 text-white font-bold text-3xl">Dr. Muhammad Jafar Iqbal</p>
-              <p className="py-2">Science fiction Author, Physicist, Academic, Activist</p>
-              <p className="py-2">Former professor of Computer Science and Engineering and former head of the department of Electrical and Electronic Engineering at Shahjalal University of Science and Technology (SUST)</p>
+              <p className="py-6 text-white font-bold text-3xl">Dr. Mohammad Kaykobad</p>
+              <p className="py-2 font-bold">Distinguished Professor</p>
+              <p className="py-0">Dept. of Computer Science & Engineering, BRAC University</p>
+              <p className="py-2">Professor (retired)</p>
+              <p className="py-0">Dept. of Computer Science & Engineering, Bangladesh University of Engineering & Technology (BUET)</p>
+              <p className="py-0">Fellow</p>
+              <p className="py-2">Bangladesh Academy of Sciences</p>
               <button role="button" onClick={executeScroll} className="btn bg-cyan-500 border-blue-400 text-gray-200 hover:text-gray-200 hover:bg-blue-800 m-6">Join now!</button>
             </div>
           </div>
