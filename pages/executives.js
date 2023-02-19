@@ -56,9 +56,6 @@ function Executives({ members }) {
               Executive Members
             </h1>
             <p className="lg:w-2/3 mx-auto leading-relaxed text-base">
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Deserunt
-              eos maxime qui ut cum veniam adipisci voluptas placeat ex
-              consequuntur.
             </p>
           </div>
 
@@ -123,9 +120,6 @@ function Executives({ members }) {
               The Querists
             </h1>
             <p className="lg:w-2/3 mx-auto leading-relaxed text-base">
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Deserunt
-              eos maxime qui ut cum veniam adipisci voluptas placeat ex
-              consequuntur.
             </p>
           </div>
 
