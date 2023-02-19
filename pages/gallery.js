@@ -25,52 +25,7 @@ function GalleryPage() {
       </Head>
       <EventCard
         title="5th Rajshahi College Science Fest 2022"
-        desc="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ex suscipit, repudiandae voluptatem, rerum placeat excepturi ipsa recusandae consequuntur nam dolor nobis asperiores error corrupti eum cumque blanditiis optio repellendus. Quis incidunt saepe beatae corporis non quasi omnis adipisci sed dolor expedita, ratione dignissimos unde, maxime error corrupti autem suscipit nostrum!"
-        photos={[
-          './events/5thRCSF/bg1.jpg',
-          './events/5thRCSF/bg2.jpg',
-          './events/5thRCSF/bg3.jpg',
-          './events/5thRCSF/bg4.jpg',
-          './events/5thRCSF/bg5.jpg',
-          './events/5thRCSF/bg6.jpg']
-        }
-        router={router}
-        url={'/gallery/5th%20RCSF'}
-      />
-
-      <EventCard
-        title="5th Rajshahi College Science Fest 2022"
-        desc="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ex suscipit, repudiandae voluptatem, rerum placeat excepturi ipsa recusandae consequuntur nam dolor nobis asperiores error corrupti eum cumque blanditiis optio repellendus. Quis incidunt saepe beatae corporis non quasi omnis adipisci sed dolor expedita, ratione dignissimos unde, maxime error corrupti autem suscipit nostrum!"
-        photos={[
-          './events/5thRCSF/bg1.jpg',
-          './events/5thRCSF/bg2.jpg',
-          './events/5thRCSF/bg3.jpg',
-          './events/5thRCSF/bg4.jpg',
-          './events/5thRCSF/bg5.jpg',
-          './events/5thRCSF/bg6.jpg']
-        }
-        router={router}
-        url={'/gallery/5th%20RCSF'}
-      />
-
-      <EventCard
-        title="5th Rajshahi College Science Fest 2022"
-        desc="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ex suscipit, repudiandae voluptatem, rerum placeat excepturi ipsa recusandae consequuntur nam dolor nobis asperiores error corrupti eum cumque blanditiis optio repellendus. Quis incidunt saepe beatae corporis non quasi omnis adipisci sed dolor expedita, ratione dignissimos unde, maxime error corrupti autem suscipit nostrum!"
-        photos={[
-          './events/5thRCSF/bg1.jpg',
-          './events/5thRCSF/bg2.jpg',
-          './events/5thRCSF/bg3.jpg',
-          './events/5thRCSF/bg4.jpg',
-          './events/5thRCSF/bg5.jpg',
-          './events/5thRCSF/bg6.jpg']
-        }
-        router={router}
-        url={'/gallery/5th%20RCSF'}
-      />
-
-      <EventCard
-        title="5th Rajshahi College Science Fest 2022"
-        desc="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ex suscipit, repudiandae voluptatem, rerum placeat excepturi ipsa recusandae consequuntur nam dolor nobis asperiores error corrupti eum cumque blanditiis optio repellendus. Quis incidunt saepe beatae corporis non quasi omnis adipisci sed dolor expedita, ratione dignissimos unde, maxime error corrupti autem suscipit nostrum!"
+        desc="Explore your entity beyond your imagination স্লোগানকে সামনে রেখে রাজশাহী মহানগরীতে অবস্থিত বিভিন্ন মাধ্যমিক ও উচ্চ মাধ্যমিক শিক্ষাপ্রতিষ্ঠানের শিক্ষার্থীদের জন্য রাজশাহী কলেজ সায়েন্স ক্লাব আয়োজন করেছে '৫ম রাজশাহী কলেজ সায়েন্স ফেস্ট ২০২২'। ফেস্টে ছিলো বিজ্ঞানভিত্তিক নানা অলিম্পিয়াডসহ আরও নানা ধরণের প্রতিযোগিতা যা শিক্ষার্থীদের সৃজনশীল মেধা ও মননের বিকাশে অবদান রাখবে। পঞ্চমবারের মতো এত বড় আকারে রাজশাহীতে অনুষ্ঠিত হয়েছে রাজশাহী কলেজ সায়েন্স ফেস্ট যা প্রসারিত করেছে শিক্ষার্থীদের জ্ঞানের দুয়ার এবং সন্ধান দেবে তাদের নানা অজানা রহস্যের। "
         photos={[
           './events/5thRCSF/bg1.jpg',
           './events/5thRCSF/bg2.jpg',
