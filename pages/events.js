@@ -127,7 +127,7 @@ function Events() {
         <h1 ref={scheduleRef} className="text-5xl font-medium title-font py-4 text-white text-center">SCHEDULE</h1>
         <div className='container mx-auto'>
           <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
-            <h1 className="text-3xl font-medium title-font py-8 text-white text-center">Date: March 3rd, 2023</h1>
+            <h1 className="text-3xl font-medium title-font py-8 text-white text-center">Date: March 17th, 2023</h1>
             <table className="w-full text-sm text-left text-gray-400">
               <thead className="text-xs uppercase bg-gray-700 text-gray-400">
                 <tr>
@@ -147,20 +147,20 @@ function Events() {
               </thead>
               <tbody>
                 {
-                  Object.keys(Schedule["3/3/2023"]).map(elem => {
+                  Object.keys(Schedule["17/3/2023"]).map(elem => {
                     return (
                       <tr key={elem} className="border-b bg-gray-800 border-gray-700">
                         <th scope="row" className="px-6 py-4 font-medium whitespace-nowrap text-white">
-                          {Schedule['3/3/2023'][elem].time}
+                          {Schedule['17/3/2023'][elem].time}
                         </th>
                         <td className="px-6 py-4">
-                          {Schedule['3/3/2023'][elem].name}
+                          {Schedule['17/3/2023'][elem].name}
                         </td>
                         <td className="px-6 py-4">
-                          {Schedule['3/3/2023'][elem].category}
+                          {Schedule['17/3/2023'][elem].category}
                         </td>
                         <td className="px-6 py-4">
-                          {Schedule['3/3/2023'][elem].place}
+                          {Schedule['17/3/2023'][elem].place}
                         </td>
                       </tr>
                     )
@@ -171,7 +171,7 @@ function Events() {
           </div>
 
           <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
-            <h1 className="text-3xl font-medium title-font py-8 text-white text-center">Date: March 4th, 2023</h1>
+            <h1 className="text-3xl font-medium title-font py-8 text-white text-center">Date: March 18th, 2023</h1>
             <table className="w-full text-sm text-left text-gray-400">
               <thead className="text-xs uppercase bg-gray-700 text-gray-400">
                 <tr>
@@ -191,20 +191,20 @@ function Events() {
               </thead>
               <tbody>
                 {
-                  Object.keys(Schedule["4/3/2023"]).map(elem => {
+                  Object.keys(Schedule["18/3/2023"]).map(elem => {
                     return (
                       <tr key={elem} className="border-b bg-gray-800 border-gray-700">
                         <th scope="row" className="px-6 py-4 font-medium whitespace-nowrap text-white">
-                          {Schedule['3/3/2023'][elem].time}
+                          {Schedule['18/3/2023'][elem].time}
                         </th>
                         <td className="px-6 py-4">
-                          {Schedule['3/3/2023'][elem].name}
+                          {Schedule['18/3/2023'][elem].name}
                         </td>
                         <td className="px-6 py-4">
-                          {Schedule['3/3/2023'][elem].category}
+                          {Schedule['18/3/2023'][elem].category}
                         </td>
                         <td className="px-6 py-4">
-                          {Schedule['3/3/2023'][elem].place}
+                          {Schedule['18/3/2023'][elem].place}
                         </td>
                       </tr>
                     )
