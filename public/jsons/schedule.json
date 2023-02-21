@@ -37,14 +37,14 @@
             "place": "Given soon"
         },
         "lunch": {
-            "name": "Lunch and Prayer",
+            "name": "Prayer",
             "time": "12:30 pm - 2:00 pm",
             "category": "All",
             "place": "Given soon"
         },
         "sudoku": {
             "name": "Sudoku Solving",
-            "time": "2:00 pm - 2:30 pm",
+            "time": "2:30 pm - 3:00 pm",
             "category": "All",
             "place": "Given soon"
         },
