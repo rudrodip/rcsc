@@ -71,7 +71,7 @@ const Journal = () => {
                     author={author.name}
                     date={date}
                     role={author.designation}
-                    editable={user?.uid == uid || 'admin' in userInfo?.roles}
+                    editable={user?.uid == uid || (userInfo?.roles && 'admin' in userInfo?.roles)}
                 />
             </div>
         )
