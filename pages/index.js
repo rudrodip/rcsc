@@ -163,15 +163,3 @@ export default function Home() {
     </div>
   )
 }
-
-const meta = {
-  title: "Rajshahi College Science Club",
-  description: "Official Website of Rajshahi College Science Club",
-  url: "https://rcsc.vercel.app",
-  image: "https://firebasestorage.googleapis.com/v0/b/rcsc-web.appspot.com/o/events%2F5th%20RCSF%2Fbg1.jpg?alt=media&token=7f0f6213-9085-48e3-a60b-74d08025ad6d",
-  twitterCard: "summary_large_image",
-  twitterDomain: "rcsc.vercel.app",
-  twitterTitle: "Rajshahi College Science Club",
-  twitterDescription: "Official Website of Rajshahi College Science Club",
-  twitterImage: "https://firebasestorage.googleapis.com/v0/b/rcsc-web.appspot.com/o/events%2F5th%20RCSF%2Fbg1.jpg?alt=media&token=7f0f6213-9085-48e3-a60b-74d08025ad6d"
-};
