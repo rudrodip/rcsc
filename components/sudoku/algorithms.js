@@ -88,53 +88,22 @@ const reset = (editable = true) => {
 	return grid
 }
 
-// const generateBoard = (samples = 17) => {
-// 	let grid = reset(false)
+const generateBoard = (samples = 17) => {
+	let grid = reset(false)
 
-// 	let given = 0
-// 	while (given <= samples) {
-// 		let { y, x, n } = generateRandom()
-// 		if (grid[y][x].val == 0){
-// 			if (isValidMove(grid, y, x, n)){
-// 				grid[y][x].val = n
-// 				grid[y][x].color = "rgb(0, 220, 90)"
-// 				given++
-// 			}
-// 		}
-// 	}
-// 	return grid
-// }
-
-const generateBoard = (samples = 17, maxAttempts = 100) => {
-	const grid = reset(false);
-	const usedPositions = new Set();
-	const usedNumbers = new Set();
-	let given = 0;
+	let given = 0
 	while (given <= samples) {
-	  let attempts = 0;
-	  let y, x, n;
-	  do {
-		y = Math.floor(Math.random() * 9);
-		x = Math.floor(Math.random() * 9);
-		n = Math.floor(Math.random() * 9) + 1;
-		attempts++;
-		if (attempts >= maxAttempts) {
-		  break;
+		let { y, x, n } = generateRandom()
+		if (grid[y][x].val == 0){
+			if (isValidMove(grid, y, x, n)){
+				grid[y][x].val = n
+				grid[y][x].color = "rgb(0, 220, 90)"
+				given++
+			}
 		}
-	  } while (usedPositions.has(`${y},${x}`) || usedNumbers.has(n));
-	  if (attempts >= maxAttempts) {
-		continue;
-	  }
-	  usedPositions.add(`${y},${x}`);
-	  usedNumbers.add(n);
-	  if (grid[y][x].val === 0 && isValidMove(grid, y, x, n)) {
-		grid[y][x].val = n;
-		grid[y][x].color = "rgb(0, 220, 90)";
-		given++;
-	  }
 	}
-	return grid;
-  };
+	return grid
+}
   
 
 const timeout = ms => new Promise(resolve => setTimeout(resolve, ms));
