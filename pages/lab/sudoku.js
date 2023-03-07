@@ -10,6 +10,10 @@ const Sudoku = () => {
 	const [pause, setPause] = useState(false)
 	const [samples, setSamples] = useState(17)
 
+	function handleStop() {
+		setPause(!pause);
+	}
+
 	const handleChange = (row, col, value, color = "rgb(3, 252, 169)") => {
 		const newSudoku = [...sudoku];
 		const cell = new Cell(row, col, value, true, color);
@@ -34,11 +38,11 @@ const Sudoku = () => {
 	}
 	const generateRandomBoard = () => {
 		setLoading(true)
-		setSudoku(generateBoard())
+		setSudoku(generateBoard(samples))
 		setLoading(false)
 	}
 
-	function solveBoard(){
+	function solveBoard() {
 		setLoading(true)
 		const newSudoku = [...sudoku];
 		quickSolve(newSudoku)
@@ -55,15 +59,20 @@ const Sudoku = () => {
 			return true;
 		} else {
 			let cell = sudoku[row][col];
-			handleChange(row, col, cell.val)
+			handleChange(row, col, cell.val);
 		}
 
 		// Try each digit from 1 to 9
 		for (let num = 1; num <= 9; num++) {
 
+			// Check if the pause button was clicked
+			if (pause) {
+				return;
+			}
+
 			if (isValidMove(grid, row, col, num)) {
 				// Place the number in the current cell
-				await timeout(0)
+				await timeout(0);
 				handleChange(row, col, num, "rgb(0, 100, 210)");
 
 				// Recursively solve the Sudoku
@@ -72,7 +81,7 @@ const Sudoku = () => {
 				}
 
 				// If the recursive call didn't solve the Sudoku, backtrack
-				await timeout(0)
+				await timeout(0);
 				handleChange(row, col, 0, "rgb(255, 0, 0)");
 			}
 		}
@@ -115,7 +124,7 @@ const Sudoku = () => {
 					<button className='btn btn-info m-2' onClick={async () => await solveSudoku(sudoku)} disabled={loading}>Animate</button>
 					<button className='btn btn-info m-2' onClick={resetBoard} disabled={loading}>Reset</button>
 					<button className='btn btn-info m-2' onClick={generateRandomBoard} disabled={loading}>Generate</button>
-					<button className='btn btn-success m-2' onClick={() => setPause(!pause)} disabled={loading}>{pause ? "Continue" : "Pause"}</button>
+					<button className='btn btn-success m-2' onClick={handleStop}>{pause ? "Continue" : "Pause"}</button>
 				</div>
 				<div className=''>
 					<label>Given: {samples}</label>
@@ -127,10 +136,3 @@ const Sudoku = () => {
 }
 
 export default Sudoku
-
-function formatTime(milliseconds) {
-  const seconds = Math.floor(milliseconds / 1000);
-  const minutes = Math.floor(seconds / 60);
-  const remainingSeconds = seconds % 60;
-  return `${minutes}:${remainingSeconds.toString().padStart(2, '0')}`;
-}
