@@ -6,6 +6,7 @@ import CustomCountdown from '../components/customCountdown'
 import SegmentGrid from '../components/segment/segmentGrid'
 import Segments from '../public/jsons/segments.json'
 import Schedule from '../public/jsons/schedule.json'
+import FBpost from "../components/fbPost";
 
 function Events() {
   const segmentRef = useRef(1)
@@ -53,6 +54,14 @@ function Events() {
           </div>
         </div>
       </div >
+
+      <div className='flex flex-col justify-center items-center'>
+        <h1 className="p-4 text-4xl text-center text-transparent bg-clip-text bg-gradient-to-r font-bold from-blue-400 to-cyan-500">
+          Facebook Event
+        </h1>
+        <FBpost url="https://www.facebook.com/rajshahicollegescienceclub/posts/pfbid0gC6wJVQJAxFaN6LdA8mytT7juhLaanseK6E1YWmbYAZHw6pnjscPXdfq43U1iE5Vl" />
+      </div>
+
       <main ref={segmentRef}>
         {
           Object.keys(Segments).map(
