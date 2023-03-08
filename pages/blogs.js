@@ -129,6 +129,9 @@ function Blogs() {
           id="post"
           className="flex flex-row justify-around flex-wrap m-1 md:m-5"
         >
+          <FBpost url="https://www.facebook.com/rajshahicollegescienceclub/posts/pfbid0gC6wJVQJAxFaN6LdA8mytT7juhLaanseK6E1YWmbYAZHw6pnjscPXdfq43U1iE5Vl" />
+          <FBpost url="https://www.facebook.com/rajshahicollegescienceclub/posts/pfbid0zPwrFtBPeZ4Hw8ebpx79BPaoyZsvPK5WPFDNZqo4ymHjVThfeUc5tEHKVB5Bz8WVl" />
+          <FBpost url="https://www.facebook.com/rajshahicollegescienceclub/posts/pfbid02b5htuE9o9T6w87onbKkZWsZSmhXmRMHWPFKhpEtG5fsxYUGtcByKNqismkPbMBgsl" />
           <FBpost url="https://www.facebook.com/rajshahicollegescienceclub/posts/pfbid0MNX39GqBz6XJdbNJPovusAojLRhBAifWtY4Rng8XK6rgborfQSzPZL7HRdmX6tvTl" />
           <FBpost url="https://www.facebook.com/rajshahicollegescienceclub/posts/pfbid02R2AdYpcFjedC4dbV7NjkJZccRyCv2FraquykKDsSXpUzDVnALzUQw9HrdgXbH1S1l" />
           <FBpost url="https://www.facebook.com/rajshahicollegescienceclub/posts/pfbid02FrRUg2obWEMN3qujgChcF6LfGK2U6qxU69ok1eGD4MgfWj96WTkFto7nTkJi78Gsl" />
