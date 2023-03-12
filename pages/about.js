@@ -1,4 +1,4 @@
-import React from 'react'
+﻿import React from 'react'
 import Head from 'next/head';
 import CountUp from 'react-countup';
 import Stats from '../public/jsons/stats.json'
@@ -103,14 +103,14 @@ function About({ user }) {
         <div className="container px-5 py-6 lg:py-24 mx-auto">
           <div className="flex flex-wrap -m-4">
             <TeachersProfile
-              name="Hobibur Rahman"
+              name="Habibur Rahman"
               role="Ex-principle"
-              img="https://dummyimage.com/200x200"
+              img="/members/habibur_sir.jpg"
             />
             <TeachersProfile
               name="Shamim Ara"
               role="First president"
-              img="https://dummyimage.com/200x200"
+              img="/members/shamim_ara.jpg"
             />
             <TeachersProfile
               name="Prof. Md Al-Momin Chowdhury"
