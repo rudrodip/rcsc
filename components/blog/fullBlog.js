@@ -7,6 +7,7 @@ import { useState, useEffect } from "react";
 import { db } from '../../src/config/firebase.config';
 import { doc, updateDoc } from 'firebase/firestore'
 import { ToastContainer, toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 import RichTextEditor from '../RichText';
 
 const warningToastConfig = {
