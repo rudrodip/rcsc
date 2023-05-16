@@ -1,0 +1,120 @@
+{
+    "17/3/2023":{
+        "reporting": {
+            "name": "Reporting",
+            "time": "8:00 am - 9:00 am",
+            "category": "All",
+            "place": "Given soon"
+        },
+        "inauguration": {
+            "name": "Inauguration Ceremony",
+            "time": "9:00 am - 10:00 am",
+            "category": "All",
+            "place": "Given soon"
+        },
+        "painting": {
+            "name": "Painting Competition",
+            "time": "10:00 am - 11:00 am",
+            "category": "Junior",
+            "place": "Given soon"
+        },
+        "math": {
+            "name": "Physics Olympiad",
+            "time": "10:00 am - 11:00 am",
+            "category": "Secondary & Higher Secondary",
+            "place": "Given soon"
+        },
+        "science": {
+            "name": "Science Olympiad",
+            "time": "11:30 am - 12:30 pm",
+            "category": "Junior",
+            "place": "Given soon"
+        },
+        "astronomy": {
+            "name": "Astronomy Olympiad",
+            "time": "11:30 am - 12:30 pm",
+            "category": "Secondary & Higher Secondary",
+            "place": "Given soon"
+        },
+        "lunch": {
+            "name": "Prayer",
+            "time": "12:30 pm - 2:00 pm",
+            "category": "All",
+            "place": "Given soon"
+        },
+        "sudoku": {
+            "name": "Sudoku Solving",
+            "time": "2:30 pm - 3:00 pm",
+            "category": "All",
+            "place": "Given soon"
+        },
+        "documentary": {
+            "name": "Documentary Show",
+            "time": "3:00 pm - 4:00 pm",
+            "category": "All",
+            "place": "Given soon"
+        },
+        "chemistry": {
+            "name": "Chemistry Olympiad",
+            "time": "4:00 pm - 5:00 pm",
+            "category": "Secondary & Higher Secondary",
+            "place": "Given soon"
+        },
+        "cp": {
+            "name": "Competitive Prgramming",
+            "time": "8:00 pm - 10:00 pm",
+            "category": "Secondary & Higher Secondary",
+            "place": "Hackerrank Platform"
+        }
+    },
+    "18/3/2023":{
+        "reporting": {
+            "name": "Reporting",
+            "time": "8:00 am - 9:00 am",
+            "category": "All",
+            "place": "Given soon"
+        },
+        "biology": {
+            "name": "Biology Olympiad",
+            "time": "9:30 am - 10:30 am",
+            "category": "Secondary & Higher Secondary",
+            "place": "Given soon"
+        },
+        "speedcubing": {
+            "name": "Speedcubing",
+            "time": "10:30 am - 11:00 am",
+            "category": "All",
+            "place": "Given soon"
+        },
+        "documentary": {
+            "name": "Documentary Show",
+            "time": "11:00 am - 12:00 pm",
+            "category": "All",
+            "place": "Given soon"
+        },
+        "junior math": {
+            "name": "Math Olympiad",
+            "time": "12:00 pm - 1:00 pm",
+            "category": "Junior",
+            "place": "Given soon"
+        },
+        "math": {
+            "name": "Math Olympiad",
+            "time": "12:00 pm - 1:00 pm",
+            "category": "Secondary & Higher Secondary",
+            "place": "Given soon"
+        },
+        "lunch": {
+            "name": "Lunch and Prayer",
+            "time": "1:00 pm - 2:00 pm",
+            "category": "All",
+            "place": "Given soon"
+        },
+        "closing ceremony": {
+            "name": "Closing Ceremony",
+            "time": "2:00 pm - 5:00 pm",
+            "category": "All",
+            "place": "Auditorium"
+        }
+    }
+}

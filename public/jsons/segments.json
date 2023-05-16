@@ -1,0 +1,76 @@
+{
+    "Individual Segments": {
+        "Olympiads": {
+            "name": "Olympiads",
+            "desc": "There are olympiads for three categories, i.e Junior, Secondary and Higher Secondary. Students can participate in Math, Physics, Chemistry, Biology and Astronomy Olympiad.",
+            "img": "/segments/olympiads.jpg",
+            "url": "https://forms.gle/LvXvCiu6nURk82To6",
+            "details": "/blogs/OlympiadsbynHMgWGqM7HRf2wBRehqFtEdkRED2"
+        },
+        "Problem Solving": {
+            "name": "Problem Solving",
+            "desc": "Students from any class can participate in this segment",
+            "img": "/segments/prob.jpg",
+            "url": "https://forms.gle/LvXvCiu6nURk82To6",
+            "details": "/blogs/Problem%20SolvingbynHMgWGqM7HRf2wBRehqFtEdkRED2"
+        },
+        "Competitive Programming": {
+            "name": "Competitive Programming",
+            "desc": "This is an online competition. Students from any class can participate in this segment.",
+            "img": "/segments/cp.jpg",
+            "url": "https://forms.gle/LvXvCiu6nURk82To6",
+            "details": "/blogs/Competitive%20ProgrammingbynHMgWGqM7HRf2wBRehqFtEdkRED2"
+        },
+        "Speedcubing": {
+            "name": "Speedcubing",
+            "desc": "Students from any class can participate in this segment. The individual who'll solve it in the shortest time, will win.",
+            "img": "/segments/bg3.jpg",
+            "url": "https://forms.gle/LvXvCiu6nURk82To6",
+            "details": "/blogs/Speed%20CubingbynHMgWGqM7HRf2wBRehqFtEdkRED2"
+        },
+        "Sudoku Solving": {
+            "name": "Sudoku Solving",
+            "desc": "Students from any class can participate in this segment. The individual who'll solve it in the shortest time, will win.",
+            "img": "/segments/sudoku.jpg",
+            "url": "https://forms.gle/LvXvCiu6nURk82To6",
+            "details": "/blogs/Sudoku%20SolvingbynHMgWGqM7HRf2wBRehqFtEdkRED2"
+        },
+        "Photography": {
+            "name": "Photography",
+            "desc": "Its an online segment. Participants can submit their photograph here.",
+            "img": "/segments/photography.jpg",
+            "url": "https://forms.gle/LvXvCiu6nURk82To6",
+            "details": "/blogs/PhotographybynHMgWGqM7HRf2wBRehqFtEdkRED2"
+        },
+        "Science Fiction Writing": {
+            "name": "Science Fiction Writing",
+            "desc": "Its an online segment. Participants can submit their fiction story here.",
+            "img": "/segments/scifi.jpg",
+            "url": "https://forms.gle/LvXvCiu6nURk82To6",
+            "details": "/blogs/Science%20Fiction%20WritingbynHMgWGqM7HRf2wBRehqFtEdkRED2"
+        },
+        "Scrapbook": {
+            "name": "Scrapbook Competition",
+            "desc": "Participants can submit their scrapbook in venue.",
+            "img": "/segments/scrapbook.jpg",
+            "url": "https://forms.gle/LvXvCiu6nURk82To6",
+            "details": "/blogs/ScrapbookbynHMgWGqM7HRf2wBRehqFtEdkRED2"
+        }
+    },
+    "Team Segments": {
+        "Project showcase": {
+            "name": "Project Showcase",
+            "desc": "A team will make their project and show it in the venue.",
+            "img": "/segments/robot.jpg",
+            "url": "https://forms.gle/LvXvCiu6nURk82To6",
+            "details": "/blogs/Project%20ShowcasebynHMgWGqM7HRf2wBRehqFtEdkRED2"
+        },
+        "Wall Magazine": {
+            "name": "Wall Magazine",
+            "desc": "A team will make their magazine and show it in the venue.",
+            "img": "/segments/mag.jpg",
+            "url": "https://forms.gle/LvXvCiu6nURk82To6",
+            "details": "/blogs/Wall%20MagazinebynHMgWGqM7HRf2wBRehqFtEdkRED2"
+        }
+    }
+}
