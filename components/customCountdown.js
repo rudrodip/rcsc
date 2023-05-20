@@ -4,14 +4,8 @@ import Countdown from 'react-countdown';
 // Random component
 const Completionist = () =>
   <>
-    <div className="card w-96 bg-base-100 shadow-xl">
-      <div className="card-body">
-        <h2 className="card-title text-white">Event Started!</h2>
-        <p>Join us at Rajshahi College</p>
-        <div className="card-actions justify-end">
-          <button className="btn btn-primary">See updates!</button>
-        </div>
-      </div>
+    <div className="flex justify-center items-center">
+      <h1 className="mb-5 text-4xl font-bold text-cyan-400">Registration Closed</h1>
     </div>
   </>
 
@@ -27,13 +21,13 @@ const renderer = ({ days, hours, minutes, seconds, completed }) => {
       <div className="grid grid-flow-col gap-5 text-center auto-cols-max m-3 place-content-center">
         <div className="flex flex-col p-2 bg-neutral rounded-box text-white">
           <span className="countdown font-mono text-5xl">
-            <span style={{ "--value": days, color: 'white'  }}></span>
+            <span style={{ "--value": days, color: 'white' }}></span>
           </span>
           days
         </div>
         <div className="flex flex-col p-2 bg-neutral rounded-box text-white">
           <span className="countdown font-mono text-5xl">
-            <span style={{ "--value": hours, color: 'white'  }}></span>
+            <span style={{ "--value": hours, color: 'white' }}></span>
           </span>
           hours
         </div>
@@ -45,7 +39,7 @@ const renderer = ({ days, hours, minutes, seconds, completed }) => {
         </div>
         <div className="flex flex-col p-2 bg-neutral rounded-box text-white">
           <span className="countdown font-mono text-5xl">
-            <span style={{ "--value": seconds, color: 'white'  }}></span>
+            <span style={{ "--value": seconds, color: 'white' }}></span>
           </span>
           sec
         </div>
@@ -54,12 +48,12 @@ const renderer = ({ days, hours, minutes, seconds, completed }) => {
   }
 }
 
-const CustomCountdown = ({date}) => {
+const CustomCountdown = ({ date }) => {
   return (
-      <Countdown
-        date={date}
-        renderer={renderer}
-      />
+    <Countdown
+      date={date}
+      renderer={renderer}
+    />
   )
 }
 

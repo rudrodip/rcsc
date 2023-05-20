@@ -12,6 +12,10 @@ function Events() {
   const segmentRef = useRef(1)
   const contactRef = useRef(2)
   const scheduleRef = useRef(3)
+  const evenStartingDate = new Date('2023-03-17')
+  const eventEndingDate = new Date('2023-03-18')
+  const currentDate = new Date()
+  const eventFinished = currentDate > eventEndingDate
 
   const executeScroll = () => segmentRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' })
   const contactScroll = () => contactRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' })
@@ -37,7 +41,7 @@ function Events() {
       </Head>
 
       <div>
-        <div className="hero min-h-[90vh]" style={{ backgroundImage: `url("/background-img/bg.png")` }}>
+        <div className="hero min-h-screen" style={{ backgroundImage: `url("/background-img/bg.png")` }}>
           <div className="hero-overlay bg-opacity-40"></div>
           <div className="hero-content text-center text-neutral-content p-2 m-0">
             <div className="max-w-xl">
@@ -45,9 +49,10 @@ function Events() {
               <p className="mb-5">Welcome to the <span className='text-blue-500'>6th Rajshahi College National Science Fest 2023</span> official website. <span className='text-blue-500 font-bold'>RCSC</span> is one of the leading science clubs at the national level. Every year we have arranged Rajshahi College Science Fest since 2017. Like before we now organizing the <span className='text-blue-500'>6th Rajshahi College National Science Fest 2023</span> for you. Please join us as an individual or a team.</p>
               <h1 className="mb-2 text-2xl font-bold text-cyan-400">Date: <span className='text-blue-500'>March 17th - 18th, 2023</span></h1>
               <h1 className="mb-2 text-2xl font-bold text-cyan-400">Venue: <span className='text-blue-500'>Rajshahi College, Rajshahi</span></h1>
-              <h1 className="mb-5 text-4xl font-bold text-cyan-400">Event starting in</h1>
-              <CustomCountdown date={new Date('2023-03-17')} />
-              <button role="button" onClick={executeScroll} className="btn bg-cyan-500 border-blue-400 text-gray-800 hover:text-gray-200 hover:bg-blue-800 m-2">Register now!</button>
+              {!eventFinished ? <h1 className="mb-5 text-4xl font-bold text-cyan-400">Event starting in</h1> : ''}
+              <CustomCountdown date={evenStartingDate} />
+              {eventFinished ? <h1 className="mb-5 text-4xl font-bold text-cyan-400">Event finished</h1> : ''}
+              {currentDate < evenStartingDate ? <button role="button" onClick={executeScroll} className="btn bg-cyan-500 border-blue-400 text-gray-800 hover:text-gray-200 hover:bg-blue-800 m-2">Register now!</button> : ''}
               <button role="button" onClick={scheduleScroll} className="btn bg-cyan-500 border-blue-400 text-gray-800 hover:text-gray-200 hover:bg-blue-800 m-2">Schedule</button>
               <button role="button" onClick={contactScroll} className="btn bg-cyan-500 border-blue-400 text-gray-800 hover:text-gray-200 hover:bg-blue-800 m-2">Contact</button>
             </div>

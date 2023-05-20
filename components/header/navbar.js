@@ -63,7 +63,7 @@ const Navbar = ({ props, path }) => {
                 <span className="sr-only">Open main menu</span>
                 {!isOpen ? (
                   <div className="indicator">
-                    <span className="animate-pulse indicator-item badge badge-secondary"></span> 
+                    <span className="animate-pulse indicator-item badge badge-secondary"></span>
                     <svg
                       className="block h-6 w-6"
                       xmlns="http://www.w3.org/2000/svg"
@@ -135,15 +135,12 @@ const Navbutton = (props) => {
   return (
     <div>
       <Link legacyBehavior href={props.link}>
-        <div className="indicator">
-          {props.name == 'Events' && <span className="animate-bounce indicator-item badge badge-primary">new</span>}
-          <a
-            href="#"
-            className={`text-gray-400 ${props.name == 'Events' && 'bg-gray-700 text-white'} hover:bg-gray-700 ${props.classname} block px-4 mx-3 py-2 rounded-md text-base transition duration-150 ease-in-out`}
-          >
-            {props.name}
-          </a>
-        </div>
+        <a
+          href="#"
+          className={`text-gray-400 hover:bg-gray-700 ${props.classname} block px-4 mx-3 py-2 rounded-md text-base transition duration-150 ease-in-out`}
+        >
+          {props.name}
+        </a>
       </Link>
     </div>
   )
